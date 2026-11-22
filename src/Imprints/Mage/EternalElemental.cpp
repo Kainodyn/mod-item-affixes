@@ -68,7 +68,7 @@ public:
         elemental->SetTempSummonType(TEMPSUMMON_DEAD_DESPAWN);
         elemental->SetObjectScale(ETERNAL_ELEMENTAL_SCALE);
 
-        auto* data = caster->CustomData.GetDefault<ItemAffixPlayerData>("ItemAffixPlayerData");
+        auto* data = caster->CustomData.GetDefault<ItemAffixPlayerData>("ItemAffixData");
         data->eternalElementalGuid = elemental->GetGUID();
 
         return true;
@@ -100,7 +100,7 @@ public:
 
     void OnUnequip(Player* player, uint64 /*itemGuid*/) override
     {
-        auto* data = player->CustomData.GetDefault<ItemAffixPlayerData>("ItemAffixPlayerData");
+        auto* data = player->CustomData.GetDefault<ItemAffixPlayerData>("ItemAffixData");
         if (data->eternalElementalGuid.IsEmpty())
             return;
 

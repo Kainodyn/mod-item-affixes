@@ -5,6 +5,7 @@
 #include "ScriptMgr.h"
 #include "ScriptedCreature.h"
 #include "SpellInfo.h"
+#include "SpellRankUtil.h"
 #include "Map.h"
 #include "Log.h"
 
@@ -29,11 +30,23 @@ static constexpr uint32 RAKE_COOLDOWN_MAX       = 9000;
 static constexpr uint32 SHRED_COOLDOWN_MIN      = 8000;
 static constexpr uint32 SHRED_COOLDOWN_MAX      = 12000;
 
-// High-rank druid cat abilities used for the tiger's special attacks.
-// SPELL_EFFECT_WEAPON_PERCENT_DAMAGE — scale with the weapon damage we set from player AP.
+// Druid cat abilities used for the tiger's special attacks (rank 1 = chain start).
+// The tiger casts the druid's highest known rank (or the highest rank for the
+// tiger's level), not rank 9 -- R9 Rake/Shred carry level-80 flat damage
+// (Shred R9 adds +666) that a level-24 druid's tiger should not have.
 // These bypass form requirements when cast by a creature (non-player).
-static constexpr uint32 SPELL_TIGER_RAKE        = 48574;  // Rake rank 9: DoT bleed
-static constexpr uint32 SPELL_TIGER_SHRED       = 48572;  // Shred rank 9: 525% weapon damage burst
+static constexpr uint32 SPELL_RAKE_R1           = 1822;   // DoT bleed
+static constexpr uint32 SPELL_SHRED_R1          = 5221;   // weapon damage burst
+
+// Owner's best rank of a chain; falls back to the highest rank for the
+// tiger's own level (set to the owner's level on summon).
+static uint32 TigerRank(Creature* me, uint32 chainStart)
+{
+    if (Unit* owner = me->GetCharmerOrOwner())
+        if (Player* player = owner->ToPlayer())
+            return AffixSpellRank::Best(player, chainStart);
+    return AffixSpellRank::HighestForLevel(chainStart, me->GetLevel());
+}
 
 // ---------------------------------------------------------------------------
 // ScaleWolfStats — copy player AP-derived weapon/AP onto the tiger.
@@ -119,7 +132,8 @@ public:
             // Rake — periodic bleed DoT, 6–9 s cooldown
             if (_rakeTimer <= diff)
             {
-                me->CastSpell(me->GetVictim(), SPELL_TIGER_RAKE, false);
+                if (uint32 rake = TigerRank(me, SPELL_RAKE_R1))
+                    me->CastSpell(me->GetVictim(), rake, false);
                 _rakeTimer = urand(RAKE_COOLDOWN_MIN, RAKE_COOLDOWN_MAX);
             }
             else _rakeTimer -= diff;
@@ -127,7 +141,8 @@ public:
             // Shred — heavy burst strike, 8–12 s cooldown
             if (_shredTimer <= diff)
             {
-                me->CastSpell(me->GetVictim(), SPELL_TIGER_SHRED, false);
+                if (uint32 shred = TigerRank(me, SPELL_SHRED_R1))
+                    me->CastSpell(me->GetVictim(), shred, false);
                 _shredTimer = urand(SHRED_COOLDOWN_MIN, SHRED_COOLDOWN_MAX);
             }
             else _shredTimer -= diff;
