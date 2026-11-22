@@ -79,6 +79,8 @@ public:
 
     void OnPlayerLogin(Player* player) override
     {
+        if (sItemAffixMgr->IsExcludedBot(player))
+            return;
         sItemAffixMgr->UpgradeAll2HSlots(player);
         sItemAffixMgr->ReapplyAllEquipped(player);
         sItemAffixMgr->SendConfig(player);
@@ -95,6 +97,8 @@ public:
 
     void OnPlayerBeforeLogout(Player* player) override
     {
+        if (sItemAffixMgr->IsExcludedBot(player))
+            return;
         sItemAffixMgr->ClearPendingReroll(player->GetGUID().GetRawValue());
         sItemAffixMgr->RemoveAllActiveMods(player);
         // Remove Imprint mods for all equipped items
@@ -112,6 +116,8 @@ public:
     // is a separate pool, not a reduction of character XP.
     void OnPlayerGiveXP(Player* player, uint32& amount, Unit* /*victim*/, uint8 /*xpSource*/) override
     {
+        if (sItemAffixMgr->IsExcludedBot(player))
+            return;
         // Character XP bonus first so the trickle skim below sees the boosted amount.
         sPlayerProgressionMgr->ApplyCharacterXpBonus(player, amount);
         sPlayerProgressionMgr->GrantTrickleXP(player, amount);
@@ -119,6 +125,8 @@ public:
 
     void OnPlayerStoreNewItem(Player* player, Item* item, uint32 /*count*/) override
     {
+        if (sItemAffixMgr->IsExcludedBot(player))
+            return;
         sItemAffixMgr->InitItemSlots(player, item);
     }
 
@@ -126,6 +134,8 @@ public:
         uint8 /*count*/, uint8 /*bag*/, uint8 /*slot*/, ItemTemplate const* /*proto*/,
         Creature* /*vendor*/, VendorItem const* /*crItem*/, bool /*bStore*/) override
     {
+        if (sItemAffixMgr->IsExcludedBot(player))
+            return;
         sItemAffixMgr->InitItemSlots(player, item);
     }
 
@@ -144,6 +154,8 @@ public:
 
     void OnPlayerEquip(Player* player, Item* it, uint8 /*bag*/, uint8 /*slot*/, bool /*update*/) override
     {
+        if (sItemAffixMgr->IsExcludedBot(player))
+            return;
         sItemAffixMgr->SyncAffixes(player);
         if (it)
             sItemAffixMgr->SendItemStatus(player, it);
@@ -155,6 +167,8 @@ public:
 
     void OnPlayerUnequip(Player* player, Item* it) override
     {
+        if (sItemAffixMgr->IsExcludedBot(player))
+            return;
         // Pass the item GUID so Phase 1 skips it — the hook fires before the slot vacates,
         // so without the exclusion Phase 2 would immediately re-apply the variant we just removed.
         sItemAffixMgr->SyncAffixes(player, it ? it->GetGUID() : ObjectGuid::Empty);
