@@ -59,8 +59,8 @@
       "carrier_name": "Icy Touch",
       "spellmod_op": "RESIST_MISS_CHANCE",
       "spellmod_type": "FLAT",
-      "value_per_rank": 100,
-      "notes": "All-ones — DK spell hit +1%/rank. Carrier IcyTouch(45477) confirmed SPELLFAMILY_DK.",
+      "value_per_rank": 1,
+      "notes": "All-ones — DK spell hit +1%/rank (RESIST_MISS_CHANCE FLAT: 1=+1%; was 100 = +100%/rank). Carrier IcyTouch(45477) confirmed SPELLFAMILY_DK.",
       "verified": true
     },
     {"_todo": "Anticipation (5r, tier 1) — Increases dodge chance by 1/2/3/4/5%. Passive defense stat, not implementable as SpellMod."},
