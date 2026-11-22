@@ -5,7 +5,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 SCRIPTS_ROOT="$SCRIPT_DIR/.."
 MODULE_ROOT="$SCRIPT_DIR/../.."
-SQL_RESET="$MODULE_ROOT/data/sql/db-characters/reset_item_affixes.sql"
+SQL_RESET="$MODULE_ROOT/data/sql/manual/reset_item_affixes.sql"
 
 echo "============================================================"
 echo " mod-item-affixes -- RESET PLAYER AFFIXES"

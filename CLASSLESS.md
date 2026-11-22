@@ -26,6 +26,7 @@ behaves as upstream.
 | Spec (dominant tree) | most ranks in own class's trees | the talent tab with the most owned ranks, any class |
 | Stat affixes | role/main stat auto-picked from class+spec | weighted by the Hero's stat allocation (`Classless.StatAllocWeighting`) |
 | Role/main stat selectors | shown per class/spec | hidden for Heroes |
+| Random bots | roll like players | accounts Wildcard exempts get no affixes (`Classless.SkipExemptAccounts`) |
 | Progression | on by default | off by default; the class-affix gate only applies while Progression is on |
 
 ### Talent ownership
@@ -51,6 +52,23 @@ exactly like upstream). Multiplies the template weight.
 - Floor: `Classless.StatAllocMinWeightPct` (default 10%)
 
 A Hero with no points allocated rolls uniformly.
+
+## SQL and the AzerothCore DB updater
+
+The updater applies every `.sql` under `data/sql/db-{world,characters,auth}/`
+(subfolders included) once, in filename order, and again when a file's hash
+changes. Upstream's layout did not survive that:
+
+- `affix_spec_tree_*.sql` (UPDATEs on `affix_template`) sorted before the file
+  that creates the table. Renamed to `affix_template_spec_tree_*.sql`. Their
+  values are the same as those in the generated `affix_template.sql`
+  (385/385 identical), so a re-run of either file in any order is harmless.
+- The generated `affix_template.sql` and `talent_affix_def.sql` were gitignored.
+  They are tracked here so a clean clone installs without PowerShell.
+  Regenerate them with `pwsh -File scripts/build_affixes.ps1` and
+  `scripts/build_talent_affixes.ps1` after changing the JSON.
+- `reset_item_affixes.sql` (wipes every roll) sat in `db-characters/` and
+  ran on first start. Moved to `data/sql/manual/`.
 
 ## Core patches on Linux
 

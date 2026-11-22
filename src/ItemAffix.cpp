@@ -607,6 +607,7 @@ void ItemAffixMgr::LoadAffixTemplates()
     _classlessStatWeighting         = sConfigMgr->GetOption<bool>  ("ItemAffixes.Classless.StatAllocWeighting",   true);
     _classlessStatMinWeight         = std::clamp(sConfigMgr->GetOption<uint32>("ItemAffixes.Classless.StatAllocMinWeightPct", 10), 0u, 100u) / 100.0f;
     _classlessRequireOwnedTalent    = sConfigMgr->GetOption<bool>  ("ItemAffixes.Classless.RequireOwnedTalent",   true);
+    _classlessSkipExempt            = sConfigMgr->GetOption<bool>  ("ItemAffixes.Classless.SkipExemptAccounts",   true);
     _classAffixMaxPerItem           = sConfigMgr->GetOption<uint32>("ItemAffixes.ClassAffixMaxPerItem",            0);
     _enableTalentAffixes            = sConfigMgr->GetOption<bool>  ("ItemAffixes.EnableTalentAffixes",            true);
     _enableTalentAffixSelection     = sConfigMgr->GetOption<bool>  ("ItemAffixes.EnableTalentAffixSelection",     false);
@@ -1578,6 +1579,12 @@ int32 ItemAffixMgr::GetPetCooldownPct(uint64 ownerGuid) const
 void ItemAffixMgr::InitItemSlots(Player* player, Item* item)
 {
     if (_pool.empty() || !player || !item)
+        return;
+
+    // Classless: accounts mod-classless-wildcard exempts (the random bot
+    // prefix) get no affixes -- every stored item would otherwise cost the
+    // characters DB a write, for characters no one looks at.
+    if (_classlessSkipExempt && AffixClassless::IsExempt(player))
         return;
 
     ItemTemplate const* proto = item->GetTemplate();

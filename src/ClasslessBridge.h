@@ -31,6 +31,11 @@ namespace AffixClassless
     // True when the player is a Wildcard Hero (not exempt, state loaded).
     bool IsHero(Player* player);
 
+    // True when mod-classless-wildcard exempts the player's account (the
+    // ClasslessWildcard.ExemptAccountPrefixes list, random bots by default).
+    // Always false without mod-classless-wildcard.
+    bool IsExempt(Player* player);
+
     // Bitmask (1 << (classId - 1)) of the classes the player draws from.
     // Non-Hero: its own class. Hero: every class it owns an ability or a
     // talent from.

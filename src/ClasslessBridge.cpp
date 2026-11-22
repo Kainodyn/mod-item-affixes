@@ -100,6 +100,19 @@ namespace AffixClassless
 #endif
     }
 
+    bool IsExempt(Player* player)
+    {
+#if AFFIX_HAS_CLASSLESS
+        if (!player || !sClasslessMgr->cfg.enabled)
+            return false;
+        ClasslessWildcard::CharState const* st = sClasslessMgr->FindState(player);
+        return st && st->exempt;
+#else
+        (void)player;
+        return false;
+#endif
+    }
+
     uint32 OwnedClassMask(Player* player)
     {
         if (!player)

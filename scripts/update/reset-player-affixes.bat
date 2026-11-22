@@ -3,7 +3,7 @@ setlocal
 set SCRIPT_DIR=%~dp0
 set SCRIPTS_ROOT=%SCRIPT_DIR%..
 set MODULE_ROOT=%SCRIPT_DIR%..\..
-set SQL_RESET=%MODULE_ROOT%\data\sql\db-characters\reset_item_affixes.sql
+set SQL_RESET=%MODULE_ROOT%\data\sql\manual\reset_item_affixes.sql
 
 echo ============================================================
 echo  mod-item-affixes -- RESET PLAYER AFFIXES

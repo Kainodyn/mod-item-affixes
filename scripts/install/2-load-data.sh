@@ -39,7 +39,7 @@ mysql -h "$MYSQL_HOST" -u "$MYSQL_USER" -p"$MYSQL_PASS" "$DB_WORLD" < "$SQL_WORL
 mysql -h "$MYSQL_HOST" -u "$MYSQL_USER" -p"$MYSQL_PASS" "$DB_WORLD" < "$SQL_WORLD/talent_affix_def.sql"
 
 echo "Applying spec-tree data to $DB_WORLD..."
-for f in "$SQL_WORLD"/affix_spec_tree_*.sql; do
+for f in "$SQL_WORLD"/affix_template_spec_tree_*.sql; do
     mysql -h "$MYSQL_HOST" -u "$MYSQL_USER" -p"$MYSQL_PASS" "$DB_WORLD" < "$f"
 done
 

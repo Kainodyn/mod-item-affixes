@@ -31,7 +31,7 @@ echo "  Done."
 echo
 
 echo "Applying spec-tree data..."
-for f in "$SQL_WORLD"/affix_spec_tree_*.sql; do
+for f in "$SQL_WORLD"/affix_template_spec_tree_*.sql; do
     [ -e "$f" ] || continue
     mysql -h "$MYSQL_HOST" -u "$MYSQL_USER" -p"$MYSQL_PASS" "$DB_WORLD" < "$f"
 done

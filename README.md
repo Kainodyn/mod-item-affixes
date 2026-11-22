@@ -832,7 +832,7 @@ mod-item-affixes/
         ├── reforge_master_npc.sql        ← creature_template/model/npc_text/gossip_menu for entry 601107
         ├── affix_template.sql            ← generated — do not edit directly
         ├── talent_affix_def.sql          ← generated — do not edit directly
-        ├── affix_spec_tree_<class>.sql   ← one per class
+        ├── affix_template_spec_tree_<class>.sql   ← one per class
         └── imprints/
             ├── imprint_def.sql
             ├── imprint_rune_item.sql

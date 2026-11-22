@@ -320,6 +320,12 @@ ItemAffixes.Classless.StatAllocMinWeightPct = 10
 # talents that do not exist in 3.3.5a; they never roll while this is 1.
 ItemAffixes.Classless.RequireOwnedTalent = 1
 
+# No affixes for accounts mod-classless-wildcard exempts
+# (ClasslessWildcard.ExemptAccountPrefixes, the random bot prefix by default).
+# Saves a characters-DB write for every item a random bot stores. Altbots on
+# player accounts are Heroes and still roll.
+ItemAffixes.Classless.SkipExemptAccounts = 1
+
 # ===========================================================================
 # 9. Player Progression — optional subsystem. Account-wide XP pool and
 # talent tree that grants passive, permanent bonuses over time. Everything

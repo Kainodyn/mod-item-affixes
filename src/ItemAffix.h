@@ -507,6 +507,7 @@ private:
     bool   _classlessStatWeighting          = true;   // weight stat affixes by the Hero's stat allocation
     float  _classlessStatMinWeight          = 0.10f;  // floor factor for uninvested stats
     bool   _classlessRequireOwnedTalent     = true;   // talent affixes only for talents the player owns
+    bool   _classlessSkipExempt             = true;   // no affixes for accounts Wildcard exempts (random bots)
     uint32 _classAffixMaxPerItem            = 0;     // 0 = unlimited (no cap); N = block once N class/spellmod affixes are APPLIED
     uint32 _badLuckStreakProtection         = 0;     // consecutive non-class options before next is forced class; 0 = disabled
     std::unordered_map<uint64, uint32> _optionStreak; // item GUID → consecutive non-class options seen this session
