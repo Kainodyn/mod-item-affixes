@@ -2,6 +2,7 @@
 #include "Imprints/ImprintMgr.h"
 #include "PlayerProgression.h"
 #include "PlayerProgressionNodes.h"
+#include "ClasslessBridge.h"
 #include "Bag.h"
 #include "Pet.h"
 #include "Chat.h"
@@ -408,41 +409,18 @@ void ItemAffixMgr::ApplyPlayerStat(Player* player, uint8 statOp, int32 value, bo
 // Spec detection
 // ---------------------------------------------------------------------------
 
+// Classless: the bridge answers for Wildcard Heroes (whose real class is the
+// Paladin chassis) and falls back to upstream's rule for everyone else.
 static int GetDominantTalentTree(Player* player)
 {
-    uint32 const* tabPages = GetTalentTabPages(player->getClass());
-    if (!tabPages)
-        return -1;
+    return AffixClassless::DominantSpec(player).tree;
+}
 
-    int counts[3] = { 0, 0, 0 };
-    for (auto const& [spellId, talent] : player->GetTalentMap())
-    {
-        if (!talent || talent->State == PLAYERSPELL_REMOVED)
-            continue;
-        if (!talent->IsInSpec(player->GetActiveSpec()))
-            continue;
-        TalentSpellPos const* pos = GetTalentSpellPos(spellId);
-        if (!pos)
-            continue;
-        TalentEntry const* entry = sTalentStore.LookupEntry(pos->talent_id);
-        if (!entry)
-            continue;
-        for (int t = 0; t < 3; ++t)
-        {
-            if (entry->TalentTab == tabPages[t])
-            {
-                counts[t] += pos->rank + 1;
-                break;
-            }
-        }
-    }
-
-    int best = 0;
-    for (int i = 1; i < 3; ++i)
-        if (counts[i] > counts[best])
-            best = i;
-
-    return (counts[best] > 0) ? best : -1;
+// The class whose affix tables apply to this player: its real class, or for a
+// Hero the class it has invested most in (0 when it owns nothing yet).
+static uint8 AffixClassOf(Player* player)
+{
+    return AffixClassless::DominantSpec(player).cls;
 }
 
 // ---------------------------------------------------------------------------
@@ -626,6 +604,9 @@ void ItemAffixMgr::LoadAffixTemplates()
     _enableClassSkillAffixes        = sConfigMgr->GetOption<bool>  ("ItemAffixes.EnableClassSkillAffixes",        true);
     _enableClassSkillAffixSelection = sConfigMgr->GetOption<bool>  ("ItemAffixes.EnableClassSkillAffixSelection", false);
     _progressionGateClassAffixes    = sConfigMgr->GetOption<bool>  ("ItemAffixes.ProgressionGateClassAffixes",    false);
+    _classlessStatWeighting         = sConfigMgr->GetOption<bool>  ("ItemAffixes.Classless.StatAllocWeighting",   true);
+    _classlessStatMinWeight         = std::clamp(sConfigMgr->GetOption<uint32>("ItemAffixes.Classless.StatAllocMinWeightPct", 10), 0u, 100u) / 100.0f;
+    _classlessRequireOwnedTalent    = sConfigMgr->GetOption<bool>  ("ItemAffixes.Classless.RequireOwnedTalent",   true);
     _classAffixMaxPerItem           = sConfigMgr->GetOption<uint32>("ItemAffixes.ClassAffixMaxPerItem",            0);
     _enableTalentAffixes            = sConfigMgr->GetOption<bool>  ("ItemAffixes.EnableTalentAffixes",            true);
     _enableTalentAffixSelection     = sConfigMgr->GetOption<bool>  ("ItemAffixes.EnableTalentAffixSelection",     false);
@@ -690,6 +671,39 @@ void ItemAffixMgr::LoadAffixTemplates()
 // LoadTalentAffixDefs
 // ---------------------------------------------------------------------------
 
+// Classless: talent_affix_def names its talent but carries no Talent.dbc id.
+// Resolve it from the talent's rank-1 spell name within the def's class, so an
+// affix can be gated on the talent actually being owned. A trailing
+// " (Spell)" qualifier ("Elusiveness (Vanish)") is ignored for the match.
+static std::string LowerTalentName(std::string name)
+{
+    if (size_t paren = name.find(" ("); paren != std::string::npos)
+        name.resize(paren);
+    std::transform(name.begin(), name.end(), name.begin(),
+                   [](unsigned char c) { return static_cast<char>(std::tolower(c)); });
+    return name;
+}
+
+static uint32 ResolveTalentId(std::string const& affixName, uint32 classMask)
+{
+    std::string const want = LowerTalentName(affixName);
+    for (uint32 i = 0; i < sTalentStore.GetNumRows(); ++i)
+    {
+        TalentEntry const* talent = sTalentStore.LookupEntry(i);
+        if (!talent || !talent->RankID[0])
+            continue;
+        TalentTabEntry const* tab = sTalentTabStore.LookupEntry(talent->TalentTab);
+        if (!tab || (classMask && !(tab->ClassMask & classMask)))
+            continue;
+        SpellInfo const* spell = sSpellMgr->GetSpellInfo(talent->RankID[0]);
+        if (!spell || !spell->SpellName[0])
+            continue;
+        if (LowerTalentName(spell->SpellName[0]) == want)
+            return talent->TalentID;
+    }
+    return 0;
+}
+
 void ItemAffixMgr::LoadTalentAffixDefs()
 {
     _talentDefs.clear();
@@ -707,6 +721,7 @@ void ItemAffixMgr::LoadTalentAffixDefs()
     }
 
     uint32 cnt = 0;
+    uint32 unresolved = 0;
     do
     {
         Field* f = result->Fetch();
@@ -733,11 +748,19 @@ void ItemAffixMgr::LoadTalentAffixDefs()
             continue;
         }
 
+        def.talentId = ResolveTalentId(def.name, def.classMask);
+        if (!def.talentId)
+        {
+            ++unresolved;
+            LOG_DEBUG("module", "mod-item-affixes: talent affix {} '{}' matches no Talent.dbc entry.", def.id, def.name);
+        }
+
         _talentDefs[def.id] = std::move(def);
         ++cnt;
     } while (result->NextRow());
 
-    LOG_INFO("module", "mod-item-affixes: loaded {} talent affix def(s).", cnt);
+    LOG_INFO("module", "mod-item-affixes: loaded {} talent affix def(s), {} without a matching talent{}.", cnt, unresolved,
+        (_classlessRequireOwnedTalent && unresolved) ? " (these never roll while Classless.RequireOwnedTalent = 1)" : "");
 }
 
 // ---------------------------------------------------------------------------
@@ -819,6 +842,23 @@ static bool NeedsMainStatSelector(uint8 playerClass, int specTree)
     return false;
 }
 
+// Classless: a Hero has no class spec to read a role or main stat from. Its
+// stat allocation weights the stat roll instead (see WeightedGenericPick), so
+// the hard role/main-stat filters are left open for it.
+static uint8 AutoRoleFor(Player* player, int specTree)
+{
+    if (AffixClassless::IsHero(player))
+        return 0;
+    return GetAutoRole(player->getClass(), specTree);
+}
+
+static uint8 AutoMainStatFor(Player* player, int specTree)
+{
+    if (AffixClassless::IsHero(player))
+        return 0;
+    return GetAutoMainStat(player->getClass(), specTree);
+}
+
 // ---------------------------------------------------------------------------
 // GetEligibleTalentAffix  — picks a random talent def this player can roll
 // ---------------------------------------------------------------------------
@@ -829,9 +869,18 @@ TalentAffixDef const* ItemAffixMgr::GetEligibleTalentAffix(Player* player, Item 
     if (_talentDefs.empty())
         return nullptr;
 
-    uint32 classBit = 1u << (static_cast<uint32>(player->getClass()) - 1u);
-    int    specTree = (specOverride >= 0) ? specOverride : GetDominantTalentTree(player);
-    uint8  itemCat  = item ? GetItemCategory(item) : ITEM_CAT_ANY;
+    // Classless: a Hero draws from every class it owns something from, and a
+    // talent affix only rolls for a talent the player actually owns
+    // (ItemAffixes.Classless.RequireOwnedTalent). Its tree index is only
+    // compared within the class the player has invested most in.
+    uint32 classMask = AffixClassless::OwnedClassMask(player);
+    uint8  specClass = AffixClassOf(player);
+    int    specTree  = (specOverride >= 0) ? specOverride : GetDominantTalentTree(player);
+    uint8  itemCat   = item ? GetItemCategory(item) : ITEM_CAT_ANY;
+    // A Hero owns talents across many trees; every owned one stays eligible,
+    // the dominant tree is only weighted up.
+    if (AffixClassless::IsHero(player))
+        includeOtherSpecWeighted = true;
 
     // Default (includeOtherSpecWeighted=false): identical to the old behavior --
     // other-spec talents are hard-excluded, only ownSpec ever gets populated.
@@ -840,12 +889,16 @@ TalentAffixDef const* ItemAffixMgr::GetEligibleTalentAffix(Player* player, Item 
     std::vector<TalentAffixDef const*> ownSpec, otherSpec;
     for (auto const& [id, def] : _talentDefs)
     {
-        if (def.classMask != 0 && !(def.classMask & classBit))
+        if (def.classMask != 0 && !(def.classMask & classMask))
             continue;
         if (def.itemCategory != ITEM_CAT_ANY && !ItemMatchesCategory(itemCat, def.itemCategory))
             continue;
+        if (_classlessRequireOwnedTalent && !AffixClassless::OwnsTalent(player, def.talentId))
+            continue;
 
-        bool isOwnSpec = (def.specTree == -1) || (def.specTree == static_cast<int8>(specTree));
+        bool sameClass = def.classMask == 0 || (specClass && (def.classMask & (1u << (specClass - 1u))));
+        bool isOwnSpec = sameClass
+                      && ((def.specTree == -1) || (def.specTree == static_cast<int8>(specTree)));
         if (isOwnSpec)
             ownSpec.push_back(&def);
         else if (includeOtherSpecWeighted)
@@ -1019,7 +1072,9 @@ bool ItemAffixMgr::IsClassAffixesBlocked(Player* player, Item* item, bool ignore
         return true;
 
     bool classAffixesBlocked = false;
-    if (_progressionGateClassAffixes)
+    // Classless: the gate is a Progression node, so with Progression off it
+    // would block class affixes forever. Only gate while Progression runs.
+    if (_progressionGateClassAffixes && sPlayerProgressionMgr->IsEnabled())
     {
         uint64 guid = player->GetGUID().GetRawValue();
         classAffixesBlocked = sPlayerProgressionMgr->GetNodeRank(guid, NODE_UNLOCK_CLASS_AFFIXES) == 0;
@@ -1055,7 +1110,11 @@ EligibleAffixPools ItemAffixMgr::BuildEligibleAffixPools(uint32 itemQuality, Pla
 {
     EligibleAffixPools pools;
 
-    uint8 playerClass = player->getClass();
+    // Classless: a Hero draws from every class it owns something from, and its
+    // "own spec" is the talent tree it has invested most in, whatever class that
+    // tree belongs to. For everyone else this is their own class, as upstream.
+    uint32 ownedMask = AffixClassless::OwnedClassMask(player);
+    uint8  specClass = AffixClassOf(player);
     uint8 itemCat   = item ? GetItemCategory(item) : ITEM_CAT_ANY;
     // Pre-compute item budget for stat affix eligibility (avoid recomputing per affix).
     float itemBudgetBase = item
@@ -1069,7 +1128,7 @@ EligibleAffixPools ItemAffixMgr::BuildEligibleAffixPools(uint32 itemQuality, Pla
         if (!def || def->minQuality > itemQuality)
             continue;
 
-        if (def->classMask != 0 && !(def->classMask & (1u << (playerClass - 1u))))
+        if (def->classMask != 0 && !(def->classMask & ownedMask))
             continue;
 
         // Green items may only roll truly generic affixes (no class lock, no spell family).
@@ -1109,7 +1168,7 @@ EligibleAffixPools ItemAffixMgr::BuildEligibleAffixPools(uint32 itemQuality, Pla
         else if (def->affixType != AFFIX_TYPE_STAT)
         {
             // Class-family filter: skip affixes belonging to a different class entirely.
-            if (affixClass != 0 && affixClass != playerClass)
+            if (affixClass != 0 && !(ownedMask & (1u << (affixClass - 1u))))
                 continue;
 
             // Spell knowledge gate: never offer an affix for a spell the player hasn't
@@ -1121,7 +1180,7 @@ EligibleAffixPools ItemAffixMgr::BuildEligibleAffixPools(uint32 itemQuality, Pla
         // Stat affixes: role mask gates by role; classMask gates by class.
         // Class-locked stat affixes (classMask != 0) go into the class bucket so they
         // respect ClassAffixChance and spec bucketing just like spellmod affixes.
-        uint8 bucketClass = (def->classMask != 0)          ? playerClass
+        uint8 bucketClass = (def->classMask != 0)          ? uint8(1)
                           : (def->affixType == AFFIX_TYPE_STAT) ? 0
                           : affixClass;
         if (bucketClass != 0 && classAffixesBlocked)
@@ -1134,8 +1193,16 @@ EligibleAffixPools ItemAffixMgr::BuildEligibleAffixPools(uint32 itemQuality, Pla
         {
             // Own-spec: unrestricted affixes (specTree=255) or those matching the
             // player's chosen/dominant spec.  Everything else is "other spec".
+            // The tree index only means something within one class: Arcane (0)
+            // is not Holy (0), which matters once a Hero mixes classes.
+            uint8 defClass = affixClass;
+            if (!defClass && def->classMask)
+                for (uint8 c = 1; c < MAX_CLASSES && !defClass; ++c)
+                    if (def->classMask & (1u << (c - 1u)))
+                        defClass = c;
             bool isOwnSpec = (def->specTree == 255) ||
-                             (resolvedSpec >= 0 && def->specTree == static_cast<uint8>(resolvedSpec));
+                             (resolvedSpec >= 0 && def->specTree == static_cast<uint8>(resolvedSpec)
+                              && (defClass == 0 || defClass == specClass));
             if (isOwnSpec)
                 pools.knownSpecClass.push_back(id);
             else
@@ -1144,6 +1211,92 @@ EligibleAffixPools ItemAffixMgr::BuildEligibleAffixPools(uint32 itemQuality, Pla
     }
 
     return pools;
+}
+
+// ---------------------------------------------------------------------------
+// Classless stat-allocation weighting
+//
+// A Hero's primary stat allocation (mod-classless-wildcard: STR, AGI, STA, INT,
+// SPI) weights which stat affix rolls. The factor is relative to an even
+// allocation, so a Hero that spread its points evenly rolls exactly as
+// upstream does, and one that put everything in Intellect mostly rolls
+// Intellect and caster stats. MinWeight keeps uninvested stats possible.
+//
+//   main stat (STA/STR/AGI/INT/SPI): share of that stat / 0.2
+//   role-masked stat (best role in the mask):
+//     Physical = (STR + AGI) / 0.4, Ranged = AGI / 0.2, Tank = STA / 0.2,
+//     Caster = INT / 0.2, Healer = SPI / 0.2
+//   anything else (crit, haste, hit, move speed ...): 1
+// ---------------------------------------------------------------------------
+
+static float StatAllocFactor(AffixDefinition const* def, std::array<uint32, 5> const& alloc, float minWeight)
+{
+    if (!def || def->affixType != AFFIX_TYPE_STAT)
+        return 1.0f;
+
+    float total = 0.0f;
+    for (uint32 points : alloc)
+        total += float(points);
+    if (total <= 0.0f)
+        return 1.0f;
+
+    float const str = alloc[0] / total, agi = alloc[1] / total, sta = alloc[2] / total,
+                int_ = alloc[3] / total, spi = alloc[4] / total;
+
+    float factor = 1.0f;
+    switch (def->statOp)
+    {
+        case GSTAT_STAMINA:   factor = sta  / 0.2f; break;
+        case GSTAT_STRENGTH:  factor = str  / 0.2f; break;
+        case GSTAT_AGILITY:   factor = agi  / 0.2f; break;
+        case GSTAT_INTELLECT: factor = int_ / 0.2f; break;
+        case GSTAT_SPIRIT:    factor = spi  / 0.2f; break;
+        default:
+            if (def->roleMask != 0)
+            {
+                factor = 0.0f;
+                if (def->roleMask & AFFIX_ROLE_PHYSICAL) factor = std::max(factor, (str + agi) / 0.4f);
+                if (def->roleMask & AFFIX_ROLE_RANGED)   factor = std::max(factor, agi  / 0.2f);
+                if (def->roleMask & AFFIX_ROLE_TANK)     factor = std::max(factor, sta  / 0.2f);
+                if (def->roleMask & AFFIX_ROLE_CASTER)   factor = std::max(factor, int_ / 0.2f);
+                if (def->roleMask & AFFIX_ROLE_HEALER)   factor = std::max(factor, spi  / 0.2f);
+            }
+            break;
+    }
+    return std::max(minWeight, factor);
+}
+
+uint32 ItemAffixMgr::PickGenericAffix(Player* player, std::vector<uint32> const& pool)
+{
+    if (pool.empty())
+        return 0;
+
+    std::array<uint32, 5> alloc{};
+    if (!_classlessStatWeighting || !AffixClassless::StatAllocation(player, alloc))
+        return pool[urand(0, static_cast<uint32>(pool.size()) - 1)];
+
+    // The pool already repeats each id by its template weight, so the factor
+    // multiplies on top of that.
+    std::vector<float> weights;
+    weights.reserve(pool.size());
+    float sum = 0.0f;
+    for (uint32 id : pool)
+    {
+        float w = StatAllocFactor(GetAffixDef(id), alloc, _classlessStatMinWeight);
+        weights.push_back(w);
+        sum += w;
+    }
+    if (sum <= 0.0f)
+        return pool[urand(0, static_cast<uint32>(pool.size()) - 1)];
+
+    float r = frand(0.0f, sum);
+    for (size_t i = 0; i < pool.size(); ++i)
+    {
+        r -= weights[i];
+        if (r <= 0.0f)
+            return pool[i];
+    }
+    return pool.back();
 }
 
 uint32 ItemAffixMgr::RollAffixId(uint32 itemQuality, Player* player, Item* item,
@@ -1197,7 +1350,7 @@ uint32 ItemAffixMgr::RollAffixId(uint32 itemQuality, Player* player, Item* item,
     }
 
     if (!knownGeneric.empty())
-        return knownGeneric[urand(0, static_cast<uint32>(knownGeneric.size()) - 1)];
+        return PickGenericAffix(player, knownGeneric);
 
     return 0;
 }
@@ -1219,9 +1372,8 @@ std::vector<uint32> ItemAffixMgr::GetEligibleAffixesForPreview(Player* player, I
     // counted toward the cap, so without the bypass the preview would
     // wrongly show an empty class bucket for exactly the slot being reforged.
     bool  classAffixesBlocked = IsClassAffixesBlocked(player, item, /*ignoreMaxPerItem*/true);
-    uint8 playerClass    = player->getClass();
-    uint8 roleForRoll     = GetAutoRole(playerClass, resolvedSpec);
-    uint8 mainStatForRoll = GetAutoMainStat(playerClass, resolvedSpec);
+    uint8 roleForRoll     = AutoRoleFor(player, resolvedSpec);
+    uint8 mainStatForRoll = AutoMainStatFor(player, resolvedSpec);
 
     EligibleAffixPools pools = BuildEligibleAffixPools(quality, player, item,
         /*genericsOnly*/!wantPrefix, /*classOnly*/wantPrefix,
@@ -1552,13 +1704,12 @@ void ItemAffixMgr::AutoRollD3Item(Player* player, Item* item, uint8 existingCoun
 
     uint64 itemGuid    = item->GetGUID().GetRawValue();
     uint8  quality     = static_cast<uint8>(item->GetTemplate()->Quality);
-    uint8  playerClass = player->getClass();
 
     uint8 prefixCount = isGem ? 0 : static_cast<uint8>((numSlots + 1) / 2);
 
     int   resolvedSpec   = GetDominantTalentTree(player);
-    uint8 roleForRoll     = GetAutoRole(playerClass, resolvedSpec);
-    uint8 mainStatForRoll = GetAutoMainStat(playerClass, resolvedSpec);
+    uint8 roleForRoll     = AutoRoleFor(player, resolvedSpec);
+    uint8 mainStatForRoll = AutoMainStatFor(player, resolvedSpec);
 
     float itemBudget = ComputeItemBudget(item->GetTemplate()->ItemLevel)
                      * GetSlotBudgetMod(item->GetTemplate()->InventoryType)
@@ -2316,11 +2467,13 @@ void ItemAffixMgr::SendAddonMsg(Player* player, std::string const& payload)
 void ItemAffixMgr::SendConfig(Player* player)
 {
     int     specTree    = GetDominantTalentTree(player);
-    uint8   playerClass = player->getClass();
-    bool    showRole     = _enableRoleSelection     && NeedsRoleSelector(playerClass, specTree);
-    bool    showMainStat = (_enableMainStatSelection == 2)
+    uint8   playerClass = AffixClassOf(player);
+    // A Hero's role and main stat come from its stat allocation, not a selector.
+    bool    isHero      = AffixClassless::IsHero(player);
+    bool    showRole     = !isHero && _enableRoleSelection && NeedsRoleSelector(playerClass, specTree);
+    bool    showMainStat = !isHero && ((_enableMainStatSelection == 2)
                         || (_enableMainStatSelection == 1 && specTree >= 0
-                            && _mainStatSelectorSpecs.count({playerClass, (uint8)specTree}));
+                            && _mainStatSelectorSpecs.count({playerClass, (uint8)specTree})));
 
     bool showType = _enableClassSkillAffixes && _enableClassSkillAffixSelection;
     bool showSpec = showType || (_enableTalentAffixes && _enableTalentAffixSelection);
@@ -2669,10 +2822,9 @@ void ItemAffixMgr::HandleRollRequest(Player* player, Item* item, uint8 affixSlot
 
     int8  specForRoll    = (!isGem && spec >= 0) ? spec : -1;
     int   resolvedSpec   = (specForRoll >= 0) ? specForRoll : GetDominantTalentTree(player);
-    uint8 playerClass    = player->getClass();
     // 255 = sentinel meaning the addon had no selector shown; always auto-detect in that case.
-    uint8 roleForRoll     = (role == 255)     ? GetAutoRole(playerClass, resolvedSpec)     : role;
-    uint8 mainStatForRoll = (mainStat == 255) ? GetAutoMainStat(playerClass, resolvedSpec) : mainStat;
+    uint8 roleForRoll     = (role == 255)     ? AutoRoleFor(player, resolvedSpec)     : role;
+    uint8 mainStatForRoll = (mainStat == 255) ? AutoMainStatFor(player, resolvedSpec) : mainStat;
 
     // Bad-luck streak protection: persistent counter of consecutive non-class options shown
     // across all rolls and rerolls for this item. Resets to 0 when a class option is generated.
@@ -2985,10 +3137,9 @@ void ItemAffixMgr::HandleRerollRequest(Player* player, Item* item, int8 spec,
             if (type == 2 && _enableClassSkillAffixSelection) { classOnly = true; genericsOnly = false; }
         }
         int   resolvedSpec2   = (spec >= 0) ? spec : GetDominantTalentTree(player);
-        uint8 playerClass2    = player->getClass();
         // 255 = sentinel meaning the addon had no selector shown; always auto-detect in that case.
-        uint8 roleForRoll     = (role == 255)     ? GetAutoRole(playerClass2, resolvedSpec2)     : role;
-        uint8 mainStatForRoll = (mainStat == 255) ? GetAutoMainStat(playerClass2, resolvedSpec2) : mainStat;
+        uint8 roleForRoll     = (role == 255)     ? AutoRoleFor(player, resolvedSpec2)     : role;
+        uint8 mainStatForRoll = (mainStat == 255) ? AutoMainStatFor(player, resolvedSpec2) : mainStat;
 
         // Phase 1: collect locked options into a "chosen" set for dedup.
         std::vector<PendingOpt> finalOpts(slotInfo.pendingOpts);  // start as copy
@@ -3329,10 +3480,9 @@ ReforgeRollResult ItemAffixMgr::RollReforgeOptions(Player* player, Item* item, u
     uint8 optionsBonus = uint8(sPlayerProgressionMgr->GetNodeBonus(player->GetGUID().GetRawValue(), NODE_OPTIONS_TIER));
     numOpts = std::min<uint8>(numOpts + optionsBonus, 6);
 
-    uint8 playerClass = player->getClass();
     int   resolvedSpec = GetDominantTalentTree(player);
-    uint8 roleForRoll     = GetAutoRole(playerClass, resolvedSpec);
-    uint8 mainStatForRoll = GetAutoMainStat(playerClass, resolvedSpec);
+    uint8 roleForRoll     = AutoRoleFor(player, resolvedSpec);
+    uint8 mainStatForRoll = AutoMainStatFor(player, resolvedSpec);
     float itemBudget = ComputeItemBudget(proto->ItemLevel) * GetSlotBudgetMod(proto->InventoryType)
                      * GetQualityFraction(quality);
     bool is2H = Is2HWeapon(item);

@@ -1,4 +1,5 @@
 #include "ImprintMgr.h"
+#include "../ClasslessBridge.h"
 #include "ItemAffix.h"          // ItemAffixPlayerData
 #include <unordered_set>
 #include "Bag.h"
@@ -686,7 +687,10 @@ ImprintDef const* ImprintMgr::GetEligibleImprintForRoll(Player* player, Item con
     if (GetInstance(item->GetGUID().GetRawValue()))
         return nullptr;
 
-    uint32 classBit = 1u << (player->getClass() - 1);
+    // Classless: every class the player owns something from (a Hero's real
+    // class is the Paladin chassis). The required-spell gate below is what
+    // ties an Imprint to an ability the player actually has.
+    uint32 classBit = AffixClassless::OwnedClassMask(player);
     std::vector<ImprintDef const*> eligible;
     for (auto const& [id, def] : _defs)
     {

@@ -42,6 +42,9 @@ public:
     // per node, all config-driven — see PlayerProgression.cpp for the blueprint list).
     void LoadConfig();
 
+    // ItemAffixes.ProgressionEnabled.
+    bool IsEnabled() const { return _enabled; }
+
     // -----------------------------------------------------------------------
     // Runtime hooks — called from ItemAffixScripts.
     // -----------------------------------------------------------------------

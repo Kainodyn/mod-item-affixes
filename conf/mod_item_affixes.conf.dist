@@ -294,13 +294,42 @@ ItemAffixes.EnableMainStatSelection = 1
 ItemAffixes.MainStatSelectorSpecs = 5:0,5:1,11:2,7:2
 
 # ===========================================================================
+# 8b. Classless (mod-classless-wildcard) integration. Only has an effect when
+# mod-classless-wildcard is compiled into the same worldserver; players exempt
+# from it (bot account prefix) always roll as their real class.
+#
+# A Wildcard "Hero" sits on a Paladin chassis, so its real class is ignored:
+#  - class skill affixes and Imprints roll from every class the Hero owns an
+#    ability or talent from, and only for spells it knows (as upstream);
+#  - its "spec" is the talent tree it has invested most ranks in;
+#  - role/main-stat selectors are hidden for Heroes, see StatAllocWeighting.
+# ===========================================================================
+
+# Weight stat affixes by the Hero's primary stat allocation (STR/AGI/STA/INT/
+# SPI points). An even allocation rolls exactly like upstream; points in a stat
+# make that stat, and the role stats tied to it (Physical = STR+AGI,
+# Ranged = AGI, Tank = STA, Caster = INT, Healer = SPI), roll more often.
+ItemAffixes.Classless.StatAllocWeighting = 1
+
+# Lowest weight (percent of an even allocation's weight) an uninvested stat
+# keeps. 0 = never roll a stat the Hero has no points in.
+ItemAffixes.Classless.StatAllocMinWeightPct = 10
+
+# Talent affixes only roll for a talent the player owns (any rank). Applies to
+# everyone, Heroes and normal characters. A few talent affix definitions name
+# talents that do not exist in 3.3.5a; they never roll while this is 1.
+ItemAffixes.Classless.RequireOwnedTalent = 1
+
+# ===========================================================================
 # 9. Player Progression — optional subsystem. Account-wide XP pool and
 # talent tree that grants passive, permanent bonuses over time. Everything
 # above this line is the core affix system and works with this disabled.
 # ===========================================================================
 
 # Master toggle for the meta-progression system.
-ItemAffixes.ProgressionEnabled = 1
+# Classless branch: off by default. mod-classless-wildcard already owns stat
+# points, essences and Rebirth; a second progression tree would overlap it.
+ItemAffixes.ProgressionEnabled = 0
 
 # When enabled, class/spellmod affixes only roll for a character that has
 # invested the Unlock Class Affixes node (Affixes tab, below). When disabled

@@ -43,6 +43,7 @@ struct TalentAffixDef
     uint8       spellFamily;    // SpellFamilyName enum value
     uint32      familyFlags[3]; // SpellClassOptions.SpellClassMask
     uint32      carrierSpell;   // a real spell from this family (for IsAffectedBySpellMod)
+    uint32      talentId = 0;   // Talent.dbc id, resolved from name + class at load (0 = unresolved)
     uint8       spellmodOp;     // SpellModOp value
     uint8       spellmodType;   // SpellModType: 107=SPELLMOD_FLAT, 108=SPELLMOD_PCT
     int32       valuePerRank;   // spellmod magnitude per rolled rank (e.g. -100 ms)
@@ -422,6 +423,9 @@ private:
     // Apply a chosen option from a PENDING slot; sets row to APPLIED.
     void HandlePickOption(Player* player, Item* item, uint8 affixSlot, uint8 optIdx);
 
+    // Picks one generic (stat) affix id from a pool; weighted by a Hero's stat
+    // allocation when classless weighting applies, uniform otherwise.
+    uint32 PickGenericAffix(Player* player, std::vector<uint32> const& pool);
     uint32 RollAffixId(uint32 itemQuality, Player* player, Item* item,
                        bool genericsOnly = false, uint8 classBoost = 0,
                        bool classOnly = false,
@@ -498,6 +502,11 @@ private:
     // defaults false and cap defaults 0 so servers not opting into progression
     // see zero behavior change.
     bool   _progressionGateClassAffixes     = false;
+
+    // Classless (mod-classless-wildcard) integration, see ClasslessBridge.h.
+    bool   _classlessStatWeighting          = true;   // weight stat affixes by the Hero's stat allocation
+    float  _classlessStatMinWeight          = 0.10f;  // floor factor for uninvested stats
+    bool   _classlessRequireOwnedTalent     = true;   // talent affixes only for talents the player owns
     uint32 _classAffixMaxPerItem            = 0;     // 0 = unlimited (no cap); N = block once N class/spellmod affixes are APPLIED
     uint32 _badLuckStreakProtection         = 0;     // consecutive non-class options before next is forced class; 0 = disabled
     std::unordered_map<uint64, uint32> _optionStreak; // item GUID → consecutive non-class options seen this session
