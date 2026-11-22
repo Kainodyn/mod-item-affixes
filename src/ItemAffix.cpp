@@ -2,6 +2,7 @@
 #include "Imprints/ImprintMgr.h"
 #include "PlayerProgression.h"
 #include "PlayerProgressionNodes.h"
+#include "SpellRankUtil.h"
 #include "Bag.h"
 #include "Pet.h"
 #include "Chat.h"
@@ -478,6 +479,18 @@ static bool PlayerKnowsCarrierSpell(Player* player, uint32 carrierSpellId)
         if (player->HasSpell(spell))
             return true;
         spell = sSpellMgr->GetNextSpellInChain(spell);
+    }
+
+    // While a spell-swap variant is active the whole base chain is unlearned
+    // (e.g. Arcane Shot -> Arcane Shot: Multi). The variant keeps the base
+    // spell's family flags, so affixes for the base spell still apply and
+    // must stay rollable.
+    if (ItemAffixPlayerData* data = player->CustomData.Get<ItemAffixPlayerData>("ItemAffixData"))
+    {
+        uint32 first = sSpellMgr->GetFirstSpellInChain(carrierSpellId);
+        for (auto const& [base, variant] : data->activeSpellSwaps)
+            if (variant && sSpellMgr->GetFirstSpellInChain(base) == first && player->HasSpell(variant))
+                return true;
     }
     return false;
 }
@@ -2196,19 +2209,24 @@ void ItemAffixMgr::CollectAndApplySpellSwaps(Player* player, ObjectGuid excludeG
         // Already correct — track it and move on with no spell changes.
         if (player->HasSpell(targetSpell))
         {
+            // A base rank can reappear while the variant is active (trained at a
+            // trainer, or left over from older module versions) -- drop it again.
+            AffixSpellRank::RemoveChain(player, baseSpell);
             newActiveSwaps[baseSpell] = targetSpell;
             continue;
         }
 
         // Find what the player currently has for this base spell so we know what to remove.
-        // Priority: session tracking → base spell → full variant scan (handles persisted variants
-        // on login when activeSpellSwaps is freshly empty).
+        // Priority: session tracking → any known rank of the base chain → full variant scan
+        // (handles persisted variants on login when activeSpellSwaps is freshly empty).
+        // baseSpell is the max-rank carrier (e.g. Arcane Shot R11); a leveling player only
+        // knows a lower rank, so the whole chain has to be checked, not just baseSpell.
         uint32 currentSpell = 0;
         auto activeIt = data->activeSpellSwaps.find(baseSpell);
         if (activeIt != data->activeSpellSwaps.end() && player->HasSpell(activeIt->second))
             currentSpell = activeIt->second;
-        else if (player->HasSpell(baseSpell))
-            currentSpell = baseSpell;
+        else if (uint32 knownRank = AffixSpellRank::HighestKnown(player, baseSpell))
+            currentSpell = knownRank;
         else
         {
             for (auto const& [variant, vBase] : variantToBase)
@@ -2221,8 +2239,11 @@ void ItemAffixMgr::CollectAndApplySpellSwaps(Player* player, ObjectGuid excludeG
             }
         }
 
-        if (currentSpell)
+        // Remove the previous variant (if any) and every known rank of the base chain,
+        // so the player can't alternate between the variant and a lower base rank.
+        if (currentSpell && variantToBase.count(currentSpell))
             player->removeSpell(currentSpell, SPEC_MASK_ALL, false);
+        AffixSpellRank::RemoveChain(player, baseSpell);
 
         player->learnSpell(targetSpell);
         newActiveSwaps[baseSpell] = targetSpell;
@@ -2240,12 +2261,54 @@ void ItemAffixMgr::CollectAndApplySpellSwaps(Player* player, ObjectGuid excludeG
             continue;  // Phase 2 owns this base spell slot
 
         player->removeSpell(variant, SPEC_MASK_ALL, false);
-        if (!player->HasSpell(base))
-            player->learnSpell(base);
-        SendAddonMsg(player, Acore::StringFormat("SWAP|{}|{}", variant, base));
+        uint32 restored = RestoreBaseRank(player, base);
+        SendAddonMsg(player, Acore::StringFormat("SWAP|{}|{}", variant, restored ? restored : base));
     }
 
+    // Repair base chains that have no active swap: older versions restored the
+    // max-rank carrier (e.g. Arcane Shot R11) on unequip, giving leveling players
+    // a rank far above their level. Only touches swap base chains.
+    std::unordered_set<uint32> baseChains;
+    for (auto const& [variant, base] : variantToBase)
+        baseChains.insert(base);
+    for (uint32 base : baseChains)
+        if (newActiveSwaps.find(base) == newActiveSwaps.end())
+            RemoveRanksAboveLevel(player, base);
+
     data->activeSpellSwaps = std::move(newActiveSwaps);
+}
+
+// ---------------------------------------------------------------------------
+// Spell-swap rank helpers
+// ---------------------------------------------------------------------------
+
+// Gives back the base spell after a swap variant is removed: the highest rank
+// that fits the player's level, not the max-rank carrier baseSpell itself.
+uint32 ItemAffixMgr::RestoreBaseRank(Player* player, uint32 baseSpell)
+{
+    if (uint32 known = AffixSpellRank::HighestKnown(player, baseSpell))
+        return known;
+    uint32 rank = AffixSpellRank::HighestForLevel(baseSpell, player->GetLevel());
+    if (rank)
+        player->learnSpell(rank);
+    return rank;
+}
+
+void ItemAffixMgr::RemoveRanksAboveLevel(Player* player, uint32 baseSpell)
+{
+    for (uint32 id = sSpellMgr->GetFirstSpellInChain(baseSpell); id; id = sSpellMgr->GetNextSpellInChain(id))
+    {
+        SpellInfo const* info = sSpellMgr->GetSpellInfo(id);
+        if (!info || info->SpellLevel <= player->GetLevel())
+            continue;
+        if (!player->HasSpell(id))
+            continue;
+        // removeSpell also removes every higher rank.
+        player->removeSpell(id, SPEC_MASK_ALL, false);
+        uint32 restored = RestoreBaseRank(player, baseSpell);
+        SendAddonMsg(player, Acore::StringFormat("SWAP|{}|{}", id, restored ? restored : baseSpell));
+        return;
+    }
 }
 
 // ---------------------------------------------------------------------------
@@ -2264,8 +2327,8 @@ void ItemAffixMgr::RemoveSpellSwaps(Player* player, ItemAffixPlayerData* data)
         if (player->HasSpell(variantSpell))
         {
             player->removeSpell(variantSpell, SPEC_MASK_ALL, false);
-            player->learnSpell(baseSpell);
-            SendAddonMsg(player, Acore::StringFormat("SWAP|{}|{}", variantSpell, baseSpell));
+            uint32 restored = RestoreBaseRank(player, baseSpell);
+            SendAddonMsg(player, Acore::StringFormat("SWAP|{}|{}", variantSpell, restored ? restored : baseSpell));
         }
     }
     data->activeSpellSwaps.clear();
@@ -2289,13 +2352,13 @@ void ItemAffixMgr::ForceReapplySpellSwaps(Player* player)
             continue;
         for (auto const& [solo, combo] : def.chainSwapSpells)
         {
-            if (solo  && player->HasSpell(solo))  { player->removeSpell(solo,  SPEC_MASK_ALL, false); }
-            if (combo && player->HasSpell(combo))  { player->removeSpell(combo, SPEC_MASK_ALL, false); }
+            if (solo  && player->HasSpell(solo))  { player->removeSpell(solo,  SPEC_MASK_ALL, false); RestoreBaseRank(player, def.carrierSpellId); }
+            if (combo && player->HasSpell(combo)) { player->removeSpell(combo, SPEC_MASK_ALL, false); RestoreBaseRank(player, def.carrierSpellId); }
         }
         uint32 solo  = static_cast<uint32>(def.effects[0].value);
         uint32 combo = static_cast<uint32>(def.effects[1].value);
-        if (solo  && player->HasSpell(solo))  { player->removeSpell(solo,  SPEC_MASK_ALL, false); if (!player->HasSpell(def.carrierSpellId)) player->learnSpell(def.carrierSpellId); }
-        if (combo && player->HasSpell(combo)) { player->removeSpell(combo, SPEC_MASK_ALL, false); if (!player->HasSpell(def.carrierSpellId)) player->learnSpell(def.carrierSpellId); }
+        if (solo  && player->HasSpell(solo))  { player->removeSpell(solo,  SPEC_MASK_ALL, false); RestoreBaseRank(player, def.carrierSpellId); }
+        if (combo && player->HasSpell(combo)) { player->removeSpell(combo, SPEC_MASK_ALL, false); RestoreBaseRank(player, def.carrierSpellId); }
     }
 
     ItemAffixPlayerData* data = player->CustomData.Get<ItemAffixPlayerData>("ItemAffixData");

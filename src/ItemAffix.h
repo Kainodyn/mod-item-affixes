@@ -482,6 +482,12 @@ private:
     // Equivalent to old Phase 0 + reapply.  Call for ".affix reapply" or GM correction.
     void ForceReapplySpellSwaps(Player* player);
 
+    // Base-spell restore after a swap variant goes away: highest rank for the
+    // player's level (never the max-rank carrier). Returns the rank now known.
+    uint32 RestoreBaseRank(Player* player, uint32 baseSpell);
+    // Drops base-chain ranks above the player's level (repairs old max-rank restores).
+    void RemoveRanksAboveLevel(Player* player, uint32 baseSpell);
+
     void LoadTalentAffixDefs();
     TalentAffixDef const* GetEligibleTalentAffix(Player* player, Item const* item, int8 specOverride = -1,
                                                   bool includeOtherSpecWeighted = false, uint32 ownSpecWeight = 1);

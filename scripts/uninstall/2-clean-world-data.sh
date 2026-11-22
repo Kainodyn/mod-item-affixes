@@ -30,6 +30,10 @@ mysql -h "$MYSQL_HOST" -u "$MYSQL_USER" -p"$MYSQL_PASS" "$DB_WORLD" -e \
   "DELETE FROM spell_dbc WHERE Id BETWEEN $IMPRINT_SPELL_ID_START AND $IMPRINT_SPELL_ID_END OR Id BETWEEN $SPELLSWAP_SPELL_ID_START AND $SPELLSWAP_SPELL_ID_END;"
 mysql -h "$MYSQL_HOST" -u "$MYSQL_USER" -p"$MYSQL_PASS" "$DB_WORLD" -e \
   "DELETE FROM spell_script_names WHERE spell_id BETWEEN $IMPRINT_SPELL_ID_START AND $IMPRINT_SPELL_ID_END OR spell_id BETWEEN $SPELLSWAP_SPELL_ID_START AND $SPELLSWAP_SPELL_ID_END;"
+mysql -h "$MYSQL_HOST" -u "$MYSQL_USER" -p"$MYSQL_PASS" "$DB_WORLD" -e \
+  "DELETE FROM spell_script_names WHERE ScriptName IN ('spell_divine_storm_imprint','spell_hammer_righteous_imprint','spell_feral_spirit_imprint','spell_summon_water_elemental_imprint','spell_disenchant_imprint','spell_mangle_imprint','spell_tigers_fury_imprint');"
+mysql -h "$MYSQL_HOST" -u "$MYSQL_USER" -p"$MYSQL_PASS" "$DB_WORLD" -e \
+  "DELETE FROM spell_bonus_data WHERE entry BETWEEN $SPELLSWAP_SPELL_ID_START AND $SPELLSWAP_SPELL_ID_END;"
 echo "  Done."
 echo
 
