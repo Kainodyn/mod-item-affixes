@@ -20,6 +20,7 @@
 #include "StringFormat.h"
 #include "Tokenize.h"
 #include "WorldPacket.h"
+#include "WorldSession.h"
 #include <algorithm>
 #include <cstring>
 #include <sstream>
@@ -644,6 +645,7 @@ void ItemAffixMgr::LoadAffixTemplates()
     _lootMode              = std::clamp(sConfigMgr->GetOption<uint8>("ItemAffixes.LootMode", 0), uint8(0), uint8(1));
     _d3DominantSpecWeight  = sConfigMgr->GetOption<uint32>("ItemAffixes.D3DominantSpecWeight", 0u);
     _d3ExcludeQuestRewards = sConfigMgr->GetOption<bool>("ItemAffixes.D3ExcludeQuestRewards", true);
+    _excludePlayerbots     = sConfigMgr->GetOption<bool>("ItemAffixes.ExcludePlayerbots", true);
     _d3OverrideClassAffixMaxPerItem = sConfigMgr->GetOption<bool>("ItemAffixes.D3OverrideClassAffixMaxPerItem", false);
     _reforgeBaseCostGreen     = sConfigMgr->GetOption<uint32>("ItemAffixes.ReforgeBaseCostGreen",     5000);
     _reforgeBaseCostBlue      = sConfigMgr->GetOption<uint32>("ItemAffixes.ReforgeBaseCostBlue",      20000);
@@ -970,14 +972,29 @@ void ItemAffixMgr::ApplyTalentAffixes(Player* player, Item* item)
             continue;
         TalentAffixDef const& def = it->second;
 
-        SpellModifier* mod = new SpellModifier(nullptr);
-        mod->op      = static_cast<SpellModOp>(def.spellmodOp);
-        mod->type    = static_cast<SpellModType>(def.spellmodType);
-        mod->spellId = def.carrierSpell;
-        mod->mask    = flag96(def.familyFlags[0], def.familyFlags[1], def.familyFlags[2]);
-        mod->value   = def.valuePerRank * rolledVal;
-        player->AddSpellMod(mod, true);
-        mods.push_back(mod);
+        auto addMod = [&](SpellModOp op)
+        {
+            SpellModifier* mod = new SpellModifier(nullptr);
+            mod->op      = op;
+            mod->type    = static_cast<SpellModType>(def.spellmodType);
+            mod->spellId = def.carrierSpell;
+            mod->mask    = flag96(def.familyFlags[0], def.familyFlags[1], def.familyFlags[2]);
+            mod->value   = def.valuePerRank * rolledVal;
+            player->AddSpellMod(mod, true);
+            mods.push_back(mod);
+        };
+
+        addMod(static_cast<SpellModOp>(def.spellmodOp));
+
+        // Core applies SPELLMOD_DAMAGE only to direct damage/healing and
+        // SPELLMOD_DOT only to periodic ticks (Unit::SpellDamageBonusDone /
+        // SpellHealingBonusDone pick one by damagetype, so no double-dipping).
+        // Real "increases damage/healing of X" talents carry both, so mirror
+        // that here -- otherwise DoT/HoT talent affixes (Improved Rend,
+        // Rupture/Garrote, Serpent Sting, Corruption, Rejuvenation, Renew,
+        // the periodic part of Moonfire, ...) do nothing at all.
+        if (def.spellmodOp == uint8(SPELLMOD_DAMAGE) && def.spellmodType == uint8(SPELLMOD_PCT))
+            addMod(SPELLMOD_DOT);
 
     } while (result->NextRow());
 }
@@ -3473,6 +3490,14 @@ void ItemAffixMgr::SetQuestRewardInProgress(uint64 playerGuid, bool inProgress)
 bool ItemAffixMgr::IsQuestRewardInProgress(uint64 playerGuid) const
 {
     return _questRewardInProgress.count(playerGuid) != 0;
+}
+
+bool ItemAffixMgr::IsExcludedBot(Player* player) const
+{
+    if (!_excludePlayerbots || !player)
+        return false;
+    WorldSession* session = player->GetSession();
+    return session && session->GetRemoteAddress() == "headless";
 }
 
 // ---------------------------------------------------------------------------

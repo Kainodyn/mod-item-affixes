@@ -55,10 +55,10 @@
       "family_flags": [2, 0, 0],
       "carrier_spell": 172,
       "carrier_name": "Corruption",
-      "spellmod_op": "CASTING_TIME",
-      "spellmod_type": "FLAT",
-      "value_per_rank": -400,
-      "notes": "flags=[2,0,0]=0x00000002 (mask0 bit1). Corruption cast time -400ms/rank (max 5/5 = instant).",
+      "spellmod_op": "DAMAGE",
+      "spellmod_type": "PCT",
+      "value_per_rank": 2,
+      "notes": "flags=[2,0,0]=0x00000002 (mask0 bit1). Corruption damage +2%/rank (WotLK Improved Corruption). Was cast time -400ms/rank, which did nothing: Corruption is instant on all ranks in 3.3.5. DAMAGE PCT talent affixes also get a matching SPELLMOD_DOT mod in ApplyTalentAffixes, so the periodic ticks are covered.",
       "verified": true
     },
 
