@@ -70,6 +70,25 @@ changes. Upstream's layout did not survive that:
 - `reset_item_affixes.sql` (wipes every roll) sat in `db-characters/` and
   ran on first start. Moved to `data/sql/manual/`.
 
+## Client patch
+
+`client-patch/ItemAffixesPatch.py` (Python stdlib only) replaces upstream's
+Windows-only `3-patch-client.bat`. It runs after the mod-classless-wildcard
+client installer and appends this module's 35 custom spells and 21
+SkillLineAbility rows to the `Spell.dbc` and `SkillLineAbility.dbc` inside
+Wildcard's own `patch-Z` archives, because nothing can outrank those. It
+installs the addons too. See `client-patch/README.md`.
+
+Build the player download with
+`python3 tools/build_client_patch.py <server dbc dir>` → `dist/ItemAffixesPatch.zip`.
+
+Upstream's `SpellItemEnchantment.dbc` patch is left out: no server code or
+addon reads `enchant_id`; the addon draws the tooltip lines itself.
+
+Server side, the spells come from `spell_dbc` SQL rather than a patched server
+`Spell.dbc`. That covers all custom spells except the 14 Progression ones
+(699100–699113), which are only used while Progression is on.
+
 ## Core patches on Linux
 
 `scripts/apply_core_patches.py` is a Python port of `apply_core_patches.ps1`
@@ -90,6 +109,5 @@ Verified against `mod-playerbots/azerothcore-wotlk` `Playerbot` @ `be923cb`.
 - Talent affix values do not scale with the owned talent rank.
 - Manual mode's "Talent Tree" selector still lists the chassis class's trees.
   D3 mode (the default) has no selector.
-- Both modules ship custom `Spell.dbc` entries in client MPQ patches. These have to be
-  merged into one patch. A first check found no overlapping custom spell ids.
+- With Progression turned on, its 14 spells also need server-side `spell_dbc` rows.
 - The SQL generator and client patch scripts are PowerShell (`pwsh`).
