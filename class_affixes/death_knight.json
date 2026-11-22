@@ -208,8 +208,8 @@
                                        "family_name":  "DEATH_KNIGHT",
                                        "carrier_spell_id":  49020,
                                        "flags":  [
-                                                     524288,
                                                      0,
+                                                     131072,
                                                      0
                                                  ],
                                        "verified":  false,
@@ -238,8 +238,8 @@
                                        "family_name":  "DEATH_KNIGHT",
                                        "carrier_spell_id":  49020,
                                        "flags":  [
-                                                     524288,
                                                      0,
+                                                     131072,
                                                      0
                                                  ],
                                        "verified":  false,
@@ -268,8 +268,8 @@
                                        "family_name":  "DEATH_KNIGHT",
                                        "carrier_spell_id":  49020,
                                        "flags":  [
-                                                     524288,
                                                      0,
+                                                     131072,
                                                      0
                                                  ],
                                        "verified":  false,
@@ -306,7 +306,7 @@
                                        "carrier_spell_id":  49184,
                                        "flags":  [
                                                      0,
-                                                     16,
+                                                     2,
                                                      0
                                                  ],
                                        "verified":  false,
@@ -336,7 +336,7 @@
                                        "carrier_spell_id":  49184,
                                        "flags":  [
                                                      0,
-                                                     16,
+                                                     2,
                                                      0
                                                  ],
                                        "verified":  false,
@@ -366,7 +366,7 @@
                                        "carrier_spell_id":  49184,
                                        "flags":  [
                                                      0,
-                                                     16,
+                                                     2,
                                                      0
                                                  ],
                                        "verified":  false,
@@ -396,7 +396,7 @@
                                        "carrier_spell_id":  49184,
                                        "flags":  [
                                                      0,
-                                                     16,
+                                                     2,
                                                      0
                                                  ],
                                        "verified":  false,
@@ -626,8 +626,8 @@
                                        "family_name":  "DEATH_KNIGHT",
                                        "carrier_spell_id":  55090,
                                        "flags":  [
-                                                     16777216,
                                                      0,
+                                                     134217728,
                                                      0
                                                  ],
                                        "verified":  false,
@@ -656,8 +656,8 @@
                                        "family_name":  "DEATH_KNIGHT",
                                        "carrier_spell_id":  55090,
                                        "flags":  [
-                                                     16777216,
                                                      0,
+                                                     134217728,
                                                      0
                                                  ],
                                        "verified":  false,
@@ -686,8 +686,8 @@
                                        "family_name":  "DEATH_KNIGHT",
                                        "carrier_spell_id":  55090,
                                        "flags":  [
-                                                     16777216,
                                                      0,
+                                                     134217728,
                                                      0
                                                  ],
                                        "verified":  false,

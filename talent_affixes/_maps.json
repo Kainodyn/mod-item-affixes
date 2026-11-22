@@ -50,9 +50,12 @@
     "CRIT_DAMAGE":       15,
     "RESIST_MISS_CHANCE":16,
     "JUMP_TARGETS":      17,
+    "DOT":               22,
     "DOT_DURATION":      22,
     "EFFECT3":           23
   },
+
+  "_spellmod_op_note": "22 is SPELLMOD_DOT = periodic damage/healing %, NOT duration. Use DURATION (1) for duration. DOT_DURATION is kept as a legacy alias of DOT.",
 
   "spellmod_type_map": {
     "FLAT": 107,

@@ -406,6 +406,11 @@ public:
     void SetQuestRewardInProgress(uint64 playerGuid, bool inProgress);
     bool IsQuestRewardInProgress(uint64 playerGuid) const;
 
+    // ItemAffixes.ExcludePlayerbots: true for a mod-playerbots bot when the
+    // option is on. Bot sessions are created without a socket, which the core
+    // reports as remote address "headless" (WorldSession ctor).
+    bool IsExcludedBot(Player* player) const;
+
 private:
     // Roll N distinct affix IDs for a pending slot; sets row to PENDING and sends OPTS.
     void HandleRollRequest(Player* player, Item* item, uint8 affixSlot,
@@ -477,6 +482,12 @@ private:
     // Equivalent to old Phase 0 + reapply.  Call for ".affix reapply" or GM correction.
     void ForceReapplySpellSwaps(Player* player);
 
+    // Base-spell restore after a swap variant goes away: highest rank for the
+    // player's level (never the max-rank carrier). Returns the rank now known.
+    uint32 RestoreBaseRank(Player* player, uint32 baseSpell);
+    // Drops base-chain ranks above the player's level (repairs old max-rank restores).
+    void RemoveRanksAboveLevel(Player* player, uint32 baseSpell);
+
     void LoadTalentAffixDefs();
     TalentAffixDef const* GetEligibleTalentAffix(Player* player, Item const* item, int8 specOverride = -1,
                                                   bool includeOtherSpecWeighted = false, uint32 ownSpecWeight = 1);
@@ -537,6 +548,7 @@ private:
                                               // pool is counted vs. other-spec, for both prefix affixes and
                                               // talent affixes. 0 = fully random (default; every spec equally
                                               // likely); 1 = dominant spec counted twice (2x), 2 = 3x, etc.
+    bool  _excludePlayerbots        = true;  // skip all affix work for mod-playerbots bots
     bool  _d3ExcludeQuestRewards    = true;  // D3 mode only: quest reward items stay Manual-mode (UNROLLED)
                                               // instead of auto-rolling, so turning in a quest still feels
                                               // like picking a reward. Default true (this was the original ask).

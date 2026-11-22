@@ -237,3 +237,61 @@ ON DUPLICATE KEY UPDATE
     StartRecoveryTime        = VALUES(StartRecoveryTime),
     Name_Lang_enUS           = VALUES(Name_Lang_enUS),
     Name_Lang_Mask           = VALUES(Name_Lang_Mask);
+
+-- ============================================================
+-- Rank/level correctness for all variants (699001-699019)
+-- ============================================================
+-- DefenseType=3 (SPELL_DAMAGE_CLASS_RANGED, same as Arcane Shot): without it the
+-- variants were DmgClass NONE -- no ranged hit/crit roll at all (never crit) and
+-- no ranged AP scaling. RecoveryTime=6000 is Arcane Shot's own 6 s cooldown; the
+-- client clone already showed it, but the server row had none.
+UPDATE spell_dbc SET DefenseType = 3, RecoveryTime = 6000 WHERE ID BETWEEN 699001 AND 699019;
+
+-- RAP coefficient copied from Arcane Shot (spell_bonus_data 3044: ap_bonus 0.15).
+-- direct_bonus 0 also stops the core from adding a default spell-power coefficient.
+DELETE FROM spell_bonus_data WHERE entry BETWEEN 699001 AND 699019;
+INSERT INTO spell_bonus_data (entry, direct_bonus, dot_bonus, ap_bonus, ap_dot_bonus, comments) VALUES
+(699001,0,0,0.15,0,'mod-item-affixes - Arcane Shot: Multi'),
+(699002,0,0,0.15,0,'mod-item-affixes - Arcane Shot: Sting'),
+(699003,0,0,0.15,0,'mod-item-affixes - Arcane Shot: Multi Sting'),
+(699004,0,0,0.15,0,'mod-item-affixes - Arcane Shot: Multi'),
+(699005,0,0,0.15,0,'mod-item-affixes - Arcane Shot: Multi Sting'),
+(699006,0,0,0.15,0,'mod-item-affixes - Arcane Shot: Multi'),
+(699007,0,0,0.15,0,'mod-item-affixes - Arcane Shot: Multi Sting'),
+(699008,0,0,0.15,0,'mod-item-affixes - Arcane Shot: Multi'),
+(699009,0,0,0.15,0,'mod-item-affixes - Arcane Shot: Multi Sting'),
+(699010,0,0,0.15,0,'mod-item-affixes - Arcane Shot: Multi'),
+(699011,0,0,0.15,0,'mod-item-affixes - Arcane Shot: Multi Sting'),
+(699012,0,0,0.15,0,'mod-item-affixes - Arcane Shot: Multi'),
+(699013,0,0,0.15,0,'mod-item-affixes - Arcane Shot: Multi Sting'),
+(699014,0,0,0.15,0,'mod-item-affixes - Arcane Shot: Multi'),
+(699015,0,0,0.15,0,'mod-item-affixes - Arcane Shot: Multi Sting'),
+(699016,0,0,0.15,0,'mod-item-affixes - Arcane Shot: Multi'),
+(699017,0,0,0.15,0,'mod-item-affixes - Arcane Shot: Multi Sting'),
+(699018,0,0,0.15,0,'mod-item-affixes - Arcane Shot: Multi'),
+(699019,0,0,0.15,0,'mod-item-affixes - Arcane Shot: Multi Sting');
+
+-- SpellScripts (ItemAffixScripts.cpp) replace the hardcoded R11 base damage (491)
+-- and the R11 Serpent Sting trigger (49001) with the ranks that fit the hunter.
+DELETE FROM spell_script_names WHERE spell_id BETWEEN 699001 AND 699019
+    AND ScriptName IN ('spell_affix_arcane_shot_variant', 'spell_affix_arcane_shot_sting_variant');
+INSERT INTO spell_script_names (spell_id, ScriptName) VALUES
+(699001,'spell_affix_arcane_shot_variant'),
+(699004,'spell_affix_arcane_shot_variant'),
+(699006,'spell_affix_arcane_shot_variant'),
+(699008,'spell_affix_arcane_shot_variant'),
+(699010,'spell_affix_arcane_shot_variant'),
+(699012,'spell_affix_arcane_shot_variant'),
+(699014,'spell_affix_arcane_shot_variant'),
+(699016,'spell_affix_arcane_shot_variant'),
+(699018,'spell_affix_arcane_shot_variant'),
+(699002,'spell_affix_arcane_shot_sting_variant'),
+(699003,'spell_affix_arcane_shot_sting_variant'),
+(699005,'spell_affix_arcane_shot_sting_variant'),
+(699007,'spell_affix_arcane_shot_sting_variant'),
+(699009,'spell_affix_arcane_shot_sting_variant'),
+(699011,'spell_affix_arcane_shot_sting_variant'),
+(699013,'spell_affix_arcane_shot_sting_variant'),
+(699015,'spell_affix_arcane_shot_sting_variant'),
+(699017,'spell_affix_arcane_shot_sting_variant'),
+(699019,'spell_affix_arcane_shot_sting_variant');

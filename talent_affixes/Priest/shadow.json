@@ -61,8 +61,8 @@
       "carrier_name": "Shadow Word: Pain",
       "spellmod_op": "RESIST_MISS_CHANCE",
       "spellmod_type": "FLAT",
-      "value_per_rank": -100,
-      "notes": "Shadow spell resist chance -1%/rank (RESIST_MISS_CHANCE FLAT: -100=-1%). All-ones used since 'Shadow school' cannot be targeted by Priest family SpellMod directly.",
+      "value_per_rank": 1,
+      "notes": "Spell hit +1%/rank (RESIST_MISS_CHANCE FLAT: 1=+1% hit; core adds the value to modHitChance in whole percent, positive = more hit). Was -100, which subtracted 100%/rank hit and made priest spells miss. All-ones used since 'Shadow school' cannot be targeted by Priest family SpellMod directly.",
       "verified": true
     },
 
@@ -170,9 +170,9 @@
       "carrier_spell": 8092,
       "carrier_name": "Mind Blast",
       "spellmod_op": "CRIT_DAMAGE",
-      "spellmod_type": "FLAT",
-      "value_per_rank": 2000,
-      "notes": "flags=[8192,0,64]: Mind Blast(8092)+Mind Flay(15407). Critical strike damage bonus +20%/rank (CRIT_DAMAGE FLAT: assumed 100=1%, so 2000=20% — verify unit in-game).",
+      "spellmod_type": "PCT",
+      "value_per_rank": 20,
+      "notes": "flags=[8192,0,64]: Mind Blast(8092)+Mind Flay(15407). Critical strike damage bonus +20%/rank (CRIT_DAMAGE PCT: core applies SPELLMOD_CRIT_DAMAGE_BONUS to the crit bonus portion; FLAT added raw damage, so the old FLAT 2000 added +2000 dmg per rank to every crit).",
       "verified": true
     },
 

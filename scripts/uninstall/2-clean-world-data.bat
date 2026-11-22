@@ -43,6 +43,13 @@ echo   Deleted spell_dbc rows
   "DELETE FROM spell_script_names WHERE spell_id BETWEEN %IMPRINT_SPELL_ID_START% AND %IMPRINT_SPELL_ID_END% OR spell_id BETWEEN %SPELLSWAP_SPELL_ID_START% AND %SPELLSWAP_SPELL_ID_END%;"
 if %ERRORLEVEL% neq 0 ( echo ERROR: spell_script_names delete failed. & pause & exit /b 1 )
 echo   Deleted spell_script_names rows
+%MYSQL% -h %MYSQL_HOST% -u %USER% -p%PASS% %DB_WORLD% -e ^
+  "DELETE FROM spell_script_names WHERE ScriptName IN ('spell_divine_storm_imprint','spell_hammer_righteous_imprint','spell_feral_spirit_imprint','spell_summon_water_elemental_imprint','spell_disenchant_imprint','spell_mangle_imprint','spell_tigers_fury_imprint');"
+if %ERRORLEVEL% neq 0 ( echo ERROR: spell_script_names delete failed. & pause & exit /b 1 )
+%MYSQL% -h %MYSQL_HOST% -u %USER% -p%PASS% %DB_WORLD% -e ^
+  "DELETE FROM spell_bonus_data WHERE entry BETWEEN %SPELLSWAP_SPELL_ID_START% AND %SPELLSWAP_SPELL_ID_END%;"
+if %ERRORLEVEL% neq 0 ( echo ERROR: spell_bonus_data delete failed. & pause & exit /b 1 )
+echo   Deleted imprint script bindings and spell_bonus_data rows
 echo.
 
 echo Removing server config files...

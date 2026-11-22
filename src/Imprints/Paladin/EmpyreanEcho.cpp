@@ -60,6 +60,10 @@ public:
             if (!echo)
                 continue;
 
+            // Template is level 80; use the player's level so hit/crit/glancing
+            // rolls vs. the target match the player's own Divine Storm.
+            echo->SetLevel(caster->GetLevel(), false);
+
             // Mirror the player's stats so Divine Storm damage is correct.
             CopyPlayerStats(caster, echo);
 

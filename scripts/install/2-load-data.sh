@@ -21,16 +21,23 @@ if [ ! -f "$CONFIG" ]; then
 fi
 source "$CONFIG"
 
-# If pwsh (PowerShell Core) is available, regenerate SQL from JSON first.
-# Otherwise apply the pre-built SQL already in the repo.
+# affix_template.sql / talent_affix_def.sql are generated from the JSON
+# definitions and are NOT committed (see .gitignore), so pwsh is required
+# unless they were already generated earlier on this machine.
 if command -v pwsh &>/dev/null; then
     echo "Regenerating SQL from JSON definitions (pwsh found)..."
     pwsh -File "$SCRIPTS_ROOT/build_affixes.ps1"
     pwsh -File "$SCRIPTS_ROOT/build_talent_affixes.ps1"
     echo "  SQL regenerated."
+elif [ -f "$SQL_WORLD/affix_template.sql" ] && [ -f "$SQL_WORLD/talent_affix_def.sql" ]; then
+    echo "WARNING: pwsh not found -- using previously generated SQL."
+    echo "         It may be stale if the JSON definitions changed since it was generated."
 else
-    echo "Note: pwsh not found -- applying pre-built SQL from repo."
-    echo "      Install PowerShell Core (pwsh) if you've changed affixes JSON."
+    echo "ERROR: pwsh (PowerShell Core) not found, and the generated SQL files"
+    echo "       affix_template.sql / talent_affix_def.sql do not exist."
+    echo "       They are built from JSON and are not part of the repo."
+    echo "       Install PowerShell Core: https://learn.microsoft.com/powershell/scripting/install/installing-powershell-on-linux"
+    exit 1
 fi
 echo
 

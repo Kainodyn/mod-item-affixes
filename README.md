@@ -315,7 +315,7 @@ A crit roll (see `EnableCritRolls`/`CritRollChance`) multiplies the final rolled
 
 - AzerothCore WoTLK 3.3.5a (standard build)
 - CMake, MSVC (or GCC/Clang), MySQL 8.x
-- PowerShell 5.1+ (Windows) or PowerShell Core `pwsh` (Linux/macOS, optional — only needed to regenerate SQL from JSON)
+- PowerShell 5.1+ (Windows) or PowerShell Core `pwsh` (Linux/macOS — **required**: `affix_template.sql` and `talent_affix_def.sql` are generated from JSON and are not committed, and the core patches are a `.ps1` script)
 - GM account with `SEC_GAMEMASTER` access (for testing)
 
 ---
@@ -638,6 +638,7 @@ server admin actually needs to touch them — copied to your live conf by `insta
 ```ini
 # 1. Loot Mode — the single biggest switch in the file
 ItemAffixes.LootMode = 1   # 0=Manual (Alt+Click picker), 1=D3-style (default, auto-rolled)
+ItemAffixes.ExcludePlayerbots = 1   # mod-playerbots: skip all affix work for bot characters
 
 # 2. Slots & Options
 ItemAffixes.TwoHanderBonusSlots = 1

@@ -11,6 +11,7 @@
 #include "ObjectAccessor.h"
 #include "Player.h"
 #include "ScriptMgr.h"
+#include "SpellRankUtil.h"
 #include "SpellAuraEffects.h"
 #include "SpellInfo.h"
 #include "SpellMgr.h"
@@ -79,6 +80,8 @@ public:
 
     void OnPlayerLogin(Player* player) override
     {
+        if (sItemAffixMgr->IsExcludedBot(player))
+            return;
         sItemAffixMgr->UpgradeAll2HSlots(player);
         sItemAffixMgr->ReapplyAllEquipped(player);
         sItemAffixMgr->SendConfig(player);
@@ -95,6 +98,8 @@ public:
 
     void OnPlayerBeforeLogout(Player* player) override
     {
+        if (sItemAffixMgr->IsExcludedBot(player))
+            return;
         sItemAffixMgr->ClearPendingReroll(player->GetGUID().GetRawValue());
         sItemAffixMgr->RemoveAllActiveMods(player);
         // Remove Imprint mods for all equipped items
@@ -112,6 +117,8 @@ public:
     // is a separate pool, not a reduction of character XP.
     void OnPlayerGiveXP(Player* player, uint32& amount, Unit* /*victim*/, uint8 /*xpSource*/) override
     {
+        if (sItemAffixMgr->IsExcludedBot(player))
+            return;
         // Character XP bonus first so the trickle skim below sees the boosted amount.
         sPlayerProgressionMgr->ApplyCharacterXpBonus(player, amount);
         sPlayerProgressionMgr->GrantTrickleXP(player, amount);
@@ -119,6 +126,8 @@ public:
 
     void OnPlayerStoreNewItem(Player* player, Item* item, uint32 /*count*/) override
     {
+        if (sItemAffixMgr->IsExcludedBot(player))
+            return;
         sItemAffixMgr->InitItemSlots(player, item);
     }
 
@@ -126,6 +135,8 @@ public:
         uint8 /*count*/, uint8 /*bag*/, uint8 /*slot*/, ItemTemplate const* /*proto*/,
         Creature* /*vendor*/, VendorItem const* /*crItem*/, bool /*bStore*/) override
     {
+        if (sItemAffixMgr->IsExcludedBot(player))
+            return;
         sItemAffixMgr->InitItemSlots(player, item);
     }
 
@@ -144,6 +155,8 @@ public:
 
     void OnPlayerEquip(Player* player, Item* it, uint8 /*bag*/, uint8 /*slot*/, bool /*update*/) override
     {
+        if (sItemAffixMgr->IsExcludedBot(player))
+            return;
         sItemAffixMgr->SyncAffixes(player);
         if (it)
             sItemAffixMgr->SendItemStatus(player, it);
@@ -155,6 +168,8 @@ public:
 
     void OnPlayerUnequip(Player* player, Item* it) override
     {
+        if (sItemAffixMgr->IsExcludedBot(player))
+            return;
         // Pass the item GUID so Phase 1 skips it — the hook fires before the slot vacates,
         // so without the exclusion Phase 2 would immediately re-apply the variant we just removed.
         sItemAffixMgr->SyncAffixes(player, it ? it->GetGUID() : ObjectGuid::Empty);
@@ -294,11 +309,12 @@ class spell_tigers_fury_imprint : public SpellScript
 // AuraScript — Celestial Resonance (spell 600002)
 // Fires every 1 s while the aura is active on a target.  Spawns an invisible
 // beacon creature at the target's CURRENT position (so it tracks a moving
-// enemy) and has it cast Holy Nova rank 9 attributed to the original caster.
+// enemy) and has it cast the priest's highest known Holy Nova rank,
+// attributed to the original caster.
 // ============================================================================
 
 static constexpr uint32 SPELL_CELESTIAL_RESONANCE  = 600002;
-static constexpr uint32 SPELL_HOLY_NOVA_R9         = 48078;
+static constexpr uint32 SPELL_HOLY_NOVA_R1         = 15237;
 static constexpr uint32 CREATURE_HOLY_NOVA_BEACON  = 601105;
 
 class spell_celestial_resonance : public AuraScript
@@ -335,12 +351,21 @@ class spell_celestial_resonance : public AuraScript
             return;
 
         beacon->SetFaction(player->GetFaction());
+        // Template is level 80; match the player so hit/resist rolls vs. the
+        // target use the player's level.
+        beacon->SetLevel(player->GetLevel(), false);
+
+        // Highest Holy Nova rank the priest knows (was hardcoded R9 / level 78,
+        // i.e. level-80 damage and healing from a level-20 priest).
+        uint32 holyNova = AffixSpellRank::Best(player, SPELL_HOLY_NOVA_R1);
+        if (!holyNova)
+            return;
 
         // Cast Holy Nova from the beacon's position.
         // Player GUID as originalCaster → damage/healing attributed to the player,
         // not the invisible creature.
         // Creature (not Player) caster → ToPlayer() guard in other SpellScripts is safe.
-        beacon->CastSpell(beacon, SPELL_HOLY_NOVA_R9,
+        beacon->CastSpell(beacon, holyNova,
             TriggerCastFlags(TRIGGERED_FULL_MASK),
             nullptr, nullptr, player->GetGUID());
 
@@ -507,6 +532,64 @@ class spell_vanishing_backstab : public SpellScript
 };
 
 // ============================================================================
+// Arcane Shot spell-swap variants (699001-699019)
+// The spell_dbc rows carry Arcane Shot R11's base damage (491) and trigger
+// Serpent Sting R11, so a leveling hunter would deal level-79 damage. These
+// scripts replace both with the rank that fits the caster: the base chain is
+// unlearned while the variant is active, so AffixSpellRank::Best falls back to
+// the highest rank for the hunter's level. RAP scaling (0.15, same as Arcane
+// Shot) comes from spell_bonus_data.
+// ============================================================================
+
+static constexpr uint32 SPELL_ARCANE_SHOT_R1   = 3044;
+static constexpr uint32 SPELL_SERPENT_STING_R1 = 1978;
+
+class spell_affix_arcane_shot_variant : public SpellScript
+{
+    PrepareSpellScript(spell_affix_arcane_shot_variant);
+
+protected:
+    void HandleDamage(SpellEffIndex /*effIndex*/)
+    {
+        Player* caster = GetCaster() ? GetCaster()->ToPlayer() : nullptr;
+        if (!caster)
+            return;
+        uint32 rank = AffixSpellRank::Best(caster, SPELL_ARCANE_SHOT_R1);
+        SpellInfo const* rankInfo = rank ? sSpellMgr->GetSpellInfo(rank) : nullptr;
+        if (!rankInfo)
+            return;
+        SetEffectValue(rankInfo->Effects[EFFECT_0].CalcValue(caster));
+    }
+
+    void Register() override
+    {
+        OnEffectLaunchTarget += SpellEffectFn(spell_affix_arcane_shot_variant::HandleDamage, EFFECT_0, SPELL_EFFECT_SCHOOL_DAMAGE);
+    }
+};
+
+class spell_affix_arcane_shot_sting_variant : public spell_affix_arcane_shot_variant
+{
+    PrepareSpellScript(spell_affix_arcane_shot_sting_variant);
+
+    void HandleSting(SpellEffIndex effIndex)
+    {
+        PreventHitDefaultEffect(effIndex);
+        Player* caster = GetCaster() ? GetCaster()->ToPlayer() : nullptr;
+        Unit* target = GetHitUnit();
+        if (!caster || !target)
+            return;
+        if (uint32 sting = AffixSpellRank::Best(caster, SPELL_SERPENT_STING_R1))
+            caster->CastSpell(target, sting, true);
+    }
+
+    void Register() override
+    {
+        OnEffectLaunchTarget += SpellEffectFn(spell_affix_arcane_shot_sting_variant::HandleDamage, EFFECT_0, SPELL_EFFECT_SCHOOL_DAMAGE);
+        OnEffectLaunchTarget += SpellEffectFn(spell_affix_arcane_shot_sting_variant::HandleSting, EFFECT_1, SPELL_EFFECT_TRIGGER_SPELL);
+    }
+};
+
+// ============================================================================
 // UnitScript — incoming damage reduction from GSTAT_DAMAGE_REDUCTION_PCT affixes
 // ============================================================================
 
@@ -625,4 +708,6 @@ void AddSC_item_affix_scripts()
     RegisterSpellScript(spell_disenchant_imprint);
     RegisterSpellScript(spell_celestial_resonance);
     RegisterSpellScript(spell_vanishing_backstab);
+    RegisterSpellScript(spell_affix_arcane_shot_variant);
+    RegisterSpellScript(spell_affix_arcane_shot_sting_variant);
 }

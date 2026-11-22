@@ -27,6 +27,13 @@
 # — LootMode=1 bypasses the picker entirely, so there is nothing to select.
 ItemAffixes.LootMode = 1
 
+# mod-playerbots support. 1 = bot characters (sessions without a real client
+# socket, which the core marks as "headless") are skipped entirely: their
+# items never get affix slots and equip/unequip/login skip all affix DB work.
+# Saves a lot of synchronous DB traffic on servers with many random bots.
+# 0 = bots roll and use affixes exactly like real players. Default: 1.
+ItemAffixes.ExcludePlayerbots = 1
+
 # D3 mode only (no effect in Manual mode). How strongly prefix (class/SpellMod)
 # affixes and talent affixes should favor the player's dominant talent tree,
 # without ever fully locking out the other two — weighted, not exclusive.
