@@ -261,7 +261,7 @@
                                        "family_name":  "DRUID",
                                        "carrier_spell_id":  8921,
                                        "flags":  [
-                                                     32,
+                                                     2,
                                                      0,
                                                      0
                                                  ],
@@ -298,7 +298,7 @@
                                        "family_name":  "DRUID",
                                        "carrier_spell_id":  8921,
                                        "flags":  [
-                                                     32,
+                                                     2,
                                                      0,
                                                      0
                                                  ],
@@ -328,7 +328,7 @@
                                        "family_name":  "DRUID",
                                        "carrier_spell_id":  8921,
                                        "flags":  [
-                                                     32,
+                                                     2,
                                                      0,
                                                      0
                                                  ],
@@ -373,7 +373,7 @@
                                        "carrier_spell_id":  50288,
                                        "flags":  [
                                                      0,
-                                                     128,
+                                                     8388608,
                                                      0
                                                  ],
                                        "verified":  true,
@@ -403,7 +403,7 @@
                                        "carrier_spell_id":  48505,
                                        "flags":  [
                                                      0,
-                                                     128,
+                                                     8388608,
                                                      0
                                                  ],
                                        "verified":  false,
@@ -433,7 +433,7 @@
                                        "carrier_spell_id":  50288,
                                        "flags":  [
                                                      0,
-                                                     128,
+                                                     8388608,
                                                      0
                                                  ],
                                        "verified":  true,
@@ -469,8 +469,8 @@
                                        "family_name":  "DRUID",
                                        "carrier_spell_id":  42231,
                                        "flags":  [
+                                                     4194304,
                                                      0,
-                                                     16,
                                                      0
                                                  ],
                                        "verified":  true,
@@ -499,8 +499,8 @@
                                        "family_name":  "DRUID",
                                        "carrier_spell_id":  16914,
                                        "flags":  [
+                                                     4194304,
                                                      0,
-                                                     16,
                                                      0
                                                  ],
                                        "verified":  false,
@@ -529,7 +529,7 @@
                                        "family_name":  "DRUID",
                                        "carrier_spell_id":  5185,
                                        "flags":  [
-                                                     8192,
+                                                     32,
                                                      0,
                                                      0
                                                  ],
@@ -559,7 +559,7 @@
                                        "family_name":  "DRUID",
                                        "carrier_spell_id":  5185,
                                        "flags":  [
-                                                     8192,
+                                                     32,
                                                      0,
                                                      0
                                                  ],
@@ -589,7 +589,7 @@
                                        "family_name":  "DRUID",
                                        "carrier_spell_id":  5185,
                                        "flags":  [
-                                                     8192,
+                                                     32,
                                                      0,
                                                      0
                                                  ],
@@ -619,7 +619,7 @@
                                        "family_name":  "DRUID",
                                        "carrier_spell_id":  5185,
                                        "flags":  [
-                                                     8192,
+                                                     32,
                                                      0,
                                                      0
                                                  ],
@@ -753,7 +753,7 @@
                                        "family_name":  "DRUID",
                                        "carrier_spell_id":  8936,
                                        "flags":  [
-                                                     256,
+                                                     64,
                                                      0,
                                                      0
                                                  ],
@@ -783,7 +783,7 @@
                                        "family_name":  "DRUID",
                                        "carrier_spell_id":  8936,
                                        "flags":  [
-                                                     256,
+                                                     64,
                                                      0,
                                                      0
                                                  ],
@@ -813,7 +813,7 @@
                                        "family_name":  "DRUID",
                                        "carrier_spell_id":  8936,
                                        "flags":  [
-                                                     256,
+                                                     64,
                                                      0,
                                                      0
                                                  ],
@@ -843,7 +843,7 @@
                                        "family_name":  "DRUID",
                                        "carrier_spell_id":  8936,
                                        "flags":  [
-                                                     256,
+                                                     64,
                                                      0,
                                                      0
                                                  ],
@@ -881,7 +881,7 @@
                                        "carrier_spell_id":  33763,
                                        "flags":  [
                                                      0,
-                                                     2097152,
+                                                     16,
                                                      0
                                                  ],
                                        "verified":  false,
@@ -911,7 +911,7 @@
                                        "carrier_spell_id":  33763,
                                        "flags":  [
                                                      0,
-                                                     2097152,
+                                                     16,
                                                      0
                                                  ],
                                        "verified":  false,
@@ -941,7 +941,7 @@
                                        "carrier_spell_id":  33763,
                                        "flags":  [
                                                      0,
-                                                     2097152,
+                                                     16,
                                                      0
                                                  ],
                                        "verified":  false,
@@ -977,9 +977,9 @@
                                        "family_name":  "DRUID",
                                        "carrier_spell_id":  1079,
                                        "flags":  [
+                                                     8388608,
                                                      0,
-                                                     0,
-                                                     2
+                                                     2097152
                                                  ],
                                        "verified":  false,
                                        "verify_command":  ".spellinfo all 1079"
@@ -1007,9 +1007,9 @@
                                        "family_name":  "DRUID",
                                        "carrier_spell_id":  1079,
                                        "flags":  [
+                                                     8388608,
                                                      0,
-                                                     0,
-                                                     2
+                                                     2097152
                                                  ],
                                        "verified":  false,
                                        "verify_command":  ".spellinfo all 1079"
@@ -1037,9 +1037,9 @@
                                        "family_name":  "DRUID",
                                        "carrier_spell_id":  1079,
                                        "flags":  [
+                                                     8388608,
                                                      0,
-                                                     0,
-                                                     2
+                                                     2097152
                                                  ],
                                        "verified":  false,
                                        "verify_command":  ".spellinfo all 1079"
@@ -1074,7 +1074,7 @@
                                        "family_name":  "DRUID",
                                        "carrier_spell_id":  1822,
                                        "flags":  [
-                                                     64,
+                                                     4096,
                                                      0,
                                                      0
                                                  ],
@@ -1111,7 +1111,7 @@
                                        "family_name":  "DRUID",
                                        "carrier_spell_id":  1822,
                                        "flags":  [
-                                                     64,
+                                                     4096,
                                                      0,
                                                      0
                                                  ],
@@ -1171,7 +1171,7 @@
                                        "family_name":  "DRUID",
                                        "carrier_spell_id":  5185,
                                        "flags":  [
-                                                     8192,
+                                                     32,
                                                      0,
                                                      0
                                                  ],
@@ -1201,7 +1201,7 @@
                                        "family_name":  "DRUID",
                                        "carrier_spell_id":  8936,
                                        "flags":  [
-                                                     256,
+                                                     64,
                                                      0,
                                                      0
                                                  ],
