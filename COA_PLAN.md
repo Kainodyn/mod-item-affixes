@@ -108,7 +108,7 @@ Separat system, ikke en affix-type. Av i fase 1. Om det slås på senere:
    `ChrSpecs.SignatureSpell` (felt 24) i stedet for håndskrevne spell-lister.
 
 ## Beslutninger (Hallvar, 2026-11-23)
-- mod-random-enchants skal av når affixer går live, men den skal bearbeides først.
+- mod-random-enchants skal av når affix-modulen går live (først gjenstår arbeid på affix-modulen).
 - `StatMultiplier = 1.5` og slots 1/2/3/4 (+1 for 2H) godkjent.
 - Damage Reduction % og Move Speed fjernes.
 - Hp5 og Armor Pen fjernes.
