@@ -1,425 +1,135 @@
 #############################################
-# mod-item-affixes configuration
+# mod-item-affixes (Conquest of Azeroth)
 #
-# Sections below are ordered roughly by how often a server admin needs to
-# touch them: loot mode and drop rates first, then feature-specific tuning,
-# then advanced/opt-in subsystems (addon UI selectors, Player Progression)
-# last. Every setting still lives in exactly one place — nothing appears
-# twice.
+# Green-or-better weapons and armor roll random stat affixes the moment a player receives them
+# (loot, quest reward, crafting, vendor). Affixes follow the receiver's active specialization:
+# role (caster/physical/ranged/tank/healer) and primary attributes come from ChrSpecs.dbc.
+# Tooltips need the ItemAffixes client addon.
 #############################################
 
-# ===========================================================================
-# 1. Loot Mode — the single biggest switch in this file
-# ===========================================================================
+[worldserver]
 
-# 0 = Manual: items drop with UNROLLED affix slots; the player Alt+Clicks to
-#     pick from rolled options via the roll UI.
-# 1 = D3-style (default): items arrive fully rolled and APPLIED the instant
-#     they're picked up (looted, quest-rewarded, bought, mailed, etc.) — no
-#     picker UI, no player interaction. Slots split into a prefix bucket
-#     (class skill / SpellMod affixes) and a suffix bucket (stat affixes),
-#     each filled in order so prefixes always display before suffixes. The
-#     split size comes from the existing SlotCount*/TwoHanderBonusSlots/
-#     Progression-slot-bonus total for the item — there is no separate
-#     slot-count config for this mode. Talent affixes and Imprints still
-#     roll independently on top, governed by their own settings below.
-# The "Addon UI selectors" section further down only applies to Manual mode
-# — LootMode=1 bypasses the picker entirely, so there is nothing to select.
-ItemAffixes.LootMode = 1
+#
+#    ItemAffixes.Enable
+#        Description: Master switch. 0 = no rolling, no stats applied, addon requests ignored.
+#        Default:     1
+#
 
-# D3 mode only (no effect in Manual mode). How strongly prefix (class/SpellMod)
-# affixes and talent affixes should favor the player's dominant talent tree,
-# without ever fully locking out the other two — weighted, not exclusive.
-# Internally this adds N extra copies of the dominant-spec candidate pool on
-# top of its normal one, before picking against the combined other-spec pool.
-# 0 = fully random (default) — every eligible spec equally likely, no bias
-#     at all. Sensible default if your server also offers the Reforge NPC,
-#     since a fully random spread + the ability to fix a bad roll later is a
-#     more open-ended playstyle than baking in a bias up front.
-# 1 = dominant spec counted twice (roughly 2x as likely per candidate as any
-#     other single spec). 2 = 3x. 3 = 4x. Etc — higher is more spec-focused.
-ItemAffixes.D3DominantSpecWeight = 0
+ItemAffixes.Enable = 1
 
-# D3 mode only (no effect in Manual mode). 1 = quest reward items stay
-# Manual-mode (drop UNROLLED, player picks) even though the server default is
-# D3 — so turning in a quest still feels like picking a reward. 0 = quest
-# rewards also auto-roll like everything else. Default: 1 (enabled).
-ItemAffixes.D3ExcludeQuestRewards = 1
+#
+#    ItemAffixes.ExcludeBots
+#        Description: Playerbots never roll or apply affixes.
+#        Default:     1
+#
 
-# D3 mode only (no effect in Manual mode). Whether ClassAffixMaxPerItem (see
-# "Class & Talent Affixes" below) still caps how many prefix (class/SpellMod)
-# affixes a D3-rolled item can get.
-# 0 = respect it (default) — same cap manual mode uses. An item's prefix
-#     slots beyond the cap fall back to rolling extra suffixes instead, e.g.
-#     with ClassAffixMaxPerItem=1 a purple 2H weapon (prefixCount=2) gets 1
-#     prefix + 3 suffix rather than 2+2. This is intentional, not a bug —
-#     it keeps class-affix scarcity consistent between Manual and D3 modes.
-# 1 = ignore it — the prefix/suffix formula in AutoRollD3Item becomes
-#     authoritative instead, so an item always gets its full computed
-#     prefixCount (e.g. a real 2/2 split on that same weapon). The
-#     Progression "Unlock Class Affixes" gate is never affected by this
-#     setting either way — it's still enforced, exactly like manual mode.
-ItemAffixes.D3OverrideClassAffixMaxPerItem = 0
+ItemAffixes.ExcludeBots = 1
 
-# ===========================================================================
-# 2. Slots & Options — how much drops, how many choices
-# ===========================================================================
+#
+#    ItemAffixes.RollUnrolledOnEquip
+#        Description: Equipping (and logging in with) an eligible item that has never been rolled
+#                     rolls it for the wearer. Covers mail, auction, trade and gear from before
+#                     the module was installed.
+#        Default:     1
+#
 
-# Number of extra affix slots granted to two-handed weapons to compensate for
-# the dual-wield slot advantage (dual wielders get two 1H weapon slot rolls
-# vs one 2H roll).
-# 0 = no bonus, 1 = one extra slot (default), 2 = two extra slots, etc.
-ItemAffixes.TwoHanderBonusSlots = 1
+ItemAffixes.RollUnrolledOnEquip = 1
 
-# Number of affix slots granted per quality tier (non-gem items only). Clamped to 1-6.
+#
+#    ItemAffixes.SlotCountGreen / Blue / Purple / Legendary
+#        Description: Affix slots per item quality (0-6). Grey and white items never roll.
+#        Default:     1 / 2 / 3 / 4
+#
+
 ItemAffixes.SlotCountGreen     = 1
 ItemAffixes.SlotCountBlue      = 2
 ItemAffixes.SlotCountPurple    = 3
 ItemAffixes.SlotCountLegendary = 4
 
-# Manual mode only. Number of affix options presented to the player when
-# rolling each quality tier. The player picks one; the rest are discarded.
-# Clamped to 1-6.
-# Green  (Uncommon):  1 option by default (no choice, rolls immediately).
-# Blue   (Rare):      2 options by default.
-# Purple (Epic):      3 options by default.
-# Orange (Legendary): 4 options by default.
-ItemAffixes.OptionsCountGreen     = 1
-ItemAffixes.OptionsCountBlue      = 2
-ItemAffixes.OptionsCountPurple    = 3
-ItemAffixes.OptionsCountLegendary = 4
+#
+#    ItemAffixes.TwoHanderBonusSlots
+#        Description: Extra slots for two-handed weapons. Their values are also 1.5x.
+#        Default:     1
+#
 
-# Manual mode only. Number of rerolls granted per quality tier after the
-# initial roll. Each reroll re-generates all unlocked options; locked
-# options are preserved.
-# Green  (Uncommon):  0 = no rerolls (pick the only option or keep nothing).
-# Blue   (Rare):      3 rerolls by default.
-# Purple (Epic):      5 rerolls by default.
-# Orange (Legendary): 7 rerolls by default.
-ItemAffixes.RerollsGreen     = 0
-ItemAffixes.RerollsBlue      = 3
-ItemAffixes.RerollsPurple    = 5
-ItemAffixes.RerollsLegendary = 7
+ItemAffixes.TwoHanderBonusSlots = 1
 
-# ===========================================================================
-# 3. Class & Talent Affixes
-# ===========================================================================
+#
+#    ItemAffixes.BudgetFractionGreen / Blue / Purple / Legendary
+#        Description: Share of the item's stat budget one affix gets.
+#                     value = budget(iLvl) * slot modifier * fraction * StatMultiplier
+#        Default:     0.18 / 0.13 / 0.10 / 0.09
+#
 
-# Allow class skill (SpellMod) affixes to roll. 0 = only stat affixes roll. 1 = enabled (default).
-ItemAffixes.EnableClassSkillAffixes = 1
-
-# Percentage chance (0-100) that each roll option is a class skill affix rather than a stat affix.
-# Applies to the "Any" pool only — has no effect when the player forces Stats or Class Skills via
-# the type selector (EnableClassSkillAffixSelection). Has no effect when EnableClassSkillAffixes = 0
-# or the item is Uncommon (green, stats-only). In D3 mode, prefix/suffix counts are deterministic
-# (see Loot Mode above) so this setting has no effect there either.
-# 20 = roughly 1-in-5 options will be a class skill affix (default).
-ItemAffixes.ClassAffixChance = 20
-
-# Manual mode only. Bad-luck streak protection: if this many consecutive non-class options have
-# been shown for an item (counting across all slots, rolls, and rerolls in the session), the next
-# generated option is guaranteed to be a class skill affix, then the streak counter resets to 0.
-# Locked options are not re-rolled so they do not count toward the streak.
-# Set this higher than your ClassAffixChance ratio would suggest to avoid firing too often:
-#   ClassAffixChance=20 (1-in-5) → set this to 6 or higher.
-#   ClassAffixChance=25 (1-in-4) → set this to 5 or higher.
-# 0 = disabled (no streak protection). Default: 0.
-ItemAffixes.BadLuckStreakProtection = 0
-
-# Caps how many class/spellmod affixes a single item can ever have APPLIED at
-# once. 0 = unlimited (default, no behavior change). 1 = at most one class
-# affix per item (most common setting); raise to allow more. Works in both
-# loot modes — see D3OverrideClassAffixMaxPerItem above for the D3-specific
-# override.
-ItemAffixes.ClassAffixMaxPerItem = 1
-
-# Allow talent affixes to roll (passive bonus ranks in a class talent). 0 = talent affix rows are
-# never generated. 1 = enabled (default).
-ItemAffixes.EnableTalentAffixes = 1
-
-# Percentage chance (0-100) that a talent affix is rolled onto each affix slot alongside its normal
-# class/stat affix. The talent is chosen independently of which affix was selected; it uses the
-# spec tree the player chose in the addon UI (Manual mode with EnableTalentAffixSelection = 1),
-# falling back to the dominant talent tree otherwise. Has no effect when EnableTalentAffixes = 0.
-# Green  (Uncommon):  10% by default.
-# Blue   (Rare):      20% by default.
-# Purple (Epic):      30% by default.
-# Orange (Legendary): 100% by default — legendary items always receive a talent affix.
-ItemAffixes.TalentAffixChanceGreen     = 10
-ItemAffixes.TalentAffixChanceBlue      = 20
-ItemAffixes.TalentAffixChancePurple    = 30
-ItemAffixes.TalentAffixChanceLegendary = 100
-
-# ===========================================================================
-# 4. Crit Rolls
-# ===========================================================================
-
-# Enable "crit" rolls — a per-option lucky bonus that inflates the rolled value by 50%.
-# When a crit fires on a stat affix the value is multiplied by 1.5 (ceiling) and the tooltip
-# line renders gold instead of blue. On a SpellMod affix the internal scale flag is escalated
-# (plain→×1.5, 2H→×2.25). Crit options are shown with a gold "!" prefix in the pick menu, and
-# trigger a toast if the optional ItemAffixesToast companion addon is installed.
-# 0 = crits never occur, 1 = enabled (default).
-ItemAffixes.EnableCritRolls = 1
-
-# Percentage chance (0-100) that each individual roll evaluates a crit. In Manual mode this is
-# per option presented to the player; in D3 mode and Reforge rerolls it's evaluated independently
-# per slot/candidate. Has no effect when EnableCritRolls = 0.
-# 10 = 10% chance (default).
-ItemAffixes.CritRollChance = 10
-
-# ===========================================================================
-# 5. Imprints
-# ===========================================================================
-
-# Percentage chance (0-100) that a roll produces a class-eligible Imprint instead of (Manual mode)
-# or in addition to (D3 mode — see docs/D3_LOOT_MODE_PLAN.md) a normal class affix. Selecting/
-# granting one applies the Imprint to the item and grants a Rune to bags. In Manual mode the affix
-# slot is returned to UNROLLED so it can still be filled with a normal affix afterward; in D3 mode
-# the slot still gets its own normal roll in the same pass, so an Imprint is pure upside there —
-# it never costs the item a slot. Once an item has an Imprint (from any source) the option will
-# never appear again on that item. Never offered by the Reforge NPC (see ReforgeBaseCost* below) —
-# that's intentionally out of scope, the closest thing this system has to a "Legendary power" slot.
-# 0 = Imprint options never appear in rolls. 30 = 30% chance (default).
-ItemAffixes.ImprintRollChance = 5
-
-# Number of times an Imprint can be extracted from an item (applied → extract → re-apply).
-# Each extraction decrements the counter; at 0 the Imprint is permanently bound to the item.
-# 0 = hardcore — Imprints cannot be moved once applied.
-# 1 = single-use rune (apply once, then permanently bound).
-# 2 = default (one free re-roll of which item it lives on).
-# 3+ = more flexible; use on casual or fun servers.
-ItemAffixes.ImprintExtractionCount = 2
-
-# ===========================================================================
-# 6. Stat Power Tuning
-# ===========================================================================
-
-# WotLK item budget fractions — share of the item's total stat budget allocated to one affix roll.
-# The stat exchange rates (AP=0.5x cost, SP=0.86x cost, others=1x) do the balancing automatically.
-# Legendary gets slightly less per-slot than epic because it has more slots total.
 ItemAffixes.BudgetFractionGreen     = 0.18
 ItemAffixes.BudgetFractionBlue      = 0.13
 ItemAffixes.BudgetFractionPurple    = 0.10
 ItemAffixes.BudgetFractionLegendary = 0.09
 
-# Minimum roll as a fraction of the computed maximum (variance floor). Valid range: 0.0 to 1.0.
-# 1.0  = always the exact max (no variance) — use this instead of StatMultiplier for consistent max rolls.
-# 0.75 = rolls land between 75% and 100% of the budget-computed max value (default).
-# 0.0  = rolls anywhere from 1 to max (very high variance).
-# Values above 1.0 are clamped to 1.0. To increase roll magnitudes, use StatMultiplier instead.
+#
+#    ItemAffixes.StatMultiplier
+#        Description: Global scale of every affix value.
+#        Default:     1.5
+#
+
+ItemAffixes.StatMultiplier = 1.5
+
+#
+#    ItemAffixes.BudgetMinRoll
+#        Description: Lowest roll as a fraction of the maximum (1.0 = always the maximum).
+#        Default:     0.75
+#
+
 ItemAffixes.BudgetMinRoll = 0.75
 
-# Global stat multiplier applied to all stat affix rolls.
-# 1.0 = default (WotLK-accurate budget values).
-# 1.5 = 50% stronger (power fantasy mode).
-# 2.0 = double values (high-power server).
-# Does not affect SpellMod affixes (class skill bonuses).
-ItemAffixes.StatMultiplier = 3.0
+#
+#    ItemAffixes.MaxBudgetItemLevel
+#        Description: Item level used for the budget is capped here, so test and custom items
+#                     with item level 200+ do not roll WotLK-sized values. 0 = no cap.
+#        Default:     100
+#
 
-# ===========================================================================
-# 7. Reforge NPC — pick one APPLIED prefix/suffix line, pay to reroll it
-# (docs/REFORGE_PLAN.md). Reachable via the Reforge Master NPC or the
-# /reforge slash command from anywhere. Works regardless of LootMode.
-# ===========================================================================
+ItemAffixes.MaxBudgetItemLevel = 100
 
-# Cost escalates per reforge already done to THIS item:
-# cost = baseCost * (1 + timesAlreadyReforged * 0.5). Never resets. In
-# copper (100 copper = 1 silver, 10000 copper = 1 gold).
+#
+#    ItemAffixes.SecondaryAttributeWeightPct
+#        Description: Weight (percent of the affix weight) of an attribute the specialization
+#                     lists but which is not its main stat, and of Spirit for healers.
+#                     Attributes the specialization does not list never roll.
+#        Default:     33
+#
+
+ItemAffixes.SecondaryAttributeWeightPct = 33
+
+#
+#    ItemAffixes.EnableCritRolls
+#    ItemAffixes.CritRollChance
+#        Description: Chance (percent per affix, also per Reforge option) for a 1.5x value,
+#                     shown in gold.
+#        Default:     1 / 10
+#
+
+ItemAffixes.EnableCritRolls = 1
+ItemAffixes.CritRollChance  = 10
+
+#
+#    ItemAffixes.ReforgeOptionsGreen / Blue / Purple / Legendary
+#        Description: New options a Reforge shows next to the current value (1-6).
+#        Default:     1 / 2 / 3 / 4
+#
+
+ItemAffixes.ReforgeOptionsGreen     = 1
+ItemAffixes.ReforgeOptionsBlue      = 2
+ItemAffixes.ReforgeOptionsPurple    = 3
+ItemAffixes.ReforgeOptionsLegendary = 4
+
+#
+#    ItemAffixes.ReforgeBaseCostGreen / Blue / Purple / Legendary
+#        Description: Reforge cost in copper; cost = base * (1 + times already reforged * 0.5).
+#        Default:     5000 / 20000 / 75000 / 250000
+#
+
 ItemAffixes.ReforgeBaseCostGreen     = 5000
 ItemAffixes.ReforgeBaseCostBlue      = 20000
 ItemAffixes.ReforgeBaseCostPurple    = 75000
 ItemAffixes.ReforgeBaseCostLegendary = 250000
-
-# ===========================================================================
-# 8. Addon UI Selectors — Manual-mode-only, player-facing pickers shown in
-# the roll menu. Most servers don't need these.
-#
-# These are OFF by default. Standard servers with unmodified classes and
-# normal talent point totals do not need them: the module auto-detects spec
-# from the dominant talent tree, role from class, and main stat from class.
-#
-# Enable these on servers with custom classes, double talent points, or
-# any situation where auto-detection does not reliably reflect player intent.
-# ===========================================================================
-
-# Show the "Any / Stats / Class Skills" type selector in the roll menu.
-# 0 = hidden; class skill affixes still roll via the weighted Any pool (ClassAffixChance).
-#     Players cannot force a class-skills-only roll, but class affixes still appear naturally.
-# 1 = shown; players can guarantee a class skill result by choosing "Class Skills".
-# Requires EnableClassSkillAffixes = 1 to have any effect. Default: 0.
-ItemAffixes.EnableClassSkillAffixSelection = 0
-
-# Show the spec tree selector in the roll menu.
-# 0 = hidden; spec is inferred from the player's dominant talent tree for both class affix
-#     weighting and talent affix selection.
-# 1 = shown; the player's explicit choice is used instead. Recommended for servers where
-#     the dominant talent tree is not a reliable indicator of intended spec (e.g. double
-#     talent points spread across trees). Default: 0.
-# Note: the spec selector is always shown when EnableClassSkillAffixes = 1, regardless of
-# this setting, so class affix weighting can be directed by player intent.
-ItemAffixes.EnableTalentAffixSelection = 0
-
-# Show the role selector in the roll menu (Any / Tank / Physical / Caster / Healer / Ranged).
-# 0 = hidden; role is auto-detected from class and spec for all players.
-# 1 = shown selectively; the selector only appears for specs where role is genuinely ambiguous
-#     (currently: Feral Druid, who can be bear tank or cat DPS). All other specs receive
-#     auto-detected role and never see the selector. Default: 0.
-ItemAffixes.EnableRoleSelection = 0
-
-# Show the main stat selector in the roll menu (Any / Strength / Agility / Intellect / Spirit).
-# 0 = hidden; main stat is auto-detected from class and spec for all players.
-# 1 = selective; only shown for the class/spec pairs listed in MainStatSelectorSpecs below. (default).
-# 2 = all classes; every player sees the selector regardless of spec. Intended for heavily
-#     custom servers where auto-detection may not reflect player intent.
-ItemAffixes.EnableMainStatSelection = 1
-
-# Which class/spec pairs receive the main stat selector when EnableMainStatSelection = 1.
-# Comma-separated list of classId:specTree entries. specTree is 0-based (0=left, 1=middle, 2=right
-# as shown in the talent UI).
-#
-# Class IDs:  1=Warrior  2=Paladin  3=Hunter  4=Rogue   5=Priest  6=Death Knight
-#             7=Shaman   8=Mage     9=Warlock  11=Druid
-#
-# Spec trees by class (left → right in talent UI):
-#   Priest:  0=Discipline  1=Holy        2=Shadow
-#   Druid:   0=Balance     1=Feral       2=Restoration
-#   Shaman:  0=Elemental   1=Enhancement 2=Restoration
-#   Paladin: 0=Holy        1=Protection  2=Retribution
-#   (other classes follow the same left-to-right 0/1/2 ordering)
-#
-# Default covers specs where both Intellect and Spirit are valid primary stats:
-#   5:0 = Discipline Priest   5:1 = Holy Priest
-#   11:2 = Restoration Druid  7:2 = Restoration Shaman
-ItemAffixes.MainStatSelectorSpecs = 5:0,5:1,11:2,7:2
-
-# ===========================================================================
-# 9. Player Progression — optional subsystem. Account-wide XP pool and
-# talent tree that grants passive, permanent bonuses over time. Everything
-# above this line is the core affix system and works with this disabled.
-# ===========================================================================
-
-# Master toggle for the meta-progression system.
-ItemAffixes.ProgressionEnabled = 1
-
-# When enabled, class/spellmod affixes only roll for a character that has
-# invested the Unlock Class Affixes node (Affixes tab, below). When disabled
-# (default), class affixes work exactly as they always have — the "Class &
-# Talent Affixes" section above remains the sole governing config either
-# way. Independent of ClassAffixMaxPerItem above; combine as you like.
-ItemAffixes.ProgressionGateClassAffixes = 1
-
-# Percentage (0-100) of every character XP gain (kills/quests/exploration/BG)
-# skimmed into the account-wide meta-progression pool. Does not reduce the
-# character XP granted -- this is a bonus pool on top, not a tax.
-# 0 = disabled (default) -- meta-XP is meant to come from affix-system actions
-# (rolling/rerolling items via the settings below), not passive character
-# leveling. Raise this only if you deliberately want a passive trickle on top
-# of that; 2 = roughly 1/50th of every character XP gain also becomes meta-XP.
-ItemAffixes.ProgressionTricklePct = 0
-
-# Meta-XP granted when a slot commits PENDING -> APPLIED (player picks an
-# option in Manual mode, or an item auto-rolls in D3 mode), or when a Reforge
-# reroll is paid for (docs/REFORGE_PLAN.md) -- scaled by the item's quality
-# in all three cases. Green is intentionally tiny relative to blue/purple/
-# legendary so vendoring greens for XP is a bad trade, not a hard-blocked farm.
-ItemAffixes.ProgressionXpGreen     = 10
-ItemAffixes.ProgressionXpBlue      = 30
-ItemAffixes.ProgressionXpPurple    = 60
-ItemAffixes.ProgressionXpLegendary = 200
-
-# Flat lifetime XP cost per talent point (points_total = xp / this value).
-ItemAffixes.ProgressionXpPerPoint = 500
-
-# Respec cost (in copper) = Base + PerLevel * character level. Flat fee, not
-# an escalating/repeat-based curve.
-ItemAffixes.ProgressionRespecBaseCopper     = 10000
-ItemAffixes.ProgressionRespecPerLevelCopper = 500
-
-# Each Progression node has its own MaxRank (how many points can be invested
-# in it) and ValuePerRank (bonus granted per point — meaning depends on the
-# node: flat rerolls/options/slots, a %, or a stat magnitude). These are
-# fully independent per node — there is no shared/global rank ceiling.
-
-# --- Affixes tab ---
-ItemAffixes.ProgressionRerollTierMaxRank            = 3
-ItemAffixes.ProgressionRerollTierValuePerRank        = 1
-ItemAffixes.ProgressionOptionsTierMaxRank           = 3
-ItemAffixes.ProgressionOptionsTierValuePerRank       = 1
-ItemAffixes.ProgressionSlotMaxRank                  = 1
-ItemAffixes.ProgressionSlotValuePerRank              = 1
-ItemAffixes.ProgressionCritRollChanceMaxRank        = 5
-ItemAffixes.ProgressionCritRollChanceValuePerRank    = 2
-ItemAffixes.ProgressionUnlockClassAffixesMaxRank    = 1
-ItemAffixes.ProgressionUnlockClassAffixesValuePerRank = 1
-# % bonus to meta-progression XP itself (trickle + per-affix) — a "snowball" node,
-# safe to be generous since it only accelerates this pool, not character power.
-ItemAffixes.ProgressionMetaXpPctMaxRank             = 5
-ItemAffixes.ProgressionMetaXpPctValuePerRank         = 10
-
-# --- Player tab (permanent character stats — reuses the same GenericStatOp
-# pipeline item affixes use for the flat part, applied on login and removed
-# on logout. ValuePerRankPct is the % component, granted as a real spell aura
-# — see PlayerProgression.cpp. Not every stat has one: Spell Power/Crit/Haste
-# stay flat-only this pass (no clean % mechanism / deferred, see the plan). ---
-ItemAffixes.ProgressionStaminaMaxRank         = 5
-ItemAffixes.ProgressionStaminaValuePerRank     = 10
-ItemAffixes.ProgressionStaminaValuePerRankPct  = 2
-ItemAffixes.ProgressionStrengthMaxRank         = 5
-ItemAffixes.ProgressionStrengthValuePerRank    = 6
-ItemAffixes.ProgressionStrengthValuePerRankPct = 2
-ItemAffixes.ProgressionAgilityMaxRank          = 5
-ItemAffixes.ProgressionAgilityValuePerRank     = 6
-ItemAffixes.ProgressionAgilityValuePerRankPct  = 2
-ItemAffixes.ProgressionIntellectMaxRank         = 5
-ItemAffixes.ProgressionIntellectValuePerRank     = 6
-ItemAffixes.ProgressionIntellectValuePerRankPct  = 2
-ItemAffixes.ProgressionSpiritMaxRank         = 5
-ItemAffixes.ProgressionSpiritValuePerRank     = 6
-ItemAffixes.ProgressionSpiritValuePerRankPct  = 2
-ItemAffixes.ProgressionAttackPowerMaxRank         = 5
-ItemAffixes.ProgressionAttackPowerValuePerRank     = 12
-ItemAffixes.ProgressionAttackPowerValuePerRankPct  = 2
-ItemAffixes.ProgressionSpellPowerMaxRank     = 5
-ItemAffixes.ProgressionSpellPowerValuePerRank = 10
-# % is NOT a real aura (no native "% of current spell power" exists) — recomputed in
-# C++ from gear/gem/enchant spell power only on equip/unequip, buffs never included.
-# See PlayerProgression.cpp's ApplySpellPowerDynamicBonus.
-ItemAffixes.ProgressionSpellPowerValuePerRankPct = 2
-ItemAffixes.ProgressionCritRatingMaxRank         = 5
-ItemAffixes.ProgressionCritRatingValuePerRank     = 8
-# Direct % crit chance (melee+ranged and spell both, same magnitude) — not "% of
-# rating", no such aura exists; bypasses the level-dependent rating conversion curve.
-ItemAffixes.ProgressionCritRatingValuePerRankPct  = 1
-ItemAffixes.ProgressionHasteRatingMaxRank         = 5
-ItemAffixes.ProgressionHasteRatingValuePerRank     = 8
-# Direct % haste (melee, ranged, and spell casting speed, same magnitude) — same
-# reasoning as Crit above.
-ItemAffixes.ProgressionHasteRatingValuePerRankPct  = 1
-ItemAffixes.ProgressionMp5MaxRank     = 5
-ItemAffixes.ProgressionMp5ValuePerRank = 4
-
-# --- Misc tab ---
-ItemAffixes.ProgressionMoveSpeedMaxRank              = 5
-ItemAffixes.ProgressionMoveSpeedValuePerRank          = 10
-ItemAffixes.ProgressionArmorMaxRank              = 5
-ItemAffixes.ProgressionArmorValuePerRank          = 20
-ItemAffixes.ProgressionArmorValuePerRankPct       = 2
-ItemAffixes.ProgressionDamageReductionPctMaxRank     = 3
-ItemAffixes.ProgressionDamageReductionPctValuePerRank = 1
-# % bonus to the character's own kill/quest/explore/BG XP — applied before the
-# trickle skim, so it also indirectly grows the meta-XP pool.
-ItemAffixes.ProgressionCharacterXpPctMaxRank         = 5
-ItemAffixes.ProgressionCharacterXpPctValuePerRank     = 10
-# +N extra item roll(s) from a boss's own loot table per kill, summed across every
-# eligible group member (each contributes their own rank). Bespoke — not applied
-# through the normal stat/aura/teach channels; see PlayerProgressionBossDrops.cpp.
-ItemAffixes.ProgressionBossDropsMaxRank              = 2
-ItemAffixes.ProgressionBossDropsValuePerRank          = 1
-# % of damage dealt returned as self-healing (ValuePerRank is percent, 4%/rank;
-# 5 ranks = 20% max, matching the live server's tuned Leech.Amount=0.20 from
-# the now-removed mod-leech module). Always active, no dungeon-only gate.
-# Bespoke — not applied through the normal stat/aura/teach channels; see
-# PlayerProgressionLifesteal.cpp.
-ItemAffixes.ProgressionLifestealMaxRank              = 5
-ItemAffixes.ProgressionLifestealValuePerRank          = 4

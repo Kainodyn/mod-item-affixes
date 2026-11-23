@@ -1,15 +1,11 @@
 -- ============================================================================
--- ItemAffixesToast -- optional companion addon for ItemAffixes.
+-- ItemAffixesToast -- optional companion addon for ItemAffixes (originally by Rykaerdoe).
 --
 -- Adds:
---   1. A toast + sound when you pick a Critical or Imprint roll option.
---   2. A chat alert when you equip an item that still has affix rolls to do.
+--   1. A toast + sound when an item rolls a Critical affix (on pickup or in a Reforge).
+--   2. A Character Pane refresh after equipment changes, so affix stats show at once.
 --
--- Fully self-contained: hooks ItemAffixes' public AFXM table from the outside
--- (hooksecurefunc on AFXM.OnServerMsg) and independently parses the same raw
--- server messages ItemAffixes itself parses. No changes to ItemAffixes' own
--- files are required or made -- disable this addon any time from the AddOns
--- list and ItemAffixes keeps working exactly as it does without it.
+-- Self-contained: hooks AFXM.OnServerMsg from the outside and parses the raw messages.
 -- ============================================================================
 
 if not AFXM then return end  -- ItemAffixes didn't load; nothing to hook
@@ -95,212 +91,29 @@ local function ShowToast(text, playSound)
     ShowNextToast()
 end
 
+
 -- ----------------------------------------------------------------------------
--- Independent OPTS parsing -- mirrors ItemAffixes.lua's own parsing of the
--- same raw message, kept in our own private cache so we don't need any
--- access to ItemAffixes' internal (local) state.
---
--- OPTS|bag|slot|affixSlot|rerolls|lockedMask|opt1|opt2|...   (opt text keeps
---   its "~" Imprint / "!" Crit prefix, same as ItemAffixes itself parses)
---
--- We toast the instant a roll produces a Crit or Imprint option -- whether
--- the player ends up picking it is irrelevant, the roll itself is the event.
--- lockedMask tells us which option indices are carried over unchanged from a
--- previous roll (the player locked them before rerolling the rest): those
--- are skipped since they were already toasted for when they first appeared.
--- Only options that are freshly rolled this message -- the entire first
--- roll, or the unlocked slots on a reroll -- get evaluated.
+-- D3ROLL|bag|slot|!text -- the server rolled a crit affix on a newly received item.
+-- REFORGEOPTS|bag|slot|affixSlot|current|opt1|... -- text 5 is the current value, so the
+-- scan starts at 6: rerolling an item that already had a crit does not toast again.
 -- ----------------------------------------------------------------------------
 
-local function IsBitSet(mask, b)
-    return math.floor(mask / (2 ^ b)) % 2 ~= 0
-end
-
-local function ParseOptsMessage(parts)
-    local bag        = tonumber(parts[2])
-    local slot       = tonumber(parts[3])
-    local lockedMask = tonumber(parts[6]) or 0
-    if not bag or not slot then return end
-
-    for i = 7, #parts do
-        local optIdx = i - 7  -- 0-based, matches lockedMask bit positions
-        if not IsBitSet(lockedMask, optIdx) then
-            local raw        = parts[i]
-            local prefix     = raw:sub(1, 1)
-            local isImprint  = prefix == "~"
-            local isCrit     = prefix == "!"
-            if isImprint or isCrit then
-                local dispText = raw:sub(2)
-                if isImprint then
-                    ShowToast("|cffA335EEImprint Rolled!|r\n" .. dispText)
-                else
-                    ShowToast("|cffFFD700Critical Roll!|r\n" .. dispText)
-                end
-            end
+local function ToastCrits(parts, first)
+    for i = first, #parts do
+        if parts[i]:sub(1, 1) == "!" then
+            ShowToast("|cffFFD700Critical Roll!|r\n" .. parts[i]:sub(2))
         end
     end
 end
-
--- ----------------------------------------------------------------------------
--- Independent REFORGEOPTS parsing -- Reforge Master's reroll never reused
--- OPTS (different message, no lockedMask concept -- every REFORGE_ROLL
--- generates an entirely fresh candidate set each time, nothing carried over
--- to skip), so it never triggered this addon's OPTS hook at all.
--- REFORGEOPTS|bag|slot|affixSlot|text0|text1|...  (text0 is always the
--- current, carried-over value -- not a fresh roll, so it's skipped the same
--- way OPTS skips locked options: rerolling an already-crit item shouldn't
--- re-toast for the crit it already had.)
--- ----------------------------------------------------------------------------
-
-local function ParseReforgeOptsMessage(parts)
-    local bag  = tonumber(parts[2])
-    local slot = tonumber(parts[3])
-    if not bag or not slot then return end
-
-    for i = 6, #parts do
-        local raw       = parts[i]
-        local prefix    = raw:sub(1, 1)
-        local isImprint = prefix == "~"
-        local isCrit    = prefix == "!"
-        if isImprint or isCrit then
-            local dispText = raw:sub(2)
-            if isImprint then
-                ShowToast("|cffA335EEImprint Rolled!|r\n" .. dispText)
-            else
-                ShowToast("|cffFFD700Critical Roll!|r\n" .. dispText)
-            end
-        end
-    end
-end
-
--- ----------------------------------------------------------------------------
--- Independent D3ROLL parsing -- D3 loot mode's equivalent of an OPTS crit/
--- imprint event. D3 items arrive pre-resolved with no picker step at all, so
--- there's no OPTS message to hook the way manual mode's roll/reroll gets one;
--- the server sends this one purpose-built notification instead, one per
--- crit or Imprint hit, right when AutoRollD3Item resolves the item.
--- D3ROLL|bag|slot|!text (crit) or D3ROLL|bag|slot|~text (imprint)
--- ----------------------------------------------------------------------------
-
-local function ParseD3RollMessage(parts)
-    local raw = parts[4]
-    if not raw then return end
-    local prefix    = raw:sub(1, 1)
-    local isImprint = prefix == "~"
-    local isCrit    = prefix == "!"
-    if not (isImprint or isCrit) then return end
-
-    local dispText = raw:sub(2)
-    if isImprint then
-        ShowToast("|cffA335EEImprint Rolled!|r\n" .. dispText)
-    else
-        ShowToast("|cffFFD700Critical Roll!|r\n" .. dispText)
-    end
-end
-
--- ----------------------------------------------------------------------------
--- Independent DATA parsing -- for the "still has rolls to do" equip alert.
--- DATA|bag|slot|slotCount|s0:STATE:text|s1:STATE:text|...
--- ----------------------------------------------------------------------------
-
--- pendingEquipAlertSlots[slot] = true after PLAYER_EQUIPMENT_CHANGED, until
--- the next DATA message for that equipped slot resolves it one way or another.
-local pendingEquipAlertSlots = {}
-
-local function ParseDataMessage(parts)
-    local bag  = tonumber(parts[2])
-    local slot = tonumber(parts[3])
-    if bag ~= 255 or not slot then return end
-    if not pendingEquipAlertSlots[slot] then return end
-    pendingEquipAlertSlots[slot] = nil
-
-    local hasUnrolled = false
-    for i = 5, #parts do
-        local state = parts[i]:match("^s%d+:([UPEA%-]):")
-        if state == "U" or state == "P" then
-            hasUnrolled = true
-            break
-        end
-    end
-
-    if hasUnrolled then
-        local link = GetInventoryItemLink("player", slot)
-        print("|cffFFD700[Item Affixes]|r " .. (link or "This item")
-            .. " |cffFF4444still has affix rolls to do!|r Alt+Click it to roll.")
-    end
-end
-
--- ----------------------------------------------------------------------------
--- Points-gained toast/chat notification.
--- PROG|STATE|xp|pointsAvailable|respecCostCopper|currentTier|totalNodeChunks
---
--- Fires whenever pointsAvailable increases from what we last saw -- covers
--- both passive XP-earned points and a respec refunding spent ones back,
--- since the client has no way to distinguish the two from this message
--- alone (both just look like the same number going up).
--- ----------------------------------------------------------------------------
-
-local lastPointsAvailable = nil  -- nil until the first PROG|STATE arrives, so
-                                  -- login/reload syncing in your current total
-                                  -- never reads as a false "gain"
-
-local function ParseProgStateMessage(parts)
-    local pointsAvailable = tonumber(parts[4])
-    if not pointsAvailable then return end
-
-    if lastPointsAvailable and pointsAvailable > lastPointsAvailable then
-        local gained = pointsAvailable - lastPointsAvailable
-        local pointWord = (gained == 1) and "point" or "points"
-
-        ShowToast("|cff00FF96Progression Point!|r\n" .. gained .. " gained -- "
-            .. pointsAvailable .. " to spend")
-        print("|cff00FF96[Item Affixes]|r You gained " .. gained .. " Progression "
-            .. pointWord .. "! (" .. pointsAvailable .. " available to spend)")
-    end
-
-    lastPointsAvailable = pointsAvailable
-end
-
--- ----------------------------------------------------------------------------
--- Hook AFXM.OnServerMsg to see every message ItemAffixes itself processes,
--- without needing any access to its internal (local) state.
--- ----------------------------------------------------------------------------
 
 hooksecurefunc(AFXM, "OnServerMsg", function(_, msg)
     if msg:sub(1, 5) == "AFXM\t" then msg = msg:sub(6) end
-
     local parts = {}
     for part in msg:gmatch("[^|]+") do parts[#parts + 1] = part end
-    if #parts == 0 then return end
-
-    local cmd = parts[1]
-    if cmd == "OPTS" then
-        ParseOptsMessage(parts)
-    elseif cmd == "REFORGEOPTS" then
-        ParseReforgeOptsMessage(parts)
-    elseif cmd == "D3ROLL" then
-        ParseD3RollMessage(parts)
-    elseif cmd == "DATA" then
-        ParseDataMessage(parts)
-    elseif cmd == "PROG" then
-        if parts[2] == "STATE" then
-            ParseProgStateMessage(parts)
-        end
-    end
-end)
-
--- ----------------------------------------------------------------------------
--- Track equip events independently -- no dependency on ItemAffixes' own
--- PLAYER_EQUIPMENT_CHANGED handling. ItemAffixes' own listener still does the
--- actual work of requesting fresh data from the server; we just also listen
--- for the DATA reply that request produces.
--- ----------------------------------------------------------------------------
-
-local eventFrame = CreateFrame("Frame")
-eventFrame:RegisterEvent("PLAYER_EQUIPMENT_CHANGED")
-eventFrame:SetScript("OnEvent", function(self, event, slot)
-    if slot then
-        pendingEquipAlertSlots[slot] = true
+    if parts[1] == "D3ROLL" then
+        ToastCrits(parts, 4)
+    elseif parts[1] == "REFORGEOPTS" then
+        ToastCrits(parts, 6)
     end
 end)
 
@@ -340,3 +153,4 @@ charPaneFrame:SetScript("OnUpdate", function(self, elapsed)
         end
     end
 end)
+

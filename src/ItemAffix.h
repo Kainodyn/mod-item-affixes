@@ -1,79 +1,34 @@
-#pragma once
+#ifndef MOD_ITEM_AFFIXES_ITEM_AFFIX_H
+#define MOD_ITEM_AFFIXES_ITEM_AFFIX_H
 
-#include "Common.h"
+#include "CoASpecRoles.h"
 #include "DataMap.h"
-#include "Player.h"     // SpellModifier, SpellModType (107=FLAT, 108=PCT), SpellModOp
-#include "SpellDefines.h" // SpellModOp enum values
-#include "Util.h"
-#include <set>
+#include "ObjectGuid.h"
+#include "Define.h"
+#include <mutex>
+#include <string>
 #include <unordered_map>
-#include <unordered_set>
-#include <utility>
 #include <vector>
 
-// SpellModOp: SPELLMOD_CASTING_TIME=10  (from SpellDefines.h)
-// SpellModType: SPELLMOD_FLAT=107, SPELLMOD_PCT=108  (from Player.h — these equal aura type IDs)
+class Item;
+class Player;
 
-enum AffixType : uint8
-{
-    AFFIX_TYPE_SPELLMOD  = 0,  // allocates SpellModifier* per effect
-    AFFIX_TYPE_STAT      = 1,  // calls HandleStatFlatModifier / ApplyRatingMod / etc.
-    AFFIX_TYPE_SPELL_SWAP = 2, // replaces a base spell with a custom variant on equip
-};
-
-// D3 loot mode only (ItemAffixes.LootMode=1) — which bucket an affix rolls
-// into. Manual mode ignores this entirely. 0=auto lets the default-by-type
-// rule decide (SPELLMOD/SPELL_SWAP -> prefix, STAT -> suffix); the JSON
-// "loot_bucket" field can force either bucket per-affix for later curation.
-enum AffixLootBucket : uint8
-{
-    AFFIX_LOOT_BUCKET_AUTO   = 0,
-    AFFIX_LOOT_BUCKET_PREFIX = 1,
-    AFFIX_LOOT_BUCKET_SUFFIX = 2,
-};
-
-// One talent affix definition loaded from talent_affix_def (world DB).
-struct TalentAffixDef
-{
-    uint32      id;
-    std::string name;
-    uint32      classMask;      // bit (1 << (classId-1)); 0 = any class
-    int8        specTree;       // -1 = any spec; 0/1/2 = required dominant tree
-    uint8       maxRank;        // talent's max rank in the game
-    uint8       spellFamily;    // SpellFamilyName enum value
-    uint32      familyFlags[3]; // SpellClassOptions.SpellClassMask
-    uint32      carrierSpell;   // a real spell from this family (for IsAffectedBySpellMod)
-    uint8       spellmodOp;     // SpellModOp value
-    uint8       spellmodType;   // SpellModType: 107=SPELLMOD_FLAT, 108=SPELLMOD_PCT
-    int32       valuePerRank;   // spellmod magnitude per rolled rank (e.g. -100 ms)
-    uint8       itemCategory;   // AffixItemCategory — 0=any; 8=DAGGER (daggers + non-weapons)
-};
-
-// Item category filter for stat affixes (determines which item types can roll the affix).
-// ITEM_CAT_WEAPON covers both WEAPON_1H and WEAPON_2H in ItemMatchesCategory().
-enum AffixRoleGroup : uint8
-{
-    AFFIX_ROLE_ANY      = 0,   // rolls for any role (default)
-    AFFIX_ROLE_CASTER   = 1,
-    AFFIX_ROLE_PHYSICAL = 2,
-    AFFIX_ROLE_TANK     = 4,
-    AFFIX_ROLE_HEALER   = 8,
-    AFFIX_ROLE_RANGED   = 16,  // physical ranged (Hunter + custom ranged classes)
-};
-
+// Item category filter for affix_template.item_category.
 enum AffixItemCategory : uint8
 {
-    ITEM_CAT_ANY        = 0,  // rolls on any equippable item
-    ITEM_CAT_WEAPON_1H  = 1,  // one-handed weapons (INVTYPE_WEAPON/WEAPONMAINHAND/WEAPONOFFHAND/SHIELD)
-    ITEM_CAT_WEAPON_2H  = 2,  // two-handed weapons and ranged (INVTYPE_2HWEAPON/RANGED)
-    ITEM_CAT_WEAPON     = 3,  // any weapon (1H or 2H — matched by ItemMatchesCategory)
-    ITEM_CAT_ARMOR      = 4,  // head/shoulder/chest/waist/legs/feet/hands/wrist/back/cloak/holdable (includes boots)
-    ITEM_CAT_JEWELRY    = 5,  // neck/finger/trinket
-    ITEM_CAT_WAND       = 6,  // INVTYPE_RANGEDRIGHT (wand slot)
-    ITEM_CAT_BOOTS      = 7,  // boots only (INVTYPE_FEET) — subset of ARMOR
-    ITEM_CAT_DAGGER     = 8,  // daggers only when weapon; non-weapon items always pass through
+    ITEM_CAT_ANY       = 0,
+    ITEM_CAT_WEAPON_1H = 1,  // one-handed weapons and shields
+    ITEM_CAT_WEAPON_2H = 2,  // two-handed and ranged weapons
+    ITEM_CAT_WEAPON    = 3,  // any weapon
+    ITEM_CAT_ARMOR     = 4,  // armor slots, boots included
+    ITEM_CAT_JEWELRY   = 5,  // neck, finger, trinket
+    ITEM_CAT_WAND      = 6,  // INVTYPE_RANGEDRIGHT
+    ITEM_CAT_BOOTS     = 7,  // boots only
 };
 
+// affix_template.stat_op. Values match upstream so existing rows keep their meaning; gaps are
+// upstream stats removed for CoA (Move Speed 18, Life Leech 19, Hp5 20, Damage Reduction 21,
+// pet stats 22-26, Max Health 27) and Armor Penetration (17).
 enum GenericStatOp : uint8
 {
     GSTAT_STAMINA          = 0,
@@ -86,178 +41,83 @@ enum GenericStatOp : uint8
     GSTAT_SPELL_POWER      = 7,
     GSTAT_MP5              = 8,
     GSTAT_ARMOR            = 9,
-    GSTAT_CRIT_RATING      = 10,  // fans out to CR_CRIT_MELEE + RANGED + SPELL
-    GSTAT_HASTE_RATING     = 11,  // fans out to CR_HASTE_MELEE + RANGED + SPELL
-    GSTAT_HIT_RATING       = 12,  // fans out to CR_HIT_MELEE + RANGED + SPELL
+    GSTAT_CRIT_RATING      = 10,  // melee + ranged + spell
+    GSTAT_HASTE_RATING     = 11,  // melee + ranged + spell
+    GSTAT_HIT_RATING       = 12,  // melee + ranged + spell
     GSTAT_DODGE_RATING     = 13,
     GSTAT_DEFENSE_RATING   = 14,
     GSTAT_PARRY_RATING     = 15,
     GSTAT_EXPERTISE_RATING = 16,
-    GSTAT_ARMOR_PEN_RATING = 17,
-    GSTAT_MOVE_SPEED       = 18,  // flat percent bonus to run speed (value=10 → +10%)
-    GSTAT_LIFE_LEECH            = 19,  // reserved — not yet implemented in ApplyGenericStat
-    GSTAT_HP5                   = 20,  // health regeneration per 5 seconds
-    GSTAT_DAMAGE_REDUCTION_PCT  = 21,  // % reduction to all incoming damage (tracked in _damageReductionPct)
-    // Pet-focused stats — applied to the player's active summon
-    GSTAT_PET_COOLDOWN_PCT      = 22,  // % reduction to pet ability cooldowns (OnAllCreatureUpdate)
-    GSTAT_PET_HEALTH_PCT        = 23,  // % increase to pet max health
-    GSTAT_PET_DAMAGE_PCT        = 24,  // % increase to all pet damage dealt (UnitScript hook)
-    GSTAT_PET_DMGRED_PCT        = 25,  // % reduction to all damage taken by pet (UnitScript hook)
-    GSTAT_PET_ATTACKSPEED_PCT   = 26,  // % increase to pet attack speed (faster attacks)
-    GSTAT_MAX_HEALTH            = 27,  // flat bonus to max health (Player Progression's Flat HP node)
-};
-
-enum ItemAffixLootMode : uint8
-{
-    LOOT_MODE_MANUAL = 0,  // current behavior: items drop UNROLLED, player picks via the roll UI
-    LOOT_MODE_D3     = 1,  // items arrive fully rolled and APPLIED on pickup, no player interaction
+    GSTAT_MAX
 };
 
 enum AffixRollState : uint8
 {
-    AFFIX_ROLL_UNROLLED = 0,   // slot exists, not yet rolled
-    AFFIX_ROLL_PENDING  = 1,   // options sent to client, awaiting pick
-    AFFIX_ROLL_APPLIED  = 2,   // affix chosen and active
-};
-
-struct AffixEffect
-{
-    uint8        op;    // SpellModOp value; 255 = inactive slot
-    SpellModType type;
-    int32        value;
+    AFFIX_ROLL_UNROLLED = 0,  // nothing was eligible when the item was rolled
+    AFFIX_ROLL_APPLIED  = 2,
 };
 
 struct AffixDefinition
 {
-    uint32      id;
+    uint32      id           = 0;
     std::string name;
-    uint32      weight;
-    uint32      minQuality;       // ITEM_QUALITY_NORMAL=1, ITEM_QUALITY_UNCOMMON=2, etc.
-    uint32      spellFamily;      // SpellFamilyName enum value
-    uint32      spellFamilyFlags[3];
-    uint32      carrierSpellId;   // real spell so IsAffectedBySpellMod resolves family
-    AffixEffect effects[4];       // [0]=primary; op==255 marks slot inactive
-    // -- stat affix fields --
-    AffixType   affixType;        // AFFIX_TYPE_SPELLMOD or AFFIX_TYPE_STAT
-    uint8       statOp;           // GenericStatOp (only used when affixType==STAT)
-    uint8       itemCategory;     // AffixItemCategory (ITEM_CAT_ANY=0 = rolls on anything)
-    uint8       specTree;         // 255=no restriction; 0/1/2=dominant talent tree required
-    uint8       roleMask;         // AffixRoleGroup bitmask; 0=any role
-    uint32      classMask;        // (1<<(classId-1)) bitmask; 0 = any class
-    AffixLootBucket lootBucket;   // D3 loot mode only; AFFIX_LOOT_BUCKET_AUTO by default
-    // SPELL_SWAP chain scaling: index = chainCount-1, pair = (soloSpell, comboSpell).
-    // Loaded from spell_swap_chain_spells. Empty = use effects[0]/[1] only (no scaling).
-    std::vector<std::pair<uint32, uint32>> chainSwapSpells;
+    uint32      weight       = 0;
+    uint8       statOp       = 0;
+    uint8       roleMask     = 0;
+    uint8       itemCategory = ITEM_CAT_ANY;
+    uint8       minQuality   = 0;
+    bool        requiresMana = false;
+};
+
+struct AffixSlot
+{
+    uint8  rollState   = AFFIX_ROLL_UNROLLED;
+    uint32 affixId     = 0;
+    int32  rolledValue = 0;
+    bool   isCrit      = false;
 };
 
 struct ActiveStatMod
 {
-    uint8 statOp;   // GenericStatOp — which stat
-    int32 value;    // magnitude that was applied (needed for removal)
+    uint8 statOp;
+    int32 value;
 };
 
-// Per-player transient state: tracks active SpellModifiers and stat mods keyed by item GUID.
-// Cleared automatically when the DataMap is destroyed (session end).
+// Per-player bookkeeping of the stat mods currently applied, keyed by item GUID.
 struct ItemAffixPlayerData : public DataMap::Base
 {
-    // item GUID (GetGUID().GetRawValue()) -> SpellModifiers currently applied
-    std::unordered_map<uint64, std::vector<SpellModifier*>> activeMods;
-    // item GUID -> generic stat mods currently applied
-    std::unordered_map<uint64, std::vector<ActiveStatMod>>  activeStatMods;
-    // item GUID -> talent affix SpellModifiers currently applied
-    std::unordered_map<uint64, std::vector<SpellModifier*>> activeTalentMods;
-    // gear item GUID -> stat mods from socketed gem affixes
-    std::unordered_map<uint64, std::vector<ActiveStatMod>>  activeGemStatMods;
-
-    // --- Imprint system ---
-    // item GUID -> imprintId for all currently equipped items that carry an Imprint
-    std::unordered_map<uint64, uint32>                      activeImprints;
-    // item GUID -> SpellModifiers allocated by an Imprint effect on equip
-    std::unordered_map<uint64, std::vector<SpellModifier*>> activeImprintMods;
-
-    // Feral Spirit: Alpha — GUID of the permanent alpha wolf, for cleanup on unequip
-    ObjectGuid feralAlphaWolfGuid;
-    // Eternal Elemental — GUID of the permanent Water Elemental, for cleanup on unequip
-    ObjectGuid eternalElementalGuid;
-    // Ancient Tiger — GUID of the permanent spirit tiger, for cleanup on unequip
-    ObjectGuid ancientTigerGuid;
-
-    // --- Spell-swap system ---
-    // base spell ID -> variant spell ID currently taught to the player.
-    // Populated by CollectAndApplySpellSwaps; cleared by RemoveSpellSwaps.
-    std::unordered_map<uint32, uint32> activeSpellSwaps;
+    std::unordered_map<uint64, std::vector<ActiveStatMod>> activeStatMods;
 };
 
-// Persisted affix record: one row in item_affix table (applied affixes only)
-struct ItemAffixRecord
+// Reforge candidate (also the serialized form "id:val:crit").
+struct ReforgeOption
 {
     uint32 affixId;
-    int32  rolledValue;  // 0 for spellmod affixes; rolled stat magnitude for AFFIX_TYPE_STAT
+    int32  rolledValue;
+    bool   isCrit;
 };
 
-// affixId values >= IMPRINT_OPT_OFFSET encode an Imprint roll option rather than a normal affix.
-// Real affix IDs are small sequential integers that will never reach this value.
-static constexpr uint32 IMPRINT_OPT_OFFSET = 100000u;
-
-// One option in a pending roll — id + the value already rolled for it.
-// Stored as "id:val:crit,..." in pending_opts so the exact value is
-// displayed to the player and applied without re-rolling.
-struct PendingOpt
-{
-    uint32 affixId;
-    int32  rolledValue;  // STAT: magnitude; SPELLMOD: 0=plain, 150=2H, 200=crit, 250=2H+crit
-    bool   isCrit;       // true if this option landed a crit roll (drives ! prefix in OPTS)
-
-    bool   IsImprint()    const { return affixId >= IMPRINT_OPT_OFFSET; }
-    uint32 GetImprintId() const { return affixId - IMPRINT_OPT_OFFSET; }
-};
-
-// Full per-slot state including unrolled/pending slots
-struct AffixSlotInfo
-{
-    uint8                   rollState;             // AffixRollState
-    uint32                  affixId     = 0;       // 0 if not yet applied
-    int32                   rolledValue = 0;
-    std::vector<PendingOpt> pendingOpts;           // populated when PENDING
-    uint8                   rerollsRemaining = 0;  // rerolls left for this pending slot
-    uint8                   lockedMask       = 0;  // bitmask: bit N = option N is locked
-    int8                    pendingSpec      = -1; // spec tree from addon at roll time; -1=dominant tree
-    bool                    isCrit           = false; // true if rolledValue came from a crit roll (persisted -- see item_affix.is_crit)
-};
-
-// Output of BuildEligibleAffixPools -- the three candidate buckets RollAffixId
-// picks from, and also what the Reforge preview panel enumerates directly
-// (no picking) instead of rolling. See ItemAffix.h::BuildEligibleAffixPools.
-struct EligibleAffixPools
-{
-    std::vector<uint32> knownSpecClass;  // class affixes for the resolved spec (or specTree=255), spell known
-    std::vector<uint32> knownOtherSpec;  // class affixes for other specs of the same class, spell known
-    std::vector<uint32> knownGeneric;    // stat/generic affixes, always usable
-};
-
-// Reforge NPC lock-in state for one item (item_reforge_state). See
-// docs/REFORGE_PLAN.md.
 struct ReforgeState
 {
-    bool   exists      = false;  // false = item never reforged; any currently-APPLIED prefix/suffix slot is eligible
-    uint8  lockedSlot   = 0;      // only meaningful when exists=true
-    uint32 rerollCount  = 0;      // times already reforged; only meaningful when exists=true
+    bool   exists      = false;
+    uint8  lockedSlot  = 0;
+    uint32 rerollCount = 0;
 };
 
 enum class ReforgeRollResult : uint8
 {
     OK = 0,
-    ERR_NOT_APPLIED,          // affixSlot isn't a currently-APPLIED prefix/suffix slot
-    ERR_WRONG_SLOT,           // item is already locked to a different slot
+    ERR_NOT_APPLIED,
+    ERR_WRONG_SLOT,
     ERR_INSUFFICIENT_GOLD,
 };
 
 enum class ReforgePickResult : uint8
 {
     OK = 0,
-    ERR_NO_PENDING,           // no candidates on file (never rolled, or already picked)
-    ERR_WRONG_SLOT,           // affixSlot doesn't match the item's locked slot
-    ERR_INVALID_INDEX,        // optIdx out of range for the persisted candidate list
+    ERR_NO_PENDING,
+    ERR_WRONG_SLOT,
+    ERR_INVALID_INDEX,
 };
 
 class ItemAffixMgr
@@ -265,302 +125,89 @@ class ItemAffixMgr
 public:
     static ItemAffixMgr* instance();
 
+    void LoadConfig();
     void LoadAffixTemplates();
+    bool IsEnabled() const { return _enabled; }
+    // Enabled and the player is not a playerbot (ItemAffixes.ExcludeBots).
+    bool Handles(Player const* player) const;
 
-    // Initialize affix slots for a newly acquired item (all start UNROLLED).  No-op if already initialized.
-    void InitItemSlots(Player* player, Item* item);
-    void Upgrade2HSlots(Player* player, Item* item);     // adds the extra 2H slot to one pre-existing item
-    void UpgradeAll2HSlots(Player* player);              // iterates all player items and calls Upgrade2HSlots
+    // Rolls every missing slot of an eligible item for this player's specialization.
+    // No-op for bots, ineligible items and already-rolled items.
+    void RollItem(Player* player, Item* item);
 
-    // Roll a talent affix at first-roll time.  specOverride: 0/1/2=explicit tree, -1=use dominant.
-    // No-op if item quality < rare, talent affix already assigned, or no eligible defs exist.
-    // Blues: 50% chance.  Purple+: 100% chance.
-    void InitTalentAffix(Player* player, Item* item, int8 specOverride = -1, uint8 affixSlot = 0,
-                          bool includeOtherSpecWeighted = false, uint32 ownSpecWeight = 1);
+    // Rolls every eligible, never-rolled item the player has equipped (RollUnrolledOnEquip).
+    void RollUnrolledEquipped(Player* player);
 
-    // Send CONFIG message to client with server-side feature toggle flags.
-    void SendConfig(Player* player);
+    // Follow the core's item stat lifecycle (Player::_ApplyItemMods -> OnPlayerAfterApplyItemMods):
+    // equip, unequip, destroy, durability 0 and repair. Applying twice replaces the earlier mods.
+    void ApplyItemAffixes(Player* player, Item* item);
+    void RemoveItemAffixes(Player* player, Item* item);
 
-    // Damage reduction % tracking for GSTAT_DAMAGE_REDUCTION_PCT affixes.
-    void  ApplyDamageReduction(uint64 guid, int32 value, bool apply);
-    int32 GetDamageReductionPct(uint64 guid) const;
+    // Login: the core applies equipped items through _ApplyAllItemMods, which has no hook.
+    // Removes every tracked affix stat and applies those of the equipped, usable items.
+    void SyncAffixes(Player* player);
 
-    // Pet stat buff tracking for GSTAT_PET_* affixes.
-    void  ApplyPetStatBuff(uint64 ownerGuid, uint8 statOp, int32 value, bool apply);
-    void  ApplyPetStatDelta(Creature* pet, GenericStatOp statOp, int32 value, bool apply);
-    void  ApplyBuffsToPet(Creature* pet, Player* owner);
-    int32 GetPetDamagePct(uint64 ownerGuid) const;
-    int32 GetPetDmgRedPct(uint64 ownerGuid) const;
-    int32 GetPetCooldownPct(uint64 ownerGuid) const;
-
-    // Apply talent affix SpellMods for this item.  Called on equip (via ReapplyAllEquipped).
-    void ApplyTalentAffixes(Player* player, Item* item);
-
-    // Remove talent affix SpellMods for this item.  Called on unequip (via SyncAffixes).
-    void RemoveTalentAffixes(Player* player, Item* item);
-
-    // Apply SpellMods/stats for all affixes on this item.  Called on equip.
-    void ApplyAffixes(Player* player, Item* item);
-
-    // Remove and free SpellMods/stats for this item.  Called on unequip.
-    void RemoveAffixes(Player* player, Item* item);
-
-    // Apply/remove gem-transferred stat bonuses for a gear item.  Called on equip/unequip
-    // and immediately after gem socketing.
-    void ApplyGemAffixes(Player* player, Item* gearItem);
-    void RemoveGemAffixes(Player* player, Item* gearItem);
-
-    // Called by the OnPlayerSocketGem script hook just before the gem item is destroyed.
-    void OnSocketGem(Player* player, Item* gearItem, Item* gemItem, uint8 socketSlot);
-
-    // Reapply mods for every currently equipped item.  Called on login.
-    // excludeGuid: skip this item during both apply and spell-swap phases (used by unequip hook).
-    void ReapplyAllEquipped(Player* player, ObjectGuid excludeGuid = ObjectGuid::Empty);
-
-    // Remove all active mods for a player.  Called before logout.
-    void RemoveAllActiveMods(Player* player);
-
-    // Remove ALL active mods then reapply for every currently equipped item.
-    // excludeGuid: passed to ReapplyAllEquipped to exclude the item being unequipped.
-    void SyncAffixes(Player* player, ObjectGuid excludeGuid = ObjectGuid::Empty);
-
-    AffixDefinition const* GetAffixDef(uint32 id) const;
-
-    // Apply/remove one generic stat value directly on a player, independent of any
-    // item — used by PlayerProgressionMgr for permanent talent-granted stat bonuses.
-    // apply=false must be called with the exact same value that was applied; see
-    // ApplyGenericStat (ItemAffix.cpp) for per-statOp behavior.
-    void ApplyPlayerStat(Player* player, uint8 statOp, int32 value, bool apply);
-
-    // Addon message protocol entry point.  Called from OnPlayerBeforeSendChatMessage.
-    void HandleAddonMessage(Player* player, std::string const& payload);
-
-    // Generic "send this raw payload as an AFXM addon message" helper. Public
-    // so external scripts (e.g. the Reforge NPC's gossip handler) can push a
-    // client-bound message without duplicating the addon-message plumbing.
-    void SendAddonMsg(Player* player, std::string const& payload);
-
-    // Push current affix slot state for one item to the client.
-    void SendItemStatus(Player* player, Item* item, std::string const& extraTalentLine = "");
-
-    // Re-sends DATA for every equipped/bagged item with affix slots — used so
-    // client-cached hints that depend on Player Progression state (currently:
-    // classSkillsBlocked) update live on invest/respec instead of only at next
-    // login. Called from PlayerProgressionMgr's INVEST/RESPEC handlers.
-    void RefreshAllItemStatus(Player* player);
-
-    // --- Reforge NPC (docs/REFORGE_PLAN.md). Stage 1: core engine (done).
-    // Stage 2: network protocol, below IsClassAffixesBlocked-adjacent code
-    // in ItemAffixScripts-style HandleAddonMessage dispatch. ---
-
-    // Reads item_reforge_state for this item. exists=false means never
-    // reforged -- any currently-APPLIED prefix/suffix slot is eligible.
-    ReforgeState GetReforgeState(uint64 itemGuid) const;
-
-    // cost = baseCost{itemQuality} * (1 + timesAlreadyReforged * 0.5).
-    uint32 GetReforgeCost(uint32 itemQuality, uint32 timesAlreadyReforged) const;
-
-    // The paid, committing step (see "Cost & commit timing" in the plan
-    // doc). Charges GetReforgeCost, then creates/updates item_reforge_state
-    // (locks the slot on first call, increments reroll_count on later
-    // calls), then generates and persists candidate options (current value
-    // first, then fresh rolls from the same bucket) to
-    // item_reforge_state.pending_opts -- also returned via outOptions so
-    // the protocol layer doesn't need a second query to report them.
-    // Non-OK results charge nothing and change nothing.
-    ReforgeRollResult RollReforgeOptions(Player* player, Item* item, uint8 affixSlot,
-                                          std::vector<PendingOpt>* outOptions = nullptr);
-
-    // The only step that writes a new value to item_affix. Reads back the
-    // candidates RollReforgeOptions persisted, verifies affixSlot matches
-    // the locked slot and optIdx is in range (never trusts a
-    // client-supplied affix_id/value directly), writes the chosen
-    // candidate, clears pending_opts. If this is never called at all,
-    // item_affix simply keeps its current value -- no separate cancel
-    // path needed.
-    ReforgePickResult CommitReforgePick(Player* player, Item* item, uint8 affixSlot, uint32 optIdx);
-
-    // Stage 5 (preview panel): every affix eligible for this slot's bucket
-    // (wantPrefix=true = class/spellmod bucket, false = stat/generic bucket)
-    // given this exact player+item context right now -- deduped, no
-    // picking, no rolling, no cost, no side effects. Resolves spec/role/
-    // mainStat/classAffixesBlocked the same way RollReforgeOptions does
-    // (including the ignoreClassAffixMaxPerItem bypass) so the preview
-    // always matches what a real reroll of this slot could actually
-    // produce.
-    std::vector<uint32> GetEligibleAffixesForPreview(Player* player, Item* item, bool wantPrefix);
-
-    // Reset all affix rows for an item and re-initialize with UNROLLED slots.
-    // Called by .affix reroll command.
+    // Deletes an item's affixes and rolls it again (GM command).
     void RerollItem(Player* player, Item* item);
 
-    // Mark/clear "pending reroll" mode: next ROLL message rerolls the item instead of rolling.
-    void  SetPendingReroll(uint64 playerGuid);
-    bool  IsPendingReroll(uint64 playerGuid) const;
-    void  ClearPendingReroll(uint64 playerGuid);
+    AffixDefinition const* GetAffixDef(uint32 id) const;
+    std::vector<AffixSlot> GetSlots(uint64 itemGuid);
+    std::string BuildAffixDisplayString(AffixDefinition const* def, int32 rolledValue) const;
 
-    // Mark/clear "mid quest-reward" state, driven by the core's
-    // OnPlayerBeforeQuestReward (set) / OnPlayerQuestComputeXP (clear) hooks --
-    // see ItemAffixScripts.cpp. Lets InitItemSlots tell a quest-reward item
-    // apart from any other newly-stored item, for D3ExcludeQuestRewards.
-    void SetQuestRewardInProgress(uint64 playerGuid, bool inProgress);
-    bool IsQuestRewardInProgress(uint64 playerGuid) const;
+    // Addon protocol (prefix AFXM).
+    void HandleAddonMessage(Player* player, std::string const& payload);
+    void SendAddonMsg(Player* player, std::string const& payload);
+    void SendConfig(Player* player);
+    void SendItemStatus(Player* player, Item* item);
+    void RefreshAllItemStatus(Player* player);
+
+    // Reforge
+    ReforgeState GetReforgeState(uint64 itemGuid) const;
+    uint32 GetReforgeCost(uint32 itemQuality, uint32 timesAlreadyReforged) const;
+    ReforgeRollResult RollReforgeOptions(Player* player, Item* item, uint8 affixSlot,
+                                         std::vector<ReforgeOption>* outOptions = nullptr);
+    ReforgePickResult CommitReforgePick(Player* player, Item* item, uint8 affixSlot, uint32 optIdx);
 
 private:
-    // Roll N distinct affix IDs for a pending slot; sets row to PENDING and sends OPTS.
-    void HandleRollRequest(Player* player, Item* item, uint8 affixSlot,
-                           uint8 type = 0, int8 spec = -1, uint8 role = 0, uint8 mainStat = 0);
+    struct RollContext;
 
-    // Re-roll all unlocked options in the current pending slot; decrements rerolls_remaining.
-    // type: 0=any, 1=stats-only, 2=class-skills-only  (same semantics as HandleRollRequest)
-    void HandleRerollRequest(Player* player, Item* item, int8 spec,
-                             uint8 type = 0, uint8 role = 0, uint8 mainStat = 0);
+    uint8 GetSlotCount(Item const* item) const;
+    float GetAffixBudget(Item const* item) const;
+    bool  IsEligibleItem(Item const* item) const;
+    std::vector<std::pair<uint32, uint32>> BuildWeightedPool(RollContext const& ctx) const;
+    uint32 PickAffix(RollContext const& ctx) const;
+    void   RollValue(RollContext const& ctx, AffixDefinition const& def, int32& value, bool& isCrit) const;
+    void   RefreshEquippedItem(Player* player, Item* item);
+    void   StoreSlots(uint64 itemGuid, std::vector<AffixSlot> const& slots, uint8 firstChanged);
+    void   AppendAffixPayload(std::string& msg, std::vector<AffixSlot> const& slots) const;
 
-    // Toggle the lock bit for one pending option; re-sends OPTS with updated lockedMask.
-    void HandleLockToggle(Player* player, Item* item, uint8 optIdx, bool locked);
+    bool  _enabled                   = true;
+    bool  _excludeBots               = true;
+    bool  _rollUnrolledOnEquip       = true;
+    uint8 _slotCount[5]              = { 0, 0, 1, 2, 3 };  // indexed by quality 0..4
+    uint8 _slotCountLegendary        = 4;
+    uint8 _twoHanderBonusSlots       = 1;
+    float _budgetFraction[5]         = { 0.f, 0.f, 0.18f, 0.13f, 0.10f };
+    float _budgetFractionLegendary   = 0.09f;
+    float _budgetMinRoll             = 0.75f;
+    float _statMultiplier            = 1.5f;
+    uint32 _maxBudgetItemLevel       = 100;
+    uint32 _secondaryAttributeWeightPct = 33;
+    bool  _critRollEnabled           = true;
+    uint32 _critRollChance           = 10;
+    uint8 _reforgeOptions[5]         = { 0, 0, 1, 2, 3 };
+    uint8 _reforgeOptionsLegendary   = 4;
+    uint32 _reforgeBaseCost[5]       = { 0, 0, 5000, 20000, 75000 };
+    uint32 _reforgeBaseCostLegendary = 250000;
 
-    // Apply a chosen option from a PENDING slot; sets row to APPLIED.
-    void HandlePickOption(Player* player, Item* item, uint8 affixSlot, uint8 optIdx);
+    std::unordered_map<uint32, AffixDefinition> _defs;
 
-    uint32 RollAffixId(uint32 itemQuality, Player* player, Item* item,
-                       bool genericsOnly = false, uint8 classBoost = 0,
-                       bool classOnly = false,
-                       uint8 preferredRole = 0, uint8 preferredMainStat = 0,
-                       int8 spec = -1, uint32 ownSpecWeight = 1,
-                       bool ignoreClassAffixMaxPerItem = false);
-
-    // Eligibility-filtering core shared by RollAffixId (which then picks one)
-    // and the Reforge preview panel (which lists all of them). resolvedSpec
-    // and classAffixesBlocked are pre-resolved by the caller (RollAffixId
-    // already does this itself before calling in; the preview panel does the
-    // same resolution independently) rather than re-derived here, so this
-    // function has no player-state-resolution side effects of its own.
-    EligibleAffixPools BuildEligibleAffixPools(uint32 itemQuality, Player* player, Item* item,
-                       bool genericsOnly, bool classOnly,
-                       uint8 preferredRole, uint8 preferredMainStat,
-                       int8 resolvedSpec, bool classAffixesBlocked);
-
-    // LootMode=1 only -- called from InitItemSlots. Rolls and APPLIES every
-    // new slot in [existingCount, numSlots) immediately, split into a
-    // prefix/suffix bucket. See docs/D3_LOOT_MODE_PLAN.md.
-    void AutoRollD3Item(Player* player, Item* item, uint8 existingCount, uint8 numSlots, bool isGem);
-    // Shared source of truth for both RollAffixId's own filtering and the DATA packet's
-    // "classSkillsBlocked" flag, so the addon can hide the dead-end Class Skills selector
-    // before the player ever picks it. item may be null (only the ProgressionGateClassAffixes
-    // check applies then).
-    bool IsClassAffixesBlocked(Player* player, Item* item, bool ignoreMaxPerItem = false);
-    float GetQualityFraction(uint32 quality) const;
-    std::vector<AffixSlotInfo>  LoadAffixSlots(uint64 itemGuid);
-    std::vector<ItemAffixRecord> LoadItemAffixes(uint64 itemGuid);
-    void PersistAffix(uint64 itemGuid, uint8 slot, uint32 affixId, int32 rolledValue);
-
-    std::string BuildAffixDisplayString(AffixDefinition const* def, int32 rolledValue);
-    void SendRollOptions(Player* player, Item* item, uint8 affixSlot, std::vector<PendingOpt> const& opts,
-                         uint8 rerolls, uint8 lockedMask);
-
-    // Appends slot entries, talent affix lines, and imprint to msg for any read-only
-    // affix query (PEEK / PEEKUNIT / PEEKAUCTION / PEEKUNITALL / TRADEGUID).
-    // slots must already be loaded via LoadAffixSlots(rawGuid).
-    void AppendAffixPayload(std::string& msg, uint64 rawGuid,
-                            std::vector<AffixSlotInfo> const& slots);
-
-    // Scan all equipped items for SPELL_SWAP affixes and apply the correct variant.
-    // Called as a post-pass from ReapplyAllEquipped so the full equipped state is visible.
-    // excludeGuid: skip this item during the scan (used when the hook fires before slot vacates).
-    void CollectAndApplySpellSwaps(Player* player, ObjectGuid excludeGuid = ObjectGuid::Empty);
-
-    // Restore original spells for all active swaps. No longer called automatically; kept for
-    // internal use by ForceReapplySpellSwaps.
-    void RemoveSpellSwaps(Player* player, ItemAffixPlayerData* data);
-
-    // Hard-reset: strip all known variants unconditionally, then re-apply from current gear.
-    // Equivalent to old Phase 0 + reapply.  Call for ".affix reapply" or GM correction.
-    void ForceReapplySpellSwaps(Player* player);
-
-    void LoadTalentAffixDefs();
-    TalentAffixDef const* GetEligibleTalentAffix(Player* player, Item const* item, int8 specOverride = -1,
-                                                  bool includeOtherSpecWeighted = false, uint32 ownSpecWeight = 1);
-
-    std::unordered_map<uint32, AffixDefinition>  _defs;
-    std::unordered_map<uint32, TalentAffixDef>   _talentDefs;
-    std::vector<uint32> _pool;
-    std::unordered_set<uint64> _pendingReroll;  // player GUIDs awaiting a reroll on next ROLL msg
-    std::unordered_set<uint64> _questRewardInProgress;  // player GUIDs currently mid-RewardQuest
-
-    bool  _enableClassSkillAffixes          = true;   // when false, only stat affixes roll
-    bool  _enableClassSkillAffixSelection   = false;  // when false, type selector hidden; class affixes still roll at Any weight
-    bool  _enableTalentAffixes              = true;   // when false, talent affix rows never roll
-    bool  _enableTalentAffixSelection       = false;  // when false, spec selector hidden; talent rolls use dominant tree
-    uint32 _classAffixChance                = 20;    // % chance (0-100) each roll option is a class affix rather than a stat affix
-    // Player Progression integration: when gated, class affixes only roll for a
-    // character that has invested NODE_UNLOCK_CLASS_AFFIXES. Independent of the
-    // per-item cap below — an admin can combine either, neither, or both. Gate
-    // defaults false and cap defaults 0 so servers not opting into progression
-    // see zero behavior change.
-    bool   _progressionGateClassAffixes     = false;
-    uint32 _classAffixMaxPerItem            = 0;     // 0 = unlimited (no cap); N = block once N class/spellmod affixes are APPLIED
-    uint32 _badLuckStreakProtection         = 0;     // consecutive non-class options before next is forced class; 0 = disabled
-    std::unordered_map<uint64, uint32> _optionStreak; // item GUID → consecutive non-class options seen this session
-    uint32 _talentAffixChanceGreen          = 10;    // % chance (0-100) an uncommon item rolls a talent affix
-    uint32 _talentAffixChanceBlue           = 50;    // % chance (0-100) a rare item rolls a talent affix
-    uint32 _talentAffixChancePurple         = 50;    // % chance (0-100) an epic item rolls a talent affix
-    uint32 _talentAffixChanceLegendary      = 100;   // % chance (0-100) a legendary+ item rolls a talent affix
-    bool  _enableRoleSelection      = false;  // when false, role selector hidden; rolls from full eligible pool
-    uint8 _enableMainStatSelection  = 0;      // 0=hidden, 1=selective (ambiguous specs), 2=all classes
-    std::set<std::pair<uint8,uint8>> _mainStatSelectorSpecs; // (classId, specTree) pairs shown when mode=1
-    std::unordered_map<uint64, int32> _damageReductionPct;   // playerGuid → total % damage reduction from affixes
-
-    struct PetStatBuff {
-        int32 cooldownPct    = 0;
-        int32 healthPct      = 0;
-        int32 damagePct      = 0;
-        int32 dmgRedPct      = 0;
-        int32 attackSpeedPct = 0;
-    };
-    std::unordered_map<uint64, PetStatBuff> _petStatBuffs;  // ownerGuid → accumulated pet stat buffs
-    uint8 _twoHanderBonusSlots      = 1;     // extra affix slots granted to 2H weapons (0 = no bonus)
-    // Configurable option counts and reroll counts per quality tier
-    uint8 _optionsCountGreen        = 1;     // how many options offered for green-quality items
-    uint8 _optionsCountBlue         = 2;     // how many options offered for blue-quality items
-    uint8 _optionsCountPurple       = 3;     // how many options offered for purple (epic) items
-    uint8 _optionsCountLegendary    = 5;     // how many options offered for legendary+ items
-    uint8 _rerollsGreen             = 0;     // player rerolls allowed for green items
-    uint8 _rerollsBlue              = 2;     // player rerolls allowed for blue items
-    uint8 _rerollsPurple            = 3;     // player rerolls allowed for purple (epic) items
-    uint8 _rerollsLegendary         = 7;     // player rerolls allowed for legendary+ items
-    uint8 _slotCountGreen           = 1;     // affix slots granted to uncommon (green) items
-    uint8 _slotCountBlue            = 2;     // affix slots granted to rare (blue) items
-    uint8 _slotCountPurple          = 3;     // affix slots granted to epic (purple) items
-    uint8 _slotCountLegendary       = 4;     // affix slots granted to legendary+ items
-    uint8 _lootMode                 = 0;     // 0=Manual (current, player picks), 1=D3-style auto-roll on pickup
-    uint32 _d3DominantSpecWeight    = 0;     // D3 mode only: how many EXTRA times the player's dominant-spec
-                                              // pool is counted vs. other-spec, for both prefix affixes and
-                                              // talent affixes. 0 = fully random (default; every spec equally
-                                              // likely); 1 = dominant spec counted twice (2x), 2 = 3x, etc.
-    bool  _d3ExcludeQuestRewards    = true;  // D3 mode only: quest reward items stay Manual-mode (UNROLLED)
-                                              // instead of auto-rolling, so turning in a quest still feels
-                                              // like picking a reward. Default true (this was the original ask).
-    bool  _d3OverrideClassAffixMaxPerItem = false;  // D3 mode only. false (default) = ClassAffixMaxPerItem
-                                              // and the Progression class-affix gate both still cap prefix
-                                              // rolls exactly like manual mode, so extra prefix slots beyond
-                                              // the cap fall back to suffix. true = the prefix/suffix formula
-                                              // in AutoRollD3Item is authoritative instead; the item always
-                                              // gets its full prefixCount regardless of the manual-mode cap.
-    // Reforge NPC (docs/REFORGE_PLAN.md). cost = base * (1 + timesAlreadyReforged * 0.5).
-    uint32 _reforgeBaseCostGreen     = 5000;    // 50s
-    uint32 _reforgeBaseCostBlue      = 20000;   // 2g
-    uint32 _reforgeBaseCostPurple    = 75000;   // 7g50s
-    uint32 _reforgeBaseCostLegendary = 250000;  // 25g
-    // WotLK item budget fractions — share of total item budget allocated to one affix roll
-    float _budgetFractionGreen      = 0.18f;  // green quality     (1 affix)
-    float _budgetFractionBlue       = 0.13f;  // blue quality      (2 affixes)
-    float _budgetFractionPurple     = 0.10f;  // epic quality      (3 affixes)
-    float _budgetFractionLegendary  = 0.09f;  // legendary quality (4 affixes)
-    float  _budgetMinRoll        = 0.75f;  // minimum roll as fraction of max (variance floor)
-    float  _statMultiplier       = 1.0f;   // global stat scaler (>1 = power fantasy, <1 = conservative)
-    uint32 _imprintRollChance    = 30;     // % chance an Imprint option replaces the last roll option
-    bool   _critRollEnabled      = true;   // whether crit rolls can fire at all
-    uint32 _critRollChance       = 10;     // % chance each roll option lands a crit (0–100)
+    // Item GUID -> slots. Authoritative once loaded; every write goes through StoreSlots.
+    // Player hooks run on map update threads, so access is serialized.
+    mutable std::mutex _cacheLock;
+    std::unordered_map<uint64, std::vector<AffixSlot>> _cache;
 };
 
 #define sItemAffixMgr ItemAffixMgr::instance()
+
+#endif

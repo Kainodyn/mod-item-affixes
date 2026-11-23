@@ -1,9 +1,7 @@
 -- ============================================================================
--- Reforge Master NPC (docs/REFORGE_PLAN.md, Stage 3)
--- Appearance cloned from an existing enchanting trainer (entry 19252) --
--- "use any NPC for now" per design notes; not a final visual choice.
--- Dev/test via `.npc add 601107`. Fixed town spawns come later, before
--- shipping -- no creature_addon/spawn (creature table) rows here yet.
+-- Reforge Master NPC (entry 601107, free in the CoA world DB as of 2026-11-23).
+-- Appearance cloned from an enchanting trainer (display 18773).
+-- Template only: spawn it with `.npc add 601107`; fixed town spawns come later.
 -- ============================================================================
 
 DELETE FROM `creature_template`       WHERE `entry`      = 601107;
@@ -18,7 +16,7 @@ INSERT INTO `creature_template`
      `HealthModifier`, `ManaModifier`, `ArmorModifier`, `ExperienceModifier`,
      `RegenHealth`, `flags_extra`, `ScriptName`)
 VALUES
-    (601107, 'Reforge Master', 'Affix Reforging', 601107, 80, 80, 0,
+    (601107, 'Reforge Master', 'Affix Reforging', 601107, 60, 60, 0,
      35, 1, 1, 1.14286, 1, 1,
      20, 8, 33024, 2048, 7,
      1, 1, 1, 1,
@@ -32,8 +30,8 @@ VALUES
 INSERT INTO `npc_text` (`ID`, `text0_0`, `text0_1`, `Probability0`)
 VALUES
     (601107,
-     'Ah, another adventurer seeking to bend fate to their will. Bring me an item bearing affixes you would like reshaped, and for a fee I will let you see new possibilities within it. Or, if it is your own potential you wish to examine, I keep careful record of your growth as well -- ask, and I will show you what you have become.',
-     'Ah, another adventurer seeking to bend fate to their will. Bring me an item bearing affixes you would like reshaped, and for a fee I will let you see new possibilities within it. Or, if it is your own potential you wish to examine, I keep careful record of your growth as well -- ask, and I will show you what you have become.',
+     'Ah, another adventurer seeking to bend fate to their will. Bring me an item bearing affixes you would like reshaped, and for a fee I will let you see new possibilities within it.',
+     'Ah, another adventurer seeking to bend fate to their will. Bring me an item bearing affixes you would like reshaped, and for a fee I will let you see new possibilities within it.',
      1);
 
 INSERT INTO `gossip_menu` (`MenuID`, `TextID`)

@@ -1,8 +1,8 @@
 # mod-item-affixes for Conquest of Azeroth: kartlegging og forslag
 
 Branch `coa` i `Kainodyn/mod-item-affixes`. Base: `d313190` (Nevaden-upstream via Kainodyn-forken).
-Kartlagt 2026-11-23 mot CoA-core `c9be83a58f` (`live`-build på NamdalNode). Ingen kode er endret ennå;
-dette dokumentet er forslaget som skal godkjennes før implementering.
+Kartlagt 2026-11-23 mot CoA-core `c9be83a58f` (`live`-build på NamdalNode). Fase 1 er implementert på
+branchen (se §8); dokumentet beholder forslaget og beslutningene den bygger på.
 
 ## 1. Hva modulen er
 
@@ -111,4 +111,19 @@ Separat system, ikke en affix-type. Av i fase 1. Om det slås på senere:
 - mod-random-enchants skal av når affixer går live, men den skal bearbeides først.
 - `StatMultiplier = 1.5` og slots 1/2/3/4 (+1 for 2H) godkjent.
 - Damage Reduction % og Move Speed fjernes.
-- Åpent: Hp5 og Armor Pen (behold med lav vekt eller fjern).
+- Hp5 og Armor Pen fjernes.
+- Player Progression tas helt ut av fase 1 (bruker egne spell-ID-er 699100+ og skade-hooks); finnes i git-historikken.
+
+## 8. Status fase 1 (2026-11-23)
+Implementert på branch `coa`:
+- Fjernet: spellmod/spell swap/talent/imprint/gem-affixer, Player Progression, manuell roll-UI, klient-DBC/MPQ-verktøy,
+  install-script og alle core-patcher. Addonen er skrevet om (kun tooltip-visning og Reforge); `/roll` overstyres ikke lenger.
+- `CoASpecRoles`: rolle og primærstats fra `ChrSpecs.dbc` (felt 8–15) + CoA sine tank/healer-lister;
+  originale klasser via dominant talent tree → spec 64–93; Hero (94) = alle roller.
+- Stats følger core-livssyklusen via `OnPlayerAfterApplyItemMods` (equip, unequip, destroy, durability 0, repair) og
+  full sync ved login. Upstream mistet stats bl.a. når et utstyrt item ble slettet.
+- Bots ekskluderes i alle veier; affix-cache med mutex (hooks kjører på map-tråder); asynkrone DB-skriv i én transaksjon.
+- Sikkerhet: SQL-injection i `PEEKAUCTION` (selgernavn rett i spørringen) er fikset; inspect-oppslag kun for spillere innen 100 yards.
+- Addon-meldinger «svelges» ved å tømme teksten i stedet for `type = 0` (som ga feillogg uten core-patch).
+- Verifisert: alle `.cpp` kompilerer (`-fsyntax-only`, ingen warnings) mot CoA-core med live-byggets flagg.
+- Ikke verifisert: full build/link, oppstart, SQL mot DB, Lua-syntaks (ingen Lua-parser tilgjengelig) og klienttest.

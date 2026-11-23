@@ -1,13 +1,9 @@
 ## Interface: 30300
 ## Title: Item Affixes
-## Notes: Displays ARPG-style affixes on items and handles the roll-and-choose UI. Requires the server mod.
-## Version: 1.0.0
+## Notes: Shows server-rolled item affixes in tooltips and opens the Reforge window. Requires the mod-item-affixes server module.
+## Version: 2.0.0-coa
 ## Author: Server Team
-## SavedVariablesPerCharacter: ItemAffixes_SwapBarSlots
 
 ItemAffixes.lua
-ItemAffixRollUI.xml
-ItemAffixRollUI.lua
 ReforgeUI.xml
 ReforgeUI.lua
-ProgressionUI.lua

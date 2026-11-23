@@ -1,14 +1,7 @@
 # Internal notes and dev-only docs — never committed
 CLAUDE.md
 docs/
-talent_affixes/PROCESS.md
-affixes/pseudo-code budget
 
-# Local config with credentials and auto-generated patch slot config — never commit
-scripts/config.bat
-scripts/config.sh
-scripts/local_config.bat
-scripts/db_config.bat
 
 # OS-generated files
 .DS_Store
@@ -29,9 +22,6 @@ Desktop.ini
 *.exp
 *.pdb
 
-# Generated SQL — rebuilt by build_affixes.ps1 / build_talent_affixes.ps1
-data/sql/db-world/affix_template.sql
-data/sql/db-world/talent_affix_def.sql
 
 # Client patch build output
 client-patch/
