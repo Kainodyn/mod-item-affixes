@@ -3,6 +3,7 @@
 #include "Bag.h"
 #include "Config.h"
 #include "DatabaseEnv.h"
+#include "GameTime.h"
 #include "Item.h"
 #include "ItemTemplate.h"
 #include "Log.h"
@@ -12,6 +13,10 @@
 #include "Opcodes.h"
 #include "Player.h"
 #include "Random.h"
+#include "Spell.h"
+#include "SpellAuras.h"
+#include "SpellInfo.h"
+#include "SpellMgr.h"
 #include "StringConvert.h"
 #include "StringFormat.h"
 #include "Tokenize.h"
@@ -20,6 +25,9 @@
 #include "WorldSession.h"
 #include <algorithm>
 #include <cmath>
+#include <limits>
+#include <map>
+#include <tuple>
 #include <unordered_set>
 
 namespace
@@ -27,6 +35,13 @@ namespace
 constexpr char const* ADDON_PREFIX = "AFXM";
 constexpr uint8 MAX_AFFIX_SLOTS = 6;
 constexpr float PEEK_UNIT_MAX_DISTANCE = 100.0f;
+constexpr uint8 FIRST_COA_CLASS = 12;
+constexpr uint8 LAST_COA_CLASS = 32;
+constexpr size_t MAX_SKILL_TEXT = 60;
+// A cooldown entry younger than this was started by the cast being handled (hook_cd).
+constexpr uint32 FRESH_COOLDOWN_MS = 1000;
+constexpr Milliseconds CARRIER_RESTORE_DELAY = 500ms;
+constexpr Milliseconds STATUS_REFRESH_DELAY = 1000ms;
 
 uint8 GetItemCategory(ItemTemplate const* proto)
 {
@@ -274,6 +289,59 @@ std::vector<ReforgeOption> ParseOptions(std::string const& raw)
     return opts;
 }
 
+int32 ScaleSkillValue(int32 value, int32 scalePct)
+{
+    return int32(std::lround(double(value) * scalePct / 100.0));
+}
+
+bool IsMillisecondOp(uint8 op)
+{
+    return op == SPELLMOD_COOLDOWN || op == SPELLMOD_CASTING_TIME || op == SPELLMOD_DURATION;
+}
+
+// Same number the review names carry (tools/skill_affixes/merge_reviews.py display_number).
+std::string SkillDisplayNumber(SkillAffixEffect const& fx, int32 value)
+{
+    uint32 v = uint32(std::abs(value));
+    if (!fx.pct && IsMillisecondOp(fx.op))
+    {
+        if (v % 1000 == 0)
+            return Acore::StringFormat("{}", v / 1000);
+        std::string out = Acore::StringFormat("{:.2f}", v / 1000.0);
+        while (!out.empty() && out.back() == '0')
+            out.pop_back();
+        if (!out.empty() && out.back() == '.')
+            out.pop_back();
+        return out;
+    }
+    return Acore::StringFormat("{}", v);
+}
+
+uint32 SpellCooldownBase(SpellInfo const* info)
+{
+    return info ? std::max(info->RecoveryTime, info->CategoryRecoveryTime) : 0;
+}
+
+// Technical floor only (no balance cap): summed cooldown, cast time and cost cuts never go below zero.
+int32 ClampSkillValue(uint8 op, bool pct, int32 value, SpellInfo const* reference)
+{
+    if (op != SPELLMOD_COOLDOWN && op != SPELLMOD_CASTING_TIME && op != SPELLMOD_COST)
+        return value;
+    if (pct)
+        return std::max(value, -100);
+    int32 base = 0;
+    if (reference)
+    {
+        if (op == SPELLMOD_COOLDOWN)
+            base = int32(SpellCooldownBase(reference));
+        else if (op == SPELLMOD_CASTING_TIME)
+            base = reference->CastTimeEntry ? std::max(reference->CastTimeEntry->CastTime, 0) : 0;
+        else
+            base = int32(reference->ManaCost);
+    }
+    return std::max(value, -base);
+}
+
 template <typename Fn>
 void ForEachCarriedItem(Player* player, Fn&& fn)
 {
@@ -300,6 +368,15 @@ struct ItemAffixMgr::RollContext
     bool                    hasMana = false;
     std::unordered_set<uint8> takenStats;  // stats already on the item; avoided while alternatives exist
 };
+
+ItemAffixPlayerData::~ItemAffixPlayerData()
+{
+    // Only reached with mods left when the Player is destroyed without a carrier removal or logout.
+    for (SpellModifier* mod : skillMods)
+        delete mod;
+    if (countedForCuts)
+        sItemAffixMgr->TrackCooldownCuts(this, false);
+}
 
 ItemAffixMgr* ItemAffixMgr::instance()
 {
@@ -345,11 +422,17 @@ void ItemAffixMgr::LoadConfig()
     _reforgeBaseCost[ITEM_QUALITY_RARE]     = sConfigMgr->GetOption<uint32>("ItemAffixes.ReforgeBaseCostBlue", 20000);
     _reforgeBaseCost[ITEM_QUALITY_EPIC]     = sConfigMgr->GetOption<uint32>("ItemAffixes.ReforgeBaseCostPurple", 75000);
     _reforgeBaseCostLegendary               = sConfigMgr->GetOption<uint32>("ItemAffixes.ReforgeBaseCostLegendary", 250000);
+
+    _skillAffixesEnabled = sConfigMgr->GetOption<bool>("ItemAffixes.SkillAffixes.Enable", true);
+    _skillAffixChance    = std::min<uint32>(sConfigMgr->GetOption<uint32>("ItemAffixes.SkillAffixChance", 20), 100);
 }
 
 void ItemAffixMgr::LoadAffixTemplates()
 {
     _defs.clear();
+    _defsByKey.clear();
+    _skillPoolByClass.clear();
+    _skillAffixCount = 0;
     {
         std::lock_guard<std::mutex> guard(_cacheLock);
         _cache.clear();
@@ -361,9 +444,14 @@ void ItemAffixMgr::LoadAffixTemplates()
         return;
     }
 
+    // mod_item_affixes_template_skill.sql adds affix_type; without it the table holds stat rows only.
+    bool const skillSchema = WorldDatabase.Query(
+        "SELECT 1 FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = DATABASE() "
+        "AND TABLE_NAME = 'affix_template' AND COLUMN_NAME = 'affix_type'") != nullptr;
+
     QueryResult result = WorldDatabase.Query(
         "SELECT id, name, weight, stat_op, role_mask, item_category, min_quality, requires_mana "
-        "FROM affix_template WHERE weight > 0");
+        "FROM affix_template WHERE weight > 0{}", skillSchema ? " AND affix_type = 1" : "");
     if (result)
     {
         do
@@ -388,6 +476,14 @@ void ItemAffixMgr::LoadAffixTemplates()
     }
     LOG_INFO("module", "mod-item-affixes: loaded {} affix template(s).", _defs.size());
 
+    if (!_skillAffixesEnabled)
+        LOG_INFO("module", "mod-item-affixes: skill affixes disabled (ItemAffixes.SkillAffixes.Enable = 0).");
+    else if (!skillSchema)
+        LOG_ERROR("module", "mod-item-affixes: affix_template has no affix_type column; apply "
+            "mod_item_affixes_template_skill.sql. Skill affixes disabled.");
+    else
+        LoadSkillAffixes();
+
     // Items are destroyed without a hook; drop rows whose item no longer exists.
     // item_instance.guid holds the low 32 bits of the raw GUID stored here.
     CharacterDatabase.Execute(
@@ -407,6 +503,117 @@ AffixDefinition const* ItemAffixMgr::GetAffixDef(uint32 id) const
 {
     auto it = _defs.find(id);
     return it != _defs.end() ? &it->second : nullptr;
+}
+
+AffixDefinition const* ItemAffixMgr::GetAffixDefByKey(std::string const& key) const
+{
+    auto it = _defsByKey.find(key);
+    return it != _defsByKey.end() ? GetAffixDef(it->second) : nullptr;
+}
+
+void ItemAffixMgr::LoadSkillAffixes()
+{
+    if (!sSpellMgr->GetSpellInfo(SKILL_AFFIX_CARRIER_SPELL))
+    {
+        LOG_ERROR("module", "mod-item-affixes: carrier spell {} is missing from spell_dbc; skill affixes disabled.",
+            SKILL_AFFIX_CARRIER_SPELL);
+        return;
+    }
+
+    std::unordered_map<uint32, std::vector<uint32>> targets;
+    if (QueryResult result = WorldDatabase.Query("SELECT affix_id, spell_id FROM affix_skill_target ORDER BY affix_id, spell_id"))
+    {
+        do
+        {
+            Field* f = result->Fetch();
+            targets[f[0].Get<uint32>()].push_back(f[1].Get<uint32>());
+        } while (result->NextRow());
+    }
+
+    QueryResult result = WorldDatabase.Query(
+        "SELECT id, name, weight, min_quality, affix_key, class_id, spec_id, target_spell, known_spell, targeting, "
+        "mask0, mask1, mask2, op1, type1, value1, op2, type2, value2, op3, type3, value3, scales_with_crit "
+        "FROM affix_template WHERE affix_type = 0 AND weight > 0");
+    if (!result)
+    {
+        LOG_INFO("module", "mod-item-affixes: loaded 0 skill affix(es).");
+        return;
+    }
+
+    uint32 skipped = 0;
+    do
+    {
+        Field* f = result->Fetch();
+        AffixDefinition def;
+        def.id             = f[0].Get<uint32>();
+        def.name           = f[1].Get<std::string>();
+        def.weight         = f[2].Get<uint32>();
+        def.minQuality     = f[3].Get<uint8>();
+        def.key            = f[4].Get<std::string>();
+        def.classId        = f[5].Get<uint8>();
+        def.specId         = f[6].Get<uint16>();
+        def.targetSpell    = f[7].Get<uint32>();
+        def.knownSpell     = f[8].Get<uint32>();
+        def.targeting      = f[9].Get<uint8>();
+        def.mask[0]        = f[10].Get<uint32>();
+        def.mask[1]        = f[11].Get<uint32>();
+        def.mask[2]        = f[12].Get<uint32>();
+        def.scalesWithCrit = f[22].Get<uint8>() != 0;
+        def.affixType      = AFFIX_TYPE_SKILL;
+
+        std::string error;
+        for (uint8 i = 0; i < MAX_SKILL_AFFIX_EFFECTS; ++i)
+        {
+            SkillAffixEffect fx;
+            fx.op    = f[13 + i * 3].Get<uint8>();
+            uint8 type = f[14 + i * 3].Get<uint8>();
+            fx.pct   = type == 1;
+            fx.value = f[15 + i * 3].Get<int32>();
+            if (!fx.value)
+                continue;
+            if (fx.op >= MAX_SPELLMOD || type > 1)
+                error = Acore::StringFormat("effect {} has op {} type {}", i + 1, fx.op, type);
+            else if (def.targeting == SKILL_TARGET_HOOK_CD && fx.op != SPELLMOD_COOLDOWN)
+                error = "hook_cd allows only COOLDOWN effects";
+            def.effects.push_back(fx);
+        }
+
+        if (auto it = targets.find(def.id); it != targets.end())
+            for (uint32 spellId : it->second)
+                if (sSpellMgr->GetSpellInfo(spellId))
+                    def.targets.push_back(spellId);
+        if (def.targets.empty() && sSpellMgr->GetSpellInfo(def.targetSpell))
+            def.targets.push_back(def.targetSpell);
+
+        if (def.classId < FIRST_COA_CLASS || def.classId > LAST_COA_CLASS)
+            error = Acore::StringFormat("class {} is not a CoA class", def.classId);
+        else if (!sSpellMgr->GetSpellInfo(def.targetSpell) || !sSpellMgr->GetSpellInfo(def.knownSpell))
+            error = Acore::StringFormat("target spell {} or known spell {} does not exist", def.targetSpell, def.knownSpell);
+        else if (def.targeting > SKILL_TARGET_HOOK_CD)
+            error = Acore::StringFormat("targeting {}", def.targeting);
+        else if (def.targeting == SKILL_TARGET_MASK && !def.mask[0] && !def.mask[1] && !def.mask[2])
+            error = "targeting mask without a mask";
+        else if (def.effects.empty())
+            error = "no effect";
+        else if (def.name.find("$v") == std::string::npos)
+            error = "name has no $v";
+
+        if (!error.empty())
+        {
+            LOG_ERROR("module", "mod-item-affixes: skill affix {} ({}) skipped: {}.", def.id, def.key, error);
+            ++skipped;
+            continue;
+        }
+
+        _skillPoolByClass[def.classId].push_back(def.id);
+        if (!def.key.empty())
+            _defsByKey[def.key] = def.id;
+        _defs[def.id] = std::move(def);
+        ++_skillAffixCount;
+    } while (result->NextRow());
+
+    LOG_INFO("module", "mod-item-affixes: loaded {} skill affix(es) for {} class(es), {} skipped; carrier spell {}.",
+        _skillAffixCount, _skillPoolByClass.size(), skipped, SKILL_AFFIX_CARRIER_SPELL);
 }
 
 // ---------------------------------------------------------------------------
@@ -514,6 +721,8 @@ std::vector<std::pair<uint32, uint32>> ItemAffixMgr::BuildWeightedPool(RollConte
     std::vector<std::pair<uint32, uint32>> pool;
     for (auto const& [id, def] : _defs)
     {
+        if (def.IsSkill())
+            continue;
         if (def.minQuality > ctx.proto->Quality)
             continue;
         if (!ItemMatchesCategory(ctx.itemCategory, def.itemCategory))
@@ -576,8 +785,74 @@ uint32 ItemAffixMgr::PickAffix(RollContext const& ctx) const
     return 0;
 }
 
+bool ItemAffixMgr::PlayerKnowsSkillAffix(Player const* player, AffixDefinition const& def) const
+{
+    if (!player || !def.IsSkill())
+        return false;
+    if (player->HasSpellOrTwin(def.knownSpell))
+        return true;
+    for (uint32 rank = sSpellMgr->GetFirstSpellInChain(def.knownSpell); rank; rank = sSpellMgr->GetNextSpellInChain(rank))
+        if (player->HasSpell(rank))
+            return true;
+    return false;
+}
+
+bool ItemAffixMgr::ItemHasSkillAffix(std::vector<AffixSlot> const& slots, size_t ignoreSlot) const
+{
+    for (size_t i = 0; i < slots.size(); ++i)
+        if (i != ignoreSlot && slots[i].rollState == AFFIX_ROLL_APPLIED)
+            if (AffixDefinition const* def = GetAffixDef(slots[i].affixId); def && def->IsSkill())
+                return true;
+    return false;
+}
+
+// Blue+ items of CoA classes (12-32), at most one skill affix per item.
+bool ItemAffixMgr::RollsSkillAffix(RollContext const& ctx) const
+{
+    return _skillAffixCount && _skillAffixChance && ctx.proto->Quality >= ITEM_QUALITY_RARE &&
+        _skillPoolByClass.count(ctx.player->getClass()) && urand(0, 99) < _skillAffixChance;
+}
+
+// Weighted pick among the player's class skill affixes the item quality allows and whose spell
+// (any rank) the player knows.
+uint32 ItemAffixMgr::PickSkillAffix(RollContext const& ctx) const
+{
+    auto it = _skillPoolByClass.find(ctx.player->getClass());
+    if (it == _skillPoolByClass.end())
+        return 0;
+
+    std::vector<std::pair<uint32, uint32>> pool;
+    uint32 total = 0;
+    for (uint32 id : it->second)
+    {
+        AffixDefinition const& def = _defs.at(id);
+        if (def.minQuality > ctx.proto->Quality || !def.weight || !PlayerKnowsSkillAffix(ctx.player, def))
+            continue;
+        pool.emplace_back(id, def.weight);
+        total += def.weight;
+    }
+    if (!total)
+        return 0;
+
+    uint32 roll = urand(0, total - 1);
+    for (auto const& [id, weight] : pool)
+    {
+        if (roll < weight)
+            return id;
+        roll -= weight;
+    }
+    return 0;
+}
+
 void ItemAffixMgr::RollValue(RollContext const& ctx, AffixDefinition const& def, int32& value, bool& isCrit) const
 {
+    if (def.IsSkill())
+    {
+        isCrit = def.scalesWithCrit && _critRollEnabled && urand(0, 99) < _critRollChance;
+        value = isCrit ? SKILL_AFFIX_CRIT_SCALE : SKILL_AFFIX_BASE_SCALE;
+        return;
+    }
+
     ValueRange range = BudgetRange(def.statOp, ctx.budget, _budgetMinRoll);
     value = irand(range.minVal, range.maxVal);
     if (Is2HWeapon(ctx.proto))
@@ -607,21 +882,26 @@ void ItemAffixMgr::RollItem(Player* player, Item* item)
     ctx.itemCategory = GetItemCategory(ctx.proto);
     ctx.hasMana      = player->GetMaxPower(POWER_MANA) > 0;
     for (AffixSlot const& slot : slots)
-        if (AffixDefinition const* def = GetAffixDef(slot.affixId))
+        if (AffixDefinition const* def = GetAffixDef(slot.affixId); def && !def->IsSkill())
             ctx.takenStats.insert(def->statOp);
+
+    uint32 skillId = !ItemHasSkillAffix(slots) && RollsSkillAffix(ctx) ? PickSkillAffix(ctx) : 0;
 
     auto [luaBag, luaSlot] = GetLuaBagSlot(item);
     uint8 const firstNew = uint8(slots.size());
     while (slots.size() < target)
     {
         AffixSlot slot;
-        if (uint32 id = PickAffix(ctx))
+        uint32 id = skillId ? skillId : PickAffix(ctx);
+        skillId = 0;
+        if (id)
         {
             AffixDefinition const& def = _defs.at(id);
             slot.rollState = AFFIX_ROLL_APPLIED;
             slot.affixId   = id;
             RollValue(ctx, def, slot.rolledValue, slot.isCrit);
-            ctx.takenStats.insert(def.statOp);
+            if (!def.IsSkill())
+                ctx.takenStats.insert(def.statOp);
 
             // Notification for the optional ItemAffixesToast addon.
             if (slot.isCrit)
@@ -657,6 +937,30 @@ void ItemAffixMgr::RerollItem(Player* player, Item* item)
     SendItemStatus(player, item);
 }
 
+bool ItemAffixMgr::GiveSkillAffix(Player* player, Item* item, AffixDefinition const& def, bool crit)
+{
+    if (!player || !item || !def.IsSkill() || !IsEligibleItem(item))
+        return false;
+    uint64 itemGuid = item->GetGUID().GetRawValue();
+    std::vector<AffixSlot> slots = GetSlots(itemGuid);
+
+    size_t index = slots.size();
+    for (size_t i = 0; i < slots.size(); ++i)
+        if (AffixDefinition const* other = GetAffixDef(slots[i].affixId); other && other->IsSkill())
+            index = i;
+    if (index == slots.size() && slots.size() >= MAX_AFFIX_SLOTS)
+        index = 0;
+    if (index == slots.size())
+        slots.emplace_back();
+
+    bool const isCrit = crit && def.scalesWithCrit;
+    slots[index] = { AFFIX_ROLL_APPLIED, def.id, isCrit ? SKILL_AFFIX_CRIT_SCALE : SKILL_AFFIX_BASE_SCALE, isCrit };
+    StoreSlots(itemGuid, slots, uint8(index));
+    RefreshEquippedItem(player, item);
+    SendItemStatus(player, item);
+    return true;
+}
+
 // ---------------------------------------------------------------------------
 // Applying
 // ---------------------------------------------------------------------------
@@ -665,6 +969,7 @@ void ItemAffixMgr::ApplyItemAffixes(Player* player, Item* item)
 {
     if (!Handles(player) || !item)
         return;
+    SetBatch(player, true);
     RemoveItemAffixes(player, item);
 
     uint64 itemGuid = item->GetGUID().GetRawValue();
@@ -676,9 +981,16 @@ void ItemAffixMgr::ApplyItemAffixes(Player* player, Item* item)
         AffixDefinition const* def = GetAffixDef(slot.affixId);
         if (!def)
             continue;
+        if (def->IsSkill())
+        {
+            data->activeSkillAffixes[itemGuid].push_back({ def->id, slot.rolledValue });
+            data->rebuildPending = true;
+            continue;
+        }
         ApplyGenericStat(player, def->statOp, slot.rolledValue, true);
         data->activeStatMods[itemGuid].push_back({ def->statOp, slot.rolledValue });
     }
+    SetBatch(player, false);
 }
 
 void ItemAffixMgr::RemoveItemAffixes(Player* player, Item* item)
@@ -688,12 +1000,19 @@ void ItemAffixMgr::RemoveItemAffixes(Player* player, Item* item)
     ItemAffixPlayerData* data = player->CustomData.Get<ItemAffixPlayerData>("ItemAffixData");
     if (!data)
         return;
-    auto it = data->activeStatMods.find(item->GetGUID().GetRawValue());
-    if (it == data->activeStatMods.end())
-        return;
-    for (ActiveStatMod const& mod : it->second)
-        ApplyGenericStat(player, mod.statOp, mod.value, false);
-    data->activeStatMods.erase(it);
+    uint64 itemGuid = item->GetGUID().GetRawValue();
+    if (auto it = data->activeStatMods.find(itemGuid); it != data->activeStatMods.end())
+    {
+        for (ActiveStatMod const& mod : it->second)
+            ApplyGenericStat(player, mod.statOp, mod.value, false);
+        data->activeStatMods.erase(it);
+    }
+    if (data->activeSkillAffixes.erase(itemGuid))
+    {
+        data->rebuildPending = true;
+        if (!data->batchDepth)
+            RebuildSkillMods(player);
+    }
 }
 
 void ItemAffixMgr::SyncAffixes(Player* player)
@@ -701,19 +1020,216 @@ void ItemAffixMgr::SyncAffixes(Player* player)
     if (!Handles(player))
         return;
 
-    if (ItemAffixPlayerData* data = player->CustomData.Get<ItemAffixPlayerData>("ItemAffixData"))
-    {
-        for (auto const& [guid, mods] : data->activeStatMods)
-            for (ActiveStatMod const& mod : mods)
-                ApplyGenericStat(player, mod.statOp, mod.value, false);
-        data->activeStatMods.clear();
-    }
+    SetBatch(player, true);
+    ItemAffixPlayerData* data = player->CustomData.GetDefault<ItemAffixPlayerData>("ItemAffixData");
+    for (auto const& [guid, mods] : data->activeStatMods)
+        for (ActiveStatMod const& mod : mods)
+            ApplyGenericStat(player, mod.statOp, mod.value, false);
+    data->activeStatMods.clear();
+    data->activeSkillAffixes.clear();
+    data->rebuildPending = true;
 
     // Same filter as Player::_ApplyAllItemMods.
     for (uint8 slot = EQUIPMENT_SLOT_START; slot < EQUIPMENT_SLOT_END; ++slot)
         if (Item* item = player->GetItemByPos(INVENTORY_SLOT_BAG_0, slot))
             if (!item->IsBroken() && player->CanUseAttackType(Player::GetAttackBySlot(slot)))
                 ApplyItemAffixes(player, item);
+    SetBatch(player, false);
+}
+
+// Nested apply/remove calls rebuild the skill modifiers once, when the outermost call ends.
+void ItemAffixMgr::SetBatch(Player* player, bool begin)
+{
+    ItemAffixPlayerData* data = player->CustomData.GetDefault<ItemAffixPlayerData>("ItemAffixData");
+    if (begin)
+    {
+        ++data->batchDepth;
+        return;
+    }
+    if (data->batchDepth)
+        --data->batchDepth;
+    if (!data->batchDepth && data->rebuildPending)
+        RebuildSkillMods(player);
+}
+
+// ---------------------------------------------------------------------------
+// Skill affixes: one hidden carrier aura owns every SpellModifier the module adds
+// ---------------------------------------------------------------------------
+
+void ItemAffixMgr::TrackCooldownCuts(ItemAffixPlayerData* data, bool has)
+{
+    if (has == data->countedForCuts)
+        return;
+    data->countedForCuts = has;
+    if (has)
+        _playersWithCooldownCuts.fetch_add(1, std::memory_order_relaxed);
+    else
+        _playersWithCooldownCuts.fetch_sub(1, std::memory_order_relaxed);
+}
+
+void ItemAffixMgr::ClearSkillMods(Player* player, ItemAffixPlayerData* data)
+{
+    if (!data)
+        return;
+    std::vector<SpellModifier*> mods;
+    mods.swap(data->skillMods);
+    for (SpellModifier* mod : mods)
+    {
+        if (player)
+            player->AddSpellMod(mod, false);
+        delete mod;
+    }
+}
+
+void ItemAffixMgr::RebuildSkillMods(Player* player)
+{
+    if (!player)
+        return;
+    ItemAffixPlayerData* data = player->CustomData.GetDefault<ItemAffixPlayerData>("ItemAffixData");
+    data->rebuildPending = false;
+
+    // Modifiers always go before the aura that owns them.
+    ClearSkillMods(player, data);
+    data->cooldownCuts.clear();
+
+    struct ModKey
+    {
+        uint32 spellId;
+        uint32 targetSpellId;
+        uint32 mask[3];
+        uint8  op;
+        bool   pct;
+        bool operator<(ModKey const& o) const
+        {
+            return std::tie(spellId, targetSpellId, mask[0], mask[1], mask[2], op, pct) <
+                std::tie(o.spellId, o.targetSpellId, o.mask[0], o.mask[1], o.mask[2], o.op, o.pct);
+        }
+    };
+    std::map<ModKey, int32> sums;
+    std::unordered_map<uint32, int64> cuts;
+
+    bool const usable = Handles(player) && player->IsInWorld() && !player->GetSession()->PlayerLogout();
+    if (usable)
+    {
+        for (auto const& [guid, affixes] : data->activeSkillAffixes)
+            for (ActiveSkillAffix const& active : affixes)
+            {
+                AffixDefinition const* def = GetAffixDef(active.affixId);
+                if (!def || !def->IsSkill())
+                    continue;
+                for (SkillAffixEffect const& fx : def->effects)
+                {
+                    int32 value = ScaleSkillValue(fx.value, active.scalePct);
+                    if (def->targeting == SKILL_TARGET_HOOK_CD)
+                    {
+                        for (uint32 spellId : def->targets)
+                            cuts[spellId] += -int64(value);
+                    }
+                    else if (def->targeting == SKILL_TARGET_MASK)
+                        sums[{ def->targetSpell, 0, { def->mask[0], def->mask[1], def->mask[2] }, fx.op, fx.pct }] += value;
+                    else
+                        for (uint32 spellId : def->targets)
+                            sums[{ SKILL_AFFIX_CARRIER_SPELL, spellId, { 0, 0, 0 }, fx.op, fx.pct }] += value;
+                }
+            }
+    }
+
+    for (auto const& [spellId, cut] : cuts)
+        if (cut > 0)
+            data->cooldownCuts[spellId] = uint32(std::min<int64>(cut, std::numeric_limits<int32>::max()));
+    TrackCooldownCuts(data, !data->cooldownCuts.empty());
+
+    Aura* carrier = player->GetAura(SKILL_AFFIX_CARRIER_SPELL);
+    if (sums.empty())
+    {
+        if (carrier)
+        {
+            data->removingCarrier = true;
+            player->RemoveAura(carrier);
+            data->removingCarrier = false;
+        }
+        return;
+    }
+
+    if (!carrier)
+        carrier = player->AddAura(SKILL_AFFIX_CARRIER_SPELL, player);
+    if (!carrier)
+    {
+        LOG_ERROR("module", "mod-item-affixes: could not apply carrier aura {} to {}.", SKILL_AFFIX_CARRIER_SPELL,
+            player->GetName());
+        return;
+    }
+
+    for (auto const& [key, sum] : sums)
+    {
+        SpellInfo const* reference = sSpellMgr->GetSpellInfo(key.targetSpellId ? key.targetSpellId : key.spellId);
+        int32 value = ClampSkillValue(key.op, key.pct, sum, reference);
+        if (!value)
+            continue;
+        SpellModifier* mod = new SpellModifier(carrier);
+        mod->op            = SpellModOp(key.op);
+        mod->type          = key.pct ? SPELLMOD_PCT : SPELLMOD_FLAT;
+        mod->value         = value;
+        mod->mask          = flag96(key.mask[0], key.mask[1], key.mask[2]);
+        mod->spellId       = key.spellId;
+        mod->targetSpellId = key.targetSpellId;
+        data->skillMods.push_back(mod);
+        player->AddSpellMod(mod, true);
+    }
+}
+
+// UnitScript::OnAuraRemove: the aura is unapplied but not deleted yet, so the modifiers that point
+// at it are removed now. A removal the module did not ask for (RemoveAllAuras, .unaura) restores
+// the carrier shortly after, outside the core's aura loops.
+void ItemAffixMgr::OnCarrierRemoved(Player* player)
+{
+    ItemAffixPlayerData* data = player->CustomData.Get<ItemAffixPlayerData>("ItemAffixData");
+    if (!data)
+        return;
+    ClearSkillMods(player, data);
+    if (data->removingCarrier || data->rebuildScheduled || data->activeSkillAffixes.empty() ||
+        !player->IsInWorld() || !player->GetSession() || player->GetSession()->PlayerLogout())
+        return;
+
+    data->rebuildScheduled = true;
+    player->m_Events.AddEventAtOffset([player]()
+    {
+        if (ItemAffixPlayerData* pending = player->CustomData.Get<ItemAffixPlayerData>("ItemAffixData"))
+            pending->rebuildScheduled = false;
+        if (player->IsInWorld())
+            sItemAffixMgr->RebuildSkillMods(player);
+    }, CARRIER_RESTORE_DELAY);
+}
+
+// AllSpellScript::OnSpellCast runs after Spell::SendSpellCooldown started the cooldown of this cast.
+void ItemAffixMgr::OnSpellCast(Player* player, Spell* spell, SpellInfo const* spellInfo)
+{
+    ItemAffixPlayerData* data = player->CustomData.Get<ItemAffixPlayerData>("ItemAffixData");
+    if (!data || data->cooldownCuts.empty())
+        return;
+    auto cutIt = data->cooldownCuts.find(spellInfo->Id);
+    if (cutIt == data->cooldownCuts.end())
+        return;
+    if (spell->m_CastItem || spell->HasTriggeredCastFlag(TRIGGERED_IGNORE_SPELL_AND_CATEGORY_CD) ||
+        spellInfo->IsCooldownStartedOnEvent())
+        return;
+
+    uint32 const now = GameTime::GetGameTimeMS().count();
+    uint32 const cut = cutIt->second;
+    uint32 const category = spellInfo->CategoryRecoveryTime ? spellInfo->GetCategory() : 0;
+
+    std::vector<std::pair<uint32, int32>> changes;
+    for (auto const& [spellId, cooldown] : player->GetSpellCooldownMap())
+    {
+        if (spellId != spellInfo->Id && (!category || cooldown.category != category))
+            continue;
+        if (cooldown.end <= now || cooldown.maxduration < cooldown.end - now ||
+            cooldown.maxduration - (cooldown.end - now) > FRESH_COOLDOWN_MS)
+            continue;
+        changes.emplace_back(spellId, -int32(std::min(cut, cooldown.end - now)));
+    }
+    for (auto const& [spellId, delta] : changes)
+        player->ModifySpellCooldown(spellId, delta);
 }
 
 // After the affixes of an equipped item changed: swap its stats if the core currently applies the item.
@@ -732,7 +1248,18 @@ void ItemAffixMgr::RefreshEquippedItem(Player* player, Item* item)
 
 std::string ItemAffixMgr::BuildAffixDisplayString(AffixDefinition const* def, int32 rolledValue) const
 {
-    return def ? Acore::StringFormat("+{} {}", rolledValue, GetStatName(def->statOp)) : std::string();
+    if (!def)
+        return std::string();
+    if (!def->IsSkill())
+        return Acore::StringFormat("+{} {}", rolledValue, GetStatName(def->statOp));
+
+    // "<Spell>: <effect>", the number of the first effect scaled by the roll (crit = 150%).
+    std::string text = def->name;
+    if (size_t pos = text.find("$v"); pos != std::string::npos && !def->effects.empty())
+        text.replace(pos, 2, SkillDisplayNumber(def->effects[0], ScaleSkillValue(def->effects[0].value, rolledValue)));
+    if (text.size() > MAX_SKILL_TEXT)
+        text.resize(MAX_SKILL_TEXT);
+    return text;
 }
 
 void ItemAffixMgr::SendAddonMsg(Player* player, std::string const& payload)
@@ -760,7 +1287,8 @@ void ItemAffixMgr::SendConfig(Player* player)
     SendAddonMsg(player, "CONFIG|0|0|0|0|1");
 }
 
-void ItemAffixMgr::AppendAffixPayload(std::string& msg, std::vector<AffixSlot> const& slots) const
+// State A = applied, I = skill affix whose spell the wearer does not know (shown grey), U = empty.
+void ItemAffixMgr::AppendAffixPayload(std::string& msg, std::vector<AffixSlot> const& slots, Player const* wearer) const
 {
     for (size_t i = 0; i < slots.size(); ++i)
     {
@@ -770,7 +1298,7 @@ void ItemAffixMgr::AppendAffixPayload(std::string& msg, std::vector<AffixSlot> c
         if (slot.rollState == AFFIX_ROLL_APPLIED)
             if (AffixDefinition const* def = GetAffixDef(slot.affixId))
             {
-                state = 'A';
+                state = def->IsSkill() && !PlayerKnowsSkillAffix(wearer, *def) ? 'I' : 'A';
                 text = (slot.isCrit ? "!" : "") + BuildAffixDisplayString(def, slot.rolledValue);
             }
         msg += Acore::StringFormat("|s{}:{}:{}", i, state, text);
@@ -785,8 +1313,32 @@ void ItemAffixMgr::SendItemStatus(Player* player, Item* item)
     std::vector<AffixSlot> slots = GetSlots(item->GetGUID().GetRawValue());
     auto [luaBag, luaSlot] = GetLuaBagSlot(item);
     std::string msg = Acore::StringFormat("DATA|{}|{}|{}", luaBag, luaSlot, slots.size());
-    AppendAffixPayload(msg, slots);
+    AppendAffixPayload(msg, slots, player);
     SendAddonMsg(player, msg);
+}
+
+// OnPlayerLearnSpell/OnPlayerForgotSpell (spec switches learn and forget many at once): the I/A state
+// of carried skill affix items is resent once, a moment later.
+void ItemAffixMgr::ScheduleSkillStatusRefresh(Player* player)
+{
+    if (!_skillAffixCount || !Handles(player) || !player->IsInWorld())
+        return;
+    ItemAffixPlayerData* data = player->CustomData.GetDefault<ItemAffixPlayerData>("ItemAffixData");
+    if (data->statusScheduled)
+        return;
+    data->statusScheduled = true;
+    player->m_Events.AddEventAtOffset([player]()
+    {
+        if (ItemAffixPlayerData* pending = player->CustomData.Get<ItemAffixPlayerData>("ItemAffixData"))
+            pending->statusScheduled = false;
+        if (!player->IsInWorld())
+            return;
+        ForEachCarriedItem(player, [&](Item* item)
+        {
+            if (sItemAffixMgr->ItemHasSkillAffix(sItemAffixMgr->GetSlots(item->GetGUID().GetRawValue())))
+                sItemAffixMgr->SendItemStatus(player, item);
+        });
+    }, STATUS_REFRESH_DELAY);
 }
 
 void ItemAffixMgr::RefreshAllItemStatus(Player* player)
@@ -830,7 +1382,7 @@ void ItemAffixMgr::HandleAddonMessage(Player* player, std::string const& payload
             return;
         std::vector<AffixSlot> slots = GetSlots(ObjectGuid(HighGuid::Item, *uid).GetRawValue());
         std::string msg = Acore::StringFormat("PEEKDATA|{}|{}", *uid, slots.size());
-        AppendAffixPayload(msg, slots);
+        AppendAffixPayload(msg, slots, player);
         SendAddonMsg(player, msg);
         return;
     }
@@ -850,7 +1402,7 @@ void ItemAffixMgr::HandleAddonMessage(Player* player, std::string const& payload
             Item* targetItem = nearby ? target->GetItemByPos(INVENTORY_SLOT_BAG_0, uint8(luaSlot - 1)) : nullptr;
             std::vector<AffixSlot> slots = targetItem ? GetSlots(targetItem->GetGUID().GetRawValue()) : std::vector<AffixSlot>();
             std::string msg = Acore::StringFormat("INSPECTDATA|{}|{}|{}", targetName, luaSlot, slots.size());
-            AppendAffixPayload(msg, slots);
+            AppendAffixPayload(msg, slots, nearby ? target : player);
             SendAddonMsg(player, msg);
         };
 
@@ -908,7 +1460,7 @@ void ItemAffixMgr::HandleAddonMessage(Player* player, std::string const& payload
 
         std::string msg = Acore::StringFormat("AUCTIONDATA|{}|{}|{}|{}|{}|{}",
             ownerName, *itemId, buyout, auctionType, auctionIndex, slots.size());
-        AppendAffixPayload(msg, slots);
+        AppendAffixPayload(msg, slots, player);
         SendAddonMsg(player, msg);
         return;
     }
@@ -933,7 +1485,7 @@ void ItemAffixMgr::HandleAddonMessage(Player* player, std::string const& payload
         uint64 rawGuid = item->GetGUID().GetRawValue();
         std::vector<AffixSlot> slots = GetSlots(rawGuid);
         std::string msg = Acore::StringFormat("{}|{}|{}|{}", reply, *luaSlot, uint32(rawGuid), slots.size());
-        AppendAffixPayload(msg, slots);
+        AppendAffixPayload(msg, slots, player);
         SendAddonMsg(player, msg);
         return;
     }
@@ -1048,7 +1600,17 @@ void ItemAffixMgr::HandleAddonMessage(Player* player, std::string const& payload
         ctx.hasMana      = player->GetMaxPower(POWER_MANA) > 0;
 
         std::vector<std::string> texts;
-        for (auto const& [id, weight] : BuildWeightedPool(ctx))
+        AffixDefinition const* currentDef = GetAffixDef(slots[*affixSlot].affixId);
+        bool const skillSlot = currentDef && currentDef->IsSkill();
+        if (skillSlot || (!ItemHasSkillAffix(slots, *affixSlot) && _skillAffixChance && ctx.proto->Quality >= ITEM_QUALITY_RARE))
+            if (auto pool = _skillPoolByClass.find(player->getClass()); pool != _skillPoolByClass.end())
+                for (uint32 id : pool->second)
+                {
+                    AffixDefinition const& def = _defs.at(id);
+                    if (def.minQuality <= ctx.proto->Quality && PlayerKnowsSkillAffix(player, def))
+                        texts.push_back(BuildAffixDisplayString(&def, SKILL_AFFIX_BASE_SCALE));
+                }
+        for (auto const& [id, weight] : skillSlot ? std::vector<std::pair<uint32, uint32>>() : BuildWeightedPool(ctx))
         {
             AffixDefinition const& def = _defs.at(id);
             ValueRange range = BudgetRange(def.statOp, ctx.budget, _budgetMinRoll);
@@ -1137,20 +1699,29 @@ ReforgeRollResult ItemAffixMgr::RollReforgeOptions(Player* player, Item* item, u
     ctx.hasMana      = player->GetMaxPower(POWER_MANA) > 0;
     for (size_t i = 0; i < slots.size(); ++i)
         if (i != affixSlot)
-            if (AffixDefinition const* def = GetAffixDef(slots[i].affixId))
+            if (AffixDefinition const* def = GetAffixDef(slots[i].affixId); def && !def->IsSkill())
                 ctx.takenStats.insert(def->statOp);
+
+    // A skill line reforges into skill affixes only; a stat line can turn into one (same chance and
+    // pool as rolling) while no other line of the item is a skill affix.
+    bool const skillSlot = GetAffixDef(slots[affixSlot].affixId)->IsSkill();
+    bool const skillAllowed = !ItemHasSkillAffix(slots, affixSlot);
 
     // The current value always comes first, so closing the window keeps the item as it was.
     std::vector<ReforgeOption> opts{ { slots[affixSlot].affixId, slots[affixSlot].rolledValue, slots[affixSlot].isCrit } };
     uint8 count = proto->Quality >= ITEM_QUALITY_LEGENDARY ? _reforgeOptionsLegendary
         : _reforgeOptions[std::min<uint32>(proto->Quality, ITEM_QUALITY_EPIC)];
     for (uint8 i = 0; i < count; ++i)
-        if (uint32 id = PickAffix(ctx))
-        {
-            ReforgeOption opt{ id, 0, false };
-            RollValue(ctx, _defs.at(id), opt.rolledValue, opt.isCrit);
-            opts.push_back(opt);
-        }
+    {
+        uint32 id = skillSlot || (skillAllowed && RollsSkillAffix(ctx)) ? PickSkillAffix(ctx) : 0;
+        if (!id && !skillSlot)
+            id = PickAffix(ctx);
+        if (!id)
+            continue;
+        ReforgeOption opt{ id, 0, false };
+        RollValue(ctx, _defs.at(id), opt.rolledValue, opt.isCrit);
+        opts.push_back(opt);
+    }
 
     uint32 rerollCount = state.exists ? state.rerollCount + 1 : 1;
     CharacterDatabase.DirectExecute(

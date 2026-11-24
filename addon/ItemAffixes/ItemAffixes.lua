@@ -10,7 +10,8 @@
 --   server -> client: DATA, PEEKDATA, INSPECTDATA, AUCTIONDATA, TRADEGUID, MYTRADEGUID,
 --                     CONFIG, ERR, D3ROLL, REFORGE_OPEN, REFORGESTATUS, REFORGEOPTS,
 --                     REFORGEPREVIEW, REFORGEPREVIEWDATA
--- Slot entries are "s<idx>:<state>:<text>", state A = applied, U = nothing eligible.
+-- Slot entries are "s<idx>:<state>:<text>", state A = applied, U = nothing eligible,
+-- I = class skill affix whose spell the wearer does not know (shown grey, "(inactive)").
 -- A text starting with "!" is a crit roll (shown in gold).
 
 local ADDON_NAME = "ItemAffixes"
@@ -27,6 +28,7 @@ end
 local COLOR_AFFIX = "|cff44DDFF"
 local COLOR_CRIT  = "|cffFFD700"
 local COLOR_WAIT  = "|cff888888"
+local COLOR_INACTIVE = "|cff808080"
 local REQUEST_COOLDOWN = 2.0
 
 -- Own items, keyed by position: cache[bag][slot] (bag 255 = equipment, 1-based slot).
@@ -99,9 +101,12 @@ local function RenderAffixes(tooltip, data, renderKey)
     local added = false
     for i = 1, data.slotCount do
         local s = data.slots[i]
-        if s and s.state == "A" and s.text ~= "" then
+        if s and (s.state == "A" or s.state == "I") and s.text ~= "" then
             if not added then tooltip:AddLine(" "); added = true end
-            if s.text:sub(1, 1) == "!" then
+            if s.state == "I" then
+                local text = s.text:sub(1, 1) == "!" and s.text:sub(2) or s.text
+                tooltip:AddLine(COLOR_INACTIVE .. text .. " (inactive)|r", 0.5, 0.5, 0.5)
+            elseif s.text:sub(1, 1) == "!" then
                 tooltip:AddLine(COLOR_CRIT .. s.text:sub(2) .. "|r", 1, 0.84, 0)
             else
                 tooltip:AddLine(COLOR_AFFIX .. s.text .. "|r", 0.27, 0.87, 1)

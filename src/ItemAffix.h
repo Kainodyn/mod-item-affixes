@@ -5,6 +5,8 @@
 #include "DataMap.h"
 #include "ObjectGuid.h"
 #include "Define.h"
+#include <atomic>
+#include <cstdint>
 #include <mutex>
 #include <string>
 #include <unordered_map>
@@ -12,6 +14,9 @@
 
 class Item;
 class Player;
+class Spell;
+class SpellInfo;
+struct SpellModifier;
 
 // Item category filter for affix_template.item_category.
 enum AffixItemCategory : uint8
@@ -57,6 +62,36 @@ enum AffixRollState : uint8
     AFFIX_ROLL_APPLIED  = 2,
 };
 
+// affix_template.affix_type
+enum AffixType : uint8
+{
+    AFFIX_TYPE_SKILL = 0,  // CoA class skill affix (spell modifier)
+    AFFIX_TYPE_STAT  = 1,
+};
+
+// affix_template.targeting (skill affixes)
+enum SkillAffixTargeting : uint8
+{
+    SKILL_TARGET_MASK     = 0,  // SpellModifier on target_spell's family with a unique family bit
+    SKILL_TARGET_SPELL_ID = 1,  // SpellModifier on the carrier spell, targetSpellId per affix_skill_target row
+    SKILL_TARGET_HOOK_CD  = 2,  // cooldown cut after the cast (Player::ModifySpellCooldown)
+};
+
+// Hidden passive dummy aura from data/sql/db-world/mod_item_affixes_template_skill.sql. Every skill
+// SpellModifier is owned by it, so Player::ApplyModToSpell never sees a null ownerAura.
+constexpr uint32 SKILL_AFFIX_CARRIER_SPELL = 9979001;
+constexpr uint8  MAX_SKILL_AFFIX_EFFECTS   = 3;
+// item_affix.rolled_value of a skill affix: percent of the template values (crit roll = 150).
+constexpr int32  SKILL_AFFIX_BASE_SCALE    = 100;
+constexpr int32  SKILL_AFFIX_CRIT_SCALE    = 150;
+
+struct SkillAffixEffect
+{
+    uint8 op    = 0;      // SpellModOp
+    bool  pct   = false;  // SPELLMOD_PCT, else SPELLMOD_FLAT
+    int32 value = 0;
+};
+
 struct AffixDefinition
 {
     uint32      id           = 0;
@@ -67,6 +102,21 @@ struct AffixDefinition
     uint8       itemCategory = ITEM_CAT_ANY;
     uint8       minQuality   = 0;
     bool        requiresMana = false;
+
+    // Skill affixes (affixType == AFFIX_TYPE_SKILL)
+    uint8       affixType      = AFFIX_TYPE_STAT;
+    std::string key;
+    uint8       classId        = 0;
+    uint16      specId         = 0;
+    uint32      targetSpell    = 0;
+    uint32      knownSpell     = 0;
+    uint8       targeting      = SKILL_TARGET_MASK;
+    uint32      mask[3]        = { 0, 0, 0 };
+    bool        scalesWithCrit = false;
+    std::vector<SkillAffixEffect> effects;
+    std::vector<uint32> targets;  // affix_skill_target
+
+    bool IsSkill() const { return affixType == AFFIX_TYPE_SKILL; }
 };
 
 struct AffixSlot
@@ -83,10 +133,28 @@ struct ActiveStatMod
     int32 value;
 };
 
-// Per-player bookkeeping of the stat mods currently applied, keyed by item GUID.
+struct ActiveSkillAffix
+{
+    uint32 affixId;
+    int32  scalePct;
+};
+
+// Per-player bookkeeping of the stat mods currently applied, keyed by item GUID, and of the skill
+// affix spell modifiers (owned here, never by the core) built from every applied skill affix.
 struct ItemAffixPlayerData : public DataMap::Base
 {
-    std::unordered_map<uint64, std::vector<ActiveStatMod>> activeStatMods;
+    ~ItemAffixPlayerData() override;
+
+    std::unordered_map<uint64, std::vector<ActiveStatMod>>    activeStatMods;
+    std::unordered_map<uint64, std::vector<ActiveSkillAffix>> activeSkillAffixes;
+    std::vector<SpellModifier*>          skillMods;      // registered with Player::AddSpellMod
+    std::unordered_map<uint32, uint32>   cooldownCuts;   // spell id -> ms cut after each cast (hook_cd)
+    uint32 batchDepth         = 0;
+    bool   rebuildPending     = false;
+    bool   removingCarrier    = false;
+    bool   rebuildScheduled   = false;
+    bool   statusScheduled    = false;
+    bool   countedForCuts     = false;
 };
 
 // Reforge candidate (also the serialized form "id:val:crit").
@@ -151,8 +219,24 @@ public:
     void RerollItem(Player* player, Item* item);
 
     AffixDefinition const* GetAffixDef(uint32 id) const;
+    AffixDefinition const* GetAffixDefByKey(std::string const& key) const;
     std::vector<AffixSlot> GetSlots(uint64 itemGuid);
     std::string BuildAffixDisplayString(AffixDefinition const* def, int32 rolledValue) const;
+
+    // Skill affixes
+    bool  PlayerKnowsSkillAffix(Player const* player, AffixDefinition const& def) const;
+    // Rebuilds the carrier aura, spell modifiers and cooldown cuts from every applied skill affix.
+    void  RebuildSkillMods(Player* player);
+    // Removes and deletes every skill spell modifier (carrier aura removal, logout).
+    void  ClearSkillMods(Player* player, ItemAffixPlayerData* data);
+    void  OnCarrierRemoved(Player* player);
+    void  OnSpellCast(Player* player, Spell* spell, SpellInfo const* spellInfo);
+    void  ScheduleSkillStatusRefresh(Player* player);
+    // GM command: put one skill affix on an equipped item (replaces its skill slot, else appends one).
+    bool  GiveSkillAffix(Player* player, Item* item, AffixDefinition const& def, bool crit);
+    bool  HasAnyCooldownCuts() const { return _playersWithCooldownCuts.load(std::memory_order_relaxed) != 0; }
+    void  TrackCooldownCuts(ItemAffixPlayerData* data, bool has);
+    size_t GetSkillAffixCount() const { return _skillAffixCount; }
 
     // Addon protocol (prefix AFXM).
     void HandleAddonMessage(Player* player, std::string const& payload);
@@ -176,10 +260,15 @@ private:
     bool  IsEligibleItem(Item const* item) const;
     std::vector<std::pair<uint32, uint32>> BuildWeightedPool(RollContext const& ctx) const;
     uint32 PickAffix(RollContext const& ctx) const;
+    uint32 PickSkillAffix(RollContext const& ctx) const;
+    bool   RollsSkillAffix(RollContext const& ctx) const;
     void   RollValue(RollContext const& ctx, AffixDefinition const& def, int32& value, bool& isCrit) const;
+    void   LoadSkillAffixes();
+    void   SetBatch(Player* player, bool begin);
+    bool   ItemHasSkillAffix(std::vector<AffixSlot> const& slots, size_t ignoreSlot = SIZE_MAX) const;
     void   RefreshEquippedItem(Player* player, Item* item);
     void   StoreSlots(uint64 itemGuid, std::vector<AffixSlot> const& slots, uint8 firstChanged);
-    void   AppendAffixPayload(std::string& msg, std::vector<AffixSlot> const& slots) const;
+    void   AppendAffixPayload(std::string& msg, std::vector<AffixSlot> const& slots, Player const* wearer) const;
 
     bool  _enabled                   = true;
     bool  _excludeBots               = true;
@@ -199,8 +288,14 @@ private:
     uint8 _reforgeOptionsLegendary   = 4;
     uint32 _reforgeBaseCost[5]       = { 0, 0, 5000, 20000, 75000 };
     uint32 _reforgeBaseCostLegendary = 250000;
+    bool   _skillAffixesEnabled      = true;
+    uint32 _skillAffixChance         = 25;
 
     std::unordered_map<uint32, AffixDefinition> _defs;
+    std::unordered_map<std::string, uint32>     _defsByKey;
+    std::unordered_map<uint8, std::vector<uint32>> _skillPoolByClass;
+    size_t _skillAffixCount = 0;
+    std::atomic<uint32> _playersWithCooldownCuts{ 0 };
 
     // Item GUID -> slots. Authoritative once loaded; every write goes through StoreSlots.
     // Player hooks run on map update threads, so access is serialized.

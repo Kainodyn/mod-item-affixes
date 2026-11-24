@@ -113,6 +113,32 @@ ItemAffixes.EnableCritRolls = 1
 ItemAffixes.CritRollChance  = 10
 
 #
+#    ItemAffixes.SkillAffixes.Enable
+#        Description: CoA class skill affixes (spell modifiers on one class ability, e.g.
+#                     "Glacial Tap: -1.5 sec cooldown"). Needs
+#                     data/sql/db-world/mod_item_affixes_template_skill.sql (affix_template skill
+#                     rows, affix_skill_target and carrier spell 9979001 in spell_dbc). 0 = rolled
+#                     skill affixes stay on items but neither roll nor apply.
+#        Default:     1
+#
+
+ItemAffixes.SkillAffixes.Enable = 1
+
+#
+#    ItemAffixes.SkillAffixChance
+#        Description: Chance (percent) that a newly rolled blue, epic or legendary item of a
+#                     CoA class (12-32) gets one class skill affix in its first new line, picked
+#                     by weight among the affixes of the receiver's class (all specializations)
+#                     whose min_quality the item meets and whose spell the receiver knows. At
+#                     most one skill affix per item. A Reforge option of a stat line uses the
+#                     same chance; a skill line always reforges into skill affixes. A crit roll
+#                     (CritRollChance) gives 1.5x only for affixes with scales_with_crit.
+#        Default:     20
+#
+
+ItemAffixes.SkillAffixChance = 20
+
+#
 #    ItemAffixes.ReforgeOptionsGreen / Blue / Purple / Legendary
 #        Description: New options a Reforge shows next to the current value (1-6).
 #        Default:     1 / 2 / 3 / 4

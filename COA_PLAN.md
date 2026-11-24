@@ -140,3 +140,4 @@ Implementert på branch `coa`:
   Foretrekk kodefiksen, så modulen er riktig uten lokal DB-data.
 - **Verifisering:** som `ADMIN` gir `.affix spec` spec-id og roller; som konto uten GM-nivå finnes ikke kommandoen.
 - Merk: kontoene `HALLVAR`, `HALLVAR1` og `EAGLEEYE` har ingen GM-nivå; test med `ADMIN` eller gi kontoen GM-nivå.
+- **Status 2026-11-24:** kodefiksen er gjort på branch `coa` (se `COA_SKILL_AFFIX_PLAN.md` §8); ikke bygd/deployet.

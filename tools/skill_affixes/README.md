@@ -30,3 +30,17 @@ python3 -B validate_reviews.py [out/reviews/23_NECROMANCER.json ...]   # default
 Validates reviewer files (schema plan §6.2) against the candidates: known spell ids, no summons/`ignore_caster_mods`,
 targeting/op/type rules, magnitude caps, `min_quality >= 3`, unique keys (across files), ≤ 4 affixes per target and
 ≤ 3 effects per affix. Prints a report; exit 1 on any error.
+
+## merge_reviews.py
+```sh
+python3 -B merge_reviews.py [--check-db] [--defaults /opt/coa/secrets/my.cnf]
+```
+Runs `validate_reviews.py` (must pass), then writes `data/sql/db-world/mod_item_affixes_template_skill.sql`:
+idempotent `ALTER TABLE affix_template ADD COLUMN` (information_schema guard), `affix_skill_target`, carrier spell
+9979001 in `spell_dbc`, and every skill affix (`DELETE ... WHERE affix_type = 0` + `INSERT`). `known_spell` = the
+target, or the candidate parent when the target is a trigger child; `affix_skill_target` = `affected_spells` plus
+their ranks. Names get `$v` in place of the first effect's number (error if the name does not show it). Also rejects
+mask targets special-cased in core `SpellInfo::IsAffectedBySpellMod`.
+Ids are stable through `affix_ids.json` (`100000 + class_id * 1000 + n`; never renumbered or reused). `--check-db`
+compares the written columns with `DESCRIBE` of the live tables (read-only). Re-running with unchanged reviews gives
+an identical file, so the DB updater does not re-apply it.

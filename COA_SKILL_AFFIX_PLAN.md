@@ -1,6 +1,6 @@
 # CoA class skill affixes: teknisk plan
 
-Status: **plan, ikke implementert.** Kartlagt 2026-11-23 mot modul-branch `coa` (`a541658`), CoA-core i
+Status: **fase 3a + merge (3c) implementert i kode 2026-11-24, ikke bygd/testet** (se §8). Kartlagt 2026-11-23 mot modul-branch `coa` (`a541658`), CoA-core i
 `/opt/coa/azerothcore` og DBC-er i `/opt/coa/server-data/dbc` (serverens kopi; klientens kopi er ikke sammenlignet).
 Bygger på `COA_PLAN.md` §1, §3, §7 fase 3. Merket **[V]** = verifisert i kode/data, **[A]** = antakelse/må testes.
 
@@ -258,3 +258,34 @@ Et merge-script lager `affix_template`/`affix_skill_target`-SQL og avviser ukjen
    Hallvar godkjenner listene.
 4. **Fase 3d – rulling/Reforge/addon**: pool-filter, `I`-state, tuning, deretter test-realm før live.
 5. **Fase 4 (valgfri)**: summon-/pet-skade via hooks, proc/charges-typer.
+
+## 8. Status implementering (2026-11-24, branch `coa`, uncommitted)
+
+**Implementert** (ikke bygd, ikke applisert, ikke testet i spillet):
+- `.affix`-sikkerhet (`COA_PLAN.md` §9): `info`/`spec`/`skills`/`reforge status` = `SEC_GAMEMASTER`,
+  `reroll`/`give`/`reforge roll|pick` = `SEC_ADMINISTRATOR`. Nye: `.affix give <slot> <id|key> [crit]`, `.affix skills`.
+- `tools/skill_affixes/merge_reviews.py` → `data/sql/db-world/mod_item_affixes_template_skill.sql` (707 affixer, 731
+  target-rader). Stabile id-er i `tools/skill_affixes/affix_ids.json` (112000–132033). Filnavnet sorterer etter
+  `mod_item_affixes_template.sql` (updater sorterer på filnavn). Carrier 9979001 (ledig i Spell.dbc og `spell_dbc`),
+  kolonnemønster fra 9978010.
+- C++: skill-affixer lastes ved oppstart (validering mot `sSpellMgr`; uten `affix_type`-kolonnen kjører modulen
+  stat-only). Én carrier-aura per spiller; mods `new SpellModifier(carrier)`, eies og slettes av modulen; summeres per
+  (spell/maske, op, type) over alle items; CD/cast/cost klippes ved 0. Mods fjernes før carrieren i
+  `UnitScript::OnAuraRemove` og `OnPlayerLogout`; fjernet utenfra (RemoveAllAuras, `.unaura`) → gjenopprettes etter
+  0,5 s via `m_Events`. Død beholder passive auraer.
+- Targeting: `mask` = `mod->spellId` = target_spell + unik bit; `spell_id` = carrier, mask 0, `targetSpellId` per id
+  (ingen global hook, `OnSpellModFamilyMask` ikke brukt); `hook_cd` = `AllSpellScript::OnSpellCast` (etter
+  `SendSpellCooldown`) → `ModifySpellCooldown` på castens ferske CD-entry (< 1 s gammel) og på ferske entries med
+  samme category når spellen har `CategoryRecoveryTime`; hopper over item-cast, `TRIGGERED_IGNORE_SPELL_AND_CATEGORY_CD`
+  og `IsCooldownStartedOnEvent`. Global atomic teller gir early-out når ingen spiller har CD-kutt.
+- Rulling/Reforge: `ItemAffixes.SkillAffixChance` (20), `ItemAffixes.SkillAffixes.Enable` (1). `rolled_value` = 100/150
+  (prosent av malverdiene). Addon: state `I` → grått "(inactive)"; oppdateres 1 s etter learn/forget spell.
+
+**Verifisert:** alle `.cpp` `-fsyntax-only` uten warnings mot live-byggets flagg (compile_commands.json, game-PCH);
+`validate_reviews.py` OK; SQL-kolonner mot `DESCRIBE`; `DESCRIBE INSERT/DELETE` for `spell_dbc`-raden; `codestyle-sql.py`
+og `codestyle-cpp.py` OK; merge gir identisk fil ved ny kjøring.
+
+**Ikke verifisert:** full build/link, SQL applisert av updateren, oppstart, Lua-syntaks (ingen Lua-parser), og alt i
+spillet: carrier/`ownerAura`-livssyklus (logout, død, `RemoveAllAuras`, prestige, spec-bytte), om Ascension-klienten
+bruker spellmod-pakker for CD/cost i maske-modus, `SMSG_MODIFY_COOLDOWN` på action bar (også category), at mods treffer
+riktige (trigger-)spells, tooltip-lengde ≤ 255 med lange navn.

@@ -3,7 +3,10 @@
 #include "Item.h"
 #include "ItemAffix.h"
 #include "Player.h"
-#include "RBAC.h"
+#include "SpellAuras.h"
+#include "SpellInfo.h"
+#include "SpellMgr.h"
+#include "StringConvert.h"
 #include "StringFormat.h"
 
 using namespace Acore::ChatCommands;
@@ -48,15 +51,17 @@ public:
     {
         static ChatCommandTable reforgeCommandTable =
         {
-            { "status", HandleReforgeStatusCommand, rbac::RBAC_PERM_COMMAND_GM, Console::No },
-            { "roll",   HandleReforgeRollCommand,   rbac::RBAC_PERM_COMMAND_GM, Console::No },
-            { "pick",   HandleReforgePickCommand,   rbac::RBAC_PERM_COMMAND_GM, Console::No },
+            { "status", HandleReforgeStatusCommand, SEC_GAMEMASTER,     Console::No },
+            { "roll",   HandleReforgeRollCommand,   SEC_ADMINISTRATOR, Console::No },
+            { "pick",   HandleReforgePickCommand,   SEC_ADMINISTRATOR, Console::No },
         };
         static ChatCommandTable affixCommandTable =
         {
-            { "info",    HandleInfoCommand,   rbac::RBAC_PERM_COMMAND_GM, Console::No },
-            { "spec",    HandleSpecCommand,   rbac::RBAC_PERM_COMMAND_GM, Console::No },
-            { "reroll",  HandleRerollCommand, rbac::RBAC_PERM_COMMAND_GM, Console::No },
+            { "info",    HandleInfoCommand,   SEC_GAMEMASTER,     Console::No },
+            { "spec",    HandleSpecCommand,   SEC_GAMEMASTER,     Console::No },
+            { "skills",  HandleSkillsCommand, SEC_GAMEMASTER,     Console::No },
+            { "reroll",  HandleRerollCommand, SEC_ADMINISTRATOR, Console::No },
+            { "give",    HandleGiveCommand,   SEC_ADMINISTRATOR, Console::No },
             { "reforge", reforgeCommandTable },
         };
         static ChatCommandTable commandTable =
@@ -106,6 +111,69 @@ public:
         handler->PSendSysMessage("|cffFFFF00[ItemAffixes]|r spec {} roles {}{} primary stats {} {} {}",
             profile.specId, RoleNames(profile.roleMask), profile.anyRole ? " (any role)" : "",
             profile.primaryStats[0], profile.primaryStats[1], profile.primaryStats[2]);
+        return true;
+    }
+
+    // .affix skills -- skill affixes on equipped items and the spell modifiers they produce.
+    static bool HandleSkillsCommand(ChatHandler* handler)
+    {
+        Player* player = handler->GetSession()->GetPlayer();
+        ItemAffixPlayerData* data = player->CustomData.Get<ItemAffixPlayerData>("ItemAffixData");
+        Aura* carrier = player->GetAura(SKILL_AFFIX_CARRIER_SPELL);
+        handler->PSendSysMessage("|cffFFFF00[ItemAffixes]|r {} skill affix(es) loaded; carrier aura {} {}.",
+            sItemAffixMgr->GetSkillAffixCount(), SKILL_AFFIX_CARRIER_SPELL, carrier ? "present" : "absent");
+        if (!data)
+            return true;
+
+        for (auto const& [guid, affixes] : data->activeSkillAffixes)
+            for (ActiveSkillAffix const& active : affixes)
+                if (AffixDefinition const* def = sItemAffixMgr->GetAffixDef(active.affixId))
+                    handler->PSendSysMessage("  item {}: [{}] {} {} ({}%){}", ObjectGuid(guid).GetCounter(), def->id,
+                        def->key, sItemAffixMgr->BuildAffixDisplayString(def, active.scalePct), active.scalePct,
+                        sItemAffixMgr->PlayerKnowsSkillAffix(player, *def) ? "" : " (inactive: spell not known)");
+
+        for (SpellModifier const* mod : data->skillMods)
+        {
+            SpellInfo const* info = sSpellMgr->GetSpellInfo(mod->targetSpellId ? mod->targetSpellId : mod->spellId);
+            handler->PSendSysMessage("  mod op {} {} {} spell {} {} mask {:#x}:{:#x}:{:#x} owner {}", uint32(mod->op),
+                mod->type == SPELLMOD_PCT ? "pct" : "flat", mod->value, mod->targetSpellId ? mod->targetSpellId : mod->spellId,
+                info ? info->SpellName[0] : "?", mod->mask[0], mod->mask[1], mod->mask[2],
+                mod->ownerAura == carrier ? "carrier" : "STALE");
+        }
+        for (auto const& [spellId, cut] : data->cooldownCuts)
+        {
+            SpellInfo const* info = sSpellMgr->GetSpellInfo(spellId);
+            handler->PSendSysMessage("  cooldown cut spell {} {}: -{} ms after cast", spellId,
+                info ? info->SpellName[0] : "?", cut);
+        }
+        return true;
+    }
+
+    // .affix give <equipSlot> <affix id|key> [crit] -- put one skill affix on an equipped item (testing;
+    // no class or known-spell check). Replaces the item's skill line, else adds a line.
+    static bool HandleGiveCommand(ChatHandler* handler, uint8 equipSlot, std::string affix, Optional<std::string> crit)
+    {
+        Item* item = EquippedItem(handler, equipSlot);
+        if (!item)
+            return false;
+        AffixDefinition const* def = nullptr;
+        if (Optional<uint32> id = Acore::StringTo<uint32>(affix))
+            def = sItemAffixMgr->GetAffixDef(*id);
+        else
+            def = sItemAffixMgr->GetAffixDefByKey(affix);
+        if (!def || !def->IsSkill())
+        {
+            handler->PSendSysMessage("|cffFFFF00[ItemAffixes]|r Unknown skill affix '{}'.", affix);
+            return false;
+        }
+        Player* player = handler->GetSession()->GetPlayer();
+        if (!sItemAffixMgr->GiveSkillAffix(player, item, *def, crit && *crit == "crit"))
+        {
+            handler->SendSysMessage("|cffFFFF00[ItemAffixes]|r That item cannot carry affixes.");
+            return false;
+        }
+        handler->PSendSysMessage("|cffFFFF00[ItemAffixes]|r {} now has [{}] {}{}.", item->GetTemplate()->Name1, def->id,
+            def->key, sItemAffixMgr->PlayerKnowsSkillAffix(player, *def) ? "" : " (inactive: spell not known)");
         return true;
     }
 

@@ -4,6 +4,8 @@
 #include "Player.h"
 #include "ScriptMgr.h"
 #include "SharedDefines.h"
+#include "Spell.h"
+#include "SpellAuras.h"
 
 class ItemAffixWorldScript : public WorldScript
 {
@@ -28,6 +30,9 @@ public:
         PLAYERHOOK_ON_EQUIP,
         PLAYERHOOK_ON_AFTER_APPLY_ITEM_MODS,
         PLAYERHOOK_ON_BEFORE_SEND_CHAT_MESSAGE,
+        PLAYERHOOK_ON_LOGOUT,
+        PLAYERHOOK_ON_LEARN_SPELL,
+        PLAYERHOOK_ON_FORGOT_SPELL,
     }) { }
 
     void OnPlayerLogin(Player* player) override
@@ -71,6 +76,28 @@ public:
             sItemAffixMgr->RemoveItemAffixes(player, item);
     }
 
+    // Skill modifiers go before the carrier aura, which CleanupsBeforeDelete removes afterwards.
+    void OnPlayerLogout(Player* player) override
+    {
+        ItemAffixPlayerData* data = player->CustomData.Get<ItemAffixPlayerData>("ItemAffixData");
+        if (!data)
+            return;
+        data->activeSkillAffixes.clear();
+        data->cooldownCuts.clear();
+        sItemAffixMgr->TrackCooldownCuts(data, false);
+        sItemAffixMgr->ClearSkillMods(player, data);
+    }
+
+    void OnPlayerLearnSpell(Player* player, uint32 /*spellID*/) override
+    {
+        sItemAffixMgr->ScheduleSkillStatusRefresh(player);
+    }
+
+    void OnPlayerForgotSpell(Player* player, uint32 /*spellID*/) override
+    {
+        sItemAffixMgr->ScheduleSkillStatusRefresh(player);
+    }
+
     // AFXM requests arrive as LANG_ADDON whispers to the player themself ("AFXM\t<payload>").
     // Clearing the text stops the request echoing back to the addon without the core patch
     // upstream needed: an empty addon whisper reaches the client with an empty prefix.
@@ -86,8 +113,40 @@ public:
     }
 };
 
+class ItemAffixUnitScript : public UnitScript
+{
+public:
+    ItemAffixUnitScript() : UnitScript("ItemAffixUnitScript", true, { UNITHOOK_ON_AURA_REMOVE }) { }
+
+    void OnAuraRemove(Unit* unit, AuraApplication* aurApp, AuraRemoveMode /*mode*/) override
+    {
+        if (!aurApp || aurApp->GetBase()->GetId() != SKILL_AFFIX_CARRIER_SPELL)
+            return;
+        if (Player* player = unit ? unit->ToPlayer() : nullptr)
+            sItemAffixMgr->OnCarrierRemoved(player);
+    }
+};
+
+// hook_cd skill affixes: cut the cooldown the cast just started.
+class ItemAffixAllSpellScript : public AllSpellScript
+{
+public:
+    ItemAffixAllSpellScript() : AllSpellScript("ItemAffixAllSpellScript", { ALLSPELLHOOK_ON_CAST }) { }
+
+    void OnSpellCast(Spell* spell, Unit* caster, SpellInfo const* spellInfo, bool /*skipCheck*/) override
+    {
+        if (!sItemAffixMgr->HasAnyCooldownCuts() || !caster || !spell || !spellInfo)
+            return;
+        Player* player = caster->ToPlayer();
+        if (player && sItemAffixMgr->Handles(player))
+            sItemAffixMgr->OnSpellCast(player, spell, spellInfo);
+    }
+};
+
 void AddSC_item_affix_scripts()
 {
     new ItemAffixWorldScript();
     new ItemAffixPlayerScript();
+    new ItemAffixUnitScript();
+    new ItemAffixAllSpellScript();
 }
