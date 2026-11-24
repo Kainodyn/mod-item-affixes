@@ -1,9 +1,11 @@
 #include "AscensionClientSpellRows.h"
 #include "Chat.h"
+#include "Creature.h"
 #include "CommandScript.h"
 #include "Item.h"
 #include "ItemAffix.h"
 #include "Player.h"
+#include "SpellAuraEffects.h"
 #include "SpellAuras.h"
 #include "SpellInfo.h"
 #include "SpellMgr.h"
@@ -184,6 +186,7 @@ public:
             { "info",    HandleInfoCommand,   SEC_GAMEMASTER,     Console::No },
             { "spec",    HandleSpecCommand,   SEC_GAMEMASTER,     Console::No },
             { "skills",  HandleSkillsCommand, SEC_GAMEMASTER,     Console::No },
+            { "summons", HandleSummonsCommand, SEC_GAMEMASTER,    Console::No },
             { "reroll",  HandleRerollCommand, SEC_ADMINISTRATOR, Console::No },
             { "give",    HandleGiveCommand,   SEC_ADMINISTRATOR, Console::No },
             { "row",     HandleRowCommand,    SEC_ADMINISTRATOR, Console::No },
@@ -236,6 +239,32 @@ public:
         handler->PSendSysMessage("|cffFFFF00[ItemAffixes]|r spec {} roles {}{} primary stats {} {} {}",
             profile.specId, RoleNames(profile.roleMask), profile.anyRole ? " (any role)" : "",
             profile.primaryStats[0], profile.primaryStats[1], profile.primaryStats[2]);
+        handler->PSendSysMessage("|cffFFFF00[ItemAffixes]|r summon affixes {} for this spec "
+            "(ItemAffixes.SummonAffixes.Specs).", sItemAffixMgr->IsSummonSpec(profile.specId) ? "roll" : "do not roll");
+        return true;
+    }
+
+    // .affix summons -- capped summon affix totals and the carrier of the selected creature.
+    static bool HandleSummonsCommand(ChatHandler* handler)
+    {
+        Player* player = handler->GetSession()->GetPlayer();
+        SummonStatTotals const stats = sItemAffixMgr->GetSummonStats(player);
+        handler->PSendSysMessage("|cffFFFF00[ItemAffixes]|r summons: +{}% damage, +{}% health, +{}% attack speed.",
+            stats.damagePct, stats.healthPct, stats.attackSpeedPct);
+
+        Creature* target = handler->getSelectedCreature();
+        if (!target)
+            return true;
+        Player* owner = ItemAffixMgr::GetSummonOwner(target);
+        Aura* carrier = target->GetAura(SUMMON_AFFIX_CARRIER_SPELL);
+        auto amount = [carrier](uint8 index)
+        {
+            AuraEffect const* effect = carrier ? carrier->GetEffect(index) : nullptr;
+            return effect ? effect->GetAmount() : 0;
+        };
+        handler->PSendSysMessage("  {} (entry {}): owner {}, carrier {} (health {}%, attack speed {}%), max health {}.",
+            target->GetName(), target->GetEntry(), owner ? owner->GetName() : "none", carrier ? "present" : "absent",
+            amount(EFFECT_0), amount(EFFECT_1), target->GetMaxHealth());
         return true;
     }
 
@@ -281,8 +310,9 @@ public:
         return true;
     }
 
-    // .affix give <equipSlot> <affix id|key> [crit] -- put one skill affix on an equipped item (testing;
-    // no class or known-spell check). Replaces the item's skill line, else adds a line.
+    // .affix give <equipSlot> <affix id|key> [crit] -- put one affix on an equipped item (testing; no class,
+    // spec or known-spell check). A skill affix replaces the item's skill line; a stat affix (top of its
+    // range) replaces the summon line for summon stats, else the first stat line; otherwise a line is added.
     static bool HandleGiveCommand(ChatHandler* handler, uint8 equipSlot, std::string affix, Optional<std::string> crit)
     {
         Item* item = EquippedItem(handler, equipSlot);
@@ -293,12 +323,23 @@ public:
             def = sItemAffixMgr->GetAffixDef(*id);
         else
             def = sItemAffixMgr->GetAffixDefByKey(affix);
-        if (!def || !def->IsSkill())
+        if (!def)
         {
-            handler->PSendSysMessage("|cffFFFF00[ItemAffixes]|r Unknown skill affix '{}'.", affix);
+            handler->PSendSysMessage("|cffFFFF00[ItemAffixes]|r Unknown affix '{}'.", affix);
             return false;
         }
         Player* player = handler->GetSession()->GetPlayer();
+        if (!def->IsSkill())
+        {
+            if (!sItemAffixMgr->GiveStatAffix(player, item, *def))
+            {
+                handler->SendSysMessage("|cffFFFF00[ItemAffixes]|r That item cannot carry affixes.");
+                return false;
+            }
+            handler->PSendSysMessage("|cffFFFF00[ItemAffixes]|r {} now has [{}] {}.", item->GetTemplate()->Name1,
+                def->id, def->name);
+            return true;
+        }
         if (!sItemAffixMgr->GiveSkillAffix(player, item, *def, crit && *crit == "crit"))
         {
             handler->SendSysMessage("|cffFFFF00[ItemAffixes]|r That item cannot carry affixes.");

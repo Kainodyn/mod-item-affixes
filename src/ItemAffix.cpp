@@ -2,9 +2,12 @@
 
 #include "AscensionClientSpellRows.h"
 #include "Bag.h"
+#include "CellImpl.h"
 #include "Config.h"
 #include "DBCStores.h"
 #include "DatabaseEnv.h"
+#include "GridNotifiers.h"
+#include "GridNotifiersImpl.h"
 #include "Item.h"
 #include "ItemTemplate.h"
 #include "Log.h"
@@ -14,6 +17,7 @@
 #include "Opcodes.h"
 #include "Player.h"
 #include "Random.h"
+#include "SpellAuraEffects.h"
 #include "SpellAuras.h"
 #include "SpellInfo.h"
 #include "SpellMgr.h"
@@ -41,6 +45,8 @@ constexpr uint8 LAST_COA_CLASS = 32;
 constexpr size_t MAX_SKILL_TEXT = 60;
 constexpr Milliseconds CARRIER_RESTORE_DELAY = 500ms;
 constexpr Milliseconds STATUS_REFRESH_DELAY = 1000ms;
+constexpr Milliseconds SUMMON_CARRIER_DELAY = 100ms;
+constexpr float SUMMON_REFRESH_RANGE = 250.0f;
 // Removed 2026-11-24 (rows are always streamed); only warned about when still set.
 constexpr char const* REMOVED_STREAM_SPELL_ROWS_KEY = "ItemAffixes.SkillAffixes.StreamSpellRows";
 
@@ -172,7 +178,21 @@ char const* const StatNames[GSTAT_MAX] = {
 
 char const* GetStatName(uint8 statOp)
 {
-    return statOp < GSTAT_MAX ? StatNames[statOp] : "Unknown";
+    switch (statOp)
+    {
+        case GSTAT_SUMMON_HEALTH_PCT:       return "Summon Health";
+        case GSTAT_SUMMON_DAMAGE_PCT:       return "Summon Damage";
+        case GSTAT_SUMMON_ATTACK_SPEED_PCT: return "Summon Attack Speed";
+        default:                            return statOp < GSTAT_MAX ? StatNames[statOp] : "Unknown";
+    }
+}
+
+std::string StatText(uint8 statOp, int32 minVal, int32 maxVal)
+{
+    char const* unit = IsSummonStat(statOp) ? "%" : "";
+    if (minVal == maxVal)
+        return Acore::StringFormat("+{}{} {}", minVal, unit, GetStatName(statOp));
+    return Acore::StringFormat("+{}-{}{} {}", minVal, maxVal, unit, GetStatName(statOp));
 }
 
 // Item budget cost per point (WotLK exchange rates).
@@ -187,6 +207,10 @@ float GetStatCost(uint8 statOp)
             return 0.86f;
         case GSTAT_ARMOR:
             return 0.1f;  // armor is cheap: 10 armor per budget point
+        case GSTAT_SUMMON_HEALTH_PCT:
+            return 0.75f;
+        case GSTAT_SUMMON_ATTACK_SPEED_PCT:
+            return 1.5f;
         default:
             return 1.0f;
     }
@@ -255,6 +279,11 @@ void ApplyGenericStat(Player* player, uint8 statOp, int32 value, bool apply)
         case GSTAT_DEFENSE_RATING:   player->ApplyRatingMod(CR_DEFENSE_SKILL, value, apply); break;
         case GSTAT_PARRY_RATING:     player->ApplyRatingMod(CR_PARRY,         value, apply); break;
         case GSTAT_EXPERTISE_RATING: player->ApplyRatingMod(CR_EXPERTISE,     value, apply); break;
+        case GSTAT_SUMMON_HEALTH_PCT:
+        case GSTAT_SUMMON_DAMAGE_PCT:
+        case GSTAT_SUMMON_ATTACK_SPEED_PCT:
+            sItemAffixMgr->ApplySummonStat(player, statOp, value, apply);
+            break;
         default:
             LOG_ERROR("module", "mod-item-affixes: unknown stat_op {}", statOp);
             break;
@@ -668,6 +697,8 @@ struct ItemAffixMgr::RollContext
     float                   budget = 0.0f;
     uint8                   itemCategory = ITEM_CAT_ANY;
     bool                    hasMana = false;
+    bool                    summonSpec = false;
+    bool                    hasSummonStat = false;  // at most one summon affix per item
     std::unordered_set<uint8> takenStats;  // stats already on the item; avoided while alternatives exist
 };
 
@@ -725,6 +756,24 @@ void ItemAffixMgr::LoadConfig()
 
     _skillAffixesEnabled = sConfigMgr->GetOption<bool>("ItemAffixes.SkillAffixes.Enable", true);
     _skillAffixChance    = std::min<uint32>(sConfigMgr->GetOption<uint32>("ItemAffixes.SkillAffixChance", 20), 100);
+
+    _summonAffixesEnabled = sConfigMgr->GetOption<bool>("ItemAffixes.SummonAffixes.Enable", true);
+    _summonCapPct         = std::clamp<int32>(
+        sConfigMgr->GetOption<int32>("ItemAffixes.SummonAffixes.CapPct", 100), 0, 1000);
+    _summonSpecs.clear();
+    std::string const specList =
+        sConfigMgr->GetOption<std::string>("ItemAffixes.SummonAffixes.Specs", "11,17,35,36,50,70,81,90");
+    for (std::string_view token : Acore::Tokenize(specList, ',', false))
+    {
+        size_t const first = token.find_first_not_of(' ');
+        size_t const last = token.find_last_not_of(' ');
+        std::string_view const trimmed =
+            first == std::string_view::npos ? std::string_view() : token.substr(first, last - first + 1);
+        if (Optional<uint32> spec = Acore::StringTo<uint32>(trimmed))
+            _summonSpecs.insert(*spec);
+        else if (!trimmed.empty())
+            LOG_ERROR("module", "mod-item-affixes: ItemAffixes.SummonAffixes.Specs: '{}' is not a spec id.", trimmed);
+    }
     for (std::string const& key : sConfigMgr->GetKeysByString(REMOVED_STREAM_SPELL_ROWS_KEY))
         if (key == REMOVED_STREAM_SPELL_ROWS_KEY)
             LOG_WARN("module", "mod-item-affixes: {} is no longer used and is ignored; skill affix Spell rows are "
@@ -771,7 +820,7 @@ void ItemAffixMgr::LoadAffixTemplates()
             def.itemCategory = f[5].Get<uint8>();
             def.minQuality   = f[6].Get<uint8>();
             def.requiresMana = f[7].Get<uint8>() != 0;
-            if (def.statOp >= GSTAT_MAX)
+            if (def.statOp >= GSTAT_MAX && !IsSummonStat(def.statOp))
             {
                 LOG_ERROR("module", "mod-item-affixes: affix {} has unsupported stat_op {}, skipped.", def.id, def.statOp);
                 continue;
@@ -780,6 +829,9 @@ void ItemAffixMgr::LoadAffixTemplates()
         } while (result->NextRow());
     }
     LOG_INFO("module", "mod-item-affixes: loaded {} affix template(s).", _defs.size());
+    if (_summonAffixesEnabled && !sSpellMgr->GetSpellInfo(SUMMON_AFFIX_CARRIER_SPELL))
+        LOG_ERROR("module", "mod-item-affixes: summon carrier spell {} missing from spell_dbc; summon health and "
+            "attack speed affixes have no effect.", SUMMON_AFFIX_CARRIER_SPELL);
 
     if (!_skillAffixesEnabled)
         LOG_INFO("module", "mod-item-affixes: skill affixes disabled (ItemAffixes.SkillAffixes.Enable = 0).");
@@ -1029,6 +1081,8 @@ std::vector<std::pair<uint32, uint32>> ItemAffixMgr::BuildWeightedPool(RollConte
             continue;
         if (def.requiresMana && !ctx.hasMana)
             continue;
+        if (IsSummonStat(def.statOp) && (!_summonAffixesEnabled || !ctx.summonSpec || ctx.hasSummonStat))
+            continue;
         // No budget floor here: BudgetRange gives every stat at least 1 point, so very low item levels
         // still roll (+1) instead of storing an empty slot.
 
@@ -1185,9 +1239,13 @@ void ItemAffixMgr::RollItem(Player* player, Item* item)
     ctx.budget       = GetAffixBudget(item);
     ctx.itemCategory = GetItemCategory(ctx.proto);
     ctx.hasMana      = player->GetMaxPower(POWER_MANA) > 0;
+    ctx.summonSpec   = IsSummonSpec(ctx.profile.specId);
     for (AffixSlot const& slot : slots)
         if (AffixDefinition const* def = GetAffixDef(slot.affixId); def && !def->IsSkill())
+        {
             ctx.takenStats.insert(def->statOp);
+            ctx.hasSummonStat |= IsSummonStat(def->statOp);
+        }
 
     uint32 skillId = !ItemHasSkillAffix(slots) && RollsSkillAffix(ctx) ? PickSkillAffix(ctx) : 0;
 
@@ -1205,7 +1263,10 @@ void ItemAffixMgr::RollItem(Player* player, Item* item)
             slot.affixId   = id;
             RollValue(ctx, def, slot.rolledValue, slot.isCrit);
             if (!def.IsSkill())
+            {
                 ctx.takenStats.insert(def.statOp);
+                ctx.hasSummonStat |= IsSummonStat(def.statOp);
+            }
 
             // Notification for the optional ItemAffixesToast addon.
             if (slot.isCrit)
@@ -1263,6 +1324,142 @@ bool ItemAffixMgr::GiveSkillAffix(Player* player, Item* item, AffixDefinition co
     RefreshEquippedItem(player, item);
     SendItemStatus(player, item);
     return true;
+}
+
+bool ItemAffixMgr::GiveStatAffix(Player* player, Item* item, AffixDefinition const& def)
+{
+    if (!player || !item || def.IsSkill() || !IsEligibleItem(item))
+        return false;
+    uint64 itemGuid = item->GetGUID().GetRawValue();
+    std::vector<AffixSlot> slots = GetSlots(itemGuid);
+
+    size_t index = slots.size();
+    for (size_t i = 0; i < slots.size(); ++i)
+    {
+        AffixDefinition const* other = GetAffixDef(slots[i].affixId);
+        if (!other || other->IsSkill())
+            continue;
+        if (index == slots.size() || (IsSummonStat(def.statOp) && IsSummonStat(other->statOp)))
+            index = i;
+    }
+    if (index == slots.size() && slots.size() >= MAX_AFFIX_SLOTS)
+        index = 0;
+    if (index == slots.size())
+        slots.emplace_back();
+
+    int32 value = BudgetRange(def.statOp, GetAffixBudget(item), _budgetMinRoll).maxVal;
+    if (Is2HWeapon(item->GetTemplate()))
+        value = Boost(value);
+    slots[index] = { AFFIX_ROLL_APPLIED, def.id, value, false };
+    StoreSlots(itemGuid, slots, uint8(index));
+    RefreshEquippedItem(player, item);
+    SendItemStatus(player, item);
+    return true;
+}
+
+// ---------------------------------------------------------------------------
+// Summon affixes
+// ---------------------------------------------------------------------------
+
+void ItemAffixMgr::ApplySummonStat(Player* player, uint8 statOp, int32 value, bool apply)
+{
+    ItemAffixPlayerData* data = player->CustomData.GetDefault<ItemAffixPlayerData>("ItemAffixData");
+    int32 const delta = apply ? value : -value;
+    switch (statOp)
+    {
+        case GSTAT_SUMMON_HEALTH_PCT:       data->summonStats.healthPct      += delta; break;
+        case GSTAT_SUMMON_DAMAGE_PCT:       data->summonStats.damagePct      += delta; return;
+        case GSTAT_SUMMON_ATTACK_SPEED_PCT: data->summonStats.attackSpeedPct += delta; break;
+        default:                            return;
+    }
+    ScheduleSummonRefresh(player);
+}
+
+SummonStatTotals ItemAffixMgr::GetSummonStats(Player const* player) const
+{
+    if (!_summonAffixesEnabled || !player)
+        return {};
+    ItemAffixPlayerData const* data = player->CustomData.Get<ItemAffixPlayerData>("ItemAffixData");
+    if (!data)
+        return {};
+    auto cap = [this](int32 value) { return std::clamp(value, 0, _summonCapPct); };
+    SummonStatTotals const& raw = data->summonStats;
+    return { cap(raw.healthPct), cap(raw.damagePct), cap(raw.attackSpeedPct) };
+}
+
+Player* ItemAffixMgr::GetSummonOwner(Unit const* unit)
+{
+    Creature const* creature = unit ? unit->ToCreature() : nullptr;
+    if (!creature)
+        return nullptr;
+    ObjectGuid const owner = creature->GetOwnerGUID();
+    if (!owner.IsPlayer())
+        return nullptr;
+    Player* player = ObjectAccessor::GetPlayer(*creature, owner);
+    return sItemAffixMgr->Handles(player) ? player : nullptr;
+}
+
+void ItemAffixMgr::UpdateSummonCarrier(Creature* summon, Player* owner) const
+{
+    if (!summon || !summon->IsInWorld())
+        return;
+    SummonStatTotals const stats = GetSummonStats(owner);
+    if (!stats.healthPct && !stats.attackSpeedPct)
+    {
+        summon->RemoveAurasDueToSpell(SUMMON_AFFIX_CARRIER_SPELL);
+        return;
+    }
+
+    Aura* aura = summon->GetAura(SUMMON_AFFIX_CARRIER_SPELL);
+    if (!aura)
+        aura = summon->AddAura(SUMMON_AFFIX_CARRIER_SPELL, summon);
+    if (!aura)
+        return;
+    for (auto [index, amount] : { std::pair<uint8, int32>{ EFFECT_0, stats.healthPct },
+                                  std::pair<uint8, int32>{ EFFECT_1, stats.attackSpeedPct } })
+        if (AuraEffect* effect = aura->GetEffect(index); effect && effect->GetAmount() != amount)
+            effect->ChangeAmount(amount);
+}
+
+// Guardians and pets get their level stats after entering the world; the carrier follows once that is done.
+void ItemAffixMgr::OnSummonAdded(Creature* summon, Player* owner)
+{
+    if (!_summonAffixesEnabled || !summon || !Handles(owner))
+        return;
+    ObjectGuid const ownerGuid = owner->GetGUID();
+    summon->m_Events.AddEventAtOffset([summon, ownerGuid]()
+    {
+        if (Player* player = ObjectAccessor::GetPlayer(*summon, ownerGuid))
+            sItemAffixMgr->UpdateSummonCarrier(summon, player);
+    }, SUMMON_CARRIER_DELAY);
+}
+
+void ItemAffixMgr::ScheduleSummonRefresh(Player* player)
+{
+    if (!_summonAffixesEnabled || !player->IsInWorld())
+        return;
+    ItemAffixPlayerData* data = player->CustomData.GetDefault<ItemAffixPlayerData>("ItemAffixData");
+    if (data->summonRefreshScheduled)
+        return;
+    data->summonRefreshScheduled = true;
+    player->m_Events.AddEventAtOffset([player]()
+    {
+        if (ItemAffixPlayerData* pending = player->CustomData.Get<ItemAffixPlayerData>("ItemAffixData"))
+            pending->summonRefreshScheduled = false;
+        if (player->IsInWorld())
+            sItemAffixMgr->RefreshSummons(player);
+    }, SUMMON_CARRIER_DELAY);
+}
+
+void ItemAffixMgr::RefreshSummons(Player* player)
+{
+    ObjectGuid const guid = player->GetGUID();
+    auto ownedBy = [guid](Creature* creature) { return creature->GetOwnerGUID() == guid; };
+    std::list<Creature*> summons;
+    Acore::CreatureListSearcher<decltype(ownedBy)> searcher(player, summons, ownedBy);
+    Cell::VisitObjects(player, searcher, SUMMON_REFRESH_RANGE);
+    for (Creature* summon : summons)
+        UpdateSummonCarrier(summon, player);
 }
 
 // ---------------------------------------------------------------------------
@@ -1512,7 +1709,7 @@ std::string ItemAffixMgr::BuildAffixDisplayString(AffixDefinition const* def, in
     if (!def)
         return std::string();
     if (!def->IsSkill())
-        return Acore::StringFormat("+{} {}", rolledValue, GetStatName(def->statOp));
+        return StatText(def->statOp, rolledValue, rolledValue);
 
     // "<Spell>: <effect>", the number of the first effect scaled by the roll (crit = 150%).
     std::string text = def->name;
@@ -1859,6 +2056,10 @@ void ItemAffixMgr::HandleAddonMessage(Player* player, std::string const& payload
         ctx.budget       = GetAffixBudget(item);
         ctx.itemCategory = GetItemCategory(ctx.proto);
         ctx.hasMana      = player->GetMaxPower(POWER_MANA) > 0;
+        ctx.summonSpec   = IsSummonSpec(ctx.profile.specId);
+        for (size_t i = 0; i < slots.size(); ++i)
+            if (AffixDefinition const* def = GetAffixDef(slots[i].affixId); i != *affixSlot && def && !def->IsSkill())
+                ctx.hasSummonStat |= IsSummonStat(def->statOp);
 
         std::vector<std::string> texts;
         AffixDefinition const* currentDef = GetAffixDef(slots[*affixSlot].affixId);
@@ -1877,9 +2078,7 @@ void ItemAffixMgr::HandleAddonMessage(Player* player, std::string const& payload
             ValueRange range = BudgetRange(def.statOp, ctx.budget, _budgetMinRoll);
             if (Is2HWeapon(ctx.proto))
                 range = { Boost(range.minVal), Boost(range.maxVal) };
-            texts.push_back(range.minVal == range.maxVal
-                ? Acore::StringFormat("+{} {}", range.minVal, GetStatName(def.statOp))
-                : Acore::StringFormat("+{}-{} {}", range.minVal, range.maxVal, GetStatName(def.statOp)));
+            texts.push_back(StatText(def.statOp, range.minVal, range.maxVal));
         }
         std::sort(texts.begin(), texts.end());
 
@@ -1958,10 +2157,14 @@ ReforgeRollResult ItemAffixMgr::RollReforgeOptions(Player* player, Item* item, u
     ctx.budget       = GetAffixBudget(item);
     ctx.itemCategory = GetItemCategory(proto);
     ctx.hasMana      = player->GetMaxPower(POWER_MANA) > 0;
+    ctx.summonSpec   = IsSummonSpec(ctx.profile.specId);
     for (size_t i = 0; i < slots.size(); ++i)
         if (i != affixSlot)
             if (AffixDefinition const* def = GetAffixDef(slots[i].affixId); def && !def->IsSkill())
+            {
                 ctx.takenStats.insert(def->statOp);
+                ctx.hasSummonStat |= IsSummonStat(def->statOp);
+            }
 
     // A skill line reforges into skill affixes only; a stat line can turn into one (same chance and
     // pool as rolling) while no other line of the item is a skill affix.

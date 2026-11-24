@@ -152,6 +152,44 @@ ItemAffixes.SkillAffixes.Enable = 1
 ItemAffixes.SkillAffixChance = 20
 
 #
+#    ItemAffixes.SummonAffixes.Enable
+#        Description: Summon affixes: "+X% Summon Damage", "+X% Summon Health" and "+X% Summon
+#                     Attack Speed" for every creature the player owns (pets, guardians, minions,
+#                     totems, turrets). They are stat affixes (affix_template stat_op 23, 24, 26
+#                     from data/sql/db-world/mod_item_affixes_template_summon.sql) and roll in the
+#                     stat pool only for the specializations in ItemAffixes.SummonAffixes.Specs,
+#                     at most one per item; value from the item budget like other stats.
+#                     Damage: melee, spell and periodic damage of the summon, scaled by script
+#                     hooks. Health and attack speed: hidden carrier aura 9979002 (spell_dbc) on
+#                     each summon, set when it appears and after equipment changes (summons
+#                     within 250 yards). 0 = summon affixes stay on items but neither roll nor apply.
+#        Default:     1
+#
+
+ItemAffixes.SummonAffixes.Enable = 1
+
+#
+#    ItemAffixes.SummonAffixes.Specs
+#        Description: Comma-separated ChrSpecs ids whose players roll summon affixes
+#                     (".affix spec" shows the id). Default: Witch Hunter Houndmaster (11),
+#                     Fleshwarden Defiance (17), Necromancer Animation (35) and Rime (36), Tinker
+#                     Mechanics (50), Hunter Beast Mastery (70), Death Knight Unholy (81),
+#                     Warlock Demonology (90).
+#        Default:     "11,17,35,36,50,70,81,90"
+#
+
+ItemAffixes.SummonAffixes.Specs = "11,17,35,36,50,70,81,90"
+
+#
+#    ItemAffixes.SummonAffixes.CapPct
+#        Description: Upper limit (percent) of each summed summon stat (damage, health, attack
+#                     speed) across all equipped items.
+#        Default:     100
+#
+
+ItemAffixes.SummonAffixes.CapPct = 100
+
+#
 #    ItemAffixes.ReforgeOptionsGreen / Blue / Purple / Legendary
 #        Description: New options a Reforge shows next to the current value (1-6).
 #        Default:     1 / 2 / 3 / 4

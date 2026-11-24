@@ -10,10 +10,13 @@
 #include <mutex>
 #include <string>
 #include <unordered_map>
+#include <unordered_set>
 #include <vector>
 
+class Creature;
 class Item;
 class Player;
+class Unit;
 struct AscensionSpellRow;
 struct SpellModifier;
 
@@ -32,7 +35,8 @@ enum AffixItemCategory : uint8
 
 // affix_template.stat_op. Values match upstream so existing rows keep their meaning; gaps are
 // upstream stats removed for CoA (Move Speed 18, Life Leech 19, Hp5 20, Damage Reduction 21,
-// pet stats 22-26, Max Health 27) and Armor Penetration (17).
+// pet cooldown 22, pet damage taken 25, Max Health 27) and Armor Penetration (17).
+// The summon stats (23, 24, 26) are percentages for every creature the player owns.
 enum GenericStatOp : uint8
 {
     GSTAT_STAMINA          = 0,
@@ -52,7 +56,29 @@ enum GenericStatOp : uint8
     GSTAT_DEFENSE_RATING   = 14,
     GSTAT_PARRY_RATING     = 15,
     GSTAT_EXPERTISE_RATING = 16,
-    GSTAT_MAX
+    GSTAT_MAX,  // end of the player stats
+
+    GSTAT_SUMMON_HEALTH_PCT       = 23,
+    GSTAT_SUMMON_DAMAGE_PCT       = 24,
+    GSTAT_SUMMON_ATTACK_SPEED_PCT = 26,
+};
+
+inline bool IsSummonStat(uint8 statOp)
+{
+    return statOp == GSTAT_SUMMON_HEALTH_PCT || statOp == GSTAT_SUMMON_DAMAGE_PCT ||
+        statOp == GSTAT_SUMMON_ATTACK_SPEED_PCT;
+}
+
+// Hidden passive aura put on the player's summons: effect 0 SPELL_AURA_MOD_INCREASE_HEALTH_PERCENT,
+// effect 1 SPELL_AURA_MOD_MELEE_RANGED_HASTE (data/sql/db-world/mod_item_affixes_template_summon.sql).
+constexpr uint32 SUMMON_AFFIX_CARRIER_SPELL = 9979002;
+
+// Summed summon affix percentages of one player (before ItemAffixes.SummonAffixes.CapPct).
+struct SummonStatTotals
+{
+    int32 healthPct      = 0;
+    int32 damagePct      = 0;
+    int32 attackSpeedPct = 0;
 };
 
 enum AffixRollState : uint8
@@ -157,6 +183,8 @@ struct ItemAffixPlayerData : public DataMap::Base
     bool   removingCarrier    = false;
     bool   rebuildScheduled   = false;
     bool   statusScheduled    = false;
+    SummonStatTotals summonStats;
+    bool   summonRefreshScheduled = false;
 };
 
 // Reforge candidate (also the serialized form "id:val:crit").
@@ -219,6 +247,23 @@ public:
 
     // Deletes an item's affixes and rolls it again (GM command).
     void RerollItem(Player* player, Item* item);
+
+    // Summon affixes: totals kept per player, applied to every creature the player owns.
+    void ApplySummonStat(Player* player, uint8 statOp, int32 value, bool apply);
+    // Capped totals (ItemAffixes.SummonAffixes.CapPct); all zero for players the module does not handle.
+    SummonStatTotals GetSummonStats(Player const* player) const;
+    // The player a creature belongs to: pets, guardians, minions, totems and puppets (owner GUID).
+    static Player* GetSummonOwner(Unit const* unit);
+    // Sets the carrier aura of one summon to its owner's capped health and attack speed totals.
+    void UpdateSummonCarrier(Creature* summon, Player* owner) const;
+    // A summon entered the world: its carrier is set once its stats are initialised.
+    void OnSummonAdded(Creature* summon, Player* owner);
+    // Refreshes the carrier of every summon of the player in range (after equipment changes).
+    void ScheduleSummonRefresh(Player* player);
+    void RefreshSummons(Player* player);
+    bool IsSummonSpec(uint32 specId) const { return _summonSpecs.count(specId) != 0; }
+    // GM command: put a stat affix on an equipped item at the top of its value range.
+    bool GiveStatAffix(Player* player, Item* item, AffixDefinition const& def);
 
     AffixDefinition const* GetAffixDef(uint32 id) const;
     AffixDefinition const* GetAffixDefByKey(std::string const& key) const;
@@ -298,6 +343,9 @@ private:
     uint32 _reforgeBaseCostLegendary = 250000;
     bool   _skillAffixesEnabled      = true;
     uint32 _skillAffixChance         = 25;
+    bool   _summonAffixesEnabled     = true;
+    int32  _summonCapPct             = 100;
+    std::unordered_set<uint32> _summonSpecs;
 
     std::unordered_map<uint32, AffixDefinition> _defs;
     std::unordered_map<std::string, uint32>     _defsByKey;

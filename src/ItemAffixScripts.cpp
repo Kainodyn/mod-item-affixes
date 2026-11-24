@@ -1,10 +1,15 @@
 #include "ItemAffix.h"
 
+#include "AllCreatureScript.h"
+#include "Creature.h"
 #include "Item.h"
+#include "Pet.h"
+#include "PetScript.h"
 #include "Player.h"
 #include "ScriptMgr.h"
 #include "SharedDefines.h"
 #include "SpellAuras.h"
+#include "SpellInfo.h"
 
 class ItemAffixWorldScript : public WorldScript
 {
@@ -119,10 +124,49 @@ public:
     }
 };
 
+namespace
+{
+template <typename T>
+void ApplySummonDamage(Unit* attacker, T& damage)
+{
+    if (damage <= 0)
+        return;
+    Player* owner = ItemAffixMgr::GetSummonOwner(attacker);
+    if (!owner)
+        return;
+    if (int32 pct = sItemAffixMgr->GetSummonStats(owner).damagePct)
+        damage = T(int64(damage) * (100 + pct) / 100);
+}
+}
+
 class ItemAffixUnitScript : public UnitScript
 {
 public:
-    ItemAffixUnitScript() : UnitScript("ItemAffixUnitScript", true, { UNITHOOK_ON_AURA_REMOVE }) { }
+    ItemAffixUnitScript() : UnitScript("ItemAffixUnitScript", true, {
+        UNITHOOK_ON_AURA_REMOVE,
+        UNITHOOK_MODIFY_MELEE_DAMAGE,
+        UNITHOOK_MODIFY_SPELL_DAMAGE_TAKEN,
+        UNITHOOK_MODIFY_PERIODIC_DAMAGE_AURAS_TICK,
+    }) { }
+
+    void ModifyMeleeDamage(Unit* /*target*/, Unit* attacker, uint32& damage) override
+    {
+        ApplySummonDamage(attacker, damage);
+    }
+
+    void ModifySpellDamageTaken(Unit* /*target*/, Unit* attacker, int32& damage,
+        SpellInfo const* /*spellInfo*/) override
+    {
+        ApplySummonDamage(attacker, damage);
+    }
+
+    // The same hook carries periodic heals; summon damage affixes leave those alone.
+    void ModifyPeriodicDamageAurasTick(Unit* /*target*/, Unit* attacker, uint32& damage,
+        SpellInfo const* spellInfo) override
+    {
+        if (!spellInfo || !spellInfo->IsPositive())
+            ApplySummonDamage(attacker, damage);
+    }
 
     void OnAuraRemove(Unit* unit, AuraApplication* aurApp, AuraRemoveMode /*mode*/) override
     {
@@ -133,9 +177,36 @@ public:
     }
 };
 
+// Guardians, minions, totems and puppets: the owner GUID is set before they enter the world.
+class ItemAffixSummonScript : public AllCreatureScript
+{
+public:
+    ItemAffixSummonScript() : AllCreatureScript("ItemAffixSummonScript") { }
+
+    void OnCreatureAddWorld(Creature* creature) override
+    {
+        if (Player* owner = ItemAffixMgr::GetSummonOwner(creature))
+            sItemAffixMgr->OnSummonAdded(creature, owner);
+    }
+};
+
+// Pets: a tamed pet enters the world before it has its owner GUID, so the pet's owner is used.
+class ItemAffixPetScript : public PetScript
+{
+public:
+    ItemAffixPetScript() : PetScript("ItemAffixPetScript", { PETHOOK_ON_PET_ADD_TO_WORLD }) { }
+
+    void OnPetAddToWorld(Pet* pet) override
+    {
+        sItemAffixMgr->OnSummonAdded(pet, pet->GetOwner());
+    }
+};
+
 void AddSC_item_affix_scripts()
 {
     new ItemAffixWorldScript();
     new ItemAffixPlayerScript();
     new ItemAffixUnitScript();
+    new ItemAffixSummonScript();
+    new ItemAffixPetScript();
 }
