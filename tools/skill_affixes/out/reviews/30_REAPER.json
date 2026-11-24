@@ -827,7 +827,7 @@
     },
     {
       "key": "reaper_ghastly_screech_radius",
-      "name": "Ghastly Screech: +15% radius",
+      "name": "Ghastly Screech: +1 yd radius",
       "spec_id": 0,
       "target_spell": 806146,
       "affected_spells": [
@@ -842,8 +842,8 @@
       "effects": [
         {
           "op": "RADIUS",
-          "type": "PCT",
-          "value": 15
+          "type": "FLAT",
+          "value": 1
         }
       ],
       "scales_with_crit": true,
@@ -852,7 +852,7 @@
       "evidence": "806146 Ghastly Screech; cd=90000; catcd=90000; dur=4000; cost=200; radius=[8.0]; eff 0:INTERRUPT_CAST, 1:APPLY_AURA/MOD_SILENCE, 2:APPLY_AURA/PERIODIC_TRIGGER_SPELL_WITH_VALUE v=90; mask_unique_bit=[16384, 0, 0] fam=36",
       "client_sensitive": false,
       "confidence": "medium",
-      "notes": ""
+      "notes": "Value adjusted 2026-11-24 to an existing SpellRadius row (was PCT 15)."
     },
     {
       "key": "reaper_ghastly_screech_dur",
@@ -1047,7 +1047,7 @@
     },
     {
       "key": "reaper_masochistic_rage_dur",
-      "name": "Masochistic Rage: +15% duration",
+      "name": "Masochistic Rage: +2 sec duration",
       "spec_id": 0,
       "target_spell": 570097,
       "affected_spells": [
@@ -1058,8 +1058,8 @@
       "effects": [
         {
           "op": "DURATION",
-          "type": "PCT",
-          "value": 15
+          "type": "FLAT",
+          "value": 2000
         }
       ],
       "scales_with_crit": true,
@@ -1068,7 +1068,7 @@
       "evidence": "570097 Masochistic Rage (trigger child via 803030); dur=15000; eff 0:SCHOOL_DAMAGE v=420, 1:APPLY_AURA/MOD_DAMAGE_PERCENT_DONE v=20",
       "client_sensitive": false,
       "confidence": "medium",
-      "notes": ""
+      "notes": "Value adjusted 2026-11-24 to an existing SpellDuration row (was PCT 15)."
     },
     {
       "key": "reaper_ghostly_weapon_cost",
@@ -1155,7 +1155,7 @@
     },
     {
       "key": "reaper_endbringer_dur",
-      "name": "Endbringer: +15% duration",
+      "name": "Endbringer: +2 sec duration",
       "spec_id": 55,
       "target_spell": 800922,
       "affected_spells": [
@@ -1170,8 +1170,8 @@
       "effects": [
         {
           "op": "DURATION",
-          "type": "PCT",
-          "value": 15
+          "type": "FLAT",
+          "value": 2000
         }
       ],
       "scales_with_crit": true,
@@ -1180,7 +1180,7 @@
       "evidence": "800922 Endbringer; cd=180000; dur=15000; eff 0:APPLY_AURA/PROC_TRIGGER_SPELL, 1:APPLY_AURA/ADD_FLAT_MODIFIER v=20, 2:APPLY_AURA/ADD_PCT_MODIFIER v=30; mask_unique_bit=[0, 0, 1024] fam=36",
       "client_sensitive": false,
       "confidence": "high",
-      "notes": ""
+      "notes": "Value adjusted 2026-11-24 to an existing SpellDuration row (was PCT 15)."
     },
     {
       "key": "reaper_siphon_essence_crit",
@@ -1354,7 +1354,7 @@
     },
     {
       "key": "reaper_crow_s_harvest_radius",
-      "name": "Crow's Harvest: +15% radius",
+      "name": "Crow's Harvest: +1 yd radius",
       "spec_id": 56,
       "target_spell": 504011,
       "affected_spells": [
@@ -1369,8 +1369,8 @@
       "effects": [
         {
           "op": "RADIUS",
-          "type": "PCT",
-          "value": 15
+          "type": "FLAT",
+          "value": 1
         }
       ],
       "scales_with_crit": true,
@@ -1379,11 +1379,11 @@
       "evidence": "504011 Crow's Harvest; cost=300; range=5.0; radius=[8.0]; eff 0:WEAPON_PERCENT_DAMAGE v=75, 1:NORMALIZED_WEAPON_DMG v=8, 2:TRIGGER_SPELL; mask_unique_bit=[2097152, 0, 0] fam=36",
       "client_sensitive": false,
       "confidence": "medium",
-      "notes": ""
+      "notes": "Value adjusted 2026-11-24 to an existing SpellRadius row (was PCT 15)."
     },
     {
       "key": "reaper_bolstered_form_dur",
-      "name": "Bolstered Form: +15% duration",
+      "name": "Bolstered Form: +2 sec duration",
       "spec_id": 57,
       "target_spell": 680337,
       "affected_spells": [
@@ -1398,8 +1398,8 @@
       "effects": [
         {
           "op": "DURATION",
-          "type": "PCT",
-          "value": 15
+          "type": "FLAT",
+          "value": 2000
         }
       ],
       "scales_with_crit": true,
@@ -1408,7 +1408,7 @@
       "evidence": "680337 Bolstered Form; cd=60000; dur=15000; eff 0:APPLY_AURA/MOD_RESISTANCE_PCT v=30, 1:TRIGGER_SPELL v=1, 2:APPLY_AURA/MOD_PARRY_PERCENT v=30; mask_unique_bit=[0, 0, 131072] fam=36",
       "client_sensitive": false,
       "confidence": "high",
-      "notes": ""
+      "notes": "Value adjusted 2026-11-24 to an existing SpellDuration row (was PCT 15)."
     },
     {
       "key": "reaper_requiem_crit",
@@ -1441,7 +1441,7 @@
     },
     {
       "key": "reaper_requiem_radius",
-      "name": "Requiem: +15% radius",
+      "name": "Requiem: +1 yd radius",
       "spec_id": 57,
       "target_spell": 805717,
       "affected_spells": [
@@ -1456,8 +1456,8 @@
       "effects": [
         {
           "op": "RADIUS",
-          "type": "PCT",
-          "value": 15
+          "type": "FLAT",
+          "value": 1
         }
       ],
       "scales_with_crit": true,
@@ -1466,11 +1466,11 @@
       "evidence": "805717 Requiem; radius=[8.0]; eff 0:SCHOOL_DAMAGE v=67, 1:TRIGGER_SPELL v=1; mask_unique_bit=[256, 0, 0] fam=36",
       "client_sensitive": false,
       "confidence": "medium",
-      "notes": ""
+      "notes": "Value adjusted 2026-11-24 to an existing SpellRadius row (was PCT 15)."
     },
     {
       "key": "reaper_requiem_dur",
-      "name": "Requiem: +15% duration",
+      "name": "Requiem: +2 sec duration",
       "spec_id": 57,
       "target_spell": 572179,
       "affected_spells": [
@@ -1481,8 +1481,8 @@
       "effects": [
         {
           "op": "DURATION",
-          "type": "PCT",
-          "value": 15
+          "type": "FLAT",
+          "value": 2000
         }
       ],
       "scales_with_crit": true,
@@ -1491,7 +1491,7 @@
       "evidence": "572179 Requiem (trigger child via 805717); dur=15000; range=50000.0; eff 0:APPLY_AURA/MOD_MELEE_RANGED_HASTE v=-20",
       "client_sensitive": false,
       "confidence": "medium",
-      "notes": ""
+      "notes": "Value adjusted 2026-11-24 to an existing SpellDuration row (was PCT 15)."
     },
     {
       "key": "reaper_dreadwake_cost",
@@ -1553,7 +1553,7 @@
     },
     {
       "key": "reaper_dreadwake_radius",
-      "name": "Dreadwake: +15% radius",
+      "name": "Dreadwake: +2 yd radius",
       "spec_id": 57,
       "target_spell": 803992,
       "affected_spells": [
@@ -1568,8 +1568,8 @@
       "effects": [
         {
           "op": "RADIUS",
-          "type": "PCT",
-          "value": 15
+          "type": "FLAT",
+          "value": 2
         }
       ],
       "scales_with_crit": true,
@@ -1578,7 +1578,7 @@
       "evidence": "803992 Dreadwake; cost=300; radius=[12.0]; eff 0:NORMALIZED_WEAPON_DMG v=5, 1:WEAPON_PERCENT_DAMAGE v=80; mask_unique_bit=[0, 1073741824, 0] fam=36",
       "client_sensitive": false,
       "confidence": "medium",
-      "notes": ""
+      "notes": "Value adjusted 2026-11-24 to an existing SpellRadius row (was PCT 15)."
     }
   ],
   "rejected": [

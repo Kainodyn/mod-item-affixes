@@ -354,7 +354,7 @@
     },
     {
       "key": "ranger_emerald_arrow_cast",
-      "name": "Emerald Arrow: -0.4 sec cast time",
+      "name": "Emerald Arrow: -0.5 sec cast time",
       "spec_id": 29,
       "target_spell": 804712,
       "affected_spells": [
@@ -370,7 +370,7 @@
         {
           "op": "CASTING_TIME",
           "type": "FLAT",
-          "value": -400
+          "value": -500
         }
       ],
       "scales_with_crit": true,
@@ -379,7 +379,7 @@
       "evidence": "804712 Emerald Arrow cast=4000 cost=30 fam27 mask_unique_bit=[0, 67108864, 0] eff[SCHOOL_DAMAGE=10]. -400 = 10% of cast 4000.",
       "client_sensitive": true,
       "confidence": "high",
-      "notes": ""
+      "notes": "Value adjusted 2026-11-24 to an existing SpellCastTimes row (was FLAT -400)."
     },
     {
       "key": "ranger_woodland_arrow_dmg",
@@ -2135,7 +2135,7 @@
     },
     {
       "key": "ranger_freedom_dur",
-      "name": "Freedom: +20% duration",
+      "name": "Freedom: +1.5 sec duration",
       "spec_id": 29,
       "target_spell": 520628,
       "affected_spells": [
@@ -2146,8 +2146,8 @@
       "effects": [
         {
           "op": "DURATION",
-          "type": "PCT",
-          "value": 20
+          "type": "FLAT",
+          "value": 1500
         }
       ],
       "scales_with_crit": true,
@@ -2156,11 +2156,11 @@
       "evidence": "520628 Freedom cd=90000 cost=25 power=2 dur=8000 radius=[15.0] fam27 mask_unique_bit=None eff[APPLY_AREA_AURA_RAID/MECHANIC_IMMUNITY APPLY_AREA_AURA_RAID/MECHANIC_IMMUNITY APPLY_AREA_AURA_RAID/PROC_TRIGGER_SPELL]. group root/snare immunity 8 sec.",
       "client_sensitive": false,
       "confidence": "high",
-      "notes": "round 2 secondary"
+      "notes": "round 2 secondary Value adjusted 2026-11-24 to an existing SpellDuration row (was PCT 20)."
     },
     {
       "key": "ranger_freedom_radius",
-      "name": "Freedom: +10% radius",
+      "name": "Freedom: +1 yd radius",
       "spec_id": 29,
       "target_spell": 520628,
       "affected_spells": [
@@ -2171,8 +2171,8 @@
       "effects": [
         {
           "op": "RADIUS",
-          "type": "PCT",
-          "value": 10
+          "type": "FLAT",
+          "value": 1
         }
       ],
       "scales_with_crit": true,
@@ -2181,7 +2181,7 @@
       "evidence": "520628 Freedom cd=90000 cost=25 power=2 dur=8000 radius=[15.0] fam27 mask_unique_bit=None eff[APPLY_AREA_AURA_RAID/MECHANIC_IMMUNITY APPLY_AREA_AURA_RAID/MECHANIC_IMMUNITY APPLY_AREA_AURA_RAID/PROC_TRIGGER_SPELL]. 15 yd ally area.",
       "client_sensitive": false,
       "confidence": "medium",
-      "notes": "round 2 secondary"
+      "notes": "round 2 secondary Value adjusted 2026-11-24 to an existing SpellRadius row (was PCT 10)."
     },
     {
       "key": "ranger_horn_of_war_dur",
@@ -2384,7 +2384,7 @@
     },
     {
       "key": "ranger_whipvine_arrow_cast",
-      "name": "Whipvine Arrow: -0.15 sec cast time",
+      "name": "Whipvine Arrow: -0.2 sec cast time",
       "spec_id": 29,
       "target_spell": 806342,
       "affected_spells": [
@@ -2400,7 +2400,7 @@
         {
           "op": "CASTING_TIME",
           "type": "FLAT",
-          "value": -150
+          "value": -200
         }
       ],
       "scales_with_crit": true,
@@ -2409,7 +2409,7 @@
       "evidence": "806342 Whipvine Arrow cd=60000 cast=1700 cost=25 power=2 dur=40000 range=30.0 radius=[10.0] fam27 mask_unique_bit=[65536, 0, 0] eff[APPLY_AURA/MOD_ROOT chain=5 SCHOOL_DAMAGE=78 chain=5]. cast 1700.",
       "client_sensitive": true,
       "confidence": "high",
-      "notes": "round 2 secondary"
+      "notes": "round 2 secondary Value adjusted 2026-11-24 to an existing SpellCastTimes row (was FLAT -150)."
     },
     {
       "key": "ranger_whipvine_arrow_dur",
@@ -2629,7 +2629,7 @@
     },
     {
       "key": "ranger_outmaneuver_dur",
-      "name": "Outmaneuver: +20% duration",
+      "name": "Outmaneuver: +1.5 sec duration",
       "spec_id": 30,
       "target_spell": 557325,
       "affected_spells": [
@@ -2641,8 +2641,8 @@
       "effects": [
         {
           "op": "DURATION",
-          "type": "PCT",
-          "value": 20
+          "type": "FLAT",
+          "value": 1500
         }
       ],
       "scales_with_crit": true,
@@ -2651,7 +2651,7 @@
       "evidence": "557325 Outmaneuver cd=60000 dur=8000 range=30.0 radius=[2.0] fam27 mask_unique_bit=None eff[TELEPORT_UNITS=1 TRIGGER_SPELL APPLY_AURA/MOD_DAMAGE_FROM_CASTER=30]. 8 sec mark + stacking proc aura.",
       "client_sensitive": false,
       "confidence": "medium",
-      "notes": "round 2 secondary"
+      "notes": "round 2 secondary Value adjusted 2026-11-24 to an existing SpellDuration row (was PCT 20)."
     },
     {
       "key": "ranger_assault_crit",

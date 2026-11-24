@@ -1013,7 +1013,7 @@
     },
     {
       "key": "barb_born_in_blood_duration",
-      "name": "Born in Blood: +20% duration",
+      "name": "Born in Blood: +0.7 sec duration",
       "spec_id": 0,
       "target_spell": 560521,
       "affected_spells": [
@@ -1028,8 +1028,8 @@
       "effects": [
         {
           "op": "DURATION",
-          "type": "PCT",
-          "value": 20
+          "type": "FLAT",
+          "value": 700
         }
       ],
       "scales_with_crit": true,
@@ -1038,7 +1038,7 @@
       "evidence": "560521 Born in Blood; dur=4000; eff=APPLY_AURA/PERIODIC_HEAL,APPLY_AURA/PERIODIC_ENERGIZE,APPLY_AURA/MOD_DAMAGE_PERCENT_DONE; periodic=true; via=801549; mask_unique_bit=[0, 0, 65536]",
       "client_sensitive": false,
       "confidence": "high",
-      "notes": "round 2 secondary affix"
+      "notes": "round 2 secondary affix Value adjusted 2026-11-24 to an existing SpellDuration row (was PCT 20)."
     },
     {
       "key": "barb_skull_smash_cost",
@@ -1100,7 +1100,7 @@
     },
     {
       "key": "barb_skull_smash_range",
-      "name": "Skull Smash: +10% range",
+      "name": "Skull Smash: +2 yd range",
       "spec_id": 0,
       "target_spell": 560532,
       "affected_spells": [
@@ -1115,8 +1115,8 @@
       "effects": [
         {
           "op": "RANGE",
-          "type": "PCT",
-          "value": 10
+          "type": "FLAT",
+          "value": 2
         }
       ],
       "scales_with_crit": true,
@@ -1125,7 +1125,7 @@
       "evidence": "560532 Skull Smash; cd=120000; dur=40000; cost=30; range=25.0; mask_unique_bit=[0, 0, 262144]",
       "client_sensitive": true,
       "confidence": "high",
-      "notes": "round 2 secondary affix"
+      "notes": "round 2 secondary affix Value adjusted 2026-11-24 to an existing SpellRange row (was PCT 10)."
     },
     {
       "key": "barb_outrage_duration",
@@ -1386,7 +1386,7 @@
     },
     {
       "key": "barb_hodirs_wrath_radius",
-      "name": "Hodir's Wrath: +10% radius",
+      "name": "Hodir's Wrath: +1 yd radius",
       "spec_id": 0,
       "target_spell": 800152,
       "affected_spells": [
@@ -1401,8 +1401,8 @@
       "effects": [
         {
           "op": "RADIUS",
-          "type": "PCT",
-          "value": 10
+          "type": "FLAT",
+          "value": 1
         }
       ],
       "scales_with_crit": true,
@@ -1411,7 +1411,7 @@
       "evidence": "800152 Hodir's Wrath; cd=90000; radius=[8.0]; mask_unique_bit=[0, 0, 67108864]",
       "client_sensitive": false,
       "confidence": "high",
-      "notes": "round 2 secondary affix"
+      "notes": "round 2 secondary affix Value adjusted 2026-11-24 to an existing SpellRadius row (was PCT 10)."
     },
     {
       "key": "barb_defiance_duration",
@@ -1469,7 +1469,7 @@
     },
     {
       "key": "barb_warband_duration",
-      "name": "Warband: +20% duration",
+      "name": "Warband: +2.5 sec duration",
       "spec_id": 0,
       "target_spell": 560883,
       "affected_spells": [
@@ -1484,8 +1484,8 @@
       "effects": [
         {
           "op": "DURATION",
-          "type": "PCT",
-          "value": 20
+          "type": "FLAT",
+          "value": 2500
         }
       ],
       "scales_with_crit": true,
@@ -1494,7 +1494,7 @@
       "evidence": "560883 Warband; cd=90000; dur=12000; cost=30; radius=[30.0]; eff=APPLY_AREA_AURA_RAID/PERIODIC_TRIGGER_SPELL; mask_unique_bit=[0, 0, 524288]",
       "client_sensitive": false,
       "confidence": "high",
-      "notes": "round 2 secondary affix"
+      "notes": "round 2 secondary affix Value adjusted 2026-11-24 to an existing SpellDuration row (was PCT 20)."
     },
     {
       "key": "barb_warband_radius",
@@ -1606,7 +1606,7 @@
     },
     {
       "key": "barb_berserker_rush_range",
-      "name": "Berserker Rush: +10% range",
+      "name": "Berserker Rush: +2 yd range",
       "spec_id": 1,
       "target_spell": 560518,
       "affected_spells": [
@@ -1621,8 +1621,8 @@
       "effects": [
         {
           "op": "RANGE",
-          "type": "PCT",
-          "value": 10
+          "type": "FLAT",
+          "value": 2
         }
       ],
       "scales_with_crit": true,
@@ -1631,7 +1631,7 @@
       "evidence": "560518 Berserker Rush; cd=30000; dur=1000; range=25.0; mask_unique_bit=[0, 8388608, 0]",
       "client_sensitive": true,
       "confidence": "high",
-      "notes": "round 2 secondary affix"
+      "notes": "round 2 secondary affix Value adjusted 2026-11-24 to an existing SpellRange row (was PCT 10)."
     },
     {
       "key": "barb_impaling_spear_crit",
@@ -1743,7 +1743,7 @@
     },
     {
       "key": "barb_gutspiller_duration",
-      "name": "Gutspiller: +20% duration",
+      "name": "Gutspiller: +2.5 sec duration",
       "spec_id": 1,
       "target_spell": 805832,
       "affected_spells": [
@@ -1758,8 +1758,8 @@
       "effects": [
         {
           "op": "DURATION",
-          "type": "PCT",
-          "value": 20
+          "type": "FLAT",
+          "value": 2500
         }
       ],
       "scales_with_crit": true,
@@ -1768,7 +1768,7 @@
       "evidence": "805832 Gutspiller; dur=12000; cost=20; range=30.0; eff=APPLY_AURA/PERIODIC_DAMAGE ch=1,APPLY_AURA/PERIODIC_TRIGGER_SPELL_WITH_VALUE ch=1; periodic=true; mask_unique_bit=[262144, 0, 0]",
       "client_sensitive": false,
       "confidence": "high",
-      "notes": "round 2 secondary affix"
+      "notes": "round 2 secondary affix Value adjusted 2026-11-24 to an existing SpellDuration row (was PCT 20)."
     },
     {
       "key": "barb_gutspiller_range",
@@ -2144,7 +2144,7 @@
     },
     {
       "key": "barb_crush_radius",
-      "name": "Crush: +10% radius",
+      "name": "Crush: +7% radius",
       "spec_id": 2,
       "target_spell": 500915,
       "affected_spells": [
@@ -2160,7 +2160,7 @@
         {
           "op": "RADIUS",
           "type": "PCT",
-          "value": 10
+          "value": 7
         }
       ],
       "scales_with_crit": true,
@@ -2169,11 +2169,11 @@
       "evidence": "500915 Crush; cd=25000; cast=2000; dur=1000; cost=70; radius=[7.5]; mask_unique_bit=[0, 64, 0]",
       "client_sensitive": false,
       "confidence": "high",
-      "notes": "round 2 secondary affix"
+      "notes": "round 2 secondary affix Adjusted 2026-11-24 to hit index rows (was PCT 10)."
     },
     {
       "key": "barb_crush_duration",
-      "name": "Crush: +15% duration",
+      "name": "Crush: +0.5 sec duration",
       "spec_id": 2,
       "target_spell": 504875,
       "affected_spells": [
@@ -2184,8 +2184,8 @@
       "effects": [
         {
           "op": "DURATION",
-          "type": "PCT",
-          "value": 15
+          "type": "FLAT",
+          "value": 500
         }
       ],
       "scales_with_crit": true,
@@ -2194,7 +2194,7 @@
       "evidence": "504875 Crush; dur=3000; cost=70; range=50000.0; eff=APPLY_AURA/MOD_STUN; via=500915; mask_unique_bit=None",
       "client_sensitive": false,
       "confidence": "medium",
-      "notes": "round 2 secondary affix; CC/slow aura: +15% only"
+      "notes": "round 2 secondary affix; CC/slow aura: +15% only Value adjusted 2026-11-24 to an existing SpellDuration row (was PCT 15)."
     },
     {
       "key": "barb_brutal_swing_crit",
@@ -2394,7 +2394,7 @@
     },
     {
       "key": "barb_frozen_tankard_duration",
-      "name": "Frozen Tankard: +15% duration",
+      "name": "Frozen Tankard: +0.5 sec duration",
       "spec_id": 3,
       "target_spell": 800280,
       "affected_spells": [
@@ -2405,8 +2405,8 @@
       "effects": [
         {
           "op": "DURATION",
-          "type": "PCT",
-          "value": 15
+          "type": "FLAT",
+          "value": 500
         }
       ],
       "scales_with_crit": true,
@@ -2415,7 +2415,7 @@
       "evidence": "800280 Frozen Tankard; dur=4000; range=50000.0; eff=APPLY_AURA/MOD_STUN,APPLY_AURA/DUMMY; via=805815; mask_unique_bit=None",
       "client_sensitive": false,
       "confidence": "medium",
-      "notes": "round 2 secondary affix; CC/slow aura: +15% only"
+      "notes": "round 2 secondary affix; CC/slow aura: +15% only Value adjusted 2026-11-24 to an existing SpellDuration row (was PCT 15)."
     },
     {
       "key": "barb_tavern_brawl_cost",
@@ -2532,7 +2532,7 @@
     },
     {
       "key": "barb_keg_smash_radius",
-      "name": "Keg Smash: +10% radius",
+      "name": "Keg Smash: +1 yd radius",
       "spec_id": 3,
       "target_spell": 805809,
       "affected_spells": [
@@ -2543,8 +2543,8 @@
       "effects": [
         {
           "op": "RADIUS",
-          "type": "PCT",
-          "value": 10
+          "type": "FLAT",
+          "value": 1
         }
       ],
       "scales_with_crit": true,
@@ -2553,7 +2553,7 @@
       "evidence": "805809 Keg Smash; radius=[5.0]; range=50000.0; via=805808; mask_unique_bit=None",
       "client_sensitive": false,
       "confidence": "medium",
-      "notes": "round 2 secondary affix"
+      "notes": "round 2 secondary affix Value adjusted 2026-11-24 to an existing SpellRadius row (was PCT 10)."
     },
     {
       "key": "barb_ale_of_the_god_king_crit",
@@ -2694,7 +2694,7 @@
     },
     {
       "key": "barb_ramhorn_rage_radius",
-      "name": "Ramhorn Rage: +10% radius",
+      "name": "Ramhorn Rage: +1 yd radius",
       "spec_id": 3,
       "target_spell": 805804,
       "affected_spells": [
@@ -2709,8 +2709,8 @@
       "effects": [
         {
           "op": "RADIUS",
-          "type": "PCT",
-          "value": 10
+          "type": "FLAT",
+          "value": 1
         }
       ],
       "scales_with_crit": true,
@@ -2719,7 +2719,7 @@
       "evidence": "805804 Ramhorn Rage; cd=120000; dur=3000; radius=[8.0]; mask_unique_bit=[2, 0, 0]",
       "client_sensitive": false,
       "confidence": "high",
-      "notes": "round 2 secondary affix"
+      "notes": "round 2 secondary affix Value adjusted 2026-11-24 to an existing SpellRadius row (was PCT 10)."
     },
     {
       "key": "barb_war_cry_duration",
@@ -2752,7 +2752,7 @@
     },
     {
       "key": "barb_war_cry_radius",
-      "name": "War Cry: +10% radius",
+      "name": "War Cry: +2 yd radius",
       "spec_id": 3,
       "target_spell": 500995,
       "affected_spells": [
@@ -2767,8 +2767,8 @@
       "effects": [
         {
           "op": "RADIUS",
-          "type": "PCT",
-          "value": 10
+          "type": "FLAT",
+          "value": 2
         }
       ],
       "scales_with_crit": true,
@@ -2777,7 +2777,7 @@
       "evidence": "500995 War Cry; cd=180000; dur=20000; radius=[25.0]; mask_unique_bit=[0, 67108864, 0]",
       "client_sensitive": false,
       "confidence": "high",
-      "notes": "round 2 secondary affix"
+      "notes": "round 2 secondary affix Value adjusted 2026-11-24 to an existing SpellRadius row (was PCT 10)."
     },
     {
       "key": "barb_ancestral_evolution_duration",
@@ -2922,7 +2922,7 @@
     },
     {
       "key": "barb_breath_of_the_north_duration",
-      "name": "Breath of The North: +15% duration",
+      "name": "Breath of The North: +0.5 sec duration",
       "spec_id": 3,
       "target_spell": 800838,
       "affected_spells": [
@@ -2937,8 +2937,8 @@
       "effects": [
         {
           "op": "DURATION",
-          "type": "PCT",
-          "value": 15
+          "type": "FLAT",
+          "value": 500
         }
       ],
       "scales_with_crit": true,
@@ -2947,11 +2947,11 @@
       "evidence": "800838 Breath of The North; dur=5000; cost=50; radius=[12.0]; eff=SCHOOL_DAMAGE,APPLY_AURA/MOD_DECREASE_SPEED; mask_unique_bit=[0, 16777216, 0]",
       "client_sensitive": false,
       "confidence": "high",
-      "notes": "round 2 secondary affix; CC/slow aura: +15% only"
+      "notes": "round 2 secondary affix; CC/slow aura: +15% only Value adjusted 2026-11-24 to an existing SpellDuration row (was PCT 15)."
     },
     {
       "key": "barb_breath_of_the_north_radius",
-      "name": "Breath of The North: +10% radius",
+      "name": "Breath of The North: +1 yd radius",
       "spec_id": 3,
       "target_spell": 800838,
       "affected_spells": [
@@ -2966,8 +2966,8 @@
       "effects": [
         {
           "op": "RADIUS",
-          "type": "PCT",
-          "value": 10
+          "type": "FLAT",
+          "value": 1
         }
       ],
       "scales_with_crit": true,
@@ -2976,7 +2976,7 @@
       "evidence": "800838 Breath of The North; dur=5000; cost=50; radius=[12.0]; mask_unique_bit=[0, 16777216, 0]",
       "client_sensitive": false,
       "confidence": "high",
-      "notes": "round 2 secondary affix"
+      "notes": "round 2 secondary affix Value adjusted 2026-11-24 to an existing SpellRadius row (was PCT 10)."
     }
   ],
   "rejected": [

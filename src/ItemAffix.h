@@ -5,6 +5,7 @@
 #include "DataMap.h"
 #include "ObjectGuid.h"
 #include "Define.h"
+#include <array>
 #include <atomic>
 #include <cstdint>
 #include <mutex>
@@ -16,6 +17,7 @@ class Item;
 class Player;
 class Spell;
 class SpellInfo;
+struct AscensionSpellRow;
 struct SpellModifier;
 
 // Item category filter for affix_template.item_category.
@@ -115,6 +117,7 @@ struct AffixDefinition
     bool        scalesWithCrit = false;
     std::vector<SkillAffixEffect> effects;
     std::vector<uint32> targets;  // affix_skill_target
+    std::vector<uint32> rankTargets;  // targets plus their other ranks (mask affixes while rows stream)
 
     bool IsSkill() const { return affixType == AFFIX_TYPE_SKILL; }
 };
@@ -139,6 +142,16 @@ struct ActiveSkillAffix
     int32  scalePct;
 };
 
+// Summed skill affix modifiers of one spell, written into the Spell row streamed to the client
+// (ItemAffixes.SkillAffixes.StreamSpellRows). Indexed by SpellModOp.
+constexpr uint8 SKILL_ROW_MAX_OPS = 32;
+struct SkillRowEffects
+{
+    std::array<int32, SKILL_ROW_MAX_OPS> flat{};
+    std::array<int32, SKILL_ROW_MAX_OPS> pct{};
+    std::vector<std::string> notes;  // affixes without a Spell row field (damage, crit, DoT, ...)
+};
+
 // Per-player bookkeeping of the stat mods currently applied, keyed by item GUID, and of the skill
 // affix spell modifiers (owned here, never by the core) built from every applied skill affix.
 struct ItemAffixPlayerData : public DataMap::Base
@@ -149,6 +162,10 @@ struct ItemAffixPlayerData : public DataMap::Base
     std::unordered_map<uint64, std::vector<ActiveSkillAffix>> activeSkillAffixes;
     std::vector<SpellModifier*>          skillMods;      // registered with Player::AddSpellMod
     std::unordered_map<uint32, uint32>   cooldownCuts;   // spell id -> ms cut after each cast (hook_cd)
+    std::unordered_map<uint32, SkillRowEffects> rowEffects;  // spell id -> modifiers its streamed row shows
+    std::unordered_map<uint32, size_t>   sentRows;       // spell id -> signature of the modified row the client has
+    bool   rowsReady          = true;    // false from login until the delayed first row sync
+    bool   rowResetScheduled  = false;
     uint32 batchDepth         = 0;
     bool   rebuildPending     = false;
     bool   removingCarrier    = false;
@@ -238,6 +255,15 @@ public:
     void  TrackCooldownCuts(ItemAffixPlayerData* data, bool has);
     size_t GetSkillAffixCount() const { return _skillAffixCount; }
 
+    // Per-player streamed Spell rows (ItemAffixes.SkillAffixes.StreamSpellRows, core patch
+    // core-ascension-spell-row-api). Sends the modified row of every affected spell and the original
+    // row of every spell that is no longer affected. resetClassSpells also sends the original row of
+    // every other spell the class's skill affixes can target (login, spec change).
+    bool  StreamsSpellRows() const { return _streamSpellRows; }
+    void  SyncSpellRows(Player* player, bool resetClassSpells);
+    void  ScheduleSpellRowReset(Player* player);
+    static void ApplySpellRowEffects(SkillRowEffects const& effects, AscensionSpellRow& row);
+
     // Addon protocol (prefix AFXM).
     void HandleAddonMessage(Player* player, std::string const& payload);
     void SendAddonMsg(Player* player, std::string const& payload);
@@ -264,6 +290,7 @@ private:
     bool   RollsSkillAffix(RollContext const& ctx) const;
     void   RollValue(RollContext const& ctx, AffixDefinition const& def, int32& value, bool& isCrit) const;
     void   LoadSkillAffixes();
+    void   BuildSkillMods(Player* player);
     void   SetBatch(Player* player, bool begin);
     bool   ItemHasSkillAffix(std::vector<AffixSlot> const& slots, size_t ignoreSlot = SIZE_MAX) const;
     void   RefreshEquippedItem(Player* player, Item* item);
@@ -289,6 +316,7 @@ private:
     uint32 _reforgeBaseCost[5]       = { 0, 0, 5000, 20000, 75000 };
     uint32 _reforgeBaseCostLegendary = 250000;
     bool   _skillAffixesEnabled      = true;
+    bool   _streamSpellRows          = false;
     uint32 _skillAffixChance         = 25;
 
     std::unordered_map<uint32, AffixDefinition> _defs;

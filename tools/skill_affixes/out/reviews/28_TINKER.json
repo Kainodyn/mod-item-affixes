@@ -242,7 +242,7 @@
     },
     {
       "key": "tk_rocket_launcher_cast",
-      "name": "Rocket Launcher: -0.25 sec cast time",
+      "name": "Rocket Launcher: -0.3 sec cast time",
       "spec_id": 49,
       "target_spell": 500235,
       "affected_spells": [
@@ -258,7 +258,7 @@
         {
           "op": "CASTING_TIME",
           "type": "FLAT",
-          "value": -250
+          "value": -300
         }
       ],
       "scales_with_crit": true,
@@ -267,7 +267,7 @@
       "evidence": "500235 Rocket Launcher; cast=3000; cost_pct=8; mask_unique_bit=[67108864, 0, 0]",
       "client_sensitive": true,
       "confidence": "high",
-      "notes": ""
+      "notes": "Value adjusted 2026-11-24 to an existing SpellCastTimes row (was FLAT -250)."
     },
     {
       "key": "tk_rocket_launcher_crit",
@@ -1451,7 +1451,7 @@
     },
     {
       "key": "tk_hyperblast_barrage_cast",
-      "name": "Hyperblast Barrage: -0.25 sec cast time",
+      "name": "Hyperblast Barrage: -0.3 sec cast time",
       "spec_id": 49,
       "target_spell": 500249,
       "affected_spells": [
@@ -1463,7 +1463,7 @@
         {
           "op": "CASTING_TIME",
           "type": "FLAT",
-          "value": -250
+          "value": -300
         }
       ],
       "scales_with_crit": true,
@@ -1472,7 +1472,7 @@
       "evidence": "500249 Hyperblast Barrage; cast=2000; cd=30000; radius=[30.0]; cost_pct=18; eff0=SCHOOL_DAMAGE v=831; eff1=TRIGGER_SPELL",
       "client_sensitive": true,
       "confidence": "high",
-      "notes": ""
+      "notes": "Value adjusted 2026-11-24 to an existing SpellCastTimes row (was FLAT -250)."
     },
     {
       "key": "tk_hyperblast_barrage_crit",

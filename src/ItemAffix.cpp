@@ -1,7 +1,9 @@
 #include "ItemAffix.h"
 
+#include "AscensionClientSpellRows.h"
 #include "Bag.h"
 #include "Config.h"
+#include "DBCStores.h"
 #include "DatabaseEnv.h"
 #include "GameTime.h"
 #include "Item.h"
@@ -25,6 +27,7 @@
 #include "WorldSession.h"
 #include <algorithm>
 #include <cmath>
+#include <functional>
 #include <limits>
 #include <map>
 #include <tuple>
@@ -358,6 +361,308 @@ void ForEachCarriedItem(Player* player, Fn&& fn)
 }
 }
 
+// ---------------------------------------------------------------------------
+// Streamed Spell rows (ItemAffixes.SkillAffixes.StreamSpellRows)
+// ---------------------------------------------------------------------------
+
+namespace
+{
+// Spell.dbc columns (DBCStructure.h SpellEntry).
+constexpr uint32 ROW_CASTING_TIME_INDEX     = 28;
+constexpr uint32 ROW_RECOVERY_TIME          = 29;
+constexpr uint32 ROW_CATEGORY_RECOVERY_TIME = 30;
+constexpr uint32 ROW_DURATION_INDEX         = 40;
+constexpr uint32 ROW_MANA_COST              = 42;
+constexpr uint32 ROW_RANGE_INDEX            = 46;
+constexpr uint32 ROW_EFFECT                 = 71;
+constexpr uint32 ROW_EFFECT_DIE_SIDES       = 74;
+constexpr uint32 ROW_EFFECT_BASE_POINTS     = 80;
+constexpr uint32 ROW_EFFECT_RADIUS_INDEX    = 92;
+constexpr uint32 ROW_EFFECT_CHAIN_TARGET    = 104;
+constexpr uint32 ROW_MANA_COST_PERCENTAGE   = 204;
+constexpr size_t MAX_ROW_NOTE               = 400;
+constexpr Milliseconds SPELL_ROW_RESET_DELAY = 5000ms;
+static_assert(SKILL_ROW_MAX_OPS >= MAX_SPELLMOD);
+
+bool HasRowField(uint8 op)
+{
+    switch (op)
+    {
+        case SPELLMOD_COOLDOWN:
+        case SPELLMOD_COST:
+        case SPELLMOD_EFFECT1:
+        case SPELLMOD_EFFECT2:
+        case SPELLMOD_EFFECT3:
+        case SPELLMOD_ALL_EFFECTS:
+        case SPELLMOD_JUMP_TARGETS:
+        case SPELLMOD_CASTING_TIME:
+        case SPELLMOD_RANGE:
+        case SPELLMOD_DURATION:
+        case SPELLMOD_RADIUS:
+            return true;
+        default:
+            return false;
+    }
+}
+
+bool Touches(SkillRowEffects const& fx, uint8 op)
+{
+    return fx.flat[op] || fx.pct[op];
+}
+
+// Same order as Player::ApplySpellMod.
+double Modified(double base, SkillRowEffects const& fx, uint8 op)
+{
+    double const mul = (100.0 + fx.pct[op]) / 100.0;
+    if (op == SPELLMOD_CASTING_TIME || op == SPELLMOD_DURATION)
+        return base + fx.flat[op] > 0 ? (base + fx.flat[op]) * mul : 0.0;
+    return base * mul + fx.flat[op];
+}
+
+uint32 NonNegative(double value)
+{
+    return value <= 0.0 ? 0 : uint32(std::min<double>(std::lround(value), std::numeric_limits<int32>::max()));
+}
+
+// Nearest key, the lower one on a tie (tools/skill_affixes/analyze_index_rounding.py).
+template <typename Key>
+uint32 NearestIndex(std::map<Key, uint32> const& rows, double want)
+{
+    if (rows.empty())
+        return 0;
+    auto upper = rows.lower_bound(Key(std::ceil(want)));
+    if (upper == rows.end())
+        return std::prev(upper)->second;
+    if (upper == rows.begin())
+        return upper->second;
+    auto lower = std::prev(upper);
+    return want - double(lower->first) <= double(upper->first) - want ? lower->second : upper->second;
+}
+
+uint32 NearestCastTimeIndex(double want)
+{
+    static std::map<int32, uint32> const rows = []
+    {
+        std::map<int32, uint32> found;
+        for (uint32 id = 1; id < sSpellCastTimesStore.GetNumRows(); ++id)
+            if (SpellCastTimesEntry const* entry = sSpellCastTimesStore.LookupEntry(id))
+                if (entry->CastTime >= 0)
+                    found.emplace(entry->CastTime, id);
+        return found;
+    }();
+    return NearestIndex(rows, want);
+}
+
+uint32 NearestDurationIndex(double want)
+{
+    static std::map<int32, uint32> const rows = []
+    {
+        std::map<int32, uint32> found;
+        for (uint32 id = 1; id < sSpellDurationStore.GetNumRows(); ++id)
+            if (SpellDurationEntry const* entry = sSpellDurationStore.LookupEntry(id))
+                if (entry->Duration[0] > 0 && !entry->Duration[1] && entry->Duration[2] == entry->Duration[0])
+                    found.emplace(entry->Duration[0], id);
+        return found;
+    }();
+    return NearestIndex(rows, want);
+}
+
+// Radius in thousandths of a yard.
+uint32 NearestRadiusIndex(double want)
+{
+    static std::map<int32, uint32> const rows = []
+    {
+        std::map<int32, uint32> found;
+        for (uint32 id = 1; id < sSpellRadiusStore.GetNumRows(); ++id)
+            if (SpellRadiusEntry const* entry = sSpellRadiusStore.LookupEntry(id))
+                if (entry->RadiusMin > 0.0f && entry->RadiusPerLevel == 0.0f)
+                    found.emplace(int32(std::lround(entry->RadiusMin * 1000.0f)), id);
+        return found;
+    }();
+    return NearestIndex(rows, want * 1000.0);
+}
+
+// The longest range row not beyond the server's range, with the same minimum ranges and flags, so the
+// client never accepts a cast the server rejects as out of range.
+uint32 RangeIndexAtMost(SpellRangeEntry const* base, double hostile, double friendly)
+{
+    uint32 best = 0;
+    float bestHostile = -1.0f;
+    for (uint32 id = 1; id < sSpellRangeStore.GetNumRows(); ++id)
+    {
+        SpellRangeEntry const* entry = sSpellRangeStore.LookupEntry(id);
+        if (!entry || entry->Flags != base->Flags || entry->RangeMin[0] != base->RangeMin[0] ||
+            entry->RangeMin[1] != base->RangeMin[1])
+            continue;
+        if (entry->RangeMax[0] > hostile + 0.001 || entry->RangeMax[1] > friendly + 0.001)
+            continue;
+        if (entry->RangeMax[0] > bestHostile)
+        {
+            best = id;
+            bestHostile = entry->RangeMax[0];
+        }
+    }
+    return best;
+}
+
+size_t RowSignature(SkillRowEffects const& fx)
+{
+    size_t seed = 0;
+    auto mix = [&seed](size_t value) { seed ^= value + 0x9e3779b97f4a7c15ULL + (seed << 6) + (seed >> 2); };
+    for (uint8 op = 0; op < SKILL_ROW_MAX_OPS; ++op)
+    {
+        mix(std::hash<int32>()(fx.flat[op]));
+        mix(std::hash<int32>()(fx.pct[op]));
+    }
+    for (std::string const& note : fx.notes)
+        mix(std::hash<std::string>()(note));
+    return seed;
+}
+
+void SkillAffixSpellRowOverride(Player* player, AscensionSpellRow& row)
+{
+    if (!player || !sItemAffixMgr->StreamsSpellRows() || !sItemAffixMgr->Handles(player))
+        return;
+    ItemAffixPlayerData* data = player->CustomData.Get<ItemAffixPlayerData>("ItemAffixData");
+    if (!data)
+        return;
+    if (auto it = data->rowEffects.find(row.SpellId()); it != data->rowEffects.end())
+        ItemAffixMgr::ApplySpellRowEffects(it->second, row);
+}
+}
+
+void ItemAffixMgr::ApplySpellRowEffects(SkillRowEffects const& fx, AscensionSpellRow& row)
+{
+    if (Touches(fx, SPELLMOD_COOLDOWN))
+        for (uint32 field : { ROW_RECOVERY_TIME, ROW_CATEGORY_RECOVERY_TIME })
+            if (uint32 base = row.Get(field))
+                row.Set(field, NonNegative(Modified(base, fx, SPELLMOD_COOLDOWN)));
+
+    if (Touches(fx, SPELLMOD_COST))
+    {
+        if (uint32 base = row.Get(ROW_MANA_COST))
+            row.Set(ROW_MANA_COST, NonNegative(Modified(base, fx, SPELLMOD_COST)));
+        if (uint32 base = row.Get(ROW_MANA_COST_PERCENTAGE); base && fx.pct[SPELLMOD_COST])
+            row.Set(ROW_MANA_COST_PERCENTAGE, NonNegative(base * (100.0 + fx.pct[SPELLMOD_COST]) / 100.0));
+    }
+
+    static constexpr uint8 EffectOps[MAX_SPELL_EFFECTS] = { SPELLMOD_EFFECT1, SPELLMOD_EFFECT2, SPELLMOD_EFFECT3 };
+    for (uint8 i = 0; i < MAX_SPELL_EFFECTS; ++i)
+    {
+        if (!row.Get(ROW_EFFECT + i))
+            continue;
+        if (Touches(fx, SPELLMOD_ALL_EFFECTS) || Touches(fx, EffectOps[i]))
+        {
+            // DBC base points are the shown value minus one when the effect rolls dice.
+            int32 const offset = int32(row.Get(ROW_EFFECT_DIE_SIDES + i)) > 0 ? 1 : 0;
+            double value = double(int32(row.Get(ROW_EFFECT_BASE_POINTS + i)) + offset);
+            if (Touches(fx, SPELLMOD_ALL_EFFECTS))
+                value = Modified(value, fx, SPELLMOD_ALL_EFFECTS);
+            if (Touches(fx, EffectOps[i]))
+                value = Modified(value, fx, EffectOps[i]);
+            row.Set(ROW_EFFECT_BASE_POINTS + i, uint32(int32(std::lround(value)) - offset));
+        }
+        if (uint32 chain = row.Get(ROW_EFFECT_CHAIN_TARGET + i); chain && Touches(fx, SPELLMOD_JUMP_TARGETS))
+            row.Set(ROW_EFFECT_CHAIN_TARGET + i, NonNegative(Modified(chain, fx, SPELLMOD_JUMP_TARGETS)));
+        if (Touches(fx, SPELLMOD_RADIUS))
+            if (SpellRadiusEntry const* radius = sSpellRadiusStore.LookupEntry(row.Get(ROW_EFFECT_RADIUS_INDEX + i)))
+                if (radius->RadiusMin > 0.0f)
+                    if (uint32 index = NearestRadiusIndex(Modified(radius->RadiusMin, fx, SPELLMOD_RADIUS)))
+                        row.Set(ROW_EFFECT_RADIUS_INDEX + i, index);
+    }
+
+    if (Touches(fx, SPELLMOD_CASTING_TIME))
+        if (SpellCastTimesEntry const* cast = sSpellCastTimesStore.LookupEntry(row.Get(ROW_CASTING_TIME_INDEX)))
+            if (cast->CastTime > 0)
+                if (uint32 index = NearestCastTimeIndex(Modified(cast->CastTime, fx, SPELLMOD_CASTING_TIME)))
+                    row.Set(ROW_CASTING_TIME_INDEX, index);
+
+    if (Touches(fx, SPELLMOD_DURATION))
+        if (SpellDurationEntry const* duration = sSpellDurationStore.LookupEntry(row.Get(ROW_DURATION_INDEX)))
+            if (duration->Duration[0] > 0)
+                if (uint32 index = NearestDurationIndex(Modified(duration->Duration[0], fx, SPELLMOD_DURATION)))
+                    row.Set(ROW_DURATION_INDEX, index);
+
+    if (Touches(fx, SPELLMOD_RANGE))
+        if (SpellRangeEntry const* range = sSpellRangeStore.LookupEntry(row.Get(ROW_RANGE_INDEX)))
+            if (range->RangeMax[0] > 0.0f)
+                if (uint32 index = RangeIndexAtMost(range, Modified(range->RangeMax[0], fx, SPELLMOD_RANGE),
+                        Modified(range->RangeMax[1], fx, SPELLMOD_RANGE)))
+                    row.Set(ROW_RANGE_INDEX, index);
+
+    if (!fx.notes.empty())
+    {
+        std::string note = "Affixes: ";
+        for (size_t i = 0; i < fx.notes.size(); ++i)
+            note += (i ? "; " : "") + fx.notes[i];
+        if (note.size() > MAX_ROW_NOTE)
+            note.resize(MAX_ROW_NOTE);
+        std::string& description = row.Strings[AscensionSpellRow::DESCRIPTION];
+        description += (description.empty() ? "" : "\n\n") + std::string("|cff1eff00") + note + "|r";
+    }
+}
+
+void ItemAffixMgr::SyncSpellRows(Player* player, bool resetClassSpells)
+{
+    if (!player || !Handles(player))
+        return;
+    ItemAffixPlayerData* data = player->CustomData.GetDefault<ItemAffixPlayerData>("ItemAffixData");
+    if (!data->rowsReady)
+        return;
+
+    std::unordered_set<uint32> originals;
+    for (auto const& [spellId, signature] : data->sentRows)
+        if (!data->rowEffects.count(spellId))
+            originals.insert(spellId);
+    if (resetClassSpells)
+        if (auto pool = _skillPoolByClass.find(player->getClass()); pool != _skillPoolByClass.end())
+            for (uint32 affixId : pool->second)
+                if (AffixDefinition const* def = GetAffixDef(affixId))
+                    for (std::vector<uint32> const* list : { &def->targets, &def->rankTargets })
+                        for (uint32 spellId : *list)
+                            if (!data->rowEffects.count(spellId))
+                                originals.insert(spellId);
+
+    for (uint32 spellId : originals)
+    {
+        AscensionSendPlayerSpellRow(player, spellId);
+        data->sentRows.erase(spellId);
+    }
+
+    for (auto const& [spellId, effects] : data->rowEffects)
+    {
+        size_t const signature = RowSignature(effects);
+        auto sent = data->sentRows.find(spellId);
+        if (!resetClassSpells && sent != data->sentRows.end() && sent->second == signature)
+            continue;
+        if (AscensionSendPlayerSpellRow(player, spellId))
+            data->sentRows[spellId] = signature;
+    }
+}
+
+// Login and spec change: the client may still hold rows from before, so once the client is ready
+// every spell the class's skill affixes can touch is sent again.
+void ItemAffixMgr::ScheduleSpellRowReset(Player* player)
+{
+    if (!_streamSpellRows || !_skillAffixCount || !Handles(player))
+        return;
+    ItemAffixPlayerData* data = player->CustomData.GetDefault<ItemAffixPlayerData>("ItemAffixData");
+    data->rowsReady = false;
+    if (data->rowResetScheduled)
+        return;
+    data->rowResetScheduled = true;
+    player->m_Events.AddEventAtOffset([player]()
+    {
+        ItemAffixPlayerData* pending = player->CustomData.Get<ItemAffixPlayerData>("ItemAffixData");
+        if (!pending)
+            return;
+        pending->rowResetScheduled = false;
+        pending->rowsReady = true;
+        if (player->IsInWorld())
+            sItemAffixMgr->SyncSpellRows(player, true);
+    }, SPELL_ROW_RESET_DELAY);
+}
+
 struct ItemAffixMgr::RollContext
 {
     Player*                 player = nullptr;
@@ -425,6 +730,8 @@ void ItemAffixMgr::LoadConfig()
 
     _skillAffixesEnabled = sConfigMgr->GetOption<bool>("ItemAffixes.SkillAffixes.Enable", true);
     _skillAffixChance    = std::min<uint32>(sConfigMgr->GetOption<uint32>("ItemAffixes.SkillAffixChance", 20), 100);
+    _streamSpellRows     = sConfigMgr->GetOption<bool>("ItemAffixes.SkillAffixes.StreamSpellRows", false);
+    AscensionSetSpellRowOverride(_streamSpellRows ? &SkillAffixSpellRowOverride : nullptr);
 }
 
 void ItemAffixMgr::LoadAffixTemplates()
@@ -584,6 +891,10 @@ void ItemAffixMgr::LoadSkillAffixes()
                     def.targets.push_back(spellId);
         if (def.targets.empty() && sSpellMgr->GetSpellInfo(def.targetSpell))
             def.targets.push_back(def.targetSpell);
+        for (uint32 spellId : def.targets)
+            for (uint32 rank = sSpellMgr->GetFirstSpellInChain(spellId); rank; rank = sSpellMgr->GetNextSpellInChain(rank))
+                if (std::find(def.rankTargets.begin(), def.rankTargets.end(), rank) == def.rankTargets.end())
+                    def.rankTargets.push_back(rank);
 
         if (def.classId < FIRST_COA_CLASS || def.classId > LAST_COA_CLASS)
             error = Acore::StringFormat("class {} is not a CoA class", def.classId);
@@ -1085,12 +1396,24 @@ void ItemAffixMgr::RebuildSkillMods(Player* player)
 {
     if (!player)
         return;
+    BuildSkillMods(player);
+    if (_streamSpellRows)
+        SyncSpellRows(player, false);
+}
+
+// With streamed rows every affix is a targetSpellId modifier (mask=0): the core sends no client spell
+// modifier for it, so the client applies the affix only once, through the streamed row.
+void ItemAffixMgr::BuildSkillMods(Player* player)
+{
     ItemAffixPlayerData* data = player->CustomData.GetDefault<ItemAffixPlayerData>("ItemAffixData");
     data->rebuildPending = false;
 
     // Modifiers always go before the aura that owns them.
     ClearSkillMods(player, data);
     data->cooldownCuts.clear();
+    data->rowEffects.clear();
+    bool const stream = _streamSpellRows;
+    std::unordered_map<uint32, std::vector<std::string>> notes;
 
     struct ModKey
     {
@@ -1117,10 +1440,25 @@ void ItemAffixMgr::RebuildSkillMods(Player* player)
                 AffixDefinition const* def = GetAffixDef(active.affixId);
                 if (!def || !def->IsSkill())
                     continue;
+                std::vector<uint32> const& targets = stream && def->targeting == SKILL_TARGET_MASK ?
+                    def->rankTargets : def->targets;
+                bool noted = false;
                 for (SkillAffixEffect const& fx : def->effects)
                 {
                     int32 value = ScaleSkillValue(fx.value, active.scalePct);
-                    if (def->targeting == SKILL_TARGET_HOOK_CD)
+                    if (stream)
+                    {
+                        for (uint32 spellId : targets)
+                            sums[{ SKILL_AFFIX_CARRIER_SPELL, spellId, { 0, 0, 0 }, fx.op, fx.pct }] += value;
+                        if (!noted && !HasRowField(fx.op))
+                        {
+                            noted = true;
+                            std::string const text = BuildAffixDisplayString(def, active.scalePct);
+                            for (uint32 spellId : targets)
+                                notes[spellId].push_back(text);
+                        }
+                    }
+                    else if (def->targeting == SKILL_TARGET_HOOK_CD)
                     {
                         for (uint32 spellId : def->targets)
                             cuts[spellId] += -int64(value);
@@ -1175,7 +1513,14 @@ void ItemAffixMgr::RebuildSkillMods(Player* player)
         mod->targetSpellId = key.targetSpellId;
         data->skillMods.push_back(mod);
         player->AddSpellMod(mod, true);
+        if (stream && key.targetSpellId && key.op < SKILL_ROW_MAX_OPS)
+        {
+            SkillRowEffects& row = data->rowEffects[key.targetSpellId];
+            (key.pct ? row.pct : row.flat)[key.op] += value;
+        }
     }
+    for (auto& [spellId, texts] : notes)
+        data->rowEffects[spellId].notes = std::move(texts);
 }
 
 // UnitScript::OnAuraRemove: the aura is unapplied but not deleted yet, so the modifiers that point

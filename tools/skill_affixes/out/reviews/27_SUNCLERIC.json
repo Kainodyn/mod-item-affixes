@@ -354,7 +354,7 @@
     },
     {
       "key": "sc_rapture_cast",
-      "name": "Rapture: -0.25 sec cast time",
+      "name": "Rapture: -0.3 sec cast time",
       "spec_id": 46,
       "target_spell": 806477,
       "affected_spells": [
@@ -370,7 +370,7 @@
         {
           "op": "CASTING_TIME",
           "type": "FLAT",
-          "value": -250
+          "value": -300
         }
       ],
       "scales_with_crit": true,
@@ -379,7 +379,7 @@
       "evidence": "806477 Rapture; cd=20000; catcd=20000; cast=3000; cost_pct=20; eff[0]=SCHOOL_DAMAGE v=111; mask_unique_bit=[0, 524288, 0]",
       "client_sensitive": true,
       "confidence": "high",
-      "notes": ""
+      "notes": "Value adjusted 2026-11-24 to an existing SpellCastTimes row (was FLAT -250)."
     },
     {
       "key": "sc_sun_down_dmg",
@@ -508,7 +508,7 @@
     },
     {
       "key": "sc_dawnsear_cast",
-      "name": "Dawnsear: -0.25 sec cast time",
+      "name": "Dawnsear: -0.3 sec cast time",
       "spec_id": 46,
       "target_spell": 500146,
       "affected_spells": [
@@ -520,7 +520,7 @@
         {
           "op": "CASTING_TIME",
           "type": "FLAT",
-          "value": -250
+          "value": -300
         }
       ],
       "scales_with_crit": true,
@@ -529,7 +529,7 @@
       "evidence": "500146 Dawnsear; cast=3500; cost_pct=15; eff[0]=SCHOOL_DAMAGE v=88",
       "client_sensitive": true,
       "confidence": "medium",
-      "notes": "No mask_unique_bit; spell_id cast-time mod (server cast bar)."
+      "notes": "No mask_unique_bit; spell_id cast-time mod (server cast bar). Value adjusted 2026-11-24 to an existing SpellCastTimes row (was FLAT -250)."
     },
     {
       "key": "sc_justice_dmg",
@@ -1742,7 +1742,7 @@
     },
     {
       "key": "sc_sun_down_cast",
-      "name": "Sun Down: -0.25 sec cast time",
+      "name": "Sun Down: -0.3 sec cast time",
       "spec_id": 46,
       "target_spell": 572752,
       "affected_spells": [
@@ -1754,7 +1754,7 @@
         {
           "op": "CASTING_TIME",
           "type": "FLAT",
-          "value": -250
+          "value": -300
         }
       ],
       "scales_with_crit": true,
@@ -1763,7 +1763,7 @@
       "evidence": "572752 Sun Down; cast=2000; cd=30000; range=30.0; cost_pct=25; eff0=TRIGGER_SPELL",
       "client_sensitive": true,
       "confidence": "high",
-      "notes": ""
+      "notes": "Value adjusted 2026-11-24 to an existing SpellCastTimes row (was FLAT -250)."
     },
     {
       "key": "sc_sun_down_crit",

@@ -2438,7 +2438,7 @@
     },
     {
       "key": "sb_arm_of_thorim_cast",
-      "name": "Arm of Thorim: -0.2 sec cast time",
+      "name": "Arm of Thorim: -0.25 sec cast time",
       "spec_id": 15,
       "target_spell": 801847,
       "affected_spells": [
@@ -2450,7 +2450,7 @@
         {
           "op": "CASTING_TIME",
           "type": "FLAT",
-          "value": -200
+          "value": -250
         }
       ],
       "scales_with_crit": true,
@@ -2459,7 +2459,7 @@
       "evidence": "801847 Arm of Thorim cast=1000",
       "client_sensitive": true,
       "confidence": "high",
-      "notes": ""
+      "notes": "Value adjusted 2026-11-24 to an existing SpellCastTimes row (was FLAT -200)."
     }
   ],
   "rejected": [

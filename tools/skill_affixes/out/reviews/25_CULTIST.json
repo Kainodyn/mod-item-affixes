@@ -1142,7 +1142,7 @@
     },
     {
       "key": "cult_mass_nightmare_dur",
-      "name": "Mass Nightmare: +15% duration",
+      "name": "Mass Nightmare: +0.5 sec duration",
       "spec_id": 0,
       "target_spell": 805114,
       "affected_spells": [
@@ -1157,8 +1157,8 @@
       "effects": [
         {
           "op": "DURATION",
-          "type": "PCT",
-          "value": 15
+          "type": "FLAT",
+          "value": 500
         }
       ],
       "scales_with_crit": true,
@@ -1167,7 +1167,7 @@
       "evidence": "805114 Mass Nightmare cd=180000 cost_pct=21 dur=5000 radius=[8.0] eff0 MOD_STUN r=8.0 | mask_unique_bit=[2048, 0, 0]",
       "client_sensitive": false,
       "confidence": "medium",
-      "notes": "5 s AoE stun."
+      "notes": "5 s AoE stun. Value adjusted 2026-11-24 to an existing SpellDuration row (was PCT 15)."
     },
     {
       "key": "cult_mass_nightmare_radius",
@@ -1225,7 +1225,7 @@
     },
     {
       "key": "cult_embrace_the_void_dur",
-      "name": "Embrace the Void: +20% duration",
+      "name": "Embrace the Void: +1 sec duration",
       "spec_id": 0,
       "target_spell": 582591,
       "affected_spells": [
@@ -1236,8 +1236,8 @@
       "effects": [
         {
           "op": "DURATION",
-          "type": "PCT",
-          "value": 20
+          "type": "FLAT",
+          "value": 1000
         }
       ],
       "scales_with_crit": true,
@@ -1246,7 +1246,7 @@
       "evidence": "582591 Embrace the Void cd=300000 cost_pct=30 dur=6000 eff0 SCHOOL_ABSORB v=50 eff1 MOD_SCALE v=25",
       "client_sensitive": false,
       "confidence": "medium",
-      "notes": "6 s absorb."
+      "notes": "6 s absorb. Value adjusted 2026-11-24 to an existing SpellDuration row (was PCT 20)."
     },
     {
       "key": "cult_eldritch_eye_cost",
@@ -1383,7 +1383,7 @@
     },
     {
       "key": "cult_black_blood_dur",
-      "name": "Malevolence (Black Blood): +20% duration",
+      "name": "Malevolence (Black Blood): +2.5 sec duration",
       "spec_id": 40,
       "target_spell": 804153,
       "affected_spells": [
@@ -1398,8 +1398,8 @@
       "effects": [
         {
           "op": "DURATION",
-          "type": "PCT",
-          "value": 20
+          "type": "FLAT",
+          "value": 2500
         }
       ],
       "scales_with_crit": true,
@@ -1408,7 +1408,7 @@
       "evidence": "804153 Black Blood dur=12000 range=100.0 radius=[30.0] periodic=true eff0 PERIODIC_HEAL v=1 per=3000 r=30.0 | mask_unique_bit=[0, 32768, 0] | child of 500714 via 500714",
       "client_sensitive": false,
       "confidence": "medium",
-      "notes": "12 s HoT."
+      "notes": "12 s HoT. Value adjusted 2026-11-24 to an existing SpellDuration row (was PCT 20)."
     },
     {
       "key": "cult_black_blood_radius",
@@ -2172,7 +2172,7 @@
     },
     {
       "key": "cult_voidborne_dur",
-      "name": "Voidborne: +15% duration",
+      "name": "Voidborne: +2 sec duration",
       "spec_id": 42,
       "target_spell": 681104,
       "affected_spells": [
@@ -2183,8 +2183,8 @@
       "effects": [
         {
           "op": "DURATION",
-          "type": "PCT",
-          "value": 15
+          "type": "FLAT",
+          "value": 2000
         }
       ],
       "scales_with_crit": true,
@@ -2193,7 +2193,7 @@
       "evidence": "681104 Voidborne cd=180000 catcd=180000 cost_pct=10 dur=15000 eff0 MOD_DAMAGE_PERCENT_DONE v=25 eff1 MOD_CRIT_PCT v=25 eff2 PERIODIC_TRIGGER_SPELL per=500",
       "client_sensitive": false,
       "confidence": "medium",
-      "notes": "15 s +25% damage/crit buff."
+      "notes": "15 s +25% damage/crit buff. Value adjusted 2026-11-24 to an existing SpellDuration row (was PCT 15)."
     },
     {
       "key": "cult_end_times_dur",

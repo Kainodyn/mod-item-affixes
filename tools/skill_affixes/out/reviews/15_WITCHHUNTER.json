@@ -2421,7 +2421,7 @@
     },
     {
       "key": "wh_darkslayers_lantern_dur",
-      "name": "Darkslayer's Lantern: +0.75 sec duration",
+      "name": "Darkslayer's Lantern: +0.5 sec duration",
       "spec_id": 12,
       "target_spell": 802139,
       "affected_spells": [
@@ -2433,7 +2433,7 @@
         {
           "op": "DURATION",
           "type": "FLAT",
-          "value": 750
+          "value": 500
         }
       ],
       "scales_with_crit": true,
@@ -2442,7 +2442,7 @@
       "evidence": "802139 Darkslayer's Lantern dur=5000",
       "client_sensitive": false,
       "confidence": "high",
-      "notes": "stun duration"
+      "notes": "stun duration Value adjusted 2026-11-24 to an existing SpellDuration row (was FLAT 750)."
     },
     {
       "key": "wh_smite_evil_crit",

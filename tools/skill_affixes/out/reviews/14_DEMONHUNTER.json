@@ -291,7 +291,7 @@
     },
     {
       "key": "dh_felwrath_casting_time",
-      "name": "Felwrath: -0.15 sec cast time",
+      "name": "Felwrath: -0.2 sec cast time",
       "spec_id": 7,
       "target_spell": 520236,
       "affected_spells": [
@@ -307,7 +307,7 @@
         {
           "op": "CASTING_TIME",
           "type": "FLAT",
-          "value": -150
+          "value": -200
         }
       ],
       "scales_with_crit": true,
@@ -316,7 +316,7 @@
       "evidence": "520236 Felwrath; cast=1500; cost=30; eff0 SCHOOL_DAMAGE v=69; mask_unique_bit=[0, 0, 1073741824]",
       "client_sensitive": true,
       "confidence": "high",
-      "notes": ""
+      "notes": "Value adjusted 2026-11-24 to an existing SpellCastTimes row (was FLAT -150)."
     },
     {
       "key": "dh_sargeras_embrace_dot",
@@ -424,7 +424,7 @@
     },
     {
       "key": "dh_ruin_casting_time",
-      "name": "Ruin: -0.25 sec cast time",
+      "name": "Ruin: -0.3 sec cast time",
       "spec_id": 7,
       "target_spell": 801895,
       "affected_spells": [
@@ -440,7 +440,7 @@
         {
           "op": "CASTING_TIME",
           "type": "FLAT",
-          "value": -250
+          "value": -300
         }
       ],
       "scales_with_crit": true,
@@ -449,7 +449,7 @@
       "evidence": "801895 Ruin; cast=2500; cost=30; eff0 SCHOOL_DAMAGE v=116; mask_unique_bit=[0, 2, 0]",
       "client_sensitive": true,
       "confidence": "high",
-      "notes": ""
+      "notes": "Value adjusted 2026-11-24 to an existing SpellCastTimes row (was FLAT -250)."
     },
     {
       "key": "dh_felbreak_cooldown",
@@ -876,7 +876,7 @@
     },
     {
       "key": "dh_whispers_of_the_pit_duration",
-      "name": "Whispers of the Pit: +15% duration",
+      "name": "Whispers of the Pit: +1 sec duration",
       "spec_id": 0,
       "target_spell": 805235,
       "affected_spells": [
@@ -892,8 +892,8 @@
       "effects": [
         {
           "op": "DURATION",
-          "type": "PCT",
-          "value": 15
+          "type": "FLAT",
+          "value": 1000
         }
       ],
       "scales_with_crit": true,
@@ -902,11 +902,11 @@
       "evidence": "805235 Whispers of the Pit; cd=60000; dur=8000; radius=[8.0]; range=30.0; eff=APPLY_AURA/MOD_FEAR,DUMMY,APPLY_AURA/MOD_DECREASE_SPEED; mask_unique_bit=[2, 0, 0]",
       "client_sensitive": false,
       "confidence": "high",
-      "notes": "round 2 secondary affix; CC/slow aura: +15% only"
+      "notes": "round 2 secondary affix; CC/slow aura: +15% only Value adjusted 2026-11-24 to an existing SpellDuration row (was PCT 15)."
     },
     {
       "key": "dh_whispers_of_the_pit_radius",
-      "name": "Whispers of the Pit: +10% radius",
+      "name": "Whispers of the Pit: +1 yd radius",
       "spec_id": 0,
       "target_spell": 805235,
       "affected_spells": [
@@ -922,8 +922,8 @@
       "effects": [
         {
           "op": "RADIUS",
-          "type": "PCT",
-          "value": 10
+          "type": "FLAT",
+          "value": 1
         }
       ],
       "scales_with_crit": true,
@@ -932,7 +932,7 @@
       "evidence": "805235 Whispers of the Pit; cd=60000; dur=8000; radius=[8.0]; range=30.0; mask_unique_bit=[2, 0, 0]",
       "client_sensitive": false,
       "confidence": "high",
-      "notes": "round 2 secondary affix"
+      "notes": "round 2 secondary affix Value adjusted 2026-11-24 to an existing SpellRadius row (was PCT 10)."
     },
     {
       "key": "dh_whispers_of_the_pit_range",
@@ -1021,7 +1021,7 @@
     },
     {
       "key": "dh_annihilation_duration",
-      "name": "Annihilation: +20% duration",
+      "name": "Annihilation: +2.5 sec duration",
       "spec_id": 0,
       "target_spell": 803904,
       "affected_spells": [
@@ -1036,8 +1036,8 @@
       "effects": [
         {
           "op": "DURATION",
-          "type": "PCT",
-          "value": 20
+          "type": "FLAT",
+          "value": 2500
         }
       ],
       "scales_with_crit": true,
@@ -1046,7 +1046,7 @@
       "evidence": "803904 Annihilation; cd=60000; dur=12000; eff=APPLY_AURA/MOD_CRIT_PCT,APPLY_AURA/PROC_TRIGGER_SPELL; mask_unique_bit=[536870912, 0, 0]",
       "client_sensitive": false,
       "confidence": "high",
-      "notes": "round 2 secondary affix"
+      "notes": "round 2 secondary affix Value adjusted 2026-11-24 to an existing SpellDuration row (was PCT 20)."
     },
     {
       "key": "dh_felbane_cost",
@@ -1224,7 +1224,7 @@
     },
     {
       "key": "dh_felwrath_radius",
-      "name": "Felwrath: +10% radius",
+      "name": "Felwrath: +1 yd radius",
       "spec_id": 7,
       "target_spell": 520236,
       "affected_spells": [
@@ -1239,8 +1239,8 @@
       "effects": [
         {
           "op": "RADIUS",
-          "type": "PCT",
-          "value": 10
+          "type": "FLAT",
+          "value": 1
         }
       ],
       "scales_with_crit": true,
@@ -1249,7 +1249,7 @@
       "evidence": "520236 Felwrath; cast=1500; cost=30; radius=[8.0]; range=30.0; mask_unique_bit=[0, 0, 1073741824]",
       "client_sensitive": false,
       "confidence": "high",
-      "notes": "round 2 secondary affix"
+      "notes": "round 2 secondary affix Value adjusted 2026-11-24 to an existing SpellRadius row (was PCT 10)."
     },
     {
       "key": "dh_felwrath_range",
@@ -1307,7 +1307,7 @@
     },
     {
       "key": "dh_bane_of_chaos_duration",
-      "name": "Bane of Chaos: +20% duration",
+      "name": "Bane of Chaos: +4 sec duration",
       "spec_id": 7,
       "target_spell": 704368,
       "affected_spells": [
@@ -1318,8 +1318,8 @@
       "effects": [
         {
           "op": "DURATION",
-          "type": "PCT",
-          "value": 20
+          "type": "FLAT",
+          "value": 4000
         }
       ],
       "scales_with_crit": true,
@@ -1328,7 +1328,7 @@
       "evidence": "704368 Bane of Chaos; dur=21000; cost=40; range=30.0; eff=APPLY_AURA/PERIODIC_DAMAGE,APPLY_AURA/PERIODIC_TRIGGER_SPELL; periodic=true; mask_unique_bit=None",
       "client_sensitive": false,
       "confidence": "medium",
-      "notes": "round 2 secondary affix"
+      "notes": "round 2 secondary affix Value adjusted 2026-11-24 to an existing SpellDuration row (was PCT 20)."
     },
     {
       "key": "dh_ruin_crit",
@@ -1448,7 +1448,7 @@
     },
     {
       "key": "dh_felbreak_cast",
-      "name": "Felbreak: -10% cast time",
+      "name": "Felbreak: -0.17 sec cast time",
       "spec_id": 7,
       "target_spell": 800203,
       "affected_spells": [
@@ -1463,8 +1463,8 @@
       "effects": [
         {
           "op": "CASTING_TIME",
-          "type": "PCT",
-          "value": -10
+          "type": "FLAT",
+          "value": -167
         }
       ],
       "scales_with_crit": true,
@@ -1473,7 +1473,7 @@
       "evidence": "800203 Felbreak; cd=18000; cast=500; dur=3000; cost=10; range=20.0; mask_unique_bit=[1024, 0, 0]",
       "client_sensitive": true,
       "confidence": "high",
-      "notes": "round 2 secondary affix"
+      "notes": "round 2 secondary affix Value adjusted 2026-11-24 to an existing SpellCastTimes row (was PCT -10)."
     },
     {
       "key": "dh_felbreak_range",
@@ -1593,7 +1593,7 @@
     },
     {
       "key": "dh_immolation_aura_radius",
-      "name": "Immolation Aura: +10% radius",
+      "name": "Immolation Aura: +1 yd radius",
       "spec_id": 8,
       "target_spell": 800208,
       "affected_spells": [
@@ -1608,8 +1608,8 @@
       "effects": [
         {
           "op": "RADIUS",
-          "type": "PCT",
-          "value": 10
+          "type": "FLAT",
+          "value": 1
         }
       ],
       "scales_with_crit": true,
@@ -1618,7 +1618,7 @@
       "evidence": "800208 Immolation; radius=[5.0, 6.0]; range=50000.0; via=800207; mask_unique_bit=[0, 0, 512]",
       "client_sensitive": false,
       "confidence": "high",
-      "notes": "round 2 secondary affix"
+      "notes": "round 2 secondary affix Value adjusted 2026-11-24 to an existing SpellRadius row (was PCT 10)."
     },
     {
       "key": "dh_annihilan_strike_crit",
@@ -1789,7 +1789,7 @@
     },
     {
       "key": "dh_fury_unleashed_radius",
-      "name": "Fury Unleashed: +10% radius",
+      "name": "Fury Unleashed: +1 yd radius",
       "spec_id": 8,
       "target_spell": 555739,
       "affected_spells": [
@@ -1804,8 +1804,8 @@
       "effects": [
         {
           "op": "RADIUS",
-          "type": "PCT",
-          "value": 10
+          "type": "FLAT",
+          "value": 1
         }
       ],
       "scales_with_crit": true,
@@ -1814,7 +1814,7 @@
       "evidence": "555739 Fury Unleashed; radius=[8.0]; via=555738; mask_unique_bit=[0, 0, 4194304]",
       "client_sensitive": false,
       "confidence": "high",
-      "notes": "round 2 secondary affix"
+      "notes": "round 2 secondary affix Value adjusted 2026-11-24 to an existing SpellRadius row (was PCT 10)."
     },
     {
       "key": "dh_felrend_crit",
@@ -1878,7 +1878,7 @@
     },
     {
       "key": "dh_felrend_radius",
-      "name": "Felrend: +10% radius",
+      "name": "Felrend: +1 yd radius",
       "spec_id": 9,
       "target_spell": 800210,
       "affected_spells": [
@@ -1894,8 +1894,8 @@
       "effects": [
         {
           "op": "RADIUS",
-          "type": "PCT",
-          "value": 10
+          "type": "FLAT",
+          "value": 1
         }
       ],
       "scales_with_crit": true,
@@ -1904,7 +1904,7 @@
       "evidence": "800210 Felrend; cost=40; radius=[6.0]; range=5.0; mask_unique_bit=[0, 4, 0]",
       "client_sensitive": false,
       "confidence": "high",
-      "notes": "round 2 secondary affix"
+      "notes": "round 2 secondary affix Value adjusted 2026-11-24 to an existing SpellRadius row (was PCT 10)."
     },
     {
       "key": "dh_demonic_will_duration",
@@ -2020,7 +2020,7 @@
     },
     {
       "key": "dh_tyrants_gaze_radius",
-      "name": "Tyrant's Gaze: +10% radius",
+      "name": "Tyrant's Gaze: +1 yd radius",
       "spec_id": 9,
       "target_spell": 805240,
       "affected_spells": [
@@ -2035,8 +2035,8 @@
       "effects": [
         {
           "op": "RADIUS",
-          "type": "PCT",
-          "value": 10
+          "type": "FLAT",
+          "value": 1
         }
       ],
       "scales_with_crit": true,
@@ -2045,7 +2045,7 @@
       "evidence": "805240 Tyrant's Gaze; cd=10000; cost=30; radius=[8.0]; range=10.0; mask_unique_bit=[0, 2147483648, 0]",
       "client_sensitive": false,
       "confidence": "high",
-      "notes": "round 2 secondary affix"
+      "notes": "round 2 secondary affix Value adjusted 2026-11-24 to an existing SpellRadius row (was PCT 10)."
     },
     {
       "key": "dh_tyrants_gaze_range",

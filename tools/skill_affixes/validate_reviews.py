@@ -195,8 +195,8 @@ def check_file(path, cand_dir, seen_keys):
             elif op == 'CASTING_TIME':
                 if stat(affected + [tspell], 'cast') <= 0:
                     e.append('%s: no affected spell has a cast time' % ft)
-                elif (ty == 'FLAT' and abs(v) > 500) or (ty == 'PCT' and abs(v) > 10):
-                    e.append('%s: limit is 500 ms FLAT / 10 PCT' % ft)
+                elif (ty == 'FLAT' and abs(v) > max(500, 0.17 * stat(affected + [tspell], 'cast'))) or (ty == 'PCT' and abs(v) > 10):
+                    e.append('%s: limit is max(500 ms, 17%% of cast) FLAT / 10 PCT' % ft)
             elif op == 'DURATION':
                 if stat(affected + [tspell], 'dur') <= 0:
                     e.append('%s: no affected spell has a finite duration > 0' % ft)

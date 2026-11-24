@@ -42,14 +42,14 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 | Ancestral Roar (500918) | Ancestral Roar: +4% critical strike chance | critical chance +4 | mask | Blue | 75 | high |
 | Ancestral Roar (500918) | Ancestral Roar: +10% healing | damage +10 % | mask | Blue | 100 | high |
 | Born in Blood (560521) | Born in Blood: +10% periodic healing | dot +10 % | mask | Epic | 100 | high |
-| Born in Blood (560521) | Born in Blood: +20% duration | duration +20 % | mask | Blue | 70 | high |
+| Born in Blood (560521) | Born in Blood: +0.7 sec duration | duration +0.7 s | mask | Blue | 70 | high |
 | Defiance (806228) | Defiance: -20 sec cooldown | cooldown -20 s | hook_cd | Blue | 100 | medium |
 | Defiance (806228) | Defiance: +20% duration | duration +20 % | spell_id | Epic | 70 | medium |
 | Headhunter's Spear (804137) | Headhunter's Spear: +8% damage | damage +8 % | spell_id | Blue | 100 | medium |
 | Headhunter's Spear (804137) | Headhunter's Spear: +4% critical strike chance | critical chance +4 | spell_id | Blue | 75 | medium |
 | Hodir's Wrath (800152) | Hodir's Wrath: +8% damage | damage +8 % | mask | Blue | 100 | high |
 | Hodir's Wrath (800152) | Hodir's Wrath: +4% critical strike chance | critical chance +4 | mask | Blue | 75 | high |
-| Hodir's Wrath (800152) | Hodir's Wrath: +10% radius | radius +10 % | mask | Blue | 60 | high |
+| Hodir's Wrath (800152) | Hodir's Wrath: +1 yd radius | radius +1 | mask | Blue | 60 | high |
 | Jawbreaker (802792) | Jawbreaker: -2 sec cooldown | cooldown -2 s | mask | Blue | 80 | high |
 | Jawbreaker (802792) | Jawbreaker: -10% Energy cost | cost -10 % | mask | Blue | 70 | high |
 | Maiming Spear (804139) | Maiming Spear: -10% Energy cost | cost -10 % | mask | Blue | 70 | high |
@@ -62,12 +62,12 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 | Skull Smash (560532) | Skull Smash: -15 sec cooldown | cooldown -15 s | mask | Blue | 60 | high |
 | Skull Smash (560532) | Skull Smash: -10% Energy cost | cost -10 % | mask | Blue | 70 | high |
 | Skull Smash (560532) | Skull Smash: +15% duration | duration +15 % | mask | Epic | 70 | high |
-| Skull Smash (560532) | Skull Smash: +10% range | range +10 % | mask | Blue | 60 | high |
+| Skull Smash (560532) | Skull Smash: +2 yd range | range +2 | mask | Blue | 60 | high |
 | Thick Skull (801549) | Thick Skull: -15 sec cooldown | cooldown -15 s | hook_cd | Blue | 100 | medium |
 | Thick Skull (801549) | Thick Skull: +20% duration | duration +20 % | spell_id | Epic | 70 | medium |
 | Warband (560883) | Warband: -10 sec cooldown | cooldown -10 s | mask | Blue | 80 | high |
 | Warband (560883) | Warband: -10% Energy cost | cost -10 % | mask | Blue | 70 | high |
-| Warband (560883) | Warband: +20% duration | duration +20 % | mask | Blue | 70 | high |
+| Warband (560883) | Warband: +2.5 sec duration | duration +2.5 s | mask | Blue | 70 | high |
 | Warband (560883) | Warband: +10% radius | radius +10 % | mask | Blue | 60 | high |
 
 ### Tactics
@@ -82,12 +82,12 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 | Berserker Axe (561020) | Berserker Axe: +20% duration | duration +20 % | spell_id | Blue | 70 | medium |
 | Berserker Rush (560518) | Berserker Rush: -4 sec cooldown | cooldown -4 s | mask | Blue | 100 | high |
 | Berserker Rush (560519) | Berserker Rush: +4% critical strike chance | critical chance +4 | spell_id | Blue | 75 | low |
-| Berserker Rush (560518) | Berserker Rush: +10% range | range +10 % | mask | Blue | 60 | high |
+| Berserker Rush (560518) | Berserker Rush: +2 yd range | range +2 | mask | Blue | 60 | high |
 | Guts Spilled (520577) | Guts Spilled: +8% damage | damage +8 % | mask | Blue | 80 | high |
 | Guts Spilled (520577) | Gutspiller: +4% critical strike chance | critical chance +4 | mask | Blue | 75 | high |
 | Gutspiller (805832) | Gutspiller: -10% Energy cost | cost -10 % | mask | Blue | 70 | high |
 | Gutspiller (805832) | Gutspiller: +10% periodic damage | dot +10 % | mask | Blue | 100 | high |
-| Gutspiller (805832) | Gutspiller: +20% duration | duration +20 % | mask | Blue | 70 | high |
+| Gutspiller (805832) | Gutspiller: +2.5 sec duration | duration +2.5 s | mask | Blue | 70 | high |
 | Gutspiller (805832) | Gutspiller: +10% range | range +10 % | mask | Blue | 60 | high |
 | Impaling Spear (500984) | Impaling Spear: +4% critical strike chance | critical chance +4 | spell_id | Blue | 75 | medium |
 | Impaling Spear (500984) | Impaling Spear: +8% damage | damage +8 % | spell_id | Blue | 100 | medium |
@@ -106,8 +106,8 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 | Crush (500915) | Crush: -10% Energy cost | cost -10 % | mask | Blue | 70 | high |
 | Crush (500915) | Crush: +4% critical strike chance | critical chance +4 | mask | Blue | 75 | high |
 | Crush (500915) | Crush: +8% damage | damage +8 % | mask | Blue | 100 | high |
-| Crush (504875) | Crush: +15% duration | duration +15 % | spell_id | Blue | 70 | medium |
-| Crush (500915) | Crush: +10% radius | radius +10 % | mask | Blue | 60 | high |
+| Crush (504875) | Crush: +0.5 sec duration | duration +0.5 s | spell_id | Blue | 70 | medium |
+| Crush (500915) | Crush: +7% radius | radius +7 % | mask | Blue | 60 | high |
 | Decapitate (804414) | Decapitate: -10% Energy cost | cost -10 % | mask | Blue | 70 | high |
 | Decapitate (804414) | Decapitate: +5% critical strike chance | critical chance +5 | mask | Epic | 80 | high |
 | Decapitate (804414) | Decapitate: +8% damage | damage +8 % | mask | Blue | 100 | high |
@@ -132,25 +132,25 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 | Breath of The North (800838) | Breath of The North: -10% Energy cost | cost -10 % | mask | Blue | 70 | high |
 | Breath of The North (800838) | Breath of The North: +4% critical strike chance | critical chance +4 | mask | Blue | 75 | high |
 | Breath of The North (800838) | Breath of The North: +8% damage | damage +8 % | mask | Blue | 100 | high |
-| Breath of The North (800838) | Breath of The North: +15% duration | duration +15 % | mask | Blue | 70 | high |
-| Breath of The North (800838) | Breath of The North: +10% radius | radius +10 % | mask | Blue | 60 | high |
+| Breath of The North (800838) | Breath of The North: +0.5 sec duration | duration +0.5 s | mask | Blue | 70 | high |
+| Breath of The North (800838) | Breath of The North: +1 yd radius | radius +1 | mask | Blue | 60 | high |
 | Clanlord's Totem (804737) | Clanlord's Totem: -8 sec cooldown | cooldown -8 s | hook_cd | Blue | 80 | medium |
 | Clanlord's Totem (560529) | Clanlord's Totem: +4% critical strike chance | critical chance +4 | spell_id | Blue | 75 | medium |
 | Clanlord's Totem (804737) | Clanlord's Totem: +20% duration | duration +20 % | spell_id | Blue | 70 | low |
 | Frozen Tankard (805815) | Frozen Tankard: -4 sec cooldown | cooldown -4 s | mask | Blue | 100 | high |
 | Frozen Tankard (805815) | Frozen Tankard: +4% critical strike chance | critical chance +4 | mask | Blue | 75 | high |
-| Frozen Tankard (800280) | Frozen Tankard: +15% duration | duration +15 % | spell_id | Blue | 70 | medium |
+| Frozen Tankard (800280) | Frozen Tankard: +0.5 sec duration | duration +0.5 s | spell_id | Blue | 70 | medium |
 | Frozen Tankard (805815) | Frozen Tankard: +10% range | range +10 % | mask | Blue | 60 | high |
 | God-King's Might (805785) | Ale of The God-King: +4% critical strike chance | critical chance +4 | spell_id | Blue | 75 | low |
 | God-King's Might (805785) | Ale of The God-King: +1 additional target | jump targets +1 | spell_id | Blue | 65 | medium |
 | Keg Smash (805808) | Keg Smash: -10% Energy cost | cost -10 % | mask | Blue | 70 | high |
 | Keg Smash (805808) | Keg Smash: +4% critical strike chance | critical chance +4 | spell_id | Blue | 75 | medium |
 | Keg Smash (805808) | Keg Smash: +8% damage | damage +8 % | mask | Blue | 100 | high |
-| Keg Smash (805809) | Keg Smash: +10% radius | radius +10 % | spell_id | Blue | 60 | medium |
+| Keg Smash (805809) | Keg Smash: +1 yd radius | radius +1 | spell_id | Blue | 60 | medium |
 | Ramhorn Rage (805804) | Ramhorn Rage: -15 sec cooldown | cooldown -15 s | mask | Blue | 80 | high |
 | Ramhorn Rage (805805) | Ramhorn Rage: +4% critical strike chance | critical chance +4 | mask | Blue | 75 | high |
 | Ramhorn Rage (805804) | Ramhorn Rage: +20% duration | duration +20 % | mask | Epic | 70 | high |
-| Ramhorn Rage (805804) | Ramhorn Rage: +10% radius | radius +10 % | mask | Blue | 60 | high |
+| Ramhorn Rage (805804) | Ramhorn Rage: +1 yd radius | radius +1 | mask | Blue | 60 | high |
 | Splash Zone (705156) | Splash Zone: -4 sec cooldown | cooldown -4 s | mask | Blue | 80 | medium |
 | Splash Zone (705156) | Splash Zone: -10% Energy cost | cost -10 % | mask | Blue | 70 | high |
 | Splash Zone (705156) | Splash Zone: +20% duration | duration +20 % | mask | Blue | 70 | high |
@@ -159,7 +159,7 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 | Tavern Brawl! (804456) | Tavern Brawl!: +20% duration | duration +20 % | mask | Epic | 70 | high |
 | War Cry (500995) | War Cry: -20 sec cooldown | cooldown -20 s | mask | Blue | 100 | high |
 | War Cry (500995) | War Cry: +20% duration | duration +20 % | mask | Epic | 70 | high |
-| War Cry (500995) | War Cry: +10% radius | radius +10 % | mask | Blue | 60 | high |
+| War Cry (500995) | War Cry: +2 yd radius | radius +2 | mask | Blue | 60 | high |
 
 <details><summary>Avvist (2)</summary>
 
@@ -180,10 +180,10 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 | Amphibimorph (500952) | Amphibimorph: -15 sec cooldown | cooldown -15 s | mask | Blue | 60 | high |
 | Amphibimorph (500952) | Amphibimorph: -10% mana cost | cost -10 % | mask | Blue | 70 | high |
 | Amphibimorph (500952) | Amphibimorph: +15% duration | duration +15 % | mask | Epic | 70 | high |
-| Amphibimorph (500952) | Amphibimorph: +10% radius | radius +10 % | mask | Blue | 60 | high |
+| Amphibimorph (500952) | Amphibimorph: +1 yd radius | radius +1 | mask | Blue | 60 | high |
 | Amphibimorph (500952) | Amphibimorph: +10% range | range +10 % | mask | Blue | 60 | high |
 | Slither (500947) | Slither: -8 sec cooldown | cooldown -8 s | hook_cd | Blue | 60 | medium |
-| Slither (500947) | Slither: +15% duration | duration +15 % | spell_id | Blue | 70 | low |
+| Slither (500947) | Slither: +0.5 sec duration | duration +0.5 s | spell_id | Blue | 70 | low |
 | Veil of Darkness (802100) | Veil of Darkness: -10 sec cooldown | cooldown -10 s | mask | Blue | 80 | high |
 | Veil of Darkness (802100) | Veil of Darkness: -10% mana cost | cost -10 % | mask | Blue | 70 | high |
 | Veil of Darkness (806473) | Veil of Darkness: +4% critical strike chance | critical chance +4 | mask | Blue | 75 | high |
@@ -201,7 +201,7 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 |---|---|---|---|---|---|---|
 | Frenzied Spirits (560748) | Frenzied Spirits: -3 sec cooldown | cooldown -3 s | mask | Blue | 100 | high |
 | Frenzied Spirits (560748) | Frenzied Spirits: -10% mana cost | cost -10 % | mask | Blue | 70 | high |
-| Reclamation (806288) | Reclamation: -0.15 sec cast time | casting time -0.15 s | mask | Blue | 80 | high |
+| Reclamation (806288) | Reclamation: -0.2 sec cast time | casting time -0.2 s | mask | Blue | 80 | high |
 | Reclamation (806288) | Reclamation: -10% mana cost | cost -10 % | mask | Blue | 70 | high |
 | Reclamation (806288) | Reclamation: +4% critical strike chance | critical chance +4 | mask | Blue | 75 | high |
 | Reclamation (806288) | Reclamation: +8% damage | damage +8 % | mask | Blue | 100 | high |
@@ -214,32 +214,32 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 | Spirit Glaive (806289) | Spirit Glaive: -10% mana cost | cost -10 % | mask | Blue | 70 | high |
 | Spirit Glaive (806289) | Spirit Glaive: +4% critical strike chance | critical chance +4 | spell_id | Blue | 75 | medium |
 | Spirit Glaive (806289) | Spirit Glaive: +8% damage | damage +8 % | mask | Blue | 100 | high |
-| Spirit Glaive (806289) | Spirit Glaive: +10% radius | radius +10 % | spell_id | Blue | 60 | medium |
+| Spirit Glaive (806289) | Spirit Glaive: +2 yd radius | radius +2 | spell_id | Blue | 60 | medium |
 | Spirit Shock (807743) | Spirit Shock: -4 sec cooldown | cooldown -4 s | hook_cd | Blue | 80 | medium |
-| Spirit Shock (807743) | Spirit Shock: +15% duration | duration +15 % | spell_id | Blue | 70 | medium |
+| Spirit Shock (807743) | Spirit Shock: +0.5 sec duration | duration +0.5 s | spell_id | Blue | 70 | medium |
 
 ### Voodoo
 
 | Spell | Affix | Effekt | Targeting | Min. kvalitet | Weight | Confidence |
 |---|---|---|---|---|---|---|
-| Bad Juju (802087) | Bad Juju: -0.25 sec cast time | casting time -0.25 s | spell_id | Blue | 80 | medium |
+| Bad Juju (802087) | Bad Juju: -0.3 sec cast time | casting time -0.3 s | spell_id | Blue | 80 | medium |
 | Bad Juju (802087) | Bad Juju: +4% critical strike chance | critical chance +4 | spell_id | Blue | 75 | medium |
 | Bad Juju (802087) | Bad Juju: +8% damage | damage +8 % | spell_id | Blue | 100 | medium |
 | Hexfire (807042) | Hexfire: +4% critical strike chance | critical chance +4 | spell_id | Blue | 75 | medium |
 | Hexfire (807042) | Hexfire: +8% damage | damage +8 % | spell_id | Blue | 100 | medium |
 | Malignant Jinx (803678) | Malignant Jinx: -8 sec cooldown | cooldown -8 s | hook_cd | Blue | 60 | medium |
-| Malignant Jinx (803678) | Malignant Jinx: +20% duration | duration +20 % | spell_id | Blue | 70 | medium |
-| Malignant Jinx (803732) | Malignant Jinx: +15% duration | duration +15 % | spell_id | Blue | 70 | medium |
-| Mark of Malice (802926) | Bad Juju: +20% duration | duration +20 % | spell_id | Blue | 70 | medium |
+| Malignant Jinx (803678) | Malignant Jinx: +1.5 sec duration | duration +1.5 s | spell_id | Blue | 70 | medium |
+| Malignant Jinx (803732) | Malignant Jinx: +0.5 sec duration | duration +0.5 s | spell_id | Blue | 70 | medium |
+| Mark of Malice (802926) | Bad Juju: +1.5 sec duration | duration +1.5 s | spell_id | Blue | 70 | medium |
 | Puppeteer's Grasp (707209) | Puppeteer's Grasp: -20 sec cooldown | cooldown -20 s | hook_cd | Blue | 80 | medium |
 | Puppeteer's Grasp (707209) | Puppeteer's Grasp: +15% duration | duration +15 % | spell_id | Epic | 70 | medium |
-| Puppeteer's Grasp (707209) | Puppeteer's Grasp: +10% radius | radius +10 % | spell_id | Blue | 60 | medium |
+| Puppeteer's Grasp (707209) | Puppeteer's Grasp: +1 yd radius | radius +1 | spell_id | Blue | 60 | medium |
 | Shadow Puppet (801797) | Shadow Puppets: +4% critical strike chance | critical chance +4 | mask | Blue | 75 | high |
 | Shadow Puppet (801797) | Shadow Puppets: +8% damage | damage +8 % | mask | Blue | 100 | high |
 | Shadow Puppets (500015) | Shadow Puppets: -10% mana cost | cost -10 % | mask | Blue | 70 | high |
 | Shadow Puppets (500015) | Shadow Puppets: +10% range | range +10 % | mask | Blue | 60 | high |
 | Soul Marionette (704497) | Soul Marionette: -10 sec cooldown | cooldown -10 s | hook_cd | Blue | 80 | low |
-| Soul Marionette (704497) | Soul Marionette: +20% duration | duration +20 % | spell_id | Blue | 70 | low |
+| Soul Marionette (704497) | Soul Marionette: +1.5 sec duration | duration +1.5 s | spell_id | Blue | 70 | low |
 | Trapped Spirits (504452) | Trapped Spirits: +8% damage | damage +8 % | mask | Blue | 80 | high |
 | Trapped Spirits (504452) | Voice of Bwonsamdi: +4% critical strike chance | critical chance +4 | mask | Blue | 75 | high |
 | Voice of Bwonsamdi (801716) | Voice of Bwonsamdi: -10 sec cooldown | cooldown -10 s | mask | Blue | 100 | high |
@@ -274,7 +274,7 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 | Splash Potion (802710) | Splash Potion: +8% healing | damage +8 % | spell_id | Blue | 100 | medium |
 | Splash Potion (802710) | Splash Potion: +10% radius | radius +10 % | spell_id | Blue | 60 | medium |
 | Splash Potion: Jungle Shrooms (803698) | Splash Potion: +8% periodic healing | dot +8 % | spell_id | Blue | 75 | medium |
-| Splash Potion: Jungle Shrooms (803698) | Splash Potion: +20% potion effect duration | duration +20 % | spell_id | Blue | 70 | medium |
+| Splash Potion: Jungle Shrooms (803698) | Splash Potion: +2 sec duration | duration +2 s | spell_id | Blue | 70 | medium |
 
 <details><summary>Avvist (17)</summary>
 
@@ -307,7 +307,7 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 | Spell | Affix | Effekt | Targeting | Min. kvalitet | Weight | Confidence |
 |---|---|---|---|---|---|---|
 | Annihilation (803904) | Annihilation: -8 sec cooldown | cooldown -8 s | mask | Blue | 100 | high |
-| Annihilation (803904) | Annihilation: +20% duration | duration +20 % | mask | Epic | 70 | high |
+| Annihilation (803904) | Annihilation: +2.5 sec duration | duration +2.5 s | mask | Epic | 70 | high |
 | Felbane (525001) | Felbane: -4 sec cooldown | cooldown -4 s | mask | Blue | 60 | high |
 | Felbane (525001) | Felbane: -10% Energy cost | cost -10 % | mask | Blue | 70 | high |
 | Felbane (525001) | Felbane: +10% range | range +10 % | mask | Blue | 60 | high |
@@ -322,8 +322,8 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 | Skull of Gul'dan (800225) | Skull of Gul'dan: -10 sec cooldown | cooldown -10 s | mask | Blue | 80 | high |
 | Skull of Gul'dan (800225) | Skull of Gul'dan: +20% duration | duration +20 % | mask | Blue | 70 | high |
 | Whispers of the Pit (805235) | Whispers of the Pit: -8 sec cooldown | cooldown -8 s | mask | Blue | 80 | high |
-| Whispers of the Pit (805235) | Whispers of the Pit: +15% duration | duration +15 % | mask | Blue | 70 | high |
-| Whispers of the Pit (805235) | Whispers of the Pit: +10% radius | radius +10 % | mask | Blue | 60 | high |
+| Whispers of the Pit (805235) | Whispers of the Pit: +1 sec duration | duration +1 s | mask | Blue | 70 | high |
+| Whispers of the Pit (805235) | Whispers of the Pit: +1 yd radius | radius +1 | mask | Blue | 60 | high |
 | Whispers of the Pit (805235) | Whispers of the Pit: +10% range | range +10 % | mask | Blue | 60 | high |
 
 ### Felblood
@@ -331,19 +331,19 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 | Spell | Affix | Effekt | Targeting | Min. kvalitet | Weight | Confidence |
 |---|---|---|---|---|---|---|
 | Bane of Chaos (704368) | Bane of Chaos: +10% periodic damage | dot +10 % | spell_id | Blue | 100 | medium |
-| Bane of Chaos (704368) | Bane of Chaos: +20% duration | duration +20 % | spell_id | Blue | 70 | medium |
+| Bane of Chaos (704368) | Bane of Chaos: +4 sec duration | duration +4 s | spell_id | Blue | 70 | medium |
 | Chaos (802676) | Bane of Chaos: +4% critical strike chance | critical chance +4 | spell_id | Blue | 75 | medium |
-| Felbreak (800203) | Felbreak: -10% cast time | casting time -10 % | mask | Blue | 75 | high |
+| Felbreak (800203) | Felbreak: -0.17 sec cast time | casting time -0.167 s | mask | Blue | 75 | high |
 | Felbreak (800203) | Felbreak: -2.5 sec cooldown | cooldown -2.5 s | mask | Blue | 80 | high |
 | Felbreak (800203) | Felbreak: -10% Energy cost | cost -10 % | mask | Blue | 70 | high |
 | Felbreak (800203) | Felbreak: +10% range | range +10 % | mask | Blue | 60 | high |
-| Felwrath (520236) | Felwrath: -0.15 sec cast time | casting time -0.15 s | mask | Blue | 80 | high |
+| Felwrath (520236) | Felwrath: -0.2 sec cast time | casting time -0.2 s | mask | Blue | 80 | high |
 | Felwrath (520236) | Felwrath: -10% Energy cost | cost -10 % | mask | Blue | 70 | high |
 | Felwrath (520236) | Felwrath: +4% critical strike chance | critical chance +4 | mask | Blue | 75 | high |
 | Felwrath (520236) | Felwrath: +8% damage | damage +8 % | mask | Blue | 100 | high |
-| Felwrath (520236) | Felwrath: +10% radius | radius +10 % | mask | Blue | 60 | high |
+| Felwrath (520236) | Felwrath: +1 yd radius | radius +1 | mask | Blue | 60 | high |
 | Felwrath (520236) | Felwrath: +10% range | range +10 % | mask | Blue | 60 | high |
-| Ruin (801895) | Ruin: -0.25 sec cast time | casting time -0.25 s | mask | Blue | 80 | high |
+| Ruin (801895) | Ruin: -0.3 sec cast time | casting time -0.3 s | mask | Blue | 80 | high |
 | Ruin (801895) | Ruin: -10% Energy cost | cost -10 % | mask | Blue | 70 | high |
 | Ruin (801895) | Ruin: +4% critical strike chance | critical chance +4 | mask | Blue | 75 | high |
 | Ruin (801895) | Ruin: +8% damage | damage +8 % | mask | Blue | 100 | high |
@@ -367,10 +367,10 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 | Fury Unleashed (555739) | Fury Unleashed: +4% critical strike chance | critical chance +4 | mask | Blue | 75 | high |
 | Fury Unleashed (555739) | Fury Unleashed: +8% damage | damage +8 % | mask | Blue | 100 | high |
 | Fury Unleashed (555738) | Fury Unleashed: +20% duration | duration +20 % | spell_id | Epic | 70 | medium |
-| Fury Unleashed (555739) | Fury Unleashed: +10% radius | radius +10 % | mask | Blue | 60 | high |
+| Fury Unleashed (555739) | Fury Unleashed: +1 yd radius | radius +1 | mask | Blue | 60 | high |
 | Immolation (800208) | Immolation Aura: +4% critical strike chance | critical chance +4 | mask | Blue | 75 | high |
 | Immolation (800208) | Immolation Aura: +8% damage | damage +8 % | mask | Blue | 100 | high |
-| Immolation (800208) | Immolation Aura: +10% radius | radius +10 % | mask | Blue | 60 | high |
+| Immolation (800208) | Immolation Aura: +1 yd radius | radius +1 | mask | Blue | 60 | high |
 | Immolation Aura (800207) | Immolation Aura: -10% health cost | cost -10 % | mask | Blue | 70 | high |
 | Immolation Aura (800207) | Immolation Aura: +20% duration | duration +20 % | mask | Blue | 70 | high |
 
@@ -385,7 +385,7 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 | Felrend (800210) | Felrend: -10% Energy cost | cost -10 % | mask | Blue | 70 | high |
 | Felrend (800210) | Felrend: +4% critical strike chance | critical chance +4 | mask | Blue | 75 | high |
 | Felrend (800210) | Felrend: +8% damage | damage +8 % | mask | Blue | 100 | high |
-| Felrend (800210) | Felrend: +10% radius | radius +10 % | mask | Blue | 60 | high |
+| Felrend (800210) | Felrend: +1 yd radius | radius +1 | mask | Blue | 60 | high |
 | Infernal Whipcrack (805243) | Infernal Whipcrack: -10 sec cooldown | cooldown -10 s | hook_cd | Blue | 80 | medium |
 | Infernal Whipcrack (805243) | Infernal Whipcrack: +20% duration | duration +20 % | spell_id | Blue | 70 | medium |
 | Infernal Whipcrack (805243) | Infernal Whipcrack: +10% radius | radius +10 % | spell_id | Blue | 60 | medium |
@@ -395,7 +395,7 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 | Tyrant's Gaze (805240) | Tyrant's Gaze: +8% damage | damage +8 % | mask | Blue | 100 | high |
 | Tyrant's Gaze (805240) | Tyrant's Gaze: -10% Energy cost | cost -10 % | mask | Blue | 70 | high |
 | Tyrant's Gaze (805240) | Tyrant's Gaze: +4% critical strike chance | critical chance +4 | mask | Blue | 75 | high |
-| Tyrant's Gaze (805240) | Tyrant's Gaze: +10% radius | radius +10 % | mask | Blue | 60 | high |
+| Tyrant's Gaze (805240) | Tyrant's Gaze: +1 yd radius | radius +1 | mask | Blue | 60 | high |
 | Tyrant's Gaze (805240) | Tyrant's Gaze: +10% range | range +10 % | mask | Blue | 60 | high |
 
 <details><summary>Avvist (3)</summary>
@@ -491,7 +491,7 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 | Darkslayer's Lantern (802139) | Darkslayer's Lantern: -12 sec cooldown | cooldown -12 s | mask | Blue | 100 | high |
 | Darkslayer's Lantern (802139) | Darkslayer's Lantern: -10% mana cost | cost -10 % | mask | Blue | 70 | high |
 | Darkslayer's Lantern (802139) | Darkslayer's Lantern: +3% critical strike chance | critical chance +3 | spell_id | Blue | 70 | high |
-| Darkslayer's Lantern (802139) | Darkslayer's Lantern: +0.75 sec duration | duration +0.75 s | spell_id | Epic | 70 | high |
+| Darkslayer's Lantern (802139) | Darkslayer's Lantern: +0.5 sec duration | duration +0.5 s | spell_id | Epic | 70 | high |
 | Darkslayer's Lantern (802139) | Darkslayer's Lantern: +1 yd radius | radius +1 | spell_id | Blue | 60 | high |
 | Dusk Blade (802020) | Dusk Blade: -10% rage cost | cost -10 % | mask | Blue | 70 | high |
 | Dusk Blade (802020) | Dusk Blade: +3% critical strike chance | critical chance +3 | spell_id | Blue | 70 | high |
@@ -660,7 +660,7 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 
 | Spell | Affix | Effekt | Targeting | Min. kvalitet | Weight | Confidence |
 |---|---|---|---|---|---|---|
-| Arm of Thorim (801847) | Arm of Thorim: -0.2 sec cast time | casting time -0.2 s | spell_id | Blue | 80 | high |
+| Arm of Thorim (801847) | Arm of Thorim: -0.25 sec cast time | casting time -0.25 s | spell_id | Blue | 80 | high |
 | Arm of Thorim (801847) | Arm of Thorim: +3% critical strike chance | critical chance +3 | spell_id | Blue | 70 | high |
 | Arm of Thorim (801847) | Arm of Thorim: +10% damage | damage +10 % | spell_id | Epic | 100 | high |
 | Forked Lightning (801851) | Forked Lightning: -0.2 sec cast time | casting time -0.2 s | spell_id | Blue | 100 | high |
@@ -1056,7 +1056,7 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 | Heartbreak (520314) | Heartbreak: +8% damage and healing | damage +8 % | spell_id | Blue | 100 | high |
 | Heartbreak (807563) | Heartbreak: +3 sec duration | duration +3 s | spell_id | Blue | 70 | high |
 | Heartbreak (520314) | Heartbreak: +3 yd range | range +3 | mask | Blue | 60 | high |
-| Hemal Excision (803681) | Hemal Excision: -0.2 sec cast time | casting time -0.2 s | spell_id | Blue | 75 | high |
+| Hemal Excision (803681) | Hemal Excision: -0.25 sec cast time | casting time -0.25 s | spell_id | Blue | 75 | high |
 | Hemal Excision (803681) | Hemal Excision: -10 sec cooldown | cooldown -10 s | hook_cd | Blue | 70 | high |
 | Hemoglobe (524907) | Hemoglobe: -20 sec cooldown | cooldown -20 s | hook_cd | Blue | 100 | high |
 | Hemoglobe (524907) | Hemoglobe: +2 sec duration | duration +2 s | spell_id | Epic | 70 | high |
@@ -1089,7 +1089,7 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 | Blood Craving (800780) | Blood Craving: -20 sec cooldown | cooldown -20 s | hook_cd | Blue | 100 | high |
 | Blood Craving (800780) | Blood Craving: +2 sec duration | duration +2 s | spell_id | Epic | 70 | high |
 | Cursed Blood (806163) | Cursed Blood: +4% critical strike chance | critical chance +4 | spell_id | Blue | 75 | high |
-| Keleseth's Calamity (560249) | Keleseth's Calamity: -0.5 sec cast time | casting time -0.5 s | mask | Blue | 100 | high |
+| Keleseth's Calamity (560249) | Keleseth's Calamity: -1 sec cast time | casting time -1 s | mask | Blue | 100 | high |
 | Keleseth's Calamity (560249) | Keleseth's Calamity: +8% damage | damage +8 % | mask | Blue | 100 | high |
 | Keleseth's Calamity (560249) | Keleseth's Calamity: -10% Health cost | cost -10 % | mask | Blue | 65 | high |
 | Keleseth's Calamity (560249) | Keleseth's Calamity: +4% critical strike chance | critical chance +4 | mask | Blue | 75 | high |
@@ -1098,11 +1098,11 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 | Malediction (800776) | Malediction: -3 sec cooldown | cooldown -3 s | hook_cd | Blue | 80 | high |
 | Malediction (704120) | Malediction: +8% periodic damage | dot +8 % | spell_id | Blue | 100 | high |
 | Malediction (704120) | Malediction: +2 sec duration | duration +2 s | spell_id | Blue | 70 | high |
-| Sacrificial Rite (800785) | Sacrificial Rite: -0.2 sec cast time | casting time -0.2 s | mask | Blue | 75 | high |
+| Sacrificial Rite (800785) | Sacrificial Rite: -0.25 sec cast time | casting time -0.25 s | mask | Blue | 75 | high |
 | Sacrificial Rite (800785) | Sacrificial Rite: -15 sec cooldown | cooldown -15 s | mask | Blue | 100 | high |
 | Sacrificial Rite (800785) | Sacrificial Rite: -10% Health cost | cost -10 % | mask | Blue | 65 | high |
 | Sacrificial Rite (800785) | Sacrificial Rite: +2 sec duration | duration +2 s | mask | Blue | 70 | high |
-| Valanar's Vengeance (560315) | Valanar's Vengeance: -0.5 sec cast time | casting time -0.5 s | mask | Blue | 100 | high |
+| Valanar's Vengeance (560315) | Valanar's Vengeance: -1 sec cast time | casting time -1 s | mask | Blue | 100 | high |
 | Valanar's Vengeance (560315) | Valanar's Vengeance: +8% damage | damage +8 % | mask | Blue | 100 | high |
 | Valanar's Vengeance (560315) | Valanar's Vengeance: -10% Health cost | cost -10 % | mask | Blue | 65 | high |
 | Valanar's Vengeance (560315) | Valanar's Vengeance: +4% critical strike chance | critical chance +4 | mask | Blue | 75 | high |
@@ -1245,22 +1245,22 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 |---|---|---|---|---|---|---|
 | Backstep (800685) | Backstep: -3 sec cooldown | cooldown -3 s | mask | Blue | 100 | high |
 | Backstep (800685) | Backstep: -10% cost | cost -10 % | mask | Blue | 65 | high |
-| Emerald Arrow (804712) | Emerald Arrow: -0.4 sec cast time | casting time -0.4 s | mask | Blue | 100 | high |
+| Emerald Arrow (804712) | Emerald Arrow: -0.5 sec cast time | casting time -0.5 s | mask | Blue | 100 | high |
 | Emerald Arrow (804712) | Emerald Arrow: -10% cost | cost -10 % | mask | Blue | 65 | high |
 | Emerald Arrow (804712) | Emerald Arrow: +4% critical strike chance | critical chance +4 | mask | Blue | 75 | high |
 | Emerald Arrow (804712) | Emerald Arrow: +8% damage | damage +8 % | mask | Blue | 100 | high |
 | Emerald Arrow (804712) | Emerald Arrow: +1 yd radius | radius +1 | mask | Blue | 60 | medium |
 | Emerald Arrow (804712) | Emerald Arrow: +5 yd range | range +5 | mask | Blue | 60 | high |
 | Freedom (520628) | Freedom: -10 sec cooldown | cooldown -10 s | hook_cd | Blue | 50 | high |
-| Freedom (520628) | Freedom: +20% duration | duration +20 % | spell_id | Blue | 70 | high |
-| Freedom (520628) | Freedom: +10% radius | radius +10 % | spell_id | Blue | 60 | medium |
+| Freedom (520628) | Freedom: +1.5 sec duration | duration +1.5 s | spell_id | Blue | 70 | high |
+| Freedom (520628) | Freedom: +1 yd radius | radius +1 | spell_id | Blue | 60 | medium |
 | Horn of Alacrity (806360) | Horn of Alacrity: -6 sec cooldown | cooldown -6 s | hook_cd | Blue | 70 | high |
 | Horn of Alacrity (806360) | Horn of Alacrity: +20% duration | duration +20 % | spell_id | Blue | 70 | high |
 | Horn of War (800086) | Horn of War: -6 sec cooldown | cooldown -6 s | hook_cd | Blue | 70 | high |
 | Horn of War (800086) | Horn of War: +20% duration | duration +20 % | spell_id | Blue | 70 | high |
 | Thalassian Brand (560805) | Thalassian Brand: +8% periodic damage | dot +8 % | spell_id | Blue | 100 | high |
 | Thalassian Brand (560805) | Thalassian Brand: +20% duration | duration +20 % | spell_id | Blue | 70 | high |
-| Whipvine Arrow (806342) | Whipvine Arrow: -0.15 sec cast time | casting time -0.15 s | mask | Blue | 70 | high |
+| Whipvine Arrow (806342) | Whipvine Arrow: -0.2 sec cast time | casting time -0.2 s | mask | Blue | 70 | high |
 | Whipvine Arrow (806342) | Whipvine Arrow: -8 sec cooldown | cooldown -8 s | mask | Blue | 100 | high |
 | Whipvine Arrow (806342) | Whipvine Arrow: -10% cost | cost -10 % | mask | Blue | 65 | high |
 | Whipvine Arrow (806342) | Whipvine Arrow: +4% critical strike chance | critical chance +4 | mask | Blue | 75 | high |
@@ -1282,7 +1282,7 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 | Hookshot (800360) | Hookshot: +4% critical strike chance | critical chance +4 | spell_id | Blue | 75 | high |
 | Hookshot (800360) | Hookshot: +8% damage | damage +8 % | spell_id | Blue | 100 | medium |
 | Outmaneuver (557325) | Outmaneuver: -8 sec cooldown | cooldown -8 s | hook_cd | Blue | 50 | low |
-| Outmaneuver (557325) | Outmaneuver: +20% duration | duration +20 % | spell_id | Blue | 70 | medium |
+| Outmaneuver (557325) | Outmaneuver: +1.5 sec duration | duration +1.5 s | spell_id | Blue | 70 | medium |
 | Quills (560966) | Quills: -10% cost | cost -10 % | mask | Blue | 65 | high |
 | Quills (560966) | Quills: +4% critical strike chance | critical chance +4 | mask | Blue | 75 | high |
 | Quills (560966) | Quills: +8% damage | damage +8 % | mask | Blue | 100 | high |
@@ -1323,14 +1323,14 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 | Clasp of Infinity (805847) | Clasp of Infinity: +25% duration | duration +25 % | mask | Epic | 70 | high |
 | Clasp of Infinity (805847) | Clasp of Infinity: +1 additional target | jump targets +1 | mask | Epic | 60 | high |
 | Clasp of Infinity (805847) | Clasp of Infinity: +5 yd range | range +5 | mask | Blue | 60 | high |
-| Desynchronization (561310) | Desynchronization: -0.1 sec cast time | casting time -0.1 s | spell_id | Blue | 70 | high |
+| Desynchronization (561310) | Desynchronization: -0.15 sec cast time | casting time -0.15 s | spell_id | Blue | 70 | high |
 | Desynchronization (561310) | Desynchronization: -10 sec cooldown | cooldown -10 s | hook_cd | Blue | 60 | high |
-| Desynchronization (561310) | Desynchronization: +20% duration | duration +20 % | spell_id | Blue | 70 | high |
+| Desynchronization (561310) | Desynchronization: +1 sec duration | duration +1 s | spell_id | Blue | 70 | high |
 | Dimensional Divergence (802790) | Dimensional Divergence: -15 sec cooldown | cooldown -15 s | hook_cd | Blue | 60 | high |
 | Fortify Timeline (804491) | Fortify Timeline: -10% cost | cost -10 % | mask | Blue | 65 | high |
 | Fortify Timeline (804491) | Fortify Timeline: +4% critical strike chance | critical chance +4 | mask | Blue | 75 | high |
 | Fortify Timeline (804491) | Fortify Timeline: +8% healing | damage +8 % | mask | Blue | 100 | high |
-| Gravity Bomb (801281) | Gravity Bomb: -0.15 sec cast time | casting time -0.15 s | mask | Blue | 70 | high |
+| Gravity Bomb (801281) | Gravity Bomb: -0.2 sec cast time | casting time -0.2 s | mask | Blue | 70 | high |
 | Gravity Bomb (801281) | Gravity Bomb: -12 sec cooldown | cooldown -12 s | mask | Blue | 100 | high |
 | Gravity Bomb (801281) | Gravity Bomb: -10% cost | cost -10 % | mask | Blue | 65 | high |
 | Gravity Bomb (801282) | Gravity Bomb: +4% critical strike chance | critical chance +4 | mask | Blue | 75 | high |
@@ -1364,12 +1364,12 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 | Spell | Affix | Effekt | Targeting | Min. kvalitet | Weight | Confidence |
 |---|---|---|---|---|---|---|
 | Buy Time (520188) | Buy Time: -20 sec cooldown | cooldown -20 s | hook_cd | Blue | 60 | high |
-| Continuum Restoration (801271) | Continuum Restoration: -0.15 sec cast time | casting time -0.15 s | mask | Blue | 70 | high |
+| Continuum Restoration (801271) | Continuum Restoration: -0.2 sec cast time | casting time -0.2 s | mask | Blue | 70 | high |
 | Continuum Restoration (801271) | Continuum Restoration: -12 sec cooldown | cooldown -12 s | mask | Blue | 80 | high |
 | Continuum Restoration (801271) | Continuum Restoration: -10% cost | cost -10 % | mask | Blue | 65 | high |
-| Continuum Restoration (801271) | Continuum Restoration: +10% radius | radius +10 % | mask | Blue | 60 | high |
+| Continuum Restoration (801271) | Continuum Restoration: +1 yd radius | radius +1 | mask | Blue | 60 | high |
 | Continuum Restoration (801271) | Continuum Restoration: +5 yd range | range +5 | mask | Blue | 60 | high |
-| Correct the Mistake (572352) | Correct the Mistake: -0.25 sec cast time | casting time -0.25 s | spell_id | Blue | 70 | high |
+| Correct the Mistake (572352) | Correct the Mistake: -0.3 sec cast time | casting time -0.3 s | spell_id | Blue | 70 | high |
 | Correct the Mistake (572352) | Correct the Mistake: +4% critical strike chance | critical chance +4 | spell_id | Blue | 75 | high |
 | Correct the Mistake (572352) | Correct the Mistake: +8% healing | damage +8 % | spell_id | Blue | 100 | high |
 | Displacement (806727) | Displacement: -8 sec cooldown | cooldown -8 s | hook_cd | Blue | 60 | high |
@@ -1386,7 +1386,7 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 
 | Spell | Affix | Effekt | Targeting | Min. kvalitet | Weight | Confidence |
 |---|---|---|---|---|---|---|
-| Chromatic Shard (801292) | Chromatic Shard: -0.35 sec cast time | casting time -0.35 s | mask | Blue | 100 | high |
+| Chromatic Shard (801292) | Chromatic Shard: -0.4 sec cast time | casting time -0.4 s | mask | Blue | 100 | high |
 | Chromatic Shard (801292) | Chromatic Shard: -4 sec cooldown | cooldown -4 s | mask | Blue | 100 | medium |
 | Chromatic Shard (801292) | Chromatic Shard: -10% cost | cost -10 % | mask | Blue | 65 | high |
 | Chromatic Shard (801292) | Chromatic Shard: +4% critical strike chance | critical chance +4 | mask | Blue | 75 | high |
@@ -1395,10 +1395,10 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 | Incarnation of Chaos (570067) | Incarnation of Chaos: -20 sec cooldown | cooldown -20 s | mask | Epic | 100 | high |
 | Incarnation of Chaos (570067) | Incarnation of Chaos: -10% cost | cost -10 % | mask | Blue | 65 | high |
 | Incarnation of Chaos (570067) | Incarnation of Chaos: +20% duration | duration +20 % | mask | Blue | 70 | high |
-| Melt Reality (806335) | Melt Reality: -0.25 sec cast time | casting time -0.25 s | mask | Blue | 70 | high |
+| Melt Reality (806335) | Melt Reality: -0.3 sec cast time | casting time -0.3 s | mask | Blue | 70 | high |
 | Melt Reality (806335) | Melt Reality: -10% cost | cost -10 % | mask | Blue | 65 | high |
 | Melt Reality (806335) | Melt Reality: +8% periodic damage | dot +8 % | mask | Blue | 100 | high |
-| Melt Reality (806335) | Melt Reality: +20% duration | duration +20 % | mask | Blue | 70 | high |
+| Melt Reality (806335) | Melt Reality: +7 sec duration | duration +7 s | mask | Blue | 70 | high |
 | Melt Reality (806335) | Melt Reality: +5 yd range | range +5 | mask | Blue | 60 | high |
 | Slipstream (707555) | Slipstream: -15 sec cooldown | cooldown -15 s | hook_cd | Blue | 50 | low |
 | Slipstream (707555) | Slipstream: +20% duration | duration +20 % | spell_id | Blue | 70 | medium |
@@ -1466,13 +1466,13 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 | Flesh to Worms (500338) | Flesh to Worms: +8% periodic damage | dot +8 % | mask | Blue | 100 | high |
 | Flesh to Worms (500338) | Flesh to Worms: +3 sec duration | duration +3 s | mask | Blue | 70 | high |
 | Flesh to Worms (500338) | Flesh to Worms: +5 yd range | range +5 | mask | Blue | 60 | high |
-| Lichplague (802132) | Lichplague: -0.15 sec cast time | casting time -0.15 s | spell_id | Blue | 70 | high |
+| Lichplague (802132) | Lichplague: -0.2 sec cast time | casting time -0.2 s | spell_id | Blue | 70 | high |
 | Lichplague (802132) | Lichplague: -4 sec cooldown | cooldown -4 s | hook_cd | Blue | 100 | medium |
 | Lichplague (802132) | Lichplague: +8% periodic damage | dot +8 % | spell_id | Epic | 100 | high |
 | Lichplague (802132) | Lichplague: +3 sec duration | duration +3 s | spell_id | Blue | 70 | high |
 | Mutation (500342) | Mutation: -20 sec cooldown | cooldown -20 s | hook_cd | Epic | 80 | high |
 | Mutation (500342) | Mutation: +20% duration | duration +20 % | spell_id | Blue | 70 | high |
-| Plague of Undeath (801945) | Plague of Undeath: -0.15 sec cast time | casting time -0.15 s | spell_id | Blue | 100 | high |
+| Plague of Undeath (801945) | Plague of Undeath: -0.2 sec cast time | casting time -0.2 s | spell_id | Blue | 100 | high |
 | Plague of Undeath (801945) | Plague of Undeath: +8% periodic damage | dot +8 % | spell_id | Blue | 100 | high |
 | Plague of Undeath (801945) | Plague of Undeath: +2.5 sec duration | duration +2.5 s | spell_id | Blue | 70 | high |
 | Virulency (801938) | Virulency: -8 sec cooldown | cooldown -8 s | hook_cd | Blue | 60 | low |
@@ -1538,7 +1538,7 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 | Circle of Fire (680842) | Circle of Fire: +4% critical strike chance | critical chance +4 | spell_id | Blue | 75 | medium |
 | Circle of Fire (680842) | Circle of Fire: +8% damage | damage +8 % | spell_id | Blue | 100 | high |
 | Circle of Fire (800807) | Circle of Fire: +20% duration | duration +20 % | mask | Epic | 70 | medium |
-| Circle of Fire (680842) | Circle of Fire: +20% duration | duration +20 % | spell_id | Blue | 70 | medium |
+| Circle of Fire (680842) | Circle of Fire: +1 sec duration | duration +1 s | spell_id | Blue | 70 | medium |
 | Circle of Fire (800807) | Circle of Fire: +1 yd radius | radius +1 | mask | Blue | 60 | low |
 | Circle of Fire (800807) | Circle of Fire: +10% range | range +10 % | mask | Blue | 60 | medium |
 | Dragon Leap (806611) | Dragon Leap: -4 sec cooldown | cooldown -4 s | hook_cd | Blue | 100 | medium |
@@ -1549,7 +1549,7 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 | Ember Touch (800818) | Ember Touch: +8% healing | damage +8 % | mask | Blue | 100 | high |
 | Ember Touch (800818) | Ember Touch: +10% range | range +10 % | mask | Blue | 60 | medium |
 | Essence of Malygos (802120) | Essence of Malygos: -15 sec cooldown | cooldown -15 s | hook_cd | Blue | 100 | high |
-| Essence of Malygos (802120) | Essence of Malygos: +20% duration | duration +20 % | spell_id | Blue | 70 | medium |
+| Essence of Malygos (802120) | Essence of Malygos: +1 sec duration | duration +1 s | spell_id | Blue | 70 | medium |
 | Gaze of Ysera (806148) | Gaze of Ysera: -0.2 sec cast time | casting time -0.2 s | mask | Blue | 75 | medium |
 | Gaze of Ysera (806148) | Gaze of Ysera: -12 sec cooldown | cooldown -12 s | mask | Blue | 75 | high |
 | Gaze of Ysera (806148) | Gaze of Ysera: -10% resource cost | cost -10 % | mask | Blue | 65 | medium |
@@ -1557,7 +1557,7 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 | Gaze of Ysera (806148) | Gaze of Ysera: +10% range | range +10 % | mask | Blue | 60 | medium |
 | Grace of Alexstrasza (802167) | Grace of Alexstrasza: -30 sec cooldown | cooldown -30 s | mask | Blue | 75 | high |
 | Grace of Alexstrasza (802167) | Grace of Alexstrasza: -10% resource cost | cost -10 % | mask | Blue | 65 | medium |
-| Grace of Alexstrasza (803411) | Grace of Alexstrasza: +20% duration | duration +20 % | spell_id | Epic | 70 | medium |
+| Grace of Alexstrasza (803411) | Grace of Alexstrasza: +0.7 sec duration | duration +0.7 s | spell_id | Epic | 70 | medium |
 | Grace of Alexstrasza (802167) | Grace of Alexstrasza: +2 yd radius | radius +2 | mask | Blue | 60 | medium |
 | Ignis Ultimatus (680369) | Ignis Ultimatus: -8 sec cooldown | cooldown -8 s | mask | Epic | 100 | high |
 | Ignis Ultimatus (680369) | Ignis Ultimatus: -10% resource cost | cost -10 % | mask | Blue | 65 | medium |
@@ -1572,7 +1572,7 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 | Meteor (804076) | Meteor: +4% critical strike chance | critical chance +4 | spell_id | Blue | 75 | medium |
 | Meteor (804076) | Meteor: +8% damage | damage +8 % | spell_id | Blue | 100 | medium |
 | Meteor (500135) | Meteor: +1 yd radius | radius +1 | mask | Blue | 60 | low |
-| Meteor (500135) | Meteor: +10% range | range +10 % | mask | Blue | 60 | medium |
+| Meteor (500135) | Meteor: +3 yd range | range +3 | mask | Blue | 60 | medium |
 | Volcanic Shell (805477) | Volcanic Shell: +10% absorb | effect1 +10 % | mask | Blue | 100 | medium |
 | Volcanic Shell (805477) | Volcanic Shell: -15 sec cooldown | cooldown -15 s | mask | Blue | 75 | high |
 | Volcanic Shell (805477) | Volcanic Shell: -10% resource cost | cost -10 % | mask | Blue | 65 | medium |
@@ -1601,18 +1601,18 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 | Fired Up! (704823) | Fired Up!: -8 sec cooldown | cooldown -8 s | mask | Epic | 100 | high |
 | Fired Up! (704823) | Fired Up!: -10% resource cost | cost -10 % | mask | Blue | 65 | medium |
 | Fired Up! (704823) | Fired Up!: +20% duration | duration +20 % | mask | Epic | 70 | medium |
-| Ignite (800791) | Ignite: -10% cast time | casting time -10 % | mask | Blue | 75 | high |
+| Ignite (800791) | Ignite: -0.2 sec cast time | casting time -0.2 s | mask | Blue | 75 | high |
 | Ignite (800791) | Ignite: -10% resource cost | cost -10 % | mask | Blue | 65 | medium |
 | Ignite (800791) | Ignite: +10% periodic damage | dot +10 % | mask | Epic | 100 | high |
-| Ignite (800791) | Ignite: +15% duration | duration +15 % | mask | Blue | 70 | medium |
+| Ignite (800791) | Ignite: +3 sec duration | duration +3 s | mask | Blue | 70 | medium |
 | Ignite (800791) | Ignite: +1 yd radius | radius +1 | mask | Blue | 60 | medium |
-| Ignite (800791) | Ignite: +10% range | range +10 % | mask | Blue | 60 | medium |
+| Ignite (800791) | Ignite: +3 yd range | range +3 | mask | Blue | 60 | medium |
 | Pillar of Flame (805496) | Pillar of Flame: -0.2 sec cast time | casting time -0.2 s | mask | Blue | 75 | medium |
 | Pillar of Flame (805496) | Pillar of Flame: -10% resource cost | cost -10 % | mask | Blue | 65 | medium |
 | Pillar of Flame (805496) | Pillar of Flame: +4% critical strike chance | critical chance +4 | mask | Blue | 75 | medium |
 | Pillar of Flame (805496) | Pillar of Flame: +8% damage | damage +8 % | mask | Blue | 100 | high |
 | Pillar of Flame (805496) | Pillar of Flame: +1 yd radius | radius +1 | mask | Blue | 60 | medium |
-| Pillar of Flame (805496) | Pillar of Flame: +10% range | range +10 % | mask | Blue | 60 | medium |
+| Pillar of Flame (805496) | Pillar of Flame: +3 yd range | range +3 | mask | Blue | 60 | medium |
 | Pyroclasm (520019) | Pyroclasm: -8 sec cooldown | cooldown -8 s | mask | Blue | 100 | high |
 | Pyroclasm (520019) | Pyroclasm: -10% resource cost | cost -10 % | mask | Blue | 65 | medium |
 | Pyroclasm (520019) | Pyroclasm: +10% range | range +10 % | mask | Blue | 60 | medium |
@@ -1633,15 +1633,15 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 | Destroyer's Maw (802107) | Destroyer's Maw: -10% resource cost | cost -10 % | mask | Blue | 65 | medium |
 | Destroyer's Maw (802107) | Destroyer's Maw: +4% critical strike chance | critical chance +4 | mask | Blue | 75 | medium |
 | Destroyer's Maw (802107) | Destroyer's Maw: +8% damage | damage +8 % | mask | Blue | 100 | high |
-| Destroyer's Maw (802107) | Destroyer's Maw: +10% range | range +10 % | mask | Blue | 60 | medium |
+| Destroyer's Maw (802107) | Destroyer's Maw: +3 yd range | range +3 | mask | Blue | 60 | medium |
 | Firefall (801905) | Firefall: -0.2 sec cast time | casting time -0.2 s | mask | Blue | 75 | medium |
 | Firefall (801905) | Firefall: -10% resource cost | cost -10 % | mask | Blue | 65 | medium |
 | Firefall (801905) | Firefall: +4% critical strike chance | critical chance +4 | mask | Blue | 75 | medium |
 | Firefall (801905) | Firefall: +8% damage | damage +8 % | mask | Blue | 100 | high |
 | Firefall (801905) | Firefall: +1 additional target | jump targets +1 | mask | Blue | 65 | medium |
 | Firefall (801905) | Firefall: +2 yd radius | radius +2 | mask | Blue | 60 | medium |
-| Firefall (801905) | Firefall: +10% range | range +10 % | mask | Blue | 60 | medium |
-| Melt Weapon (301235) | Breath of Neltharion (Melt Weapon): +20% duration | duration +20 % | spell_id | Blue | 70 | medium |
+| Firefall (801905) | Firefall: +3 yd range | range +3 | mask | Blue | 60 | medium |
+| Melt Weapon (301235) | Breath of Neltharion (Melt Weapon): +1 sec duration | duration +1 s | spell_id | Blue | 70 | medium |
 
 <details><summary>Avvist (7)</summary>
 
@@ -1673,10 +1673,10 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 | Dark Infusion (570263) | Dark Infusion: +4% critical strike chance | critical chance +4 | spell_id | Blue | 75 | medium |
 | Dark Infusion (570263) | Dark Infusion: +8% healing | damage +8 % | spell_id | Blue | 100 | low |
 | Embrace the Void (582591) | Embrace the Void: -30 sec cooldown | cooldown -30 s | hook_cd | Blue | 100 | high |
-| Embrace the Void (582591) | Embrace the Void: +20% duration | duration +20 % | spell_id | Blue | 70 | medium |
+| Embrace the Void (582591) | Embrace the Void: +1 sec duration | duration +1 s | spell_id | Blue | 70 | medium |
 | Mass Nightmare (805114) | Mass Nightmare: -20 sec cooldown | cooldown -20 s | mask | Blue | 75 | high |
 | Mass Nightmare (805114) | Mass Nightmare: -10% resource cost | cost -10 % | mask | Blue | 65 | medium |
-| Mass Nightmare (805114) | Mass Nightmare: +15% duration | duration +15 % | mask | Epic | 70 | medium |
+| Mass Nightmare (805114) | Mass Nightmare: +0.5 sec duration | duration +0.5 s | mask | Epic | 70 | medium |
 | Mass Nightmare (805114) | Mass Nightmare: +1 yd radius | radius +1 | mask | Blue | 60 | medium |
 | Twisted Seal (525065) | Twisted Seal: -15 sec cooldown | cooldown -15 s | hook_cd | Blue | 75 | high |
 | Twisted Seal (525065) | Twisted Seal: +20% duration | duration +20 % | spell_id | Blue | 70 | medium |
@@ -1691,7 +1691,7 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 
 | Spell | Affix | Effekt | Targeting | Min. kvalitet | Weight | Confidence |
 |---|---|---|---|---|---|---|
-| Black Blood (804153) | Malevolence (Black Blood): +20% duration | duration +20 % | mask | Blue | 70 | medium |
+| Black Blood (804153) | Malevolence (Black Blood): +2.5 sec duration | duration +2.5 s | mask | Blue | 70 | medium |
 | Black Blood (804153) | Malevolence (Black Blood): +2 yd radius | radius +2 | mask | Blue | 60 | medium |
 | Black Blood (804153) | Malevolence: +10% Black Blood healing | dot +10 % | mask | Blue | 100 | high |
 | Dark Veil (520345) | Dark Veil: -15 sec cooldown | cooldown -15 s | hook_cd | Blue | 100 | high |
@@ -1759,7 +1759,7 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 | Rift (806250) | Rift: -10% resource cost | cost -10 % | mask | Blue | 65 | medium |
 | Rift (806250) | Rift: +20% duration | duration +20 % | mask | Blue | 70 | medium |
 | Voidborne (681104) | Voidborne: -20 sec cooldown | cooldown -20 s | hook_cd | Epic | 100 | high |
-| Voidborne (681104) | Voidborne: +15% duration | duration +15 % | spell_id | Epic | 70 | medium |
+| Voidborne (681104) | Voidborne: +2 sec duration | duration +2 s | spell_id | Epic | 70 | medium |
 
 ### Bulwark
 
@@ -1811,7 +1811,7 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 | Starshatter (801135) | Starshatter: -12 sec cooldown | cooldown -12 s | hook_cd | Blue | 100 | high |
 | Starshatter (712461) | Starshatter: +20% duration | duration +20 % | spell_id | Blue | 70 | low |
 | Starshatter (712461) | Starshatter: +1 yd radius | radius +1 | spell_id | Blue | 60 | low |
-| Touch of Moonlight (574328) | Touch of Moonlight: -0.15 sec cast time | casting time -0.15 s | mask | Blue | 75 | medium |
+| Touch of Moonlight (574328) | Touch of Moonlight: -0.2 sec cast time | casting time -0.2 s | mask | Blue | 75 | medium |
 | Touch of Moonlight (574328) | Touch of Moonlight: +3% critical strike chance | critical chance +3 | mask | Blue | 75 | medium |
 | Touch of Moonlight (574328) | Touch of Moonlight: +8% healing | damage +8 % | mask | Blue | 100 | high |
 | Touch of Moonlight (574328) | Touch of Moonlight: +10% range | range +10 % | mask | Blue | 60 | medium |
@@ -1863,11 +1863,11 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 | Starcall (800497) | Starcall: +4% critical strike chance | critical chance +4 | mask | Blue | 75 | medium |
 | Starcall (800497) | Starcall: +8% damage | damage +8 % | mask | Blue | 100 | high |
 | Starcall (800497) | Starcall: +1 yd radius | radius +1 | mask | Blue | 60 | medium |
-| Starcall (800497) | Starcall: +10% range | range +10 % | mask | Blue | 60 | medium |
-| Starfire Shot (801978) | Starfire Shot: -0.25 sec cast time | casting time -0.25 s | spell_id | Blue | 75 | high |
+| Starcall (800497) | Starcall: +4 yd range | range +4 | mask | Blue | 60 | medium |
+| Starfire Shot (801978) | Starfire Shot: -0.3 sec cast time | casting time -0.3 s | spell_id | Blue | 75 | high |
 | Starfire Shot (801978) | Starfire Shot: +4% critical strike chance | critical chance +4 | spell_id | Blue | 75 | medium |
 | Starfire Shot (801978) | Starfire Shot: +8% damage | damage +8 % | spell_id | Blue | 100 | high |
-| Trueshot (520590) | Trueshot: -0.18 sec cast time | casting time -0.18 s | mask | Blue | 75 | medium |
+| Trueshot (520590) | Trueshot: -0.2 sec cast time | casting time -0.2 s | mask | Blue | 75 | medium |
 | Trueshot (562319) | Trueshot: +4% critical strike chance | critical chance +4 | spell_id | Blue | 75 | medium |
 | Trueshot (562319) | Trueshot: +8% damage | damage +8 % | mask | Blue | 100 | high |
 | Trueshot (562319) | Trueshot: +1 yd radius | radius +1 | spell_id | Blue | 60 | medium |
@@ -1888,7 +1888,7 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 | Halt (807741) | Halt: -15 sec cooldown | cooldown -15 s | hook_cd | Blue | 75 | high |
 | Sentinel Glaive (800506) | Sentinel Glaive: +4% critical strike chance | critical chance +4 | spell_id | Blue | 75 | medium |
 | Sentinel Glaive (800506) | Sentinel Glaive: +8% damage | damage +8 % | spell_id | Blue | 100 | high |
-| Sentinel Glaive (800559) | Sentinel Glaive: +20% duration | duration +20 % | spell_id | Blue | 70 | low |
+| Sentinel Glaive (800559) | Sentinel Glaive: +1.5 sec duration | duration +1.5 s | spell_id | Blue | 70 | low |
 | Shadowsong's Mandate (805439) | Shadowsong's Mandate: -15 sec cooldown | cooldown -15 s | mask | Epic | 100 | high |
 | Shadowsong's Mandate (805439) | Shadowsong's Mandate: +20% duration | duration +20 % | mask | Epic | 70 | medium |
 | Umbral Blade (574165) | Umbral Blade: +4% critical strike chance | critical chance +4 | mask | Blue | 75 | medium |
@@ -1902,7 +1902,7 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 | Spell | Affix | Effekt | Targeting | Min. kvalitet | Weight | Confidence |
 |---|---|---|---|---|---|---|
 | Blanket of Stars (804381) | Blanket of Stars: -5 sec cooldown | cooldown -5 s | hook_cd | Blue | 100 | high |
-| Blanket of Stars (804381) | Blanket of Stars: +20% duration | duration +20 % | spell_id | Blue | 70 | medium |
+| Blanket of Stars (804381) | Blanket of Stars: +1.5 sec duration | duration +1.5 s | spell_id | Blue | 70 | medium |
 | Chosen of the Moon (680755) | Chosen of the Moon: -20 sec cooldown | cooldown -20 s | hook_cd | Blue | 100 | high |
 | Chosen of the Moon (680755) | Chosen of the Moon: +15% duration | duration +15 % | spell_id | Epic | 70 | medium |
 | Moonlit Bulwark (805433) | Moonlit Bulwark: -20 sec cooldown | cooldown -20 s | hook_cd | Blue | 100 | high |
@@ -1974,7 +1974,7 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 
 | Spell | Affix | Effekt | Targeting | Min. kvalitet | Weight | Confidence |
 |---|---|---|---|---|---|---|
-| Dawnsear (500146) | Dawnsear: -0.25 sec cast time | casting time -0.25 s | spell_id | Blue | 100 | medium |
+| Dawnsear (500146) | Dawnsear: -0.3 sec cast time | casting time -0.3 s | spell_id | Blue | 100 | medium |
 | Dawnsear (500146) | Dawnsear: +4% critical strike chance | critical chance +4 | spell_id | Blue | 75 | high |
 | Dawnsear (500146) | Dawnsear: +6% damage | damage +6 % | spell_id | Blue | 100 | high |
 | Radiant Flame (806060) | Radiant Flame: -10% cost | cost -10 % | mask | Blue | 70 | high |
@@ -1982,7 +1982,7 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 | Radiant Flame (807058) | Radiant Flame: +8% damage | damage +8 % | spell_id | Blue | 100 | medium |
 | Radiant Flame (806060) | Radiant Flame: +1 sec duration | duration +1 s | spell_id | Blue | 70 | high |
 | Radiant Flame (806060) | Radiant Flame: +3 yd range | range +3 | mask | Blue | 60 | high |
-| Rapture (806477) | Rapture: -0.25 sec cast time | casting time -0.25 s | mask | Blue | 100 | high |
+| Rapture (806477) | Rapture: -0.3 sec cast time | casting time -0.3 s | mask | Blue | 100 | high |
 | Rapture (806477) | Rapture: -10% cost | cost -10 % | mask | Blue | 70 | high |
 | Rapture (806477) | Rapture: +4% critical strike chance | critical chance +4 | spell_id | Blue | 75 | high |
 | Rapture (806477) | Rapture: +8% damage | damage +8 % | spell_id | Blue | 100 | high |
@@ -1991,7 +1991,7 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 | Solar Concord (301266) | Solar Concord: -4 sec cooldown | cooldown -4 s | hook_cd | Blue | 80 | medium |
 | Solar Concord (301266) | Solar Concord: +2 sec duration | duration +2 s | spell_id | Blue | 70 | medium |
 | Solar Flare (807175) | Solar Flare: +4% critical strike chance | critical chance +4 | spell_id | Blue | 75 | high |
-| Sun Down (572752) | Sun Down: -0.25 sec cast time | casting time -0.25 s | spell_id | Blue | 75 | high |
+| Sun Down (572752) | Sun Down: -0.3 sec cast time | casting time -0.3 s | spell_id | Blue | 75 | high |
 | Sun Down (572753) | Sun Down: +4% critical strike chance | critical chance +4 | spell_id | Blue | 75 | high |
 | Sun Down (572753) | Sun Down: +8% damage | damage +8 % | spell_id | Epic | 100 | high |
 | Sunwell (560123) | Sunwell: -20 sec cooldown | cooldown -20 s | hook_cd | Blue | 50 | medium |
@@ -2131,14 +2131,14 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 | Build: Spider Bomb (500535) | Build: Spider Bomb: -10% cost | cost -10 % | mask | Blue | 70 | high |
 | Build: Spider Bomb (500535) | Build: Spider Bomb: +3 yd range | range +3 | mask | Blue | 60 | high |
 | Build: Spider Bomb (500535) | Build: Spider Bomb: -2 sec cooldown | cooldown -2 s | mask | Blue | 100 | high |
-| Hyperblast Barrage (500249) | Hyperblast Barrage: -0.25 sec cast time | casting time -0.25 s | spell_id | Blue | 75 | high |
+| Hyperblast Barrage (500249) | Hyperblast Barrage: -0.3 sec cast time | casting time -0.3 s | spell_id | Blue | 75 | high |
 | Hyperblast Barrage (500249) | Hyperblast Barrage: +4% critical strike chance | critical chance +4 | spell_id | Blue | 75 | high |
 | Hyperblast Barrage (500249) | Hyperblast Barrage: +2 yd radius | radius +2 | spell_id | Blue | 60 | high |
 | Hyperblast Barrage (500249) | Hyperblast Barrage: -4 sec cooldown | cooldown -4 s | hook_cd | Blue | 100 | medium |
 | Hyperblast Barrage (500249) | Hyperblast Barrage: +8% damage | damage +8 % | spell_id | Epic | 100 | high |
 | Rockadier (801827) | Rockadier: -20 sec cooldown | cooldown -20 s | hook_cd | Blue | 70 | medium |
 | Rockadier (801827) | Rockadier: +3 sec duration | duration +3 s | spell_id | Epic | 70 | high |
-| Rocket Launcher (500235) | Rocket Launcher: -0.25 sec cast time | casting time -0.25 s | mask | Blue | 100 | high |
+| Rocket Launcher (500235) | Rocket Launcher: -0.3 sec cast time | casting time -0.3 s | mask | Blue | 100 | high |
 | Rocket Launcher (500235) | Rocket Launcher: -10% cost | cost -10 % | mask | Blue | 70 | high |
 | Rocket Launcher (500220) | Rocket Launcher: +3% critical strike chance | critical chance +3 | spell_id | Blue | 70 | medium |
 | Rocket Launcher (500220) | Rocket Launcher: +8% damage | damage +8 % | spell_id | Blue | 100 | medium |
@@ -2313,7 +2313,7 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 
 | Spell | Affix | Effekt | Targeting | Min. kvalitet | Weight | Confidence |
 |---|---|---|---|---|---|---|
-| Mycosis (804986) | Mycosis: -0.25 sec cast time | casting time -0.25 s | mask | Blue | 75 | high |
+| Mycosis (804986) | Mycosis: -0.3 sec cast time | casting time -0.3 s | mask | Blue | 75 | high |
 | Mycosis (804986) | Mycosis: -2 sec cooldown | cooldown -2 s | mask | Blue | 80 | high |
 | Mycosis (804986) | Mycosis: -10% cost | cost -10 % | mask | Blue | 70 | high |
 | Mycosis (804986) | Mycosis: +4% critical strike chance | critical chance +4 | spell_id | Blue | 75 | high |
@@ -2339,7 +2339,7 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 
 | Spell | Affix | Effekt | Targeting | Min. kvalitet | Weight | Confidence |
 |---|---|---|---|---|---|---|
-| Alkahest (504342) | Alkahest: -0.25 sec cast time | casting time -0.25 s | mask | Blue | 75 | high |
+| Alkahest (504342) | Alkahest: -0.3 sec cast time | casting time -0.3 s | mask | Blue | 75 | high |
 | Alkahest (504342) | Alkahest: -10% cost | cost -10 % | mask | Blue | 70 | high |
 | Alkahest (504342) | Alkahest: +4% critical strike chance | critical chance +4 | spell_id | Blue | 75 | high |
 | Alkahest (504342) | Alkahest: +8% healing | damage +8 % | spell_id | Blue | 100 | high |
@@ -2348,7 +2348,7 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 | Chrysalis (808082) | Chrysalis: +2 sec duration | duration +2 s | spell_id | Blue | 70 | medium |
 | Extraction (805884) | Extraction: -30 sec cooldown | cooldown -30 s | hook_cd | Blue | 100 | medium |
 | Extraction (805884) | Extraction: +2 sec duration | duration +2 s | spell_id | Epic | 70 | high |
-| Mending Mist (800899) | Mending Mist: -0.25 sec cast time | casting time -0.25 s | mask | Blue | 75 | high |
+| Mending Mist (800899) | Mending Mist: -0.3 sec cast time | casting time -0.3 s | mask | Blue | 75 | high |
 | Mending Mist (800899) | Mending Mist: -10% cost | cost -10 % | mask | Blue | 70 | high |
 | Mending Mist (803538) | Mending Mist: +4% critical strike chance | critical chance +4 | spell_id | Blue | 75 | high |
 | Mending Mist (800899) | Mending Mist: +1 sec duration | duration +1 s | spell_id | Blue | 70 | medium |
@@ -2389,13 +2389,13 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 | Ghastly Screech (806147) | Ghastly Screech: +4% critical strike chance | critical chance +4 | spell_id | Blue | 70 | medium |
 | Ghastly Screech (806147) | Ghastly Screech: +10% damage | damage +10 % | spell_id | Blue | 100 | medium |
 | Ghastly Screech (806146) | Ghastly Screech: +0.5 sec duration | duration +0.5 s | mask | Epic | 70 | high |
-| Ghastly Screech (806146) | Ghastly Screech: +15% radius | radius +15 % | mask | Blue | 60 | medium |
+| Ghastly Screech (806146) | Ghastly Screech: +1 yd radius | radius +1 | mask | Blue | 60 | medium |
 | Jailer's Bargain (805718) | Jailer's Bargain: +15% duration | duration +15 % | spell_id | Blue | 70 | medium |
 | Jailer's Bargain (805718) | Jailer's Bargain: -15 sec cooldown | cooldown -15 s | hook_cd | Blue | 100 | medium |
 | Limbo (800845) | Limbo: -20 sec cooldown | cooldown -20 s | mask | Epic | 100 | high |
 | Limbo (800845) | Limbo: +1 sec duration | duration +1 s | mask | Epic | 70 | high |
 | Masochistic Rage (803030) | Masochistic Rage: -10 sec cooldown | cooldown -10 s | hook_cd | Blue | 100 | medium |
-| Masochistic Rage (570097) | Masochistic Rage: +15% duration | duration +15 % | spell_id | Blue | 70 | medium |
+| Masochistic Rage (570097) | Masochistic Rage: +2 sec duration | duration +2 s | spell_id | Blue | 70 | medium |
 | Soul Tap (807397) | Soul Tap: -4 sec cooldown | cooldown -4 s | hook_cd | Blue | 80 | medium |
 | Tormented Soul (500482) | Tormented Souls: +4% critical strike chance | critical chance +4 | spell_id | Blue | 70 | medium |
 | Tormented Souls (500483) | Tormented Souls: -3 sec cooldown | cooldown -3 s | hook_cd | Blue | 100 | medium |
@@ -2414,7 +2414,7 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 | Dirge (801311) | Dirge: +3% critical strike chance | critical chance +3 | spell_id | Blue | 100 | medium |
 | Dirge (801311) | Dirge: +8% damage | damage +8 % | spell_id | Blue | 100 | medium |
 | Endbringer (800922) | Endbringer: -20 sec cooldown | cooldown -20 s | mask | Epic | 100 | high |
-| Endbringer (800922) | Endbringer: +15% duration | duration +15 % | mask | Blue | 70 | high |
+| Endbringer (800922) | Endbringer: +2 sec duration | duration +2 s | mask | Blue | 70 | high |
 | Ghostly Weapon (803997) | Ghostly Weapon: -10% resource cost | cost -10 % | mask | Blue | 65 | high |
 | Ghostly Weapon (804474) | Ghostly Weapon: +4% critical strike chance | critical chance +4 | mask | Blue | 70 | high |
 | Ghostly Weapon (804474) | Ghostly Weapon: +10% damage | damage +10 % | mask | Blue | 100 | high |
@@ -2429,7 +2429,7 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 |---|---|---|---|---|---|---|
 | Crow's Harvest (504011) | Crow's Harvest: -10% resource cost | cost -10 % | mask | Blue | 65 | high |
 | Crow's Harvest (504011) | Crow's Harvest: +3% critical strike chance | critical chance +3 | mask | Blue | 70 | high |
-| Crow's Harvest (504011) | Crow's Harvest: +15% radius | radius +15 % | mask | Blue | 60 | medium |
+| Crow's Harvest (504011) | Crow's Harvest: +1 yd radius | radius +1 | mask | Blue | 60 | medium |
 | Crow's Harvest (504011) | Crow's Harvest: +8% damage | damage +8 % | mask | Blue | 100 | high |
 | Doomrend (800172) | Doomrend: +4% critical strike chance | critical chance +4 | mask | Blue | 70 | high |
 | Doomrend (800172) | Doomrend: +8% damage | damage +8 % | mask | Blue | 100 | high |
@@ -2447,15 +2447,15 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 | Spell | Affix | Effekt | Targeting | Min. kvalitet | Weight | Confidence |
 |---|---|---|---|---|---|---|
 | Bolstered Form (680337) | Bolstered Form: -8 sec cooldown | cooldown -8 s | mask | Blue | 100 | high |
-| Bolstered Form (680337) | Bolstered Form: +15% duration | duration +15 % | mask | Blue | 70 | high |
+| Bolstered Form (680337) | Bolstered Form: +2 sec duration | duration +2 s | mask | Blue | 70 | high |
 | Dreadwake (803992) | Dreadwake: -10% resource cost | cost -10 % | mask | Blue | 65 | high |
 | Dreadwake (803992) | Dreadwake: +3% critical strike chance | critical chance +3 | mask | Blue | 70 | high |
 | Dreadwake (803992) | Dreadwake: +8% damage | damage +8 % | mask | Blue | 100 | high |
-| Dreadwake (803992) | Dreadwake: +15% radius | radius +15 % | mask | Blue | 60 | medium |
+| Dreadwake (803992) | Dreadwake: +2 yd radius | radius +2 | mask | Blue | 60 | medium |
 | Requiem (805717) | Requiem: +3% critical strike chance | critical chance +3 | mask | Blue | 70 | high |
 | Requiem (805717) | Requiem: +8% damage | damage +8 % | mask | Blue | 100 | high |
-| Requiem (572179) | Requiem: +15% duration | duration +15 % | spell_id | Blue | 70 | medium |
-| Requiem (805717) | Requiem: +15% radius | radius +15 % | mask | Blue | 60 | medium |
+| Requiem (572179) | Requiem: +2 sec duration | duration +2 s | spell_id | Blue | 70 | medium |
+| Requiem (805717) | Requiem: +1 yd radius | radius +1 | mask | Blue | 60 | medium |
 
 <details><summary>Avvist (6)</summary>
 
@@ -2484,10 +2484,10 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 | Boulder Dash (500693) | Boulder Dash: +3% critical strike chance | critical chance +3 | spell_id | Blue | 70 | medium |
 | Boulder Dash (500693) | Boulder Dash: +10% damage | damage +10 % | spell_id | Blue | 80 | medium |
 | Boulder Dash (500692) | Boulder Dash: +15% duration | duration +15 % | mask | Blue | 70 | high |
-| Boulder Dash (500693) | Boulder Dash: +15% radius | radius +15 % | spell_id | Blue | 60 | medium |
+| Boulder Dash (500693) | Boulder Dash: +1 yd radius | radius +1 | spell_id | Blue | 60 | medium |
 | Bramblepatch (806415) | Bramblepatch: -15 sec cooldown | cooldown -15 s | hook_cd | Blue | 60 | medium |
-| Bramblepatch (806415) | Bramblepatch: +15% duration | duration +15 % | spell_id | Blue | 70 | medium |
-| Bramblepatch (806415) | Bramblepatch: +15% radius | radius +15 % | spell_id | Blue | 60 | medium |
+| Bramblepatch (806415) | Bramblepatch: +2 sec duration | duration +2 s | spell_id | Blue | 70 | medium |
+| Bramblepatch (806415) | Bramblepatch: +1 yd radius | radius +1 | spell_id | Blue | 60 | medium |
 | Dreamslip (805867) | Dreamslip: -10% cast time | casting time -10 % | spell_id | Blue | 70 | medium |
 | Dreamslip (805867) | Dreamslip: -20 sec cooldown | cooldown -20 s | hook_cd | Epic | 60 | medium |
 | Geode (804002) | Rock Barrier: +10% Geode damage | damage +10 % | mask | Blue | 100 | high |
@@ -2496,7 +2496,7 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 | Grove Guardian (504824) | Grove Guardian: +10% periodic damage and healing | dot +10 % | spell_id | Blue | 75 | medium |
 | Grove Guardian (504824) | Grove Guardian: +15% duration | duration +15 % | spell_id | Blue | 70 | medium |
 | Grove Guardian (504824) | Grove Guardian: +10% damage and healing | effect1 +10 % | spell_id | Blue | 100 | medium |
-| Grove Guardian (504824) | Grove Guardian: +15% radius | radius +15 % | spell_id | Blue | 60 | medium |
+| Grove Guardian (504824) | Grove Guardian: +2 yd radius | radius +2 | spell_id | Blue | 60 | medium |
 | Primal Convergence (800181) | Primal Convergence: -20 sec cooldown | cooldown -20 s | hook_cd | Epic | 100 | medium |
 | Primal Convergence (800181) | Primal Convergence: +15% duration | duration +15 % | spell_id | Blue | 70 | medium |
 | Primal Rush (500696) | Primal Rush: -10% resource cost | cost -10 % | mask | Blue | 65 | high |
@@ -2505,14 +2505,14 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 | Primal Rush (500696) | Primal Rush: +15% radius | radius +15 % | mask | Blue | 60 | medium |
 | Protective Roar (802782) | Protective Roar: -15 sec cooldown | cooldown -15 s | mask | Blue | 100 | high |
 | Protective Roar (802782) | Protective Roar: -10% resource cost | cost -10 % | mask | Blue | 65 | high |
-| Protective Roar (802782) | Protective Roar: +15% duration | duration +15 % | mask | Blue | 70 | high |
-| Protective Roar (802782) | Protective Roar: +15% radius | radius +15 % | mask | Blue | 60 | medium |
+| Protective Roar (802782) | Protective Roar: +2 sec duration | duration +2 s | mask | Blue | 70 | high |
+| Protective Roar (802782) | Protective Roar: +2 yd radius | radius +2 | mask | Blue | 60 | medium |
 | Rock Barrier (503630) | Rock Barrier: -10% resource cost | cost -10 % | mask | Blue | 65 | high |
 | Rock Barrier (503630) | Rock Barrier: +15% duration | duration +15 % | mask | Blue | 70 | high |
-| Stone Grip (800145) | Stone Grip: -10% cast time | casting time -10 % | spell_id | Blue | 60 | medium |
+| Stone Grip (800145) | Stone Grip: -0.2 sec cast time | casting time -0.2 s | spell_id | Blue | 60 | medium |
 | Wildheart (803980) | Wildheart: -30 sec cooldown | cooldown -30 s | mask | Epic | 100 | high |
 | Wildheart (803980) | Wildheart: -10% resource cost | cost -10 % | mask | Blue | 65 | high |
-| Wildheart (803980) | Wildheart: +15% duration | duration +15 % | mask | Blue | 70 | high |
+| Wildheart (803980) | Wildheart: +2 sec duration | duration +2 s | mask | Blue | 70 | high |
 
 ### Life
 
@@ -2526,23 +2526,23 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 | Ancient of War (504222) | Ancient of War: +15% radius | radius +15 % | spell_id | Blue | 60 | medium |
 | Earthmother's Binding (805107) | Earthmother's Binding: -10% resource cost | cost -10 % | mask | Blue | 65 | high |
 | Earthmother's Binding (805107) | Earthmother's Binding: +4% critical strike chance | critical chance +4 | mask | Blue | 70 | high |
-| Earthmother's Binding (805107) | Earthmother's Binding: +15% duration | duration +15 % | mask | Blue | 70 | high |
-| Earthmother's Binding (805107) | Earthmother's Binding: +15% range | range +15 % | mask | Blue | 60 | high |
+| Earthmother's Binding (805107) | Earthmother's Binding: +1 sec duration | duration +1 s | mask | Blue | 70 | high |
+| Earthmother's Binding (805107) | Earthmother's Binding: +4 yd range | range +4 | mask | Blue | 60 | high |
 | Earthmother's Binding (805107) | Earthmother's Binding: +8% healing | damage +8 % | mask | Blue | 100 | high |
-| Neptulon's Wrath (537250) | Neptulon's Wrath: +15% duration | duration +15 % | spell_id | Blue | 70 | medium |
+| Neptulon's Wrath (537250) | Neptulon's Wrath: +2 sec duration | duration +2 s | spell_id | Blue | 70 | medium |
 | Neptulon's Wrath (807467) | Neptulon's Wrath: -8 sec cooldown | cooldown -8 s | hook_cd | Blue | 100 | medium |
 | Sacred Grove (800180) | Sacred Grove: -10% resource cost | cost -10 % | mask | Blue | 65 | high |
 | Sacred Grove (800180) | Sacred Grove: +3% critical strike chance | critical chance +3 | mask | Blue | 70 | high |
-| Sacred Grove (800180) | Sacred Grove: +15% duration | duration +15 % | mask | Blue | 70 | high |
+| Sacred Grove (800180) | Sacred Grove: +2.5 sec duration | duration +2.5 s | mask | Blue | 70 | high |
 | Sacred Grove (800180) | Sacred Grove: +10% healing | damage +10 % | mask | Blue | 100 | high |
-| Sacred Grove (800180) | Sacred Grove: +15% radius | radius +15 % | mask | Blue | 60 | medium |
+| Sacred Grove (800180) | Sacred Grove: +2 yd radius | radius +2 | mask | Blue | 60 | medium |
 | Sacred Grove (800180) | Sacred Grove: +15% range | range +15 % | mask | Blue | 60 | high |
 | Seismic Wave (805462) | Seismic Wave: +3% critical strike chance | critical chance +3 | spell_id | Blue | 70 | medium |
 | Seismic Wave (805462) | Seismic Wave: +8% healing and damage | damage +8 % | spell_id | Blue | 100 | medium |
-| Seismic Wave (805462) | Seismic Wave: +15% radius | radius +15 % | spell_id | Blue | 60 | medium |
+| Seismic Wave (805462) | Seismic Wave: +2 yd radius | radius +2 | spell_id | Blue | 60 | medium |
 | Spirit Charge (800144) | Spirit Charge: +3% critical strike chance | critical chance +3 | spell_id | Blue | 70 | medium |
 | Spirit Charge (800144) | Spirit Charge: +8% healing and damage | damage +8 % | spell_id | Blue | 100 | medium |
-| Spirit Charge (800144) | Spirit Charge: +15% radius | radius +15 % | spell_id | Blue | 60 | medium |
+| Spirit Charge (800144) | Spirit Charge: +1 yd radius | radius +1 | spell_id | Blue | 60 | medium |
 
 ### Primal
 
@@ -2550,16 +2550,16 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 |---|---|---|---|---|---|---|
 | Bring Me Their Bones (806552) | Bring Me Their Bones: -8 sec cooldown | cooldown -8 s | hook_cd | Blue | 60 | medium |
 | Frenzied Roar (800133) | Frenzied Roar: -8 sec cooldown | cooldown -8 s | hook_cd | Blue | 100 | medium |
-| Frenzied Roar (800133) | Frenzied Roar: +15% duration | duration +15 % | spell_id | Blue | 70 | medium |
-| Frenzied Roar (800133) | Frenzied Roar: +15% radius | radius +15 % | spell_id | Blue | 60 | medium |
+| Frenzied Roar (800133) | Frenzied Roar: +2 sec duration | duration +2 s | spell_id | Blue | 70 | medium |
+| Frenzied Roar (800133) | Frenzied Roar: +2 yd radius | radius +2 | spell_id | Blue | 60 | medium |
 | Rylak's Bite (706342) | Rylak's Bite: +4% critical strike chance | critical chance +4 | spell_id | Blue | 70 | medium |
 | Rylak's Bite (706342) | Rylak's Bite: +8% damage | damage +8 % | spell_id | Blue | 100 | medium |
 | Savage Frenzy (806549) | Savage Frenzy: -20 sec cooldown | cooldown -20 s | hook_cd | Epic | 100 | medium |
-| Savage Frenzy (806549) | Savage Frenzy: +15% duration | duration +15 % | spell_id | Blue | 70 | medium |
+| Savage Frenzy (806549) | Savage Frenzy: +2.5 sec duration | duration +2.5 s | spell_id | Blue | 70 | medium |
 | Throat Clamp (500764) | Throat Clamp: -2 sec cooldown | cooldown -2 s | hook_cd | Blue | 60 | medium |
 | Totemic Smash (800178) | Totemic Smash: +3% critical strike chance | critical chance +3 | spell_id | Blue | 70 | medium |
 | Totemic Smash (800178) | Totemic Smash: +8% damage | damage +8 % | spell_id | Blue | 100 | medium |
-| Totemic Smash (800178) | Totemic Smash: +15% radius | radius +15 % | spell_id | Blue | 60 | medium |
+| Totemic Smash (800178) | Totemic Smash: +1 yd radius | radius +1 | spell_id | Blue | 60 | medium |
 
 ### Mountainking
 
@@ -2571,7 +2571,7 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 | Earthen Avatar (680421) | Earthen Avatar: -10% resource cost | cost -10 % | mask | Blue | 65 | high |
 | Earthen Avatar (680421) | Earthen Avatar: +15% duration | duration +15 % | mask | Blue | 70 | high |
 | Judgement of The Three Hammers (520468) | Judgement of the Three Hammers: +4% crit chance | critical chance +4 | spell_id | Blue | 70 | medium |
-| Judgement of The Three Hammers (520466) | Judgement of The Three Hammers: +15% duration | duration +15 % | spell_id | Blue | 70 | medium |
+| Judgement of The Three Hammers (520466) | Judgement of The Three Hammers: +2 sec duration | duration +2 s | spell_id | Blue | 70 | medium |
 | Judgement of The Three Hammers (520468) | Judgement of The Three Hammers: +10% damage | damage +10 % | spell_id | Blue | 100 | low |
 | Mountain Fury (806186) | Mountain Fury: +3% critical strike chance | critical chance +3 | spell_id | Blue | 70 | medium |
 | Mountain Fury (806186) | Mountain Fury: +10% damage | damage +10 % | spell_id | Blue | 100 | medium |
@@ -2579,16 +2579,16 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 | Mountain Hammer (681130) | Mountain Hammer: -10% resource cost | cost -10 % | mask | Blue | 65 | high |
 | Mountain Hammer (681130) | Mountain Hammer: +4% critical strike chance | critical chance +4 | mask | Blue | 70 | high |
 | Mountain Hammer (681130) | Mountain Hammer: +0.5 sec duration | duration +0.5 s | mask | Epic | 70 | high |
-| Mountain Hammer (681130) | Mountain Hammer: +15% range | range +15 % | mask | Blue | 60 | high |
+| Mountain Hammer (681130) | Mountain Hammer: +4 yd range | range +4 | mask | Blue | 60 | high |
 | Quake (803974) | Quake: -10% resource cost | cost -10 % | mask | Blue | 65 | high |
 | Quake (803974) | Quake: +3% critical strike chance | critical chance +3 | mask | Blue | 70 | high |
 | Quake (803974) | Quake: +8% damage | damage +8 % | mask | Blue | 100 | high |
 | Quake (520463) | Quake: +15% duration | duration +15 % | spell_id | Blue | 70 | medium |
-| Quake (803974) | Quake: +15% radius | radius +15 % | mask | Blue | 60 | medium |
+| Quake (803974) | Quake: +1 yd radius | radius +1 | mask | Blue | 60 | medium |
 | Seismic Smash (300693) | Seismic Smash: -10% resource cost | cost -10 % | mask | Blue | 65 | high |
 | Seismic Smash (300693) | Seismic Smash: +3% critical strike chance | critical chance +3 | mask | Blue | 70 | high |
 | Seismic Smash (300693) | Seismic Smash: +8% damage | damage +8 % | mask | Blue | 100 | high |
-| Seismic Smash (300693) | Seismic Smash: +15% radius | radius +15 % | mask | Blue | 60 | medium |
+| Seismic Smash (300693) | Seismic Smash: +2 yd radius | radius +2 | mask | Blue | 60 | medium |
 
 ### Geomancy
 
@@ -2610,13 +2610,13 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 | Seismic Tremor (680442) | Seismic Tremor: -10% resource cost | cost -10 % | mask | Blue | 65 | high |
 | Seismic Tremor (680442) | Seismic Tremor: +4% critical strike chance | critical chance +4 | mask | Blue | 70 | high |
 | Seismic Tremor (680442) | Seismic Tremor: +10% periodic damage | dot +10 % | mask | Blue | 100 | high |
-| Seismic Tremor (680442) | Seismic Tremor: +15% duration | duration +15 % | mask | Blue | 70 | high |
+| Seismic Tremor (680442) | Seismic Tremor: +3.5 sec duration | duration +3.5 s | mask | Blue | 70 | high |
 | Seismic Tremor (680442) | Seismic Tremor: +15% range | range +15 % | mask | Blue | 60 | high |
-| Terrasurge (681119) | Terrasurge: -10% cast time | casting time -10 % | mask | Blue | 70 | high |
+| Terrasurge (681119) | Terrasurge: -0.3 sec cast time | casting time -0.3 s | mask | Blue | 70 | high |
 | Terrasurge (681119) | Terrasurge: -10% resource cost | cost -10 % | mask | Blue | 65 | high |
 | Terrasurge (681119) | Terrasurge: +4% critical strike chance | critical chance +4 | mask | Blue | 70 | high |
 | Terrasurge (681119) | Terrasurge: +8% damage | damage +8 % | mask | Blue | 100 | high |
-| Terrasurge (681119) | Terrasurge: +15% range | range +15 % | mask | Blue | 60 | high |
+| Terrasurge (681119) | Terrasurge: +4 yd range | range +4 | mask | Blue | 60 | high |
 
 <details><summary>Avvist (5)</summary>
 
@@ -2638,36 +2638,36 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 |---|---|---|---|---|---|---|
 | Convergence (560241) | Convergence: +4% critical strike chance | critical chance +4 | spell_id | Blue | 70 | medium |
 | Convergence (560241) | Convergence: +10% damage | damage +10 % | spell_id | Blue | 100 | medium |
-| Convergence (801086) | Convergence: +15% duration | duration +15 % | spell_id | Blue | 70 | medium |
-| Glacial Rune (807842) | Glacial Rune: -10% cast time | casting time -10 % | spell_id | Blue | 70 | medium |
+| Convergence (801086) | Convergence: +2 sec duration | duration +2 s | spell_id | Blue | 70 | medium |
+| Glacial Rune (807842) | Glacial Rune: -0.15 sec cast time | casting time -0.15 s | spell_id | Blue | 70 | medium |
 | Glacial Rune (805730) | Glacial Rune: +4% critical strike chance | critical chance +4 | spell_id | Blue | 70 | medium |
 | Glacial Rune (805730) | Glacial Rune: +10% damage | damage +10 % | spell_id | Blue | 100 | medium |
-| Glacial Rune (807842) | Glacial Rune: +15% radius | radius +15 % | spell_id | Blue | 60 | medium |
+| Glacial Rune (807842) | Glacial Rune: +1 yd radius | radius +1 | spell_id | Blue | 60 | medium |
 | Granite Resolve (520229) | Granite Resolve: -8 sec cooldown | cooldown -8 s | mask | Blue | 100 | high |
 | Granite Resolve (520229) | Granite Resolve: -10% resource cost | cost -10 % | mask | Blue | 65 | high |
-| Granite Resolve (520229) | Granite Resolve: +15% duration | duration +15 % | mask | Blue | 70 | high |
+| Granite Resolve (520229) | Granite Resolve: +1 sec duration | duration +1 s | mask | Blue | 70 | high |
 | Permafrost Rune (804060) | Permafrost Rune: -10% cast time | casting time -10 % | mask | Blue | 70 | high |
 | Permafrost Rune (804060) | Permafrost Rune: -8 sec cooldown | cooldown -8 s | mask | Blue | 100 | medium |
 | Permafrost Rune (804060) | Permafrost Rune: -10% resource cost | cost -10 % | mask | Blue | 65 | high |
 | Permafrost Rune (804060) | Permafrost Rune: +15% range | range +15 % | mask | Blue | 60 | high |
 | Phase Out (500671) | Phase Out: -15 sec cooldown | cooldown -15 s | mask | Blue | 100 | high |
 | Phase Out (500671) | Phase Out: -10% resource cost | cost -10 % | mask | Blue | 65 | high |
-| Phase Out (560269) | Phase Out: +15% duration | duration +15 % | spell_id | Blue | 70 | medium |
+| Phase Out (560269) | Phase Out: +1 sec duration | duration +1 s | spell_id | Blue | 70 | medium |
 | Power Engraving (500296) | Power Engraving: -30 sec cooldown | cooldown -30 s | mask | Epic | 100 | high |
 | Power Engraving (500296) | Power Engraving: -10% resource cost | cost -10 % | mask | Blue | 65 | high |
 | Power Engraving (500296) | Power Engraving: +15% duration | duration +15 % | mask | Blue | 70 | high |
-| Power Engraving (500296) | Power Engraving: +15% radius | radius +15 % | mask | Blue | 60 | medium |
+| Power Engraving (500296) | Power Engraving: +1 yd radius | radius +1 | mask | Blue | 60 | medium |
 | Speed Rune (801103) | Speed Rune: -15 sec cooldown | cooldown -15 s | mask | Blue | 60 | high |
 | Speed Rune (801103) | Speed Rune: -10% resource cost | cost -10 % | mask | Blue | 65 | high |
 | Speed Rune (572136) | Speed Rune: +15% duration | duration +15 % | spell_id | Blue | 70 | medium |
-| Speed Rune (572136) | Speed Rune: +15% radius | radius +15 % | spell_id | Blue | 60 | medium |
+| Speed Rune (572136) | Speed Rune: +1 yd radius | radius +1 | spell_id | Blue | 60 | medium |
 | Warding Rune (804232) | Warding Rune: -15 sec cooldown | cooldown -15 s | hook_cd | Blue | 100 | medium |
-| Warding Rune (804232) | Warding Rune: +15% duration | duration +15 % | spell_id | Epic | 70 | medium |
+| Warding Rune (804232) | Warding Rune: +1 sec duration | duration +1 s | spell_id | Epic | 70 | medium |
 | Warpdagger (500287) | Warpdagger: -4 sec cooldown | cooldown -4 s | mask | Blue | 100 | high |
 | Warpdagger (500287) | Warpdagger: -10% resource cost | cost -10 % | mask | Blue | 65 | high |
 | Zenith (712325) | Zenith: -6 sec cooldown | cooldown -6 s | mask | Blue | 100 | high |
 | Zenith (712325) | Zenith: -10% resource cost | cost -10 % | mask | Blue | 65 | high |
-| Zenith (712325) | Zenith: +15% duration | duration +15 % | mask | Blue | 70 | high |
+| Zenith (712325) | Zenith: +1 sec duration | duration +1 s | mask | Blue | 70 | high |
 
 ### Runic
 
@@ -2677,53 +2677,53 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 | Fist of the Ancients (712326) | Fist of the Ancients: +4% critical strike chance | critical chance +4 | spell_id | Blue | 70 | medium |
 | Fist of the Ancients (712326) | Fist of the Ancients: +1 additional target | jump targets +1 | spell_id | Blue | 60 | medium |
 | Fists of Power (805796) | Fists of Power: -6 sec cooldown | cooldown -6 s | hook_cd | Blue | 100 | medium |
-| Fists of Power (805796) | Fists of Power: +15% duration | duration +15 % | spell_id | Blue | 70 | medium |
+| Fists of Power (805796) | Fists of Power: +2 sec duration | duration +2 s | spell_id | Blue | 70 | medium |
 | Guarding Rune (500464) | Guarding Rune: -15 sec cooldown | cooldown -15 s | hook_cd | Blue | 80 | medium |
-| Guarding Rune (500464) | Guarding Rune: +15% duration | duration +15 % | spell_id | Blue | 70 | medium |
-| Guarding Rune (500464) | Guarding Rune: +15% radius | radius +15 % | spell_id | Blue | 60 | medium |
+| Guarding Rune (500464) | Guarding Rune: +2 sec duration | duration +2 s | spell_id | Blue | 70 | medium |
+| Guarding Rune (500464) | Guarding Rune: +1 yd radius | radius +1 | spell_id | Blue | 60 | medium |
 | Ley Power (801096) | Ley Power: -10 sec cooldown | cooldown -10 s | hook_cd | Blue | 100 | medium |
-| Ley Power (801096) | Ley Power: +15% duration | duration +15 % | spell_id | Blue | 70 | medium |
+| Ley Power (801096) | Ley Power: +2 sec duration | duration +2 s | spell_id | Blue | 70 | medium |
 | Runic Brand (712322) | Runic Brand: +4% critical strike chance | critical chance +4 | mask | Blue | 70 | high |
 | Runic Brand (712322) | Runic Brand: +10% damage | damage +10 % | mask | Blue | 100 | high |
 | Runic Tempest (560036) | Runic Tempest: -20 sec cooldown | cooldown -20 s | hook_cd | Epic | 100 | medium |
-| Runic Tempest (560036) | Runic Tempest: +15% duration | duration +15 % | spell_id | Blue | 70 | medium |
+| Runic Tempest (560036) | Runic Tempest: +1 sec duration | duration +1 s | spell_id | Blue | 70 | medium |
 
 ### Arcane
 
 | Spell | Affix | Effekt | Targeting | Min. kvalitet | Weight | Confidence |
 |---|---|---|---|---|---|---|
 | Eye of the Beholder (500121) | Eye of the Beholder: -20 sec cooldown | cooldown -20 s | hook_cd | Epic | 100 | medium |
-| Eye of the Beholder (500121) | Eye of the Beholder: +15% duration | duration +15 % | spell_id | Blue | 70 | medium |
-| Frigid Blast (500118) | Frigid Blast: -0.15 sec cast time | casting time -0.15 s | mask | Blue | 80 | high |
+| Eye of the Beholder (500121) | Eye of the Beholder: +2 sec duration | duration +2 s | spell_id | Blue | 70 | medium |
+| Frigid Blast (500118) | Frigid Blast: -0.2 sec cast time | casting time -0.2 s | mask | Blue | 80 | high |
 | Frigid Blast (500118) | Frigid Blast: -10% resource cost | cost -10 % | mask | Blue | 65 | high |
 | Frigid Blast (500118) | Frigid Blast: +4% critical strike chance | critical chance +4 | mask | Blue | 70 | high |
 | Frigid Blast (500118) | Frigid Blast: +8% damage | damage +8 % | mask | Blue | 100 | high |
-| Frigid Blast (500118) | Frigid Blast: +15% range | range +15 % | mask | Blue | 60 | high |
+| Frigid Blast (500118) | Frigid Blast: +5 yd range | range +5 | mask | Blue | 60 | high |
 | Frigid Fusion (572338) | Frigid Blast: +3% critical strike chance | critical chance +3 | spell_id | Blue | 70 | medium |
-| Frigid Fusion (803225) | Frigid Blast: +15% duration | duration +15 % | spell_id | Blue | 70 | medium |
+| Frigid Fusion (803225) | Frigid Blast: +1 sec duration | duration +1 s | spell_id | Blue | 70 | medium |
 | Glyphic Overload (520099) | Glyphic Overload: -6 sec cooldown | cooldown -6 s | hook_cd | Blue | 100 | medium |
-| Glyphic Overload (520099) | Glyphic Overload: +15% duration | duration +15 % | spell_id | Blue | 70 | medium |
-| Glyphic Ruin (801179) | Glyphic Ruin: -0.25 sec cast time | casting time -0.25 s | spell_id | Blue | 100 | medium |
+| Glyphic Overload (520099) | Glyphic Overload: +2 sec duration | duration +2 s | spell_id | Blue | 70 | medium |
+| Glyphic Ruin (801179) | Glyphic Ruin: -0.3 sec cast time | casting time -0.3 s | spell_id | Blue | 100 | medium |
 | Glyphic Ruin (801179) | Glyphic Ruin: +4% critical strike chance | critical chance +4 | spell_id | Blue | 70 | medium |
 | Glyphic Ruin (801179) | Glyphic Ruin: +8% damage | damage +8 % | spell_id | Epic | 100 | medium |
 | Manuscription (525302) | Manuscription: +10% periodic damage | dot +10 % | spell_id | Blue | 100 | medium |
 | Manuscription (525302) | Manuscription: +1 sec duration | duration +1 s | spell_id | Blue | 70 | medium |
 | Manuscription (525302) | Manuscription: +1 additional target | jump targets +1 | spell_id | Blue | 60 | medium |
-| Manuscription (525302) | Manuscription: +15% radius | radius +15 % | spell_id | Blue | 60 | medium |
+| Manuscription (525302) | Manuscription: +1 yd radius | radius +1 | spell_id | Blue | 60 | medium |
 | Primordial Pulse (520111) | Primordial Pulse: +3% critical strike chance | critical chance +3 | spell_id | Blue | 70 | medium |
 | Primordial Pulse (520111) | Primordial Pulse: +10% damage | damage +10 % | spell_id | Blue | 100 | low |
-| Primordial Pulse (300578) | Primordial Pulse: +15% radius | radius +15 % | spell_id | Blue | 60 | medium |
-| Silencing Rune (802631) | Silencing Rune: -10% cast time | casting time -10 % | mask | Blue | 70 | high |
+| Primordial Pulse (300578) | Primordial Pulse: +1 yd radius | radius +1 | spell_id | Blue | 60 | medium |
+| Silencing Rune (802631) | Silencing Rune: -0.2 sec cast time | casting time -0.2 s | mask | Blue | 70 | high |
 | Silencing Rune (802631) | Silencing Rune: -10 sec cooldown | cooldown -10 s | mask | Blue | 100 | medium |
 | Silencing Rune (802631) | Silencing Rune: -10% resource cost | cost -10 % | mask | Blue | 65 | high |
-| Silencing Rune (802631) | Silencing Rune: +15% duration | duration +15 % | mask | Epic | 70 | high |
-| Silencing Rune (802631) | Silencing Rune: +15% radius | radius +15 % | mask | Blue | 60 | medium |
-| Silencing Rune (802631) | Silencing Rune: +15% range | range +15 % | mask | Blue | 60 | high |
+| Silencing Rune (802631) | Silencing Rune: +25% duration | duration +25 % | mask | Epic | 70 | high |
+| Silencing Rune (802631) | Silencing Rune: +1 yd radius | radius +1 | mask | Blue | 60 | medium |
+| Silencing Rune (802631) | Silencing Rune: +4 yd range | range +4 | mask | Blue | 60 | high |
 | Thaumaturgy (804550) | Thaumaturgy: -2 sec cooldown | cooldown -2 s | mask | Blue | 100 | high |
 | Thaumaturgy (804550) | Thaumaturgy: -10% resource cost | cost -10 % | mask | Blue | 65 | high |
 | Thaumaturgy (804550) | Thaumaturgy: +4% critical strike chance | critical chance +4 | mask | Blue | 70 | high |
 | Thaumaturgy (804550) | Thaumaturgy: +8% damage | damage +8 % | mask | Blue | 100 | high |
-| Thaumaturgy (804550) | Thaumaturgy: +15% range | range +15 % | mask | Blue | 60 | high |
+| Thaumaturgy (804550) | Thaumaturgy: +5 yd range | range +5 | mask | Blue | 60 | high |
 
 ### Riftblade
 
@@ -2733,20 +2733,20 @@ Targeting: `mask` = unik family-bit (klient får spellmod), `spell_id` = server-
 | Fracture (803018) | Fracture: +8% damage | damage +8 % | spell_id | Blue | 100 | medium |
 | Genesis (500501) | Genesis: -20 sec cooldown | cooldown -20 s | hook_cd | Epic | 100 | medium |
 | Hoarfrost (801104) | Hoarfrost: +10% periodic damage | dot +10 % | spell_id | Blue | 100 | medium |
-| Hoarfrost (801104) | Hoarfrost: +15% duration | duration +15 % | spell_id | Blue | 70 | medium |
-| Hoarfrost (801104) | Hoarfrost: +15% radius | radius +15 % | spell_id | Blue | 60 | medium |
+| Hoarfrost (801104) | Hoarfrost: +3 sec duration | duration +3 s | spell_id | Blue | 70 | medium |
+| Hoarfrost (801104) | Hoarfrost: +1 yd radius | radius +1 | spell_id | Blue | 60 | medium |
 | Hurricane (645435) | Hurricane: -4 sec cooldown | cooldown -4 s | mask | Blue | 100 | high |
 | Hurricane (645435) | Hurricane: -10% resource cost | cost -10 % | mask | Blue | 65 | high |
-| Hurricane (645435) | Hurricane: +15% radius | radius +15 % | mask | Blue | 60 | medium |
+| Hurricane (645435) | Hurricane: +1 yd radius | radius +1 | mask | Blue | 60 | medium |
 | Primordial Fury (806543) | Primordial Fury: -10 sec cooldown | cooldown -10 s | mask | Blue | 100 | high |
 | Primordial Fury (806543) | Primordial Fury: -10% resource cost | cost -10 % | mask | Blue | 65 | high |
-| Primordial Fury (806543) | Primordial Fury: +15% duration | duration +15 % | mask | Blue | 70 | high |
+| Primordial Fury (806543) | Primordial Fury: +2 sec duration | duration +2 s | mask | Blue | 70 | high |
 | Sigil Strike (803067) | Fracture: +15% duration | duration +15 % | spell_id | Blue | 70 | medium |
 | Smolder (801087) | Smolder: +4% critical strike chance | critical chance +4 | spell_id | Blue | 70 | medium |
 | Smolder (801087) | Smolder: +8% damage | damage +8 % | spell_id | Blue | 100 | medium |
 | Turbulence (706526) | Turbulence: +3% critical strike chance | critical chance +3 | spell_id | Blue | 70 | medium |
 | Turbulence (706526) | Turbulence: +10% damage | damage +10 % | spell_id | Blue | 100 | medium |
-| Turbulence (706526) | Turbulence: +15% radius | radius +15 % | spell_id | Blue | 60 | medium |
+| Turbulence (706526) | Turbulence: +1 yd radius | radius +1 | spell_id | Blue | 60 | medium |
 
 <details><summary>Avvist (1)</summary>
 

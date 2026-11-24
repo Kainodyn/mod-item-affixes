@@ -682,7 +682,7 @@
     },
     {
       "key": "arugal_keleseth_cast",
-      "name": "Keleseth's Calamity: -0.5 sec cast time",
+      "name": "Keleseth's Calamity: -1 sec cast time",
       "spec_id": 26,
       "target_spell": 560249,
       "affected_spells": [
@@ -698,7 +698,7 @@
         {
           "op": "CASTING_TIME",
           "type": "FLAT",
-          "value": -500
+          "value": -1000
         }
       ],
       "scales_with_crit": true,
@@ -707,7 +707,7 @@
       "evidence": "560249 Keleseth's Calamity cast=6000 cost_pct=27 range=30.0 mask_unique_bit=[131072, 0, 0] [eff0=SCHOOL_DAMAGE v=177]",
       "client_sensitive": true,
       "confidence": "high",
-      "notes": ""
+      "notes": "Adjusted 2026-11-24 to the 5000 ms row, Hallvar approved exceeding 500 ms (was FLAT -500)."
     },
     {
       "key": "arugal_keleseth_dmg",
@@ -844,7 +844,7 @@
     },
     {
       "key": "arugal_valanar_cast",
-      "name": "Valanar's Vengeance: -0.5 sec cast time",
+      "name": "Valanar's Vengeance: -1 sec cast time",
       "spec_id": 26,
       "target_spell": 560315,
       "affected_spells": [
@@ -860,7 +860,7 @@
         {
           "op": "CASTING_TIME",
           "type": "FLAT",
-          "value": -500
+          "value": -1000
         }
       ],
       "scales_with_crit": true,
@@ -869,7 +869,7 @@
       "evidence": "560315 Valanar's Vengeance cast=6000 cost=15 cost_pct=30 range=30.0 mask_unique_bit=[262144, 0, 0] [eff0=SCHOOL_DAMAGE v=188]",
       "client_sensitive": true,
       "confidence": "high",
-      "notes": ""
+      "notes": "Adjusted 2026-11-24 to the 5000 ms row, Hallvar approved exceeding 500 ms (was FLAT -500)."
     },
     {
       "key": "arugal_valanar_dmg",
@@ -1921,7 +1921,7 @@
     },
     {
       "key": "arugal_hemal_excision_cast",
-      "name": "Hemal Excision: -0.2 sec cast time",
+      "name": "Hemal Excision: -0.25 sec cast time",
       "spec_id": 25,
       "target_spell": 803681,
       "affected_spells": [
@@ -1933,7 +1933,7 @@
         {
           "op": "CASTING_TIME",
           "type": "FLAT",
-          "value": -200
+          "value": -250
         }
       ],
       "scales_with_crit": true,
@@ -1942,7 +1942,7 @@
       "evidence": "803681 Hemal Excision power=4294967294 cast=1000 cost_pct=25 cd=90000 range=30.0 fam=26 [eff0=DISPEL v=20]",
       "client_sensitive": true,
       "confidence": "high",
-      "notes": "round 2 secondary"
+      "notes": "round 2 secondary Value adjusted 2026-11-24 to an existing SpellCastTimes row (was FLAT -200)."
     },
     {
       "key": "arugal_vampyrs_kiss_cost",
@@ -2891,7 +2891,7 @@
     },
     {
       "key": "arugal_sacrificial_rite_cast",
-      "name": "Sacrificial Rite: -0.2 sec cast time",
+      "name": "Sacrificial Rite: -0.25 sec cast time",
       "spec_id": 26,
       "target_spell": 800785,
       "affected_spells": [
@@ -2907,7 +2907,7 @@
         {
           "op": "CASTING_TIME",
           "type": "FLAT",
-          "value": -200
+          "value": -250
         }
       ],
       "scales_with_crit": true,
@@ -2916,7 +2916,7 @@
       "evidence": "800785 Sacrificial Rite power=4294967294 cast=1000 cost=250 dur=15000 cd=120000 range=40.0 mask_unique_bit=[256, 0, 0] fam=26 [eff0=APPLY_AURA/MOD_MELEE_RANGED_HASTE v=20;eff1=APPLY_AURA/PROC_TRIGGER_SPELL v=0;eff2=APPLY_AURA/HASTE_SPELLS v=20]",
       "client_sensitive": true,
       "confidence": "high",
-      "notes": "round 2 secondary"
+      "notes": "round 2 secondary Value adjusted 2026-11-24 to an existing SpellCastTimes row (was FLAT -200)."
     },
     {
       "key": "arugal_sacrificial_rite_dur",

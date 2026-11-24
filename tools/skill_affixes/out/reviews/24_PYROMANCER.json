@@ -559,7 +559,7 @@
     },
     {
       "key": "pyro_ignite_cast",
-      "name": "Ignite: -10% cast time",
+      "name": "Ignite: -0.2 sec cast time",
       "spec_id": 38,
       "target_spell": 800791,
       "affected_spells": [
@@ -574,8 +574,8 @@
       "effects": [
         {
           "op": "CASTING_TIME",
-          "type": "PCT",
-          "value": -10
+          "type": "FLAT",
+          "value": -200
         }
       ],
       "scales_with_crit": true,
@@ -584,7 +584,7 @@
       "evidence": "800791 Ignite cast=1500 dur=21000 cost_pct=12 periodic eff0 PERIODIC_DAMAGE v=25 per=3000; eff1 MOD_DAMAGE_FROM_CASTER | mask_unique_bit=[0, 256, 0]",
       "client_sensitive": true,
       "confidence": "high",
-      "notes": ""
+      "notes": "Value adjusted 2026-11-24 to an existing SpellCastTimes row (was PCT -10)."
     },
     {
       "key": "pyro_pyroclasm_cd",
@@ -1146,7 +1146,7 @@
     },
     {
       "key": "pyro_circle_of_fire_dur_680842",
-      "name": "Circle of Fire: +20% duration",
+      "name": "Circle of Fire: +1 sec duration",
       "spec_id": 0,
       "target_spell": 680842,
       "affected_spells": [
@@ -1157,8 +1157,8 @@
       "effects": [
         {
           "op": "DURATION",
-          "type": "PCT",
-          "value": 20
+          "type": "FLAT",
+          "value": 1000
         }
       ],
       "scales_with_crit": true,
@@ -1167,7 +1167,7 @@
       "evidence": "680842 Circle of Fire dur=6000 range=50000.0 eff0 SCHOOL_DAMAGE v=172 eff1 MOD_CONFUSE eff2 ASCENSION_TRIGGER_SPELL_DELAYED v=50 | child of 800807 via 800807",
       "client_sensitive": false,
       "confidence": "medium",
-      "notes": "6 s disorient (MOD_CONFUSE) from the ring pulse."
+      "notes": "6 s disorient (MOD_CONFUSE) from the ring pulse. Value adjusted 2026-11-24 to an existing SpellDuration row (was PCT 20)."
     },
     {
       "key": "pyro_dragon_leap_crit",
@@ -1389,7 +1389,7 @@
     },
     {
       "key": "pyro_essence_of_malygos_dur",
-      "name": "Essence of Malygos: +20% duration",
+      "name": "Essence of Malygos: +1 sec duration",
       "spec_id": 0,
       "target_spell": 802120,
       "affected_spells": [
@@ -1400,8 +1400,8 @@
       "effects": [
         {
           "op": "DURATION",
-          "type": "PCT",
-          "value": 20
+          "type": "FLAT",
+          "value": 1000
         }
       ],
       "scales_with_crit": true,
@@ -1410,7 +1410,7 @@
       "evidence": "802120 Essence of Malygos cd=120000 catcd=120000 dur=6000 range=30.0 eff0 PERIODIC_ENERGIZE v=4 per=1000",
       "client_sensitive": false,
       "confidence": "medium",
-      "notes": "6 s periodic mana energize buff."
+      "notes": "6 s periodic mana energize buff. Value adjusted 2026-11-24 to an existing SpellDuration row (was PCT 20)."
     },
     {
       "key": "pyro_meteor_cost",
@@ -1497,7 +1497,7 @@
     },
     {
       "key": "pyro_meteor_range",
-      "name": "Meteor: +10% range",
+      "name": "Meteor: +3 yd range",
       "spec_id": 0,
       "target_spell": 500135,
       "affected_spells": [
@@ -1512,8 +1512,8 @@
       "effects": [
         {
           "op": "RANGE",
-          "type": "PCT",
-          "value": 10
+          "type": "FLAT",
+          "value": 3
         }
       ],
       "scales_with_crit": true,
@@ -1522,7 +1522,7 @@
       "evidence": "500135 Meteor catcd=30000 cost_pct=15 range=35.0 radius=[8.0] eff0 TRIGGER_SPELL_WITH_VALUE v=122 r=8.0 | mask_unique_bit=[0, 512, 0]",
       "client_sensitive": true,
       "confidence": "medium",
-      "notes": ""
+      "notes": "Value adjusted 2026-11-24 to an existing SpellRange row (was PCT 10)."
     },
     {
       "key": "pyro_inferno_barrier_dur",
@@ -1609,7 +1609,7 @@
     },
     {
       "key": "pyro_grace_of_alexstrasza_dur",
-      "name": "Grace of Alexstrasza: +20% duration",
+      "name": "Grace of Alexstrasza: +0.7 sec duration",
       "spec_id": 0,
       "target_spell": 803411,
       "affected_spells": [
@@ -1620,8 +1620,8 @@
       "effects": [
         {
           "op": "DURATION",
-          "type": "PCT",
-          "value": 20
+          "type": "FLAT",
+          "value": 700
         }
       ],
       "scales_with_crit": true,
@@ -1630,7 +1630,7 @@
       "evidence": "803411 Grace of Alexstrasza cost_pct=18 dur=4000 range=50000.0 radius=[20.0] eff0 MECHANIC_IMMUNITY v=5 r=20.0 eff1 MECHANIC_IMMUNITY r=20.0 eff2 MECHANIC_IMMUNITY r=20.0 | child of 802167 via 802167",
       "client_sensitive": false,
       "confidence": "medium",
-      "notes": "4 s group mechanic immunity."
+      "notes": "4 s group mechanic immunity. Value adjusted 2026-11-24 to an existing SpellDuration row (was PCT 20)."
     },
     {
       "key": "pyro_gaze_of_ysera_cast",
@@ -1968,7 +1968,7 @@
     },
     {
       "key": "pyro_ignite_dur",
-      "name": "Ignite: +15% duration",
+      "name": "Ignite: +3 sec duration",
       "spec_id": 38,
       "target_spell": 800791,
       "affected_spells": [
@@ -1983,8 +1983,8 @@
       "effects": [
         {
           "op": "DURATION",
-          "type": "PCT",
-          "value": 15
+          "type": "FLAT",
+          "value": 3000
         }
       ],
       "scales_with_crit": true,
@@ -1993,7 +1993,7 @@
       "evidence": "800791 Ignite cast=1500 cost_pct=12 dur=21000 range=35.0 radius=[8.0] periodic=true eff0 PERIODIC_DAMAGE v=25 per=3000 r=8.0 eff1 MOD_DAMAGE_FROM_CASTER r=8.0 | mask_unique_bit=[0, 256, 0]",
       "client_sensitive": false,
       "confidence": "medium",
-      "notes": "21 s DoT."
+      "notes": "21 s DoT. Value adjusted 2026-11-24 to an existing SpellDuration row (was PCT 15)."
     },
     {
       "key": "pyro_ignite_radius",
@@ -2026,7 +2026,7 @@
     },
     {
       "key": "pyro_ignite_range",
-      "name": "Ignite: +10% range",
+      "name": "Ignite: +3 yd range",
       "spec_id": 38,
       "target_spell": 800791,
       "affected_spells": [
@@ -2041,8 +2041,8 @@
       "effects": [
         {
           "op": "RANGE",
-          "type": "PCT",
-          "value": 10
+          "type": "FLAT",
+          "value": 3
         }
       ],
       "scales_with_crit": true,
@@ -2051,7 +2051,7 @@
       "evidence": "800791 Ignite cast=1500 cost_pct=12 dur=21000 range=35.0 radius=[8.0] periodic=true eff0 PERIODIC_DAMAGE v=25 per=3000 r=8.0 eff1 MOD_DAMAGE_FROM_CASTER r=8.0 | mask_unique_bit=[0, 256, 0]",
       "client_sensitive": true,
       "confidence": "medium",
-      "notes": ""
+      "notes": "Value adjusted 2026-11-24 to an existing SpellRange row (was PCT 10)."
     },
     {
       "key": "pyro_pyroclasm_cost",
@@ -2229,7 +2229,7 @@
     },
     {
       "key": "pyro_pillar_of_flame_range",
-      "name": "Pillar of Flame: +10% range",
+      "name": "Pillar of Flame: +3 yd range",
       "spec_id": 38,
       "target_spell": 805496,
       "affected_spells": [
@@ -2244,8 +2244,8 @@
       "effects": [
         {
           "op": "RANGE",
-          "type": "PCT",
-          "value": 10
+          "type": "FLAT",
+          "value": 3
         }
       ],
       "scales_with_crit": true,
@@ -2254,7 +2254,7 @@
       "evidence": "805496 Pillar of Flame cast=1500 cd=20000 catcd=20000 cost_pct=19 range=35.0 radius=[8.0] eff0 SCHOOL_DAMAGE v=36 eff1 SCHOOL_DAMAGE v=92 r=8.0 | mask_unique_bit=[1073741824, 0, 0]",
       "client_sensitive": true,
       "confidence": "medium",
-      "notes": ""
+      "notes": "Value adjusted 2026-11-24 to an existing SpellRange row (was PCT 10)."
     },
     {
       "key": "pyro_fired_up_cost",
@@ -2374,7 +2374,7 @@
     },
     {
       "key": "pyro_destroyers_maw_range",
-      "name": "Destroyer's Maw: +10% range",
+      "name": "Destroyer's Maw: +3 yd range",
       "spec_id": 39,
       "target_spell": 802107,
       "affected_spells": [
@@ -2389,8 +2389,8 @@
       "effects": [
         {
           "op": "RANGE",
-          "type": "PCT",
-          "value": 10
+          "type": "FLAT",
+          "value": 3
         }
       ],
       "scales_with_crit": true,
@@ -2399,7 +2399,7 @@
       "evidence": "802107 Destroyer's Maw cast=2000 cd=15000 catcd=15000 cost_pct=9 range=35.0 eff0 SCHOOL_DAMAGE v=144 | mask_unique_bit=[134217728, 0, 0]",
       "client_sensitive": true,
       "confidence": "medium",
-      "notes": ""
+      "notes": "Value adjusted 2026-11-24 to an existing SpellRange row (was PCT 10)."
     },
     {
       "key": "pyro_death_from_above_dot",
@@ -2624,7 +2624,7 @@
     },
     {
       "key": "pyro_firefall_range",
-      "name": "Firefall: +10% range",
+      "name": "Firefall: +3 yd range",
       "spec_id": 39,
       "target_spell": 801905,
       "affected_spells": [
@@ -2639,8 +2639,8 @@
       "effects": [
         {
           "op": "RANGE",
-          "type": "PCT",
-          "value": 10
+          "type": "FLAT",
+          "value": 3
         }
       ],
       "scales_with_crit": true,
@@ -2649,7 +2649,7 @@
       "evidence": "801905 Firefall cast=1500 cd=8000 catcd=8000 cost_pct=12 range=35.0 radius=[15.0] eff0 SCHOOL_DAMAGE v=107 chain=8 r=15.0 | mask_unique_bit=[0, 0, 8192]",
       "client_sensitive": true,
       "confidence": "medium",
-      "notes": ""
+      "notes": "Value adjusted 2026-11-24 to an existing SpellRange row (was PCT 10)."
     },
     {
       "key": "pyro_aspects_blessing_dur",
@@ -2678,7 +2678,7 @@
     },
     {
       "key": "pyro_melt_weapon_dur",
-      "name": "Breath of Neltharion (Melt Weapon): +20% duration",
+      "name": "Breath of Neltharion (Melt Weapon): +1 sec duration",
       "spec_id": 39,
       "target_spell": 301235,
       "affected_spells": [
@@ -2689,8 +2689,8 @@
       "effects": [
         {
           "op": "DURATION",
-          "type": "PCT",
-          "value": 20
+          "type": "FLAT",
+          "value": 1000
         }
       ],
       "scales_with_crit": true,
@@ -2699,7 +2699,7 @@
       "evidence": "301235 Melt Weapon dur=6000 range=50000.0 eff0 MOD_DISARM v=4 eff1 MOD_DISARM_OFFHAND v=4 eff2 MOD_DISARM_RANGED v=4 | child of 511109 via 511109",
       "client_sensitive": false,
       "confidence": "medium",
-      "notes": "6 s disarm."
+      "notes": "6 s disarm. Value adjusted 2026-11-24 to an existing SpellDuration row (was PCT 20)."
     },
     {
       "key": "pyro_breath_of_neltharion_radius",

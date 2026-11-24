@@ -557,7 +557,7 @@
     },
     {
       "key": "star_starfire_shot_cast",
-      "name": "Starfire Shot: -0.25 sec cast time",
+      "name": "Starfire Shot: -0.3 sec cast time",
       "spec_id": 44,
       "target_spell": 801978,
       "affected_spells": [
@@ -569,7 +569,7 @@
         {
           "op": "CASTING_TIME",
           "type": "FLAT",
-          "value": -250
+          "value": -300
         }
       ],
       "scales_with_crit": true,
@@ -578,7 +578,7 @@
       "evidence": "801978 Starfire Shot cast=2500 eff0 NORMALIZED_WEAPON_DMG v=16; eff1 WEAPON_PERCENT_DAMAGE v=100; eff2 TRIGGER_SPELL",
       "client_sensitive": true,
       "confidence": "high",
-      "notes": "10% of 2500 ms; spell_id mode, client cast bar from SMSG_SPELL_START."
+      "notes": "10% of 2500 ms; spell_id mode, client cast bar from SMSG_SPELL_START. Value adjusted 2026-11-24 to an existing SpellCastTimes row (was FLAT -250)."
     },
     {
       "key": "star_drawstring_of_elune_cd",
@@ -1309,7 +1309,7 @@
     },
     {
       "key": "star_touch_of_moonlight_cast",
-      "name": "Touch of Moonlight: -0.15 sec cast time",
+      "name": "Touch of Moonlight: -0.2 sec cast time",
       "spec_id": 0,
       "target_spell": 574328,
       "affected_spells": [
@@ -1325,7 +1325,7 @@
         {
           "op": "CASTING_TIME",
           "type": "FLAT",
-          "value": -150
+          "value": -200
         }
       ],
       "scales_with_crit": true,
@@ -1334,7 +1334,7 @@
       "evidence": "574328 Touch of Moonlight cast=1500 range=40.0 eff0 HEAL v=31 | mask_unique_bit=[262144, 0, 0]",
       "client_sensitive": true,
       "confidence": "medium",
-      "notes": ""
+      "notes": "Value adjusted 2026-11-24 to an existing SpellCastTimes row (was FLAT -150)."
     },
     {
       "key": "star_touch_of_moonlight_crit",
@@ -1815,7 +1815,7 @@
     },
     {
       "key": "star_starcall_range",
-      "name": "Starcall: +10% range",
+      "name": "Starcall: +4 yd range",
       "spec_id": 44,
       "target_spell": 800497,
       "affected_spells": [
@@ -1830,8 +1830,8 @@
       "effects": [
         {
           "op": "RANGE",
-          "type": "PCT",
-          "value": 10
+          "type": "FLAT",
+          "value": 4
         }
       ],
       "scales_with_crit": true,
@@ -1840,7 +1840,7 @@
       "evidence": "800497 Starcall cast=1500 catcd=12000 cost_pct=11 range=45.0 radius=[10.0] eff0 SCHOOL_DAMAGE v=127 r=10.0 | mask_unique_bit=[0, 536870912, 0]",
       "client_sensitive": true,
       "confidence": "medium",
-      "notes": ""
+      "notes": "Value adjusted 2026-11-24 to an existing SpellRange row (was PCT 10)."
     },
     {
       "key": "star_arrows_in_the_night_dur",
@@ -2006,7 +2006,7 @@
     },
     {
       "key": "star_trueshot_cast",
-      "name": "Trueshot: -0.18 sec cast time",
+      "name": "Trueshot: -0.2 sec cast time",
       "spec_id": 44,
       "target_spell": 520590,
       "affected_spells": [
@@ -2022,7 +2022,7 @@
         {
           "op": "CASTING_TIME",
           "type": "FLAT",
-          "value": -180
+          "value": -200
         }
       ],
       "scales_with_crit": true,
@@ -2031,7 +2031,7 @@
       "evidence": "520590 Trueshot cast=1800 range=30.0 eff0 TRIGGER_SPELL v=1 | mask_unique_bit=[1024, 0, 0]",
       "client_sensitive": true,
       "confidence": "medium",
-      "notes": ""
+      "notes": "Value adjusted 2026-11-24 to an existing SpellCastTimes row (was FLAT -180)."
     },
     {
       "key": "star_trueshot_range",
@@ -2301,7 +2301,7 @@
     },
     {
       "key": "star_sentinel_glaive_dur",
-      "name": "Sentinel Glaive: +20% duration",
+      "name": "Sentinel Glaive: +1.5 sec duration",
       "spec_id": 45,
       "target_spell": 800559,
       "affected_spells": [
@@ -2312,8 +2312,8 @@
       "effects": [
         {
           "op": "DURATION",
-          "type": "PCT",
-          "value": 20
+          "type": "FLAT",
+          "value": 1500
         }
       ],
       "scales_with_crit": true,
@@ -2322,7 +2322,7 @@
       "evidence": "800559 Sentinel Glaive cd=15000 catcd=15000 dur=8000 range=20.0 eff0 MOD_POWER_COST_SCHOOL_PCT v=15 | child of 800506 via 800506",
       "client_sensitive": false,
       "confidence": "low",
-      "notes": "8 s cost-reduction buff."
+      "notes": "8 s cost-reduction buff. Value adjusted 2026-11-24 to an existing SpellDuration row (was PCT 20)."
     },
     {
       "key": "star_fan_of_knives_crit",
@@ -2538,7 +2538,7 @@
     },
     {
       "key": "star_blanket_of_stars_dur",
-      "name": "Blanket of Stars: +20% duration",
+      "name": "Blanket of Stars: +1.5 sec duration",
       "spec_id": 100,
       "target_spell": 804381,
       "affected_spells": [
@@ -2549,8 +2549,8 @@
       "effects": [
         {
           "op": "DURATION",
-          "type": "PCT",
-          "value": 20
+          "type": "FLAT",
+          "value": 1500
         }
       ],
       "scales_with_crit": true,
@@ -2559,7 +2559,7 @@
       "evidence": "804381 Blanket of Stars cd=35000 dur=8000 eff0 MOD_BLOCK_PERCENT v=100 eff1 MOD_SHIELD_BLOCKVALUE_PCT v=100",
       "client_sensitive": false,
       "confidence": "medium",
-      "notes": "8 s block buff."
+      "notes": "8 s block buff. Value adjusted 2026-11-24 to an existing SpellDuration row (was PCT 20)."
     },
     {
       "key": "star_starburst_crit",

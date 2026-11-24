@@ -175,7 +175,7 @@
     },
     {
       "key": "wd_reclamation_casting_time",
-      "name": "Reclamation: -0.15 sec cast time",
+      "name": "Reclamation: -0.2 sec cast time",
       "spec_id": 4,
       "target_spell": 806288,
       "affected_spells": [
@@ -191,7 +191,7 @@
         {
           "op": "CASTING_TIME",
           "type": "FLAT",
-          "value": -150
+          "value": -200
         }
       ],
       "scales_with_crit": true,
@@ -200,7 +200,7 @@
       "evidence": "806288 Reclamation; cast=1800; cost_pct=8; eff0 NORMALIZED_WEAPON_DMG v=15; eff1 WEAPON_PERCENT_DAMAGE v=100; mask_unique_bit=[0, 4, 0]",
       "client_sensitive": true,
       "confidence": "high",
-      "notes": ""
+      "notes": "Value adjusted 2026-11-24 to an existing SpellCastTimes row (was FLAT -150)."
     },
     {
       "key": "wd_spirit_eclipse_damage",
@@ -495,7 +495,7 @@
     },
     {
       "key": "wd_bad_juju_casting_time",
-      "name": "Bad Juju: -0.25 sec cast time",
+      "name": "Bad Juju: -0.3 sec cast time",
       "spec_id": 5,
       "target_spell": 802087,
       "affected_spells": [
@@ -507,7 +507,7 @@
         {
           "op": "CASTING_TIME",
           "type": "FLAT",
-          "value": -250
+          "value": -300
         }
       ],
       "scales_with_crit": true,
@@ -516,7 +516,7 @@
       "evidence": "802087 Bad Juju; catcd=15000; cast=2500; cost_pct=16; eff0 SCHOOL_DAMAGE v=191; mask_unique_bit=None",
       "client_sensitive": true,
       "confidence": "medium",
-      "notes": ""
+      "notes": "Value adjusted 2026-11-24 to an existing SpellCastTimes row (was FLAT -250)."
     },
     {
       "key": "wd_puppeteer_s_grasp_cooldown",
@@ -923,7 +923,7 @@
     },
     {
       "key": "wd_slither_duration",
-      "name": "Slither: +15% duration",
+      "name": "Slither: +0.5 sec duration",
       "spec_id": 0,
       "target_spell": 500947,
       "affected_spells": [
@@ -934,8 +934,8 @@
       "effects": [
         {
           "op": "DURATION",
-          "type": "PCT",
-          "value": 15
+          "type": "FLAT",
+          "value": 500
         }
       ],
       "scales_with_crit": true,
@@ -944,7 +944,7 @@
       "evidence": "500947 Slither; cd=60000; dur=5000; cost=25; cost_pct=19; eff=APPLY_AURA/MOD_INCREASE_SPEED,APPLY_AURA/TRANSFORM,APPLY_AURA/MOD_PACIFY_SILENCE; mask_unique_bit=None",
       "client_sensitive": false,
       "confidence": "low",
-      "notes": "round 2 secondary affix; CC/slow aura: +15% only"
+      "notes": "round 2 secondary affix; CC/slow aura: +15% only Value adjusted 2026-11-24 to an existing SpellDuration row (was PCT 15)."
     },
     {
       "key": "wd_veil_of_darkness_crit",
@@ -1155,7 +1155,7 @@
     },
     {
       "key": "wd_amphibimorph_radius",
-      "name": "Amphibimorph: +10% radius",
+      "name": "Amphibimorph: +1 yd radius",
       "spec_id": 0,
       "target_spell": 500952,
       "affected_spells": [
@@ -1170,8 +1170,8 @@
       "effects": [
         {
           "op": "RADIUS",
-          "type": "PCT",
-          "value": 10
+          "type": "FLAT",
+          "value": 1
         }
       ],
       "scales_with_crit": true,
@@ -1180,7 +1180,7 @@
       "evidence": "500952 Amphibimorph; cd=120000; cast=1000; dur=40000; cost_pct=18; radius=[8.0]; range=30.0; mask_unique_bit=[2147483648, 0, 0]",
       "client_sensitive": false,
       "confidence": "high",
-      "notes": "round 2 secondary affix"
+      "notes": "round 2 secondary affix Value adjusted 2026-11-24 to an existing SpellRadius row (was PCT 10)."
     },
     {
       "key": "wd_amphibimorph_range",
@@ -1463,7 +1463,7 @@
     },
     {
       "key": "wd_spirit_glaive_radius",
-      "name": "Spirit Glaive: +10% radius",
+      "name": "Spirit Glaive: +2 yd radius",
       "spec_id": 4,
       "target_spell": 806289,
       "affected_spells": [
@@ -1475,8 +1475,8 @@
       "effects": [
         {
           "op": "RADIUS",
-          "type": "PCT",
-          "value": 10
+          "type": "FLAT",
+          "value": 2
         }
       ],
       "scales_with_crit": true,
@@ -1485,11 +1485,11 @@
       "evidence": "806289 Spirit Glaive; cast=2000; dur=5000; cost_pct=10; radius=[30.0] | 806616 Godslayer; radius=[8.0]; range=30.0; via=806289; mask_unique_bit=[33554432, 0, 0]",
       "client_sensitive": false,
       "confidence": "medium",
-      "notes": "round 2 secondary affix"
+      "notes": "round 2 secondary affix Value adjusted 2026-11-24 to an existing SpellRadius row (was PCT 10)."
     },
     {
       "key": "wd_spirit_shock_duration",
-      "name": "Spirit Shock: +15% duration",
+      "name": "Spirit Shock: +0.5 sec duration",
       "spec_id": 4,
       "target_spell": 807743,
       "affected_spells": [
@@ -1500,8 +1500,8 @@
       "effects": [
         {
           "op": "DURATION",
-          "type": "PCT",
-          "value": 15
+          "type": "FLAT",
+          "value": 500
         }
       ],
       "scales_with_crit": true,
@@ -1510,11 +1510,11 @@
       "evidence": "807743 Spirit Shock; cd=28000; dur=4000; cost_pct=25; range=30.0; eff=APPLY_AURA/MOD_SILENCE,ENERGIZE_PCT; mask_unique_bit=None",
       "client_sensitive": false,
       "confidence": "medium",
-      "notes": "round 2 secondary affix; CC/slow aura: +15% only"
+      "notes": "round 2 secondary affix; CC/slow aura: +15% only Value adjusted 2026-11-24 to an existing SpellDuration row (was PCT 15)."
     },
     {
       "key": "wd_soul_marionette_duration",
-      "name": "Soul Marionette: +20% duration",
+      "name": "Soul Marionette: +1.5 sec duration",
       "spec_id": 5,
       "target_spell": 704497,
       "affected_spells": [
@@ -1525,8 +1525,8 @@
       "effects": [
         {
           "op": "DURATION",
-          "type": "PCT",
-          "value": 20
+          "type": "FLAT",
+          "value": 1500
         }
       ],
       "scales_with_crit": true,
@@ -1535,7 +1535,7 @@
       "evidence": "704497 Soul Marionette; cd=90000; dur=8500; cost=115; cost_pct=22; radius=[8.0]; eff=APPLY_AURA/DUMMY,APPLY_AURA/313,APPLY_AURA/PERIODIC_DUMMY; mask_unique_bit=None",
       "client_sensitive": false,
       "confidence": "low",
-      "notes": "round 2 secondary affix"
+      "notes": "round 2 secondary affix Value adjusted 2026-11-24 to an existing SpellDuration row (was PCT 20)."
     },
     {
       "key": "wd_hexfire_crit",
@@ -1564,7 +1564,7 @@
     },
     {
       "key": "wd_malignant_jinx_duration",
-      "name": "Malignant Jinx: +20% duration",
+      "name": "Malignant Jinx: +1.5 sec duration",
       "spec_id": 5,
       "target_spell": 803678,
       "affected_spells": [
@@ -1575,8 +1575,8 @@
       "effects": [
         {
           "op": "DURATION",
-          "type": "PCT",
-          "value": 20
+          "type": "FLAT",
+          "value": 1500
         }
       ],
       "scales_with_crit": true,
@@ -1585,11 +1585,11 @@
       "evidence": "803678 Malignant Jinx; cd=60000; dur=8000; cost=10; cost_pct=19; range=30.0; eff=APPLY_AURA/PROC_TRIGGER_SPELL; mask_unique_bit=None",
       "client_sensitive": false,
       "confidence": "medium",
-      "notes": "round 2 secondary affix"
+      "notes": "round 2 secondary affix Value adjusted 2026-11-24 to an existing SpellDuration row (was PCT 20)."
     },
     {
       "key": "wd_malignant_jinx_duration_803732",
-      "name": "Malignant Jinx: +15% duration",
+      "name": "Malignant Jinx: +0.5 sec duration",
       "spec_id": 5,
       "target_spell": 803732,
       "affected_spells": [
@@ -1600,8 +1600,8 @@
       "effects": [
         {
           "op": "DURATION",
-          "type": "PCT",
-          "value": 15
+          "type": "FLAT",
+          "value": 500
         }
       ],
       "scales_with_crit": true,
@@ -1610,7 +1610,7 @@
       "evidence": "803732 Malignant Jinx; dur=5000; cost=10; cost_pct=15; range=30.0; eff=APPLY_AURA/MOD_SILENCE; via=803678; mask_unique_bit=None",
       "client_sensitive": false,
       "confidence": "medium",
-      "notes": "round 2 secondary affix; CC/slow aura: +15% only"
+      "notes": "round 2 secondary affix; CC/slow aura: +15% only Value adjusted 2026-11-24 to an existing SpellDuration row (was PCT 15)."
     },
     {
       "key": "wd_voice_of_bwonsamdi_crit",
@@ -1726,7 +1726,7 @@
     },
     {
       "key": "wd_bad_juju_duration",
-      "name": "Bad Juju: +20% duration",
+      "name": "Bad Juju: +1.5 sec duration",
       "spec_id": 5,
       "target_spell": 802926,
       "affected_spells": [
@@ -1737,8 +1737,8 @@
       "effects": [
         {
           "op": "DURATION",
-          "type": "PCT",
-          "value": 20
+          "type": "FLAT",
+          "value": 1500
         }
       ],
       "scales_with_crit": true,
@@ -1747,7 +1747,7 @@
       "evidence": "802926 Mark of Malice; dur=8000; range=40.0; eff=DUMMY,APPLY_AURA/MOD_HEALING_PCT; via=802087; mask_unique_bit=None",
       "client_sensitive": false,
       "confidence": "medium",
-      "notes": "round 2 secondary affix"
+      "notes": "round 2 secondary affix Value adjusted 2026-11-24 to an existing SpellDuration row (was PCT 20)."
     },
     {
       "key": "wd_puppeteers_grasp_duration",
@@ -1776,7 +1776,7 @@
     },
     {
       "key": "wd_puppeteers_grasp_radius",
-      "name": "Puppeteer's Grasp: +10% radius",
+      "name": "Puppeteer's Grasp: +1 yd radius",
       "spec_id": 5,
       "target_spell": 707209,
       "affected_spells": [
@@ -1787,8 +1787,8 @@
       "effects": [
         {
           "op": "RADIUS",
-          "type": "PCT",
-          "value": 10
+          "type": "FLAT",
+          "value": 1
         }
       ],
       "scales_with_crit": true,
@@ -1797,7 +1797,7 @@
       "evidence": "707209 Puppeteer's Grasp; cd=180000; dur=30000; cost_pct=34; radius=[8.0]; mask_unique_bit=None",
       "client_sensitive": false,
       "confidence": "medium",
-      "notes": "round 2 secondary affix"
+      "notes": "round 2 secondary affix Value adjusted 2026-11-24 to an existing SpellRadius row (was PCT 10)."
     },
     {
       "key": "wd_shadow_puppets_crit",
@@ -1969,7 +1969,7 @@
     },
     {
       "key": "wd_splash_potion_duration",
-      "name": "Splash Potion: +20% potion effect duration",
+      "name": "Splash Potion: +2 sec duration",
       "spec_id": 6,
       "target_spell": 803698,
       "affected_spells": [
@@ -1983,8 +1983,8 @@
       "effects": [
         {
           "op": "DURATION",
-          "type": "PCT",
-          "value": 20
+          "type": "FLAT",
+          "value": 2000
         }
       ],
       "scales_with_crit": true,
@@ -1993,7 +1993,7 @@
       "evidence": "803698 Splash Potion: Jungle Shrooms; dur=12000; range=100.0; eff=APPLY_AURA/PERIODIC_HEAL; periodic=true; via=803289 | 803273 Splash Potion: Fish Oil; dur=8000; range=100.0; eff=APPLY_AURA/MOD_MELEE_RANGED_HASTE,APPLY_AURA/MOD_INCREASE_SPEED,APPLY_AURA/HASTE_SPELLS; via=803272 | 803699 Splash Potion: Frog Bones; dur=8000; range=100.0; eff=APPLY_AURA/SCHOOL_ABSORB; via=803272 | 500509 Frog Shrooms; dur=10000; range=40.0; eff=APPLY_AURA/MOD_INCREASE_HEALTH_PERCENT,APPLY_AURA/MOD_SCALE; via=803275; mask_unique_bit=None",
       "client_sensitive": false,
       "confidence": "medium",
-      "notes": "round 2 secondary affix"
+      "notes": "round 2 secondary affix Value adjusted 2026-11-24 to an existing SpellDuration row (was PCT 20)."
     },
     {
       "key": "wd_ingredient_crit",

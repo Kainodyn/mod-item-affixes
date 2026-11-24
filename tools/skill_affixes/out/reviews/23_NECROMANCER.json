@@ -346,7 +346,7 @@
     },
     {
       "key": "necro_plague_of_undeath_cast",
-      "name": "Plague of Undeath: -0.15 sec cast time",
+      "name": "Plague of Undeath: -0.2 sec cast time",
       "spec_id": 34,
       "target_spell": 801945,
       "affected_spells": [
@@ -358,7 +358,7 @@
         {
           "op": "CASTING_TIME",
           "type": "FLAT",
-          "value": -150
+          "value": -200
         }
       ],
       "scales_with_crit": true,
@@ -367,7 +367,7 @@
       "evidence": "801945 Plague of Undeath cast=1500 dur=20000 cost=300 periodic eff[APPLY_AURA/PERIODIC_DAMAGE=32, APPLY_AURA/MOD_HEALING_PCT=-40]. -150 = 10% of cast 1500; spell_id (cast bar is server-sent).",
       "client_sensitive": true,
       "confidence": "high",
-      "notes": ""
+      "notes": "Value adjusted 2026-11-24 to an existing SpellCastTimes row (was FLAT -150)."
     },
     {
       "key": "necro_glacial_impact_dmg",
@@ -878,7 +878,7 @@
     },
     {
       "key": "necro_lichplague_cast",
-      "name": "Lichplague: -0.15 sec cast time",
+      "name": "Lichplague: -0.2 sec cast time",
       "spec_id": 34,
       "target_spell": 802132,
       "affected_spells": [
@@ -890,7 +890,7 @@
         {
           "op": "CASTING_TIME",
           "type": "FLAT",
-          "value": -150
+          "value": -200
         }
       ],
       "scales_with_crit": true,
@@ -899,7 +899,7 @@
       "evidence": "802132 Lichplague cd=30000 cast=1500 cost=300 power=6 dur=18000 range=30.0 periodic=True fam29 mask_unique_bit=None eff[APPLY_AURA/PERIODIC_DAMAGE=151 DUMMY/MOD_DAMAGE_FROM_CASTER=50]. cast 1500.",
       "client_sensitive": true,
       "confidence": "high",
-      "notes": "round 2 secondary"
+      "notes": "round 2 secondary Value adjusted 2026-11-24 to an existing SpellCastTimes row (was FLAT -150)."
     },
     {
       "key": "necro_lichplague_dur",

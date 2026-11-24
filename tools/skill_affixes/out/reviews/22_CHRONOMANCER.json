@@ -687,7 +687,7 @@
     },
     {
       "key": "chrono_chromatic_shard_cast",
-      "name": "Chromatic Shard: -0.35 sec cast time",
+      "name": "Chromatic Shard: -0.4 sec cast time",
       "spec_id": 32,
       "target_spell": 801292,
       "affected_spells": [
@@ -703,7 +703,7 @@
         {
           "op": "CASTING_TIME",
           "type": "FLAT",
-          "value": -350
+          "value": -400
         }
       ],
       "scales_with_crit": true,
@@ -712,7 +712,7 @@
       "evidence": "801292 Chromatic Shard catcd=30000 cast=3500 cost_pct=23 fam28 mask_unique_bit=[0, 0, 33554432] eff[SCHOOL_DAMAGE=270, TRIGGER_SPELL]. -350 = 10% of cast 3500.",
       "client_sensitive": true,
       "confidence": "high",
-      "notes": ""
+      "notes": "Value adjusted 2026-11-24 to an existing SpellCastTimes row (was FLAT -350)."
     },
     {
       "key": "chrono_chromatic_shard_cd",
@@ -1044,7 +1044,7 @@
     },
     {
       "key": "chrono_desynchronization_cast",
-      "name": "Desynchronization: -0.1 sec cast time",
+      "name": "Desynchronization: -0.15 sec cast time",
       "spec_id": 0,
       "target_spell": 561310,
       "affected_spells": [
@@ -1056,7 +1056,7 @@
         {
           "op": "CASTING_TIME",
           "type": "FLAT",
-          "value": -100
+          "value": -150
         }
       ],
       "scales_with_crit": true,
@@ -1065,11 +1065,11 @@
       "evidence": "561310 Desynchronization cd=90000 cast=1250 cost=15 cost_pct=28 dur=6000 range=30.0 fam28 mask_unique_bit=None eff[APPLY_AURA/MOD_DISARM APPLY_AURA/MOD_DISARM_RANGED APPLY_AURA/MOD_DISARM_OFFHAND]. cast 1250.",
       "client_sensitive": true,
       "confidence": "high",
-      "notes": "round 2 secondary"
+      "notes": "round 2 secondary Value adjusted 2026-11-24 to an existing SpellCastTimes row (was FLAT -100)."
     },
     {
       "key": "chrono_desynchronization_dur",
-      "name": "Desynchronization: +20% duration",
+      "name": "Desynchronization: +1 sec duration",
       "spec_id": 0,
       "target_spell": 561310,
       "affected_spells": [
@@ -1080,8 +1080,8 @@
       "effects": [
         {
           "op": "DURATION",
-          "type": "PCT",
-          "value": 20
+          "type": "FLAT",
+          "value": 1000
         }
       ],
       "scales_with_crit": true,
@@ -1090,7 +1090,7 @@
       "evidence": "561310 Desynchronization cd=90000 cast=1250 cost=15 cost_pct=28 dur=6000 range=30.0 fam28 mask_unique_bit=None eff[APPLY_AURA/MOD_DISARM APPLY_AURA/MOD_DISARM_RANGED APPLY_AURA/MOD_DISARM_OFFHAND]. disarm 6 sec.",
       "client_sensitive": false,
       "confidence": "high",
-      "notes": "round 2 secondary"
+      "notes": "round 2 secondary Value adjusted 2026-11-24 to an existing SpellDuration row (was PCT 20)."
     },
     {
       "key": "chrono_temporal_focus_dur",
@@ -1376,7 +1376,7 @@
     },
     {
       "key": "chrono_gravity_bomb_cast",
-      "name": "Gravity Bomb: -0.15 sec cast time",
+      "name": "Gravity Bomb: -0.2 sec cast time",
       "spec_id": 0,
       "target_spell": 801281,
       "affected_spells": [
@@ -1392,7 +1392,7 @@
         {
           "op": "CASTING_TIME",
           "type": "FLAT",
-          "value": -150
+          "value": -200
         }
       ],
       "scales_with_crit": true,
@@ -1401,7 +1401,7 @@
       "evidence": "801281 Gravity Bomb cd=90000 cast=1500 cost=35 cost_pct=36 dur=6000 range=40.0 radius=[10.0] fam28 mask_unique_bit=[0, 2147483648, 0] eff[APPLY_AURA/PERIODIC_TRIGGER_SPELL=1 APPLY_AURA/DUMMY APPLY_AURA/PERIODIC_TRIGGER_SPELL=1]. cast 1500.",
       "client_sensitive": true,
       "confidence": "high",
-      "notes": "round 2 secondary"
+      "notes": "round 2 secondary Value adjusted 2026-11-24 to an existing SpellCastTimes row (was FLAT -150)."
     },
     {
       "key": "chrono_gravity_bomb_cost",
@@ -1770,7 +1770,7 @@
     },
     {
       "key": "chrono_continuum_restoration_cast",
-      "name": "Continuum Restoration: -0.15 sec cast time",
+      "name": "Continuum Restoration: -0.2 sec cast time",
       "spec_id": 31,
       "target_spell": 801271,
       "affected_spells": [
@@ -1786,7 +1786,7 @@
         {
           "op": "CASTING_TIME",
           "type": "FLAT",
-          "value": -150
+          "value": -200
         }
       ],
       "scales_with_crit": true,
@@ -1795,11 +1795,11 @@
       "evidence": "801271 Continuum Restoration cd=90000 cast=1500 cost_pct=60 range=20.0 radius=[15.0] fam28 mask_unique_bit=[8, 0, 0] eff[DISPEL=100 DISPEL=100 TRIGGER_SPELL]. cast 1500.",
       "client_sensitive": true,
       "confidence": "high",
-      "notes": "round 2 secondary"
+      "notes": "round 2 secondary Value adjusted 2026-11-24 to an existing SpellCastTimes row (was FLAT -150)."
     },
     {
       "key": "chrono_continuum_restoration_radius",
-      "name": "Continuum Restoration: +10% radius",
+      "name": "Continuum Restoration: +1 yd radius",
       "spec_id": 31,
       "target_spell": 801271,
       "affected_spells": [
@@ -1814,8 +1814,8 @@
       "effects": [
         {
           "op": "RADIUS",
-          "type": "PCT",
-          "value": 10
+          "type": "FLAT",
+          "value": 1
         }
       ],
       "scales_with_crit": true,
@@ -1824,7 +1824,7 @@
       "evidence": "801271 Continuum Restoration cd=90000 cast=1500 cost_pct=60 range=20.0 radius=[15.0] fam28 mask_unique_bit=[8, 0, 0] eff[DISPEL=100 DISPEL=100 TRIGGER_SPELL]. 15 yd dispel area.",
       "client_sensitive": false,
       "confidence": "high",
-      "notes": "round 2 secondary"
+      "notes": "round 2 secondary Value adjusted 2026-11-24 to an existing SpellRadius row (was PCT 10)."
     },
     {
       "key": "chrono_continuum_restoration_range",
@@ -1940,7 +1940,7 @@
     },
     {
       "key": "chrono_correct_the_mistake_cast",
-      "name": "Correct the Mistake: -0.25 sec cast time",
+      "name": "Correct the Mistake: -0.3 sec cast time",
       "spec_id": 31,
       "target_spell": 572352,
       "affected_spells": [
@@ -1952,7 +1952,7 @@
         {
           "op": "CASTING_TIME",
           "type": "FLAT",
-          "value": -250
+          "value": -300
         }
       ],
       "scales_with_crit": true,
@@ -1961,7 +1961,7 @@
       "evidence": "572352 Correct the Mistake cast=2500 cost_pct=36 range=40.0 radius=[30.0] fam28 mask_unique_bit=None eff[HEAL=91]. cast 2500.",
       "client_sensitive": true,
       "confidence": "high",
-      "notes": "round 2 secondary"
+      "notes": "round 2 secondary Value adjusted 2026-11-24 to an existing SpellCastTimes row (was FLAT -250)."
     },
     {
       "key": "chrono_ripple_cost",
@@ -2052,7 +2052,7 @@
     },
     {
       "key": "chrono_melt_reality_cast",
-      "name": "Melt Reality: -0.25 sec cast time",
+      "name": "Melt Reality: -0.3 sec cast time",
       "spec_id": 32,
       "target_spell": 806335,
       "affected_spells": [
@@ -2068,7 +2068,7 @@
         {
           "op": "CASTING_TIME",
           "type": "FLAT",
-          "value": -250
+          "value": -300
         }
       ],
       "scales_with_crit": true,
@@ -2077,7 +2077,7 @@
       "evidence": "806335 Melt Reality cast=2500 cost_pct=23 dur=36000 range=35.0 periodic=True fam28 mask_unique_bit=[0, 512, 0] eff[APPLY_AURA/PERIODIC_DAMAGE=181 APPLY_AURA/PERIODIC_TRIGGER_SPELL]. cast 2500.",
       "client_sensitive": true,
       "confidence": "high",
-      "notes": "round 2 secondary"
+      "notes": "round 2 secondary Value adjusted 2026-11-24 to an existing SpellCastTimes row (was FLAT -250)."
     },
     {
       "key": "chrono_melt_reality_cost",
@@ -2110,7 +2110,7 @@
     },
     {
       "key": "chrono_melt_reality_dur",
-      "name": "Melt Reality: +20% duration",
+      "name": "Melt Reality: +7 sec duration",
       "spec_id": 32,
       "target_spell": 806335,
       "affected_spells": [
@@ -2125,8 +2125,8 @@
       "effects": [
         {
           "op": "DURATION",
-          "type": "PCT",
-          "value": 20
+          "type": "FLAT",
+          "value": 7000
         }
       ],
       "scales_with_crit": true,
@@ -2135,7 +2135,7 @@
       "evidence": "806335 Melt Reality cast=2500 cost_pct=23 dur=36000 range=35.0 periodic=True fam28 mask_unique_bit=[0, 512, 0] eff[APPLY_AURA/PERIODIC_DAMAGE=181 APPLY_AURA/PERIODIC_TRIGGER_SPELL]. 36 sec DoT, period 4000 -> +1 tick.",
       "client_sensitive": false,
       "confidence": "high",
-      "notes": "round 2 secondary"
+      "notes": "round 2 secondary Value adjusted 2026-11-24 to an existing SpellDuration row (was PCT 20)."
     },
     {
       "key": "chrono_melt_reality_range",

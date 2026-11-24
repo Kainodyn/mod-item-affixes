@@ -168,7 +168,7 @@
     },
     {
       "key": "wildwalker_stone_grip_cast",
-      "name": "Stone Grip: -10% cast time",
+      "name": "Stone Grip: -0.2 sec cast time",
       "spec_id": 0,
       "target_spell": 800145,
       "affected_spells": [
@@ -179,8 +179,8 @@
       "effects": [
         {
           "op": "CASTING_TIME",
-          "type": "PCT",
-          "value": -10
+          "type": "FLAT",
+          "value": -200
         }
       ],
       "scales_with_crit": true,
@@ -189,7 +189,7 @@
       "evidence": "800145 Stone Grip; cast=1500; dur=40000; cost_pct=8",
       "client_sensitive": true,
       "confidence": "medium",
-      "notes": ""
+      "notes": "Value adjusted 2026-11-24 to an existing SpellCastTimes row (was PCT -10)."
     },
     {
       "key": "wildwalker_geode_dmg",
@@ -1138,7 +1138,7 @@
     },
     {
       "key": "wildwalker_grove_guardian_radius",
-      "name": "Grove Guardian: +15% radius",
+      "name": "Grove Guardian: +2 yd radius",
       "spec_id": 0,
       "target_spell": 504824,
       "affected_spells": [
@@ -1150,8 +1150,8 @@
       "effects": [
         {
           "op": "RADIUS",
-          "type": "PCT",
-          "value": 15
+          "type": "FLAT",
+          "value": 2
         }
       ],
       "scales_with_crit": true,
@@ -1160,7 +1160,7 @@
       "evidence": "504824 Grove Guardian (trigger child via 503721); dur=20000; range=20.0; radius=[15.0]; periodic=True; eff 0:PERSISTENT_AREA_AURA/PERIODIC_DAMAGE v=504, 1:PERSISTENT_AREA_AURA/PERIODIC_TRIGGER_SPELL v=1, 2:PERSISTENT_AREA_AURA/MOD_DECREASE_SPEED v=-30; 505208 Grove Guardian (trigger child via 503721); dur=20000; range=20.0; radius=[15.0]; periodic=True; eff 0:PERSISTENT_AREA_AURA/PERIODIC_HEAL v=404, 1:PERSISTENT_AREA_AURA/PERIODIC_TRIGGER_SPELL v=1, 2:PERSISTENT_AREA_AURA/MOD_INCREASE_SPEED v=30",
       "client_sensitive": false,
       "confidence": "medium",
-      "notes": ""
+      "notes": "Value adjusted 2026-11-24 to an existing SpellRadius row (was PCT 15)."
     },
     {
       "key": "wildwalker_boulder_dash_cost",
@@ -1247,7 +1247,7 @@
     },
     {
       "key": "wildwalker_boulder_dash_radius",
-      "name": "Boulder Dash: +15% radius",
+      "name": "Boulder Dash: +1 yd radius",
       "spec_id": 0,
       "target_spell": 500693,
       "affected_spells": [
@@ -1258,8 +1258,8 @@
       "effects": [
         {
           "op": "RADIUS",
-          "type": "PCT",
-          "value": 15
+          "type": "FLAT",
+          "value": 1
         }
       ],
       "scales_with_crit": true,
@@ -1268,11 +1268,11 @@
       "evidence": "500693 Boulder Dash (trigger child via 500692); dur=1000; radius=[4.0]; eff 0:SCHOOL_DAMAGE v=1, 1:DUMMY v=20, 2:APPLY_AURA/ALLOW_ONLY_ABILITY",
       "client_sensitive": false,
       "confidence": "medium",
-      "notes": ""
+      "notes": "Value adjusted 2026-11-24 to an existing SpellRadius row (was PCT 15)."
     },
     {
       "key": "wildwalker_bramblepatch_dur",
-      "name": "Bramblepatch: +15% duration",
+      "name": "Bramblepatch: +2 sec duration",
       "spec_id": 0,
       "target_spell": 806415,
       "affected_spells": [
@@ -1285,8 +1285,8 @@
       "effects": [
         {
           "op": "DURATION",
-          "type": "PCT",
-          "value": 15
+          "type": "FLAT",
+          "value": 2000
         }
       ],
       "scales_with_crit": true,
@@ -1295,11 +1295,11 @@
       "evidence": "806415 Bramblepatch; cd=120000; dur=12000; cost=50; cost_pct=18; radius=[6.0]; eff 0:ASCENSION_TRIGGER_SPELL_DELAYED v=500, 1:PERSISTENT_AREA_AURA/MECHANIC_IMMUNITY, 2:ASCENSION_TRIGGER_SPELL_DELAYED v=500; 807859 Bramblepatch (trigger child via 806415); cd=90000; dur=12000; cost_pct=5; radius=[6.0]; eff 0:PERSISTENT_AREA_AURA/EFFECT_IMMUNITY, 1:PERSISTENT_AREA_AURA/EFFECT_IMMUNITY, 2:PERSISTENT_AREA_AURA/EFFECT_IMMUNITY; 807120 Bramblepatch (trigger child via 806415); cd=90000; dur=12000; cost_pct=5; radius=[6.0]; eff 0:PERSISTENT_AREA_AURA/MOD_DAMAGE_PERCENT_TAKEN, 1:PERSISTENT_AREA_AURA/ADD_FLAT_MODIFIER v=-80, 2:PERSISTENT_AREA_AURA/EFFECT_IMMUNITY; mask_unique_bit=[0, 4096, 0] fam=37",
       "client_sensitive": false,
       "confidence": "medium",
-      "notes": ""
+      "notes": "Value adjusted 2026-11-24 to an existing SpellDuration row (was PCT 15)."
     },
     {
       "key": "wildwalker_bramblepatch_radius",
-      "name": "Bramblepatch: +15% radius",
+      "name": "Bramblepatch: +1 yd radius",
       "spec_id": 0,
       "target_spell": 806415,
       "affected_spells": [
@@ -1312,8 +1312,8 @@
       "effects": [
         {
           "op": "RADIUS",
-          "type": "PCT",
-          "value": 15
+          "type": "FLAT",
+          "value": 1
         }
       ],
       "scales_with_crit": true,
@@ -1322,7 +1322,7 @@
       "evidence": "806415 Bramblepatch; cd=120000; dur=12000; cost=50; cost_pct=18; radius=[6.0]; eff 0:ASCENSION_TRIGGER_SPELL_DELAYED v=500, 1:PERSISTENT_AREA_AURA/MECHANIC_IMMUNITY, 2:ASCENSION_TRIGGER_SPELL_DELAYED v=500; 807859 Bramblepatch (trigger child via 806415); cd=90000; dur=12000; cost_pct=5; radius=[6.0]; eff 0:PERSISTENT_AREA_AURA/EFFECT_IMMUNITY, 1:PERSISTENT_AREA_AURA/EFFECT_IMMUNITY, 2:PERSISTENT_AREA_AURA/EFFECT_IMMUNITY; 807120 Bramblepatch (trigger child via 806415); cd=90000; dur=12000; cost_pct=5; radius=[6.0]; eff 0:PERSISTENT_AREA_AURA/MOD_DAMAGE_PERCENT_TAKEN, 1:PERSISTENT_AREA_AURA/ADD_FLAT_MODIFIER v=-80, 2:PERSISTENT_AREA_AURA/EFFECT_IMMUNITY; mask_unique_bit=[0, 4096, 0] fam=37",
       "client_sensitive": false,
       "confidence": "medium",
-      "notes": ""
+      "notes": "Value adjusted 2026-11-24 to an existing SpellRadius row (was PCT 15)."
     },
     {
       "key": "wildwalker_bearskin_cost",
@@ -1413,7 +1413,7 @@
     },
     {
       "key": "wildwalker_wildheart_dur",
-      "name": "Wildheart: +15% duration",
+      "name": "Wildheart: +2 sec duration",
       "spec_id": 0,
       "target_spell": 803980,
       "affected_spells": [
@@ -1428,8 +1428,8 @@
       "effects": [
         {
           "op": "DURATION",
-          "type": "PCT",
-          "value": 15
+          "type": "FLAT",
+          "value": 2000
         }
       ],
       "scales_with_crit": true,
@@ -1438,7 +1438,7 @@
       "evidence": "803980 Wildheart; cd=300000; dur=15000; cost=100; cost_pct=15; eff 0:APPLY_AURA/PERIODIC_TRIGGER_SPELL v=5, 1:APPLY_AURA/PERIODIC_TRIGGER_SPELL v=5, 2:APPLY_AURA/MOD_SCALE_2 v=20; mask_unique_bit=[0, 2147483648, 0] fam=37",
       "client_sensitive": false,
       "confidence": "high",
-      "notes": ""
+      "notes": "Value adjusted 2026-11-24 to an existing SpellDuration row (was PCT 15)."
     },
     {
       "key": "wildwalker_rock_barrier_cost",
@@ -1558,7 +1558,7 @@
     },
     {
       "key": "wildwalker_protective_roar_dur",
-      "name": "Protective Roar: +15% duration",
+      "name": "Protective Roar: +2 sec duration",
       "spec_id": 0,
       "target_spell": 802782,
       "affected_spells": [
@@ -1573,8 +1573,8 @@
       "effects": [
         {
           "op": "DURATION",
-          "type": "PCT",
-          "value": 15
+          "type": "FLAT",
+          "value": 2000
         }
       ],
       "scales_with_crit": true,
@@ -1583,11 +1583,11 @@
       "evidence": "802782 Protective Roar; cd=120000; dur=12000; cost_pct=4; radius=[30.0]; eff 0:APPLY_AURA/MOD_INCREASE_HEALTH_PERCENT v=10, 1:DUMMY, 2:ENERGIZE v=200; mask_unique_bit=[67108864, 0, 0] fam=37",
       "client_sensitive": false,
       "confidence": "high",
-      "notes": ""
+      "notes": "Value adjusted 2026-11-24 to an existing SpellDuration row (was PCT 15)."
     },
     {
       "key": "wildwalker_protective_roar_radius",
-      "name": "Protective Roar: +15% radius",
+      "name": "Protective Roar: +2 yd radius",
       "spec_id": 0,
       "target_spell": 802782,
       "affected_spells": [
@@ -1602,8 +1602,8 @@
       "effects": [
         {
           "op": "RADIUS",
-          "type": "PCT",
-          "value": 15
+          "type": "FLAT",
+          "value": 2
         }
       ],
       "scales_with_crit": true,
@@ -1612,7 +1612,7 @@
       "evidence": "802782 Protective Roar; cd=120000; dur=12000; cost_pct=4; radius=[30.0]; eff 0:APPLY_AURA/MOD_INCREASE_HEALTH_PERCENT v=10, 1:DUMMY, 2:ENERGIZE v=200; mask_unique_bit=[67108864, 0, 0] fam=37",
       "client_sensitive": false,
       "confidence": "medium",
-      "notes": ""
+      "notes": "Value adjusted 2026-11-24 to an existing SpellRadius row (was PCT 15)."
     },
     {
       "key": "wildwalker_primal_convergence_dur",
@@ -1811,7 +1811,7 @@
     },
     {
       "key": "wildwalker_earthmother_s_binding_range",
-      "name": "Earthmother's Binding: +15% range",
+      "name": "Earthmother's Binding: +4 yd range",
       "spec_id": 58,
       "target_spell": 805107,
       "affected_spells": [
@@ -1826,8 +1826,8 @@
       "effects": [
         {
           "op": "RANGE",
-          "type": "PCT",
-          "value": 15
+          "type": "FLAT",
+          "value": 4
         }
       ],
       "scales_with_crit": true,
@@ -1836,11 +1836,11 @@
       "evidence": "805107 Earthmother's Binding; cd=60000; cost=50; cost_pct=22; range=30.0; eff 0:HEAL v=501, 1:TRIGGER_SPELL v=1; mask_unique_bit=[0, 0, 1073741824] fam=37",
       "client_sensitive": true,
       "confidence": "high",
-      "notes": ""
+      "notes": "Value adjusted 2026-11-24 to an existing SpellRange row (was PCT 15)."
     },
     {
       "key": "wildwalker_earthmother_s_binding_dur",
-      "name": "Earthmother's Binding: +15% duration",
+      "name": "Earthmother's Binding: +1 sec duration",
       "spec_id": 58,
       "target_spell": 805107,
       "affected_spells": [
@@ -1856,8 +1856,8 @@
       "effects": [
         {
           "op": "DURATION",
-          "type": "PCT",
-          "value": 15
+          "type": "FLAT",
+          "value": 1000
         }
       ],
       "scales_with_crit": true,
@@ -1866,7 +1866,7 @@
       "evidence": "805107 Earthmother's Binding; cd=60000; cost=50; cost_pct=22; range=30.0; eff 0:HEAL v=501, 1:TRIGGER_SPELL v=1; mask_unique_bit=[0, 0, 1073741824] fam=37; 807858 Earthmother's Binding (trigger child via 805107); cd=60000; dur=6000; cost=50; cost_pct=22; range=30.0; eff 0:DUMMY v=501, 1:APPLY_AURA/SPLIT_DAMAGE_PCT v=30; mask_unique_bit=[0, 0, 1073741824] fam=37",
       "client_sensitive": false,
       "confidence": "high",
-      "notes": "Duration lives on child 807858 (damage redirect 6 sec), same mask bit."
+      "notes": "Duration lives on child 807858 (damage redirect 6 sec), same mask bit. Value adjusted 2026-11-24 to an existing SpellDuration row (was PCT 15)."
     },
     {
       "key": "wildwalker_ancient_of_lore_dur",
@@ -1928,7 +1928,7 @@
     },
     {
       "key": "wildwalker_neptulon_s_wrath_dur",
-      "name": "Neptulon's Wrath: +15% duration",
+      "name": "Neptulon's Wrath: +2 sec duration",
       "spec_id": 58,
       "target_spell": 537250,
       "affected_spells": [
@@ -1939,8 +1939,8 @@
       "effects": [
         {
           "op": "DURATION",
-          "type": "PCT",
-          "value": 15
+          "type": "FLAT",
+          "value": 2000
         }
       ],
       "scales_with_crit": true,
@@ -1949,7 +1949,7 @@
       "evidence": "537250 Neptulon's Wrath (trigger child via 807467); dur=15000; range=100.0; eff 0:APPLY_AURA/PROC_TRIGGER_SPELL_WITH_VALUE, 1:TRIGGER_SPELL",
       "client_sensitive": false,
       "confidence": "medium",
-      "notes": ""
+      "notes": "Value adjusted 2026-11-24 to an existing SpellDuration row (was PCT 15)."
     },
     {
       "key": "wildwalker_seismic_wave_crit",
@@ -1978,7 +1978,7 @@
     },
     {
       "key": "wildwalker_seismic_wave_radius",
-      "name": "Seismic Wave: +15% radius",
+      "name": "Seismic Wave: +2 yd radius",
       "spec_id": 58,
       "target_spell": 805462,
       "affected_spells": [
@@ -1989,8 +1989,8 @@
       "effects": [
         {
           "op": "RADIUS",
-          "type": "PCT",
-          "value": 15
+          "type": "FLAT",
+          "value": 2
         }
       ],
       "scales_with_crit": true,
@@ -1999,7 +1999,7 @@
       "evidence": "805462 Seismic Wave; catcd=8000; cost=400; radius=[10.0, 25.0]; eff 0:HEAL v=67, 1:SCHOOL_DAMAGE v=47",
       "client_sensitive": false,
       "confidence": "medium",
-      "notes": ""
+      "notes": "Value adjusted 2026-11-24 to an existing SpellRadius row (was PCT 15)."
     },
     {
       "key": "wildwalker_sacred_grove_cost",
@@ -2061,7 +2061,7 @@
     },
     {
       "key": "wildwalker_sacred_grove_dur",
-      "name": "Sacred Grove: +15% duration",
+      "name": "Sacred Grove: +2.5 sec duration",
       "spec_id": 58,
       "target_spell": 800180,
       "affected_spells": [
@@ -2076,8 +2076,8 @@
       "effects": [
         {
           "op": "DURATION",
-          "type": "PCT",
-          "value": 15
+          "type": "FLAT",
+          "value": 2500
         }
       ],
       "scales_with_crit": true,
@@ -2086,11 +2086,11 @@
       "evidence": "800180 Sacred Grove; cd=180000; catcd=180000; dur=16000; cost_pct=35; range=40.0; radius=[15.0]; eff 0:HEAL v=2002, 1:PERSISTENT_AREA_AURA/DUMMY; mask_unique_bit=[0, 262144, 0] fam=37",
       "client_sensitive": false,
       "confidence": "high",
-      "notes": ""
+      "notes": "Value adjusted 2026-11-24 to an existing SpellDuration row (was PCT 15)."
     },
     {
       "key": "wildwalker_sacred_grove_radius",
-      "name": "Sacred Grove: +15% radius",
+      "name": "Sacred Grove: +2 yd radius",
       "spec_id": 58,
       "target_spell": 800180,
       "affected_spells": [
@@ -2105,8 +2105,8 @@
       "effects": [
         {
           "op": "RADIUS",
-          "type": "PCT",
-          "value": 15
+          "type": "FLAT",
+          "value": 2
         }
       ],
       "scales_with_crit": true,
@@ -2115,7 +2115,7 @@
       "evidence": "800180 Sacred Grove; cd=180000; catcd=180000; dur=16000; cost_pct=35; range=40.0; radius=[15.0]; eff 0:HEAL v=2002, 1:PERSISTENT_AREA_AURA/DUMMY; mask_unique_bit=[0, 262144, 0] fam=37",
       "client_sensitive": false,
       "confidence": "medium",
-      "notes": ""
+      "notes": "Value adjusted 2026-11-24 to an existing SpellRadius row (was PCT 15)."
     },
     {
       "key": "wildwalker_sacred_grove_range",
@@ -2173,7 +2173,7 @@
     },
     {
       "key": "wildwalker_spirit_charge_radius",
-      "name": "Spirit Charge: +15% radius",
+      "name": "Spirit Charge: +1 yd radius",
       "spec_id": 58,
       "target_spell": 800144,
       "affected_spells": [
@@ -2184,8 +2184,8 @@
       "effects": [
         {
           "op": "RADIUS",
-          "type": "PCT",
-          "value": 15
+          "type": "FLAT",
+          "value": 1
         }
       ],
       "scales_with_crit": true,
@@ -2194,7 +2194,7 @@
       "evidence": "800144 Spirit Charge; catcd=30000; cost_pct=16; range=30.0; radius=[5.0]; eff 0:CHARGE_DEST v=1, 1:HEAL v=53, 2:SCHOOL_DAMAGE v=67",
       "client_sensitive": false,
       "confidence": "medium",
-      "notes": ""
+      "notes": "Value adjusted 2026-11-24 to an existing SpellRadius row (was PCT 15)."
     },
     {
       "key": "wildwalker_ancient_of_war_dur",
@@ -2248,7 +2248,7 @@
     },
     {
       "key": "wildwalker_frenzied_roar_dur",
-      "name": "Frenzied Roar: +15% duration",
+      "name": "Frenzied Roar: +2 sec duration",
       "spec_id": 59,
       "target_spell": 800133,
       "affected_spells": [
@@ -2259,8 +2259,8 @@
       "effects": [
         {
           "op": "DURATION",
-          "type": "PCT",
-          "value": 15
+          "type": "FLAT",
+          "value": 2000
         }
       ],
       "scales_with_crit": true,
@@ -2269,11 +2269,11 @@
       "evidence": "800133 Frenzied Roar; cd=60000; catcd=60000; dur=15000; cost_pct=8; radius=[30.0]; eff 0:APPLY_AURA/MOD_MELEE_HASTE v=20, 1:ENERGIZE v=200",
       "client_sensitive": false,
       "confidence": "medium",
-      "notes": ""
+      "notes": "Value adjusted 2026-11-24 to an existing SpellDuration row (was PCT 15)."
     },
     {
       "key": "wildwalker_frenzied_roar_radius",
-      "name": "Frenzied Roar: +15% radius",
+      "name": "Frenzied Roar: +2 yd radius",
       "spec_id": 59,
       "target_spell": 800133,
       "affected_spells": [
@@ -2284,8 +2284,8 @@
       "effects": [
         {
           "op": "RADIUS",
-          "type": "PCT",
-          "value": 15
+          "type": "FLAT",
+          "value": 2
         }
       ],
       "scales_with_crit": true,
@@ -2294,11 +2294,11 @@
       "evidence": "800133 Frenzied Roar; cd=60000; catcd=60000; dur=15000; cost_pct=8; radius=[30.0]; eff 0:APPLY_AURA/MOD_MELEE_HASTE v=20, 1:ENERGIZE v=200",
       "client_sensitive": false,
       "confidence": "medium",
-      "notes": ""
+      "notes": "Value adjusted 2026-11-24 to an existing SpellRadius row (was PCT 15)."
     },
     {
       "key": "wildwalker_savage_frenzy_dur",
-      "name": "Savage Frenzy: +15% duration",
+      "name": "Savage Frenzy: +2.5 sec duration",
       "spec_id": 59,
       "target_spell": 806549,
       "affected_spells": [
@@ -2309,8 +2309,8 @@
       "effects": [
         {
           "op": "DURATION",
-          "type": "PCT",
-          "value": 15
+          "type": "FLAT",
+          "value": 2500
         }
       ],
       "scales_with_crit": true,
@@ -2319,7 +2319,7 @@
       "evidence": "806549 Savage Frenzy; cd=180000; dur=18000; cost_pct=15; range=50000.0; eff 0:APPLY_AURA/MOD_DAMAGE_PERCENT_DONE v=20, 1:APPLY_AURA/MOD_MELEE_RANGED_HASTE v=30, 2:APPLY_AURA/MOD_INCREASE_SPEED v=30",
       "client_sensitive": false,
       "confidence": "medium",
-      "notes": ""
+      "notes": "Value adjusted 2026-11-24 to an existing SpellDuration row (was PCT 15)."
     },
     {
       "key": "wildwalker_totemic_smash_crit",
@@ -2348,7 +2348,7 @@
     },
     {
       "key": "wildwalker_totemic_smash_radius",
-      "name": "Totemic Smash: +15% radius",
+      "name": "Totemic Smash: +1 yd radius",
       "spec_id": 59,
       "target_spell": 800178,
       "affected_spells": [
@@ -2359,8 +2359,8 @@
       "effects": [
         {
           "op": "RADIUS",
-          "type": "PCT",
-          "value": 15
+          "type": "FLAT",
+          "value": 1
         }
       ],
       "scales_with_crit": true,
@@ -2369,7 +2369,7 @@
       "evidence": "800178 Totemic Smash; cd=6000; catcd=6000; cost=350; range=5.0; radius=[5.0]; eff 0:WEAPON_PERCENT_DAMAGE v=140, 1:SCHOOL_DAMAGE v=10, 2:NORMALIZED_WEAPON_DMG v=20",
       "client_sensitive": false,
       "confidence": "medium",
-      "notes": ""
+      "notes": "Value adjusted 2026-11-24 to an existing SpellRadius row (was PCT 15)."
     },
     {
       "key": "wildwalker_rylak_s_bite_crit",
@@ -2456,7 +2456,7 @@
     },
     {
       "key": "wildwalker_quake_radius",
-      "name": "Quake: +15% radius",
+      "name": "Quake: +1 yd radius",
       "spec_id": 60,
       "target_spell": 803974,
       "affected_spells": [
@@ -2471,8 +2471,8 @@
       "effects": [
         {
           "op": "RADIUS",
-          "type": "PCT",
-          "value": 15
+          "type": "FLAT",
+          "value": 1
         }
       ],
       "scales_with_crit": true,
@@ -2481,7 +2481,7 @@
       "evidence": "803974 Quake; cost_pct=5; radius=[8.0]; eff 0:NORMALIZED_WEAPON_DMG, 1:TRIGGER_SPELL v=1, 2:SCHOOL_DAMAGE v=13; mask_unique_bit=[0, 0, 256] fam=37",
       "client_sensitive": false,
       "confidence": "medium",
-      "notes": ""
+      "notes": "Value adjusted 2026-11-24 to an existing SpellRadius row (was PCT 15)."
     },
     {
       "key": "wildwalker_quake_dur",
@@ -2568,7 +2568,7 @@
     },
     {
       "key": "wildwalker_mountain_hammer_range",
-      "name": "Mountain Hammer: +15% range",
+      "name": "Mountain Hammer: +4 yd range",
       "spec_id": 60,
       "target_spell": 681130,
       "affected_spells": [
@@ -2583,8 +2583,8 @@
       "effects": [
         {
           "op": "RANGE",
-          "type": "PCT",
-          "value": 15
+          "type": "FLAT",
+          "value": 4
         }
       ],
       "scales_with_crit": true,
@@ -2593,7 +2593,7 @@
       "evidence": "681130 Mountain Hammer; catcd=60000; dur=5000; cost=200; range=30.0; eff 0:SCHOOL_DAMAGE v=49, 1:APPLY_AURA/MOD_STUN, 2:MODIFY_THREAT_PERCENT v=8; mask_unique_bit=[1048576, 0, 0] fam=37",
       "client_sensitive": true,
       "confidence": "high",
-      "notes": ""
+      "notes": "Value adjusted 2026-11-24 to an existing SpellRange row (was PCT 15)."
     },
     {
       "key": "wildwalker_mountain_hammer_dur",
@@ -2713,7 +2713,7 @@
     },
     {
       "key": "wildwalker_seismic_smash_radius",
-      "name": "Seismic Smash: +15% radius",
+      "name": "Seismic Smash: +2 yd radius",
       "spec_id": 60,
       "target_spell": 300693,
       "affected_spells": [
@@ -2728,8 +2728,8 @@
       "effects": [
         {
           "op": "RADIUS",
-          "type": "PCT",
-          "value": 15
+          "type": "FLAT",
+          "value": 2
         }
       ],
       "scales_with_crit": true,
@@ -2738,7 +2738,7 @@
       "evidence": "300693 Seismic Smash; cd=8000; catcd=8000; cost=400; radius=[12.0]; eff 0:SCHOOL_DAMAGE v=94; mask_unique_bit=[0, 0, 1024] fam=37",
       "client_sensitive": false,
       "confidence": "medium",
-      "notes": ""
+      "notes": "Value adjusted 2026-11-24 to an existing SpellRadius row (was PCT 15)."
     },
     {
       "key": "wildwalker_earthen_avatar_cost",
@@ -2825,7 +2825,7 @@
     },
     {
       "key": "wildwalker_judgement_of_the_three_hammers_dur",
-      "name": "Judgement of The Three Hammers: +15% duration",
+      "name": "Judgement of The Three Hammers: +2 sec duration",
       "spec_id": 60,
       "target_spell": 520466,
       "affected_spells": [
@@ -2836,8 +2836,8 @@
       "effects": [
         {
           "op": "DURATION",
-          "type": "PCT",
-          "value": 15
+          "type": "FLAT",
+          "value": 2000
         }
       ],
       "scales_with_crit": true,
@@ -2846,7 +2846,7 @@
       "evidence": "520466 Judgement of The Three Hammers; cd=60000; catcd=60000; dur=15000; cost_pct=9; eff 0:APPLY_AURA/PROC_TRIGGER_SPELL",
       "client_sensitive": false,
       "confidence": "medium",
-      "notes": ""
+      "notes": "Value adjusted 2026-11-24 to an existing SpellDuration row (was PCT 15)."
     },
     {
       "key": "wildwalker_judgement_of_the_three_hammers_crit",
@@ -3078,7 +3078,7 @@
     },
     {
       "key": "wildwalker_seismic_tremor_dur",
-      "name": "Seismic Tremor: +15% duration",
+      "name": "Seismic Tremor: +3.5 sec duration",
       "spec_id": 95,
       "target_spell": 680442,
       "affected_spells": [
@@ -3093,8 +3093,8 @@
       "effects": [
         {
           "op": "DURATION",
-          "type": "PCT",
-          "value": 15
+          "type": "FLAT",
+          "value": 3500
         }
       ],
       "scales_with_crit": true,
@@ -3103,7 +3103,7 @@
       "evidence": "680442 Seismic Tremor; catcd=8000; dur=24000; cost_pct=12; range=20.0; periodic=True; eff 0:SCHOOL_DAMAGE v=70, 1:APPLY_AURA/PERIODIC_DAMAGE v=71, 2:APPLY_AURA/MOD_DAMAGE_FROM_CASTER; mask_unique_bit=[64, 0, 0] fam=37",
       "client_sensitive": false,
       "confidence": "high",
-      "notes": ""
+      "notes": "Value adjusted 2026-11-24 to an existing SpellDuration row (was PCT 15)."
     },
     {
       "key": "wildwalker_seismic_tremor_range",
@@ -3219,7 +3219,7 @@
     },
     {
       "key": "wildwalker_terrasurge_cast",
-      "name": "Terrasurge: -10% cast time",
+      "name": "Terrasurge: -0.3 sec cast time",
       "spec_id": 95,
       "target_spell": 681119,
       "affected_spells": [
@@ -3234,8 +3234,8 @@
       "effects": [
         {
           "op": "CASTING_TIME",
-          "type": "PCT",
-          "value": -10
+          "type": "FLAT",
+          "value": -300
         }
       ],
       "scales_with_crit": true,
@@ -3244,11 +3244,11 @@
       "evidence": "681119 Terrasurge; catcd=20000; cast=2500; cost=450; range=30.0; eff 0:SCHOOL_DAMAGE v=154, 1:ASCENSION_TRIGGER_SPELL_DURATION v=10000; mask_unique_bit=[8, 0, 0] fam=37",
       "client_sensitive": true,
       "confidence": "high",
-      "notes": ""
+      "notes": "Value adjusted 2026-11-24 to an existing SpellCastTimes row (was PCT -10)."
     },
     {
       "key": "wildwalker_terrasurge_range",
-      "name": "Terrasurge: +15% range",
+      "name": "Terrasurge: +4 yd range",
       "spec_id": 95,
       "target_spell": 681119,
       "affected_spells": [
@@ -3263,8 +3263,8 @@
       "effects": [
         {
           "op": "RANGE",
-          "type": "PCT",
-          "value": 15
+          "type": "FLAT",
+          "value": 4
         }
       ],
       "scales_with_crit": true,
@@ -3273,7 +3273,7 @@
       "evidence": "681119 Terrasurge; catcd=20000; cast=2500; cost=450; range=30.0; eff 0:SCHOOL_DAMAGE v=154, 1:ASCENSION_TRIGGER_SPELL_DURATION v=10000; mask_unique_bit=[8, 0, 0] fam=37",
       "client_sensitive": true,
       "confidence": "high",
-      "notes": ""
+      "notes": "Value adjusted 2026-11-24 to an existing SpellRange row (was PCT 15)."
     },
     {
       "key": "wildwalker_earth_s_embrace_cost",

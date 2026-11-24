@@ -33,12 +33,14 @@ public:
         PLAYERHOOK_ON_LOGOUT,
         PLAYERHOOK_ON_LEARN_SPELL,
         PLAYERHOOK_ON_FORGOT_SPELL,
+        PLAYERHOOK_ON_AFTER_SPEC_SLOT_CHANGED,
     }) { }
 
     void OnPlayerLogin(Player* player) override
     {
         if (!sItemAffixMgr->Handles(player))
             return;
+        sItemAffixMgr->ScheduleSpellRowReset(player);
         sItemAffixMgr->RollUnrolledEquipped(player);
         sItemAffixMgr->SyncAffixes(player);
         sItemAffixMgr->SendConfig(player);
@@ -84,6 +86,8 @@ public:
             return;
         data->activeSkillAffixes.clear();
         data->cooldownCuts.clear();
+        data->rowEffects.clear();
+        data->sentRows.clear();
         sItemAffixMgr->TrackCooldownCuts(data, false);
         sItemAffixMgr->ClearSkillMods(player, data);
     }
@@ -96,6 +100,11 @@ public:
     void OnPlayerForgotSpell(Player* player, uint32 /*spellID*/) override
     {
         sItemAffixMgr->ScheduleSkillStatusRefresh(player);
+    }
+
+    void OnPlayerAfterSpecSlotChanged(Player* player, uint8 /*newSlot*/) override
+    {
+        sItemAffixMgr->ScheduleSpellRowReset(player);
     }
 
     // AFXM requests arrive as LANG_ADDON whispers to the player themself ("AFXM\t<payload>").

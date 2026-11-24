@@ -1,3 +1,4 @@
+#include "AscensionClientSpellRows.h"
 #include "Chat.h"
 #include "CommandScript.h"
 #include "Item.h"
@@ -8,6 +9,10 @@
 #include "SpellMgr.h"
 #include "StringConvert.h"
 #include "StringFormat.h"
+#include <algorithm>
+#include <cctype>
+#include <limits>
+#include <optional>
 
 using namespace Acore::ChatCommands;
 
@@ -40,6 +45,125 @@ Item* EquippedItem(ChatHandler* handler, uint8 equipSlot)
         handler->PSendSysMessage("|cffFFFF00[ItemAffixes]|r No item in equipment slot {} (1-{}).", equipSlot, EQUIPMENT_SLOT_END);
     return item;
 }
+
+// `.affix row` field names (Spell.dbc columns, DBCStructure.h SpellEntry); fieldN names any column.
+struct RowFieldName
+{
+    char const* name;
+    uint32 field;
+};
+
+constexpr RowFieldName RowFields[] = {
+    { "CastingTimeIndex", 28 }, { "RecoveryTime", 29 }, { "CategoryRecoveryTime", 30 },
+    { "DurationIndex", 40 }, { "ManaCost", 42 }, { "RangeIndex", 46 },
+    { "EffectBasePoints0", 80 }, { "EffectBasePoints1", 81 }, { "EffectBasePoints2", 82 },
+    { "EffectRadiusIndex0", 92 }, { "EffectRadiusIndex1", 93 }, { "EffectRadiusIndex2", 94 },
+    { "EffectChainTarget0", 104 }, { "EffectChainTarget1", 105 }, { "EffectChainTarget2", 106 },
+    { "ManaCostPercentage", 204 },
+};
+
+bool SameText(std::string_view a, std::string_view b)
+{
+    return a.size() == b.size() && std::equal(a.begin(), a.end(), b.begin(),
+        [](char x, char y) { return std::tolower(uint8(x)) == std::tolower(uint8(y)); });
+}
+
+std::optional<uint32> RowField(std::string_view name)
+{
+    for (RowFieldName const& known : RowFields)
+        if (SameText(name, known.name))
+            return known.field;
+    if (name.size() > 5 && SameText(name.substr(0, 5), "field"))
+        if (Optional<uint32> field = Acore::StringTo<uint32>(name.substr(5)); field && AscensionSpellRow::Slot(*field))
+            return *field;
+    return std::nullopt;
+}
+
+std::string RowFieldLabel(uint32 field)
+{
+    for (RowFieldName const& known : RowFields)
+        if (known.field == field)
+            return known.name;
+    return Acore::StringFormat("field{}", field);
+}
+
+struct RowEdit
+{
+    std::vector<std::pair<uint32, int64>> values;
+    std::optional<std::string> description;
+    std::optional<std::string> descriptionSuffix;
+    std::optional<std::string> tooltip;
+};
+
+// key=value pairs; a value in double quotes may hold spaces. desc= replaces the Description,
+// desc+= appends to it, tooltip= replaces the aura ToolTip.
+bool ParseRowEdit(std::string_view text, RowEdit& edit, std::string& error)
+{
+    size_t pos = 0;
+    while (pos < text.size())
+    {
+        if (std::isspace(uint8(text[pos])))
+        {
+            ++pos;
+            continue;
+        }
+        size_t const eq = text.find('=', pos);
+        if (eq == std::string_view::npos)
+        {
+            error = Acore::StringFormat("'{}' is not key=value", text.substr(pos));
+            return false;
+        }
+        std::string_view key = text.substr(pos, eq - pos);
+        bool append = false;
+        if (!key.empty() && key.back() == '+')
+        {
+            append = true;
+            key.remove_suffix(1);
+        }
+        pos = eq + 1;
+        std::string value;
+        if (pos < text.size() && text[pos] == '"')
+        {
+            size_t const close = text.find('"', pos + 1);
+            if (close == std::string_view::npos)
+            {
+                error = Acore::StringFormat("missing closing quote after {}=", key);
+                return false;
+            }
+            value = std::string(text.substr(pos + 1, close - pos - 1));
+            pos = close + 1;
+        }
+        else
+        {
+            size_t end = pos;
+            while (end < text.size() && !std::isspace(uint8(text[end])))
+                ++end;
+            value = std::string(text.substr(pos, end - pos));
+            pos = end;
+        }
+
+        if (SameText(key, "desc"))
+            (append ? edit.descriptionSuffix : edit.description) = value;
+        else if (SameText(key, "tooltip") && !append)
+            edit.tooltip = value;
+        else if (std::optional<uint32> field = RowField(key); field && !append)
+        {
+            Optional<int64> number = Acore::StringTo<int64>(value);
+            if (!number || *number < std::numeric_limits<int32>::min() || *number > std::numeric_limits<uint32>::max())
+            {
+                error = Acore::StringFormat("{}={} is not a 32-bit number", key, value);
+                return false;
+            }
+            edit.values.emplace_back(*field, *number);
+        }
+        else
+        {
+            error = Acore::StringFormat("unknown field '{}'", key);
+            return false;
+        }
+    }
+    return true;
+}
 }
 
 class ItemAffixCommandScript : public CommandScript
@@ -62,6 +186,7 @@ public:
             { "skills",  HandleSkillsCommand, SEC_GAMEMASTER,     Console::No },
             { "reroll",  HandleRerollCommand, SEC_ADMINISTRATOR, Console::No },
             { "give",    HandleGiveCommand,   SEC_ADMINISTRATOR, Console::No },
+            { "row",     HandleRowCommand,    SEC_ADMINISTRATOR, Console::No },
             { "reforge", reforgeCommandTable },
         };
         static ChatCommandTable commandTable =
@@ -140,6 +265,19 @@ public:
                 info ? info->SpellName[0] : "?", mod->mask[0], mod->mask[1], mod->mask[2],
                 mod->ownerAura == carrier ? "carrier" : "STALE");
         }
+        for (auto const& [spellId, effects] : data->rowEffects)
+        {
+            std::string ops;
+            for (uint8 op = 0; op < SKILL_ROW_MAX_OPS; ++op)
+            {
+                if (effects.flat[op])
+                    ops += Acore::StringFormat(" op{}{:+}", op, effects.flat[op]);
+                if (effects.pct[op])
+                    ops += Acore::StringFormat(" op{}{:+}%", op, effects.pct[op]);
+            }
+            handler->PSendSysMessage("  row spell {}:{} notes {} {}", spellId, ops, effects.notes.size(),
+                data->sentRows.count(spellId) ? "sent" : "not sent");
+        }
         for (auto const& [spellId, cut] : data->cooldownCuts)
         {
             SpellInfo const* info = sSpellMgr->GetSpellInfo(spellId);
@@ -174,6 +312,73 @@ public:
         }
         handler->PSendSysMessage("|cffFFFF00[ItemAffixes]|r {} now has [{}] {}{}.", item->GetTemplate()->Name1, def->id,
             def->key, sItemAffixMgr->PlayerKnowsSkillAffix(player, *def) ? "" : " (inactive: spell not known)");
+        return true;
+    }
+
+    // .affix row <spellId> [field=value ...] [desc="..."] [desc+="..."] [tooltip="..."] | reset
+    // Sends this player one Spell row (SMSG_PATCH_SPELL) to test what the client follows mid-session.
+    // reset sends the row the server normally sends (with streamed affixes when StreamSpellRows = 1).
+    static bool HandleRowCommand(ChatHandler* handler, uint32 spellId, Tail args)
+    {
+        Player* player = handler->GetSession()->GetPlayer();
+        std::optional<AscensionSpellRow> const original = AscensionOriginalSpellRow(spellId);
+        if (!original)
+        {
+            handler->PSendSysMessage("|cffFFFF00[ItemAffixes]|r No client Spell row for {} (needs CoA.SendDisplayPatches = 1).",
+                spellId);
+            return false;
+        }
+
+        std::string_view text = args;
+        while (!text.empty() && std::isspace(uint8(text.front())))
+            text.remove_prefix(1);
+        while (!text.empty() && std::isspace(uint8(text.back())))
+            text.remove_suffix(1);
+
+        if (text.empty() || SameText(text, "reset"))
+        {
+            bool const sent = AscensionSendPlayerSpellRow(player, spellId);
+            handler->PSendSysMessage("|cffFFFF00[ItemAffixes]|r {} server row of {} {}.", sent ? "Sent" : "Could not send",
+                spellId, original->Strings[AscensionSpellRow::NAME]);
+            return sent;
+        }
+
+        RowEdit edit;
+        std::string error;
+        if (!ParseRowEdit(text, edit, error))
+        {
+            handler->PSendSysMessage("|cffFFFF00[ItemAffixes]|r {}.", error);
+            return false;
+        }
+
+        AscensionSpellRow shown;
+        bool const sent = AscensionSendPlayerSpellRow(player, spellId, [&](AscensionSpellRow& row)
+        {
+            for (auto const& [field, value] : edit.values)
+                row.Set(field, uint32(value));
+            if (edit.description)
+                row.Strings[AscensionSpellRow::DESCRIPTION] = *edit.description;
+            if (edit.descriptionSuffix)
+                row.Strings[AscensionSpellRow::DESCRIPTION] += *edit.descriptionSuffix;
+            if (edit.tooltip)
+                row.Strings[AscensionSpellRow::TOOLTIP] = *edit.tooltip;
+            shown = row;
+        });
+        if (!sent)
+        {
+            handler->SendSysMessage("|cffFFFF00[ItemAffixes]|r Could not send the row.");
+            return false;
+        }
+
+        handler->PSendSysMessage("|cffFFFF00[ItemAffixes]|r Sent edited row of {} {}:", spellId,
+            original->Strings[AscensionSpellRow::NAME]);
+        for (auto const& [field, value] : edit.values)
+            handler->PSendSysMessage("  {}: {} -> {}", RowFieldLabel(field), int32(original->Get(field)),
+                int32(shown.Get(field)));
+        if (edit.description || edit.descriptionSuffix)
+            handler->PSendSysMessage("  Description: {}", shown.Strings[AscensionSpellRow::DESCRIPTION]);
+        if (edit.tooltip)
+            handler->PSendSysMessage("  ToolTip: {}", shown.Strings[AscensionSpellRow::TOOLTIP]);
         return true;
     }
 

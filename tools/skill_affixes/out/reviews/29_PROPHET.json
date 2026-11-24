@@ -2543,7 +2543,7 @@
     },
     {
       "key": "pr_mycosis_cast",
-      "name": "Mycosis: -0.25 sec cast time",
+      "name": "Mycosis: -0.3 sec cast time",
       "spec_id": 54,
       "target_spell": 804986,
       "affected_spells": [
@@ -2559,7 +2559,7 @@
         {
           "op": "CASTING_TIME",
           "type": "FLAT",
-          "value": -250
+          "value": -300
         }
       ],
       "scales_with_crit": true,
@@ -2568,7 +2568,7 @@
       "evidence": "804986 Mycosis; cast=2500; catcd=15000; dur=8000; range=30.0; cost_pct=14; eff0=SCHOOL_DAMAGE v=153; eff1=APPLY_AURA/SCHOOL_HEAL_ABSORB v=100; mask_unique_bit=[0, 32, 0] fam=35",
       "client_sensitive": true,
       "confidence": "high",
-      "notes": ""
+      "notes": "Value adjusted 2026-11-24 to an existing SpellCastTimes row (was FLAT -250)."
     },
     {
       "key": "pr_mycosis_crit",
@@ -2946,7 +2946,7 @@
     },
     {
       "key": "pr_mending_mist_cast",
-      "name": "Mending Mist: -0.25 sec cast time",
+      "name": "Mending Mist: -0.3 sec cast time",
       "spec_id": 101,
       "target_spell": 800899,
       "affected_spells": [
@@ -2962,7 +2962,7 @@
         {
           "op": "CASTING_TIME",
           "type": "FLAT",
-          "value": -250
+          "value": -300
         }
       ],
       "scales_with_crit": true,
@@ -2971,7 +2971,7 @@
       "evidence": "800899 Mending Mist; cast=1800; dur=10000; radius=[30.0]; cost_pct=35; eff0=APPLY_AURA/PERIODIC_HEAL v=9 per=1000; eff1=ASCENSION_TRIGGER_SPELL_DELAYED v=1689; mask_unique_bit=[524288, 0, 0] fam=35",
       "client_sensitive": true,
       "confidence": "high",
-      "notes": ""
+      "notes": "Value adjusted 2026-11-24 to an existing SpellCastTimes row (was FLAT -250)."
     },
     {
       "key": "pr_mending_mist_dur",
@@ -3104,7 +3104,7 @@
     },
     {
       "key": "pr_alkahest_cast",
-      "name": "Alkahest: -0.25 sec cast time",
+      "name": "Alkahest: -0.3 sec cast time",
       "spec_id": 101,
       "target_spell": 504342,
       "affected_spells": [
@@ -3120,7 +3120,7 @@
         {
           "op": "CASTING_TIME",
           "type": "FLAT",
-          "value": -250
+          "value": -300
         }
       ],
       "scales_with_crit": true,
@@ -3129,7 +3129,7 @@
       "evidence": "504342 Alkahest; cast=1600; range=40.0; cost=75; cost_pct=15; eff0=HEAL v=85; eff1=ASCENSION_MODIFY_AURA_DURATION v=9000; mask_unique_bit=[67108864, 0, 0] fam=35",
       "client_sensitive": true,
       "confidence": "high",
-      "notes": ""
+      "notes": "Value adjusted 2026-11-24 to an existing SpellCastTimes row (was FLAT -250)."
     },
     {
       "key": "pr_alkahest_crit",
