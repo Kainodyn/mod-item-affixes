@@ -1,7 +1,7 @@
 {
   "class_id": 17,
   "class": "FLESHWARDEN",
-  "reviewed_at": "2026-11-23",
+  "reviewed_at": "2026-11-24",
   "affixes": [
     {
       "key": "fw_suffuse_hot",
@@ -679,6 +679,629 @@
       "client_sensitive": false,
       "confidence": "high",
       "notes": ""
+    },
+    {
+      "key": "fw_juggernaut_dur",
+      "name": "Juggernaut: +1.5 sec duration",
+      "spec_id": 0,
+      "target_spell": 520294,
+      "affected_spells": [
+        520294
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 1500
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "520294 Juggernaut dur=10000",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "fw_chains_of_malice_dur",
+      "name": "Chains of Malice: +1 sec duration",
+      "spec_id": 0,
+      "target_spell": 803185,
+      "affected_spells": [
+        803185
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 1000
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "803185 Chains of Malice dur=5000",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "stun + DoT"
+    },
+    {
+      "key": "fw_chainwhip_cost",
+      "name": "Chainwhip: -10% rage cost",
+      "spec_id": 0,
+      "target_spell": 800081,
+      "affected_spells": [
+        800081
+      ],
+      "targeting": "mask",
+      "mask": [
+        524288,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "800081 Chainwhip cost=100 power=1; 800081 mask_unique_bit=[524288, 0, 0] fam=23",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "fw_chainwhip_crit",
+      "name": "Chainwhip: +3% critical strike chance",
+      "spec_id": 0,
+      "target_spell": 800081,
+      "affected_spells": [
+        800081
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "800081 Chainwhip eff0 SCHOOL_DAMAGE v=8 chain=1",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "fw_chainwhip_range",
+      "name": "Chainwhip: +2 yd range",
+      "spec_id": 0,
+      "target_spell": 800081,
+      "affected_spells": [
+        800081
+      ],
+      "targeting": "mask",
+      "mask": [
+        524288,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "FLAT",
+          "value": 2
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "800081 Chainwhip range=15.0; 800081 mask_unique_bit=[524288, 0, 0] fam=23",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "fw_burning_rage_dur",
+      "name": "Burning Rage: +1 sec duration",
+      "spec_id": 0,
+      "target_spell": 520295,
+      "affected_spells": [
+        520295
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 1000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "520295 Burning Rage dur=6000",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "fw_pestilence_of_apocalypse_crit",
+      "name": "Pestilence of Apocalypse: +3% critical strike chance",
+      "spec_id": 16,
+      "target_spell": 804786,
+      "affected_spells": [
+        560817
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "560817 Unleash Apocalypse eff0 SCHOOL_DAMAGE v=150; target 804786 triggers [560817]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "fw_pestilence_of_apocalypse_radius",
+      "name": "Pestilence of Apocalypse: +1 yd radius",
+      "spec_id": 16,
+      "target_spell": 804786,
+      "affected_spells": [
+        804786,
+        560817
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "804786 Pestilence of Apocalypse radius=[8.0]; 560817 Unleash Apocalypse radius=[10.0]; target 804786 triggers [804786, 560817]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "fw_pestilence_of_apocalypse_dur",
+      "name": "Pestilence of Apocalypse: +1.5 sec duration",
+      "spec_id": 16,
+      "target_spell": 804786,
+      "affected_spells": [
+        560817
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 1500
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "560817 Unleash Apocalypse dur=8000; 804786 Pestilence of Apocalypse dur=-1; target 804786 triggers [560817]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "extends the DoT child"
+    },
+    {
+      "key": "fw_seeking_flame_cost",
+      "name": "Seeking Flame: -10% rage cost",
+      "spec_id": 16,
+      "target_spell": 805671,
+      "affected_spells": [
+        805671
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        32,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "805671 Seeking Flame cost=200 power=1; 805671 mask_unique_bit=[0, 32, 0] fam=23",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "fw_seeking_flame_range",
+      "name": "Seeking Flame: +3 yd range",
+      "spec_id": 16,
+      "target_spell": 805671,
+      "affected_spells": [
+        805671
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        32,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "805671 Seeking Flame range=30.0; 805671 mask_unique_bit=[0, 32, 0] fam=23",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "fw_hellmaw_cost",
+      "name": "Hellmaw: -10% rage cost",
+      "spec_id": 16,
+      "target_spell": 806965,
+      "affected_spells": [
+        806965
+      ],
+      "targeting": "mask",
+      "mask": [
+        64,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "806965 Hellmaw cost=200 power=1; 806965 mask_unique_bit=[64, 0, 0] fam=23",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "fw_hellmaw_crit",
+      "name": "Hellmaw: +3% critical strike chance",
+      "spec_id": 16,
+      "target_spell": 806965,
+      "affected_spells": [
+        806965
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "806965 Hellmaw eff2 SCHOOL_DAMAGE v=24",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "fw_hellmaw_dur",
+      "name": "Hellmaw: +2 sec duration",
+      "spec_id": 16,
+      "target_spell": 806965,
+      "affected_spells": [
+        806965
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 2000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "806965 Hellmaw dur=12000",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "extends the DoT"
+    },
+    {
+      "key": "fw_hellstorm_crit",
+      "name": "Hellstorm: +3% critical strike chance",
+      "spec_id": 16,
+      "target_spell": 802342,
+      "affected_spells": [
+        801004,
+        801018
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "801004 Hellstorm eff0 SCHOOL_DAMAGE v=120; 801018 Ember Shower eff0 SCHOOL_DAMAGE v=59; target 802342 triggers [801004, 801018]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "fw_hellstorm_radius",
+      "name": "Hellstorm: +1 yd radius",
+      "spec_id": 16,
+      "target_spell": 802342,
+      "affected_spells": [
+        801004,
+        801018
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "801004 Hellstorm radius=[15.0]; 801018 Ember Shower radius=[10.0]; target 802342 triggers [801004, 801018]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "fw_doom_dur",
+      "name": "Doom: +3 sec duration",
+      "spec_id": 16,
+      "target_spell": 802602,
+      "affected_spells": [
+        802602
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 3000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "802602 Doom dur=20000",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "transform aura on the Greater Imp, cast by the player"
+    },
+    {
+      "key": "fw_sacrificial_circle_radius",
+      "name": "Sacrificial Circle: +2 yd radius",
+      "spec_id": 17,
+      "target_spell": 805677,
+      "affected_spells": [
+        805677
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 2
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "805677 Sacrificial Circle radius=[15.0]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "imp sacrifice radius"
+    },
+    {
+      "key": "fw_curse_of_xoroth_dur",
+      "name": "Curse of Xoroth: +2 sec duration",
+      "spec_id": 17,
+      "target_spell": 804169,
+      "affected_spells": [
+        804169
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 2000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "804169 Curse of Xoroth dur=15000",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "extends the DoT"
+    },
+    {
+      "key": "fw_burning_blade_crit",
+      "name": "Burning Blade: +3% critical strike chance",
+      "spec_id": 18,
+      "target_spell": 524920,
+      "affected_spells": [
+        524919
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "524919 Burning Blade eff1 SCHOOL_DAMAGE v=110; target 524920 triggers [524919]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "fw_burning_blade_radius",
+      "name": "Burning Blade: +1 yd radius",
+      "spec_id": 18,
+      "target_spell": 524920,
+      "affected_spells": [
+        524919
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "524919 Burning Blade radius=[12.0]; target 524920 triggers [524919]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "fw_pestilence_of_death_crit",
+      "name": "Pestilence of Death: +3% critical strike chance",
+      "spec_id": 18,
+      "target_spell": 801054,
+      "affected_spells": [
+        801055
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "801055 Unleash Death eff0 SCHOOL_DAMAGE v=57; target 801054 triggers [801055]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "fw_pestilence_of_death_radius",
+      "name": "Pestilence of Death: +1 yd radius",
+      "spec_id": 18,
+      "target_spell": 801054,
+      "affected_spells": [
+        802858
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "802858 Unleash Death radius=[10.0]; 801054 Pestilence of Death radius=[12.0]; target 801054 triggers [802858]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "fw_pestilence_of_death_dur",
+      "name": "Pestilence of Death: +1.5 sec duration",
+      "spec_id": 18,
+      "target_spell": 801054,
+      "affected_spells": [
+        801055
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 1500
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "801055 Unleash Death dur=10000; 801054 Pestilence of Death dur=-1; target 801054 triggers [801055]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "heal-absorb debuff"
     }
   ],
   "rejected": [

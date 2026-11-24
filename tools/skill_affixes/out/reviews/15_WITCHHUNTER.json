@@ -1,7 +1,7 @@
 {
   "class_id": 15,
   "class": "WITCHHUNTER",
-  "reviewed_at": "2026-11-23",
+  "reviewed_at": "2026-11-24",
   "affixes": [
     {
       "key": "wh_witchblood_tonic_cd",
@@ -1049,6 +1049,1966 @@
       "client_sensitive": false,
       "confidence": "medium",
       "notes": "SCHOOL_ABSORB is effect index 2 (EFFECT3)."
+    },
+    {
+      "key": "wh_witchblood_tonic_dur",
+      "name": "Witchblood Tonic: +1.5 sec duration",
+      "spec_id": 0,
+      "target_spell": 802278,
+      "affected_spells": [
+        802278
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 1500
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "802278 Witchblood Tonic dur=10000",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_burrow_bolt_cost",
+      "name": "Burrow Bolt: -10% mana cost",
+      "spec_id": 0,
+      "target_spell": 802269,
+      "affected_spells": [
+        802269
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        1073741824
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "802269 Burrow Bolt cost_pct=13 power=0; 802269 mask_unique_bit=[0, 0, 1073741824] fam=21",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_burrow_bolt_range",
+      "name": "Burrow Bolt: +3 yd range",
+      "spec_id": 0,
+      "target_spell": 802269,
+      "affected_spells": [
+        802269
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        1073741824
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "802269 Burrow Bolt range=20.0; 802269 mask_unique_bit=[0, 0, 1073741824] fam=21",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_vault_cost",
+      "name": "Vault: -10% rage cost",
+      "spec_id": 0,
+      "target_spell": 500085,
+      "affected_spells": [
+        500085
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        4096
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "500085 Vault cost=150 power=1; 500085 mask_unique_bit=[0, 0, 4096] fam=21",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_vampiric_tonic_dur",
+      "name": "Vampiric Tonic: +1.5 sec duration",
+      "spec_id": 0,
+      "target_spell": 802276,
+      "affected_spells": [
+        802276
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 1500
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "802276 Vampiric Tonic dur=10000",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_smoke_grenade_cost",
+      "name": "Smoke Grenade: -10% mana cost",
+      "spec_id": 0,
+      "target_spell": 805756,
+      "affected_spells": [
+        805756
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        16777216
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "805756 Smoke Grenade cost_pct=11 power=0; 805756 mask_unique_bit=[0, 0, 16777216] fam=21",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_smoke_grenade_dur",
+      "name": "Smoke Grenade: +1.5 sec duration",
+      "spec_id": 0,
+      "target_spell": 805756,
+      "affected_spells": [
+        805756
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 1500
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "805756 Smoke Grenade dur=8000",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "persistent area aura; duration mod applies to the dynamic object"
+    },
+    {
+      "key": "wh_smoke_grenade_radius",
+      "name": "Smoke Grenade: +1 yd radius",
+      "spec_id": 0,
+      "target_spell": 805756,
+      "affected_spells": [
+        805756
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "805756 Smoke Grenade radius=[8.0]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_slayers_mark_dur",
+      "name": "Slayer's Mark: +1.5 sec duration",
+      "spec_id": 0,
+      "target_spell": 804068,
+      "affected_spells": [
+        804068
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 1500
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "804068 Slayer's Mark dur=8000",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_brand_of_the_unworthy_dur",
+      "name": "Brand of the Unworthy: +15% duration",
+      "spec_id": 0,
+      "target_spell": 501380,
+      "affected_spells": [
+        501380
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "501380 Brand of the Unworthy dur=40000",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "incapacitate 40 sec (8 sec vs players, PvP cap applied after mods)"
+    },
+    {
+      "key": "wh_witching_shroud_cost",
+      "name": "Witching Shroud: -10% mana cost",
+      "spec_id": 0,
+      "target_spell": 805770,
+      "affected_spells": [
+        805770
+      ],
+      "targeting": "mask",
+      "mask": [
+        2097152,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "805770 Witching Shroud cost_pct=15 power=0; 805770 mask_unique_bit=[2097152, 0, 0] fam=21",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_tormentor_cost",
+      "name": "Tormentor: -10% rage cost",
+      "spec_id": 10,
+      "target_spell": 800162,
+      "affected_spells": [
+        800162
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        268435456
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "800162 Tormentor cost=200 power=1; 800162 mask_unique_bit=[0, 0, 268435456] fam=21",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_tormentor_crit",
+      "name": "Tormentor: +3% critical strike chance",
+      "spec_id": 10,
+      "target_spell": 800162,
+      "affected_spells": [
+        800162
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "800162 Tormentor eff2 SCHOOL_DAMAGE v=8",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_tormentor_dur",
+      "name": "Tormentor: +2 sec duration",
+      "spec_id": 10,
+      "target_spell": 800162,
+      "affected_spells": [
+        800162
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 2000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "800162 Tormentor dur=14000",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "extends the DoT"
+    },
+    {
+      "key": "wh_tormentor_range",
+      "name": "Tormentor: +3 yd range",
+      "spec_id": 10,
+      "target_spell": 800162,
+      "affected_spells": [
+        800162
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        268435456
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "800162 Tormentor range=35.0; 800162 mask_unique_bit=[0, 0, 268435456] fam=21",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_twilight_frenzy_cost",
+      "name": "Twilight Frenzy: -10% rage cost",
+      "spec_id": 10,
+      "target_spell": 805751,
+      "affected_spells": [
+        805751
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        1048576,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "805751 Twilight Frenzy cost=100 power=1; 805751 mask_unique_bit=[0, 1048576, 0] fam=21",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_twilight_frenzy_crit",
+      "name": "Twilight Frenzy: +3% critical strike chance",
+      "spec_id": 10,
+      "target_spell": 805751,
+      "affected_spells": [
+        805753
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "805753 Twilight Frenzy eff0 SCHOOL_DAMAGE v=15 eff1 WEAPON_PERCENT_DAMAGE v=50; target 805751 triggers [805753]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_twilight_frenzy_radius",
+      "name": "Twilight Frenzy: +1 yd radius",
+      "spec_id": 10,
+      "target_spell": 805751,
+      "affected_spells": [
+        805752
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "805752 Dark Frenzy radius=[10.0]; target 805751 triggers [805752]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "805752 selects targets in 10 yd and triggers 805753"
+    },
+    {
+      "key": "wh_twilight_frenzy_dur",
+      "name": "Twilight Frenzy: +1 sec duration",
+      "spec_id": 10,
+      "target_spell": 805751,
+      "affected_spells": [
+        805751
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 1000
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "805751 Twilight Frenzy dur=5000",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "extends the periodic spin (more ticks); not a channel"
+    },
+    {
+      "key": "wh_daring_escape_cost",
+      "name": "Daring Escape: -10% mana cost",
+      "spec_id": 10,
+      "target_spell": 500086,
+      "affected_spells": [
+        500086
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        2147483648,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "500086 Daring Escape cost_pct=21 power=0; 500086 mask_unique_bit=[0, 2147483648, 0] fam=21",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_damnation_cost",
+      "name": "Damnation: -10% rage cost",
+      "spec_id": 10,
+      "target_spell": 520062,
+      "affected_spells": [
+        520062
+      ],
+      "targeting": "mask",
+      "mask": [
+        65536,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "520062 Damnation cost=250 power=1; 520062 mask_unique_bit=[65536, 0, 0] fam=21",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": "only reduces the base cost; spell depletes extra rage"
+    },
+    {
+      "key": "wh_damnation_range",
+      "name": "Damnation: +3 yd range",
+      "spec_id": 10,
+      "target_spell": 520062,
+      "affected_spells": [
+        520062
+      ],
+      "targeting": "mask",
+      "mask": [
+        65536,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "520062 Damnation range=35.0; 520062 mask_unique_bit=[65536, 0, 0] fam=21",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_heartseeking_bolt_cost",
+      "name": "Heartseeking Bolt: -10% mana cost",
+      "spec_id": 10,
+      "target_spell": 805754,
+      "affected_spells": [
+        805754
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        2048,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "805754 Heartseeking Bolt cost_pct=15 power=0; 805754 mask_unique_bit=[0, 2048, 0] fam=21",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_heartseeking_bolt_crit",
+      "name": "Heartseeking Bolt: +3% critical strike chance",
+      "spec_id": 10,
+      "target_spell": 805754,
+      "affected_spells": [
+        805754
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "805754 Heartseeking Bolt eff0 SCHOOL_DAMAGE v=40 eff1 WEAPON_PERCENT_DAMAGE v=200",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_heartseeking_bolt_range",
+      "name": "Heartseeking Bolt: +3 yd range",
+      "spec_id": 10,
+      "target_spell": 805754,
+      "affected_spells": [
+        805754
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        2048,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "805754 Heartseeking Bolt range=35.0; 805754 mask_unique_bit=[0, 2048, 0] fam=21",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_witchbane_cost",
+      "name": "Witchbane: -10% rage cost",
+      "spec_id": 10,
+      "target_spell": 800165,
+      "affected_spells": [
+        800165
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        4194304,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "800165 Witchbane cost=400 power=1; 800165 mask_unique_bit=[0, 4194304, 0] fam=21",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_witchbane_crit",
+      "name": "Witchbane: +3% critical strike chance",
+      "spec_id": 10,
+      "target_spell": 800165,
+      "affected_spells": [
+        704342
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "704342 Witchbane eff0 SCHOOL_DAMAGE v=1 chain=1; target 800165 triggers [704342]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_repulse_crit",
+      "name": "Repulse: +3% critical strike chance",
+      "spec_id": 11,
+      "target_spell": 680236,
+      "affected_spells": [
+        680236
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "680236 Repulse eff0 SCHOOL_DAMAGE v=57",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_repulse_radius",
+      "name": "Repulse: +2 yd radius",
+      "spec_id": 11,
+      "target_spell": 680236,
+      "affected_spells": [
+        680236
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 2
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "680236 Repulse radius=[20.0]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "cone radius 20 yd"
+    },
+    {
+      "key": "wh_darkflock_cost",
+      "name": "Darkflock: -10% mana cost",
+      "spec_id": 11,
+      "target_spell": 520270,
+      "affected_spells": [
+        520270
+      ],
+      "targeting": "mask",
+      "mask": [
+        2,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "520270 Darkflock cost_pct=21 power=0; 520270 mask_unique_bit=[2, 0, 0] fam=21",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_darkflock_crit",
+      "name": "Darkflock: +3% critical strike chance",
+      "spec_id": 11,
+      "target_spell": 520270,
+      "affected_spells": [
+        520271
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "520271 Darkflock eff0 SCHOOL_DAMAGE v=1; target 520270 triggers [520271]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_darkflock_dur",
+      "name": "Darkflock: +1.5 sec duration",
+      "spec_id": 11,
+      "target_spell": 520270,
+      "affected_spells": [
+        520270
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 1500
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "520270 Darkflock dur=8000",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "extends periodic trigger (more ticks)"
+    },
+    {
+      "key": "wh_darkflock_radius",
+      "name": "Darkflock: +2 yd radius",
+      "spec_id": 11,
+      "target_spell": 520270,
+      "affected_spells": [
+        520271
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 2
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "520271 Darkflock radius=[20.0]; 520270 Darkflock radius=[6.0]; target 520270 triggers [520271]",
+      "client_sensitive": false,
+      "confidence": "low",
+      "notes": "520271 does the damage with radius 20; parent radius 6 is the aura area"
+    },
+    {
+      "key": "wh_rearmament_dur",
+      "name": "Rearmament: +1.5 sec duration",
+      "spec_id": 11,
+      "target_spell": 805738,
+      "affected_spells": [
+        805738
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 1500
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "805738 Rearmament dur=8000",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "wh_houndmasters_call_cost",
+      "name": "Houndmaster's Call: -10% mana cost",
+      "spec_id": 11,
+      "target_spell": 802273,
+      "affected_spells": [
+        802273
+      ],
+      "targeting": "mask",
+      "mask": [
+        131072,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "802273 Houndmaster's Call cost_pct=15 power=0; 802273 mask_unique_bit=[131072, 0, 0] fam=21",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_houndmasters_call_range",
+      "name": "Houndmaster's Call: +4 yd range",
+      "spec_id": 11,
+      "target_spell": 802273,
+      "affected_spells": [
+        802273
+      ],
+      "targeting": "mask",
+      "mask": [
+        131072,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "802273 Houndmaster's Call range=45.0; 802273 mask_unique_bit=[131072, 0, 0] fam=21",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_pyro_tonic_dur",
+      "name": "Pyro Tonic: +1.5 sec duration",
+      "spec_id": 12,
+      "target_spell": 802277,
+      "affected_spells": [
+        802277
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 1500
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "802277 Pyro Tonic dur=10000",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_torchlight_cost",
+      "name": "Torchlight: -10% mana cost",
+      "spec_id": 12,
+      "target_spell": 503662,
+      "affected_spells": [
+        503662
+      ],
+      "targeting": "mask",
+      "mask": [
+        524288,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "503662 Torchlight cost_pct=5 power=0; 503662 mask_unique_bit=[524288, 0, 0] fam=21",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_torchlight_crit",
+      "name": "Torchlight: +3% critical strike chance",
+      "spec_id": 12,
+      "target_spell": 503662,
+      "affected_spells": [
+        503662
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "503662 Torchlight eff1 SCHOOL_DAMAGE v=166",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_torchlight_range",
+      "name": "Torchlight: +3 yd range",
+      "spec_id": 12,
+      "target_spell": 503662,
+      "affected_spells": [
+        503662
+      ],
+      "targeting": "mask",
+      "mask": [
+        524288,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "503662 Torchlight range=20.0; 503662 mask_unique_bit=[524288, 0, 0] fam=21",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_dusk_blade_cost",
+      "name": "Dusk Blade: -10% rage cost",
+      "spec_id": 12,
+      "target_spell": 802020,
+      "affected_spells": [
+        802020
+      ],
+      "targeting": "mask",
+      "mask": [
+        512,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "802020 Dusk Blade cost=300 power=1; 802020 mask_unique_bit=[512, 0, 0] fam=21",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_dusk_blade_crit",
+      "name": "Dusk Blade: +3% critical strike chance",
+      "spec_id": 12,
+      "target_spell": 802020,
+      "affected_spells": [
+        802020,
+        803502
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "802020 Dusk Blade eff0 NORMALIZED_WEAPON_DMG v=10; 803502 Dusk Blade eff0 NORMALIZED_WEAPON_DMG v=1; target 802020 triggers [802020, 803502]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_stake_crit",
+      "name": "Stake: +3% critical strike chance",
+      "spec_id": 12,
+      "target_spell": 680537,
+      "affected_spells": [
+        680537
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "680537 Stake eff0 SCHOOL_DAMAGE v=279",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_fiery_judgement_cost",
+      "name": "Fiery Judgement: -10% mana cost",
+      "spec_id": 12,
+      "target_spell": 802140,
+      "affected_spells": [
+        802140
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        131072
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "802140 Fiery Judgement cost_pct=11 power=0; 802140 mask_unique_bit=[0, 0, 131072] fam=21",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_fiery_judgement_crit",
+      "name": "Fiery Judgement: +3% critical strike chance",
+      "spec_id": 12,
+      "target_spell": 802140,
+      "affected_spells": [
+        802140
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "802140 Fiery Judgement eff0 SCHOOL_DAMAGE v=361 chain=25",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_fiery_judgement_jump",
+      "name": "Fiery Judgement: +1 additional target",
+      "spec_id": 12,
+      "target_spell": 802140,
+      "affected_spells": [
+        802140
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "JUMP_TARGETS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "802140 Fiery Judgement eff0 SCHOOL_DAMAGE v=361 chain=25",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "already 25 chain targets; low value"
+    },
+    {
+      "key": "wh_purifiers_edge_cost",
+      "name": "Purifier's Edge: -10% mana cost",
+      "spec_id": 12,
+      "target_spell": 802019,
+      "affected_spells": [
+        802019
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        134217728,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "802019 Purifier's Edge cost_pct=9 power=0; 802019 mask_unique_bit=[0, 134217728, 0] fam=21",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_purifiers_edge_crit",
+      "name": "Purifier's Edge: +3% critical strike chance",
+      "spec_id": 12,
+      "target_spell": 802019,
+      "affected_spells": [
+        803357,
+        803517
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "803357 Purifier's Edge eff0 NORMALIZED_WEAPON_DMG v=1; 803517 Purifier's Edge eff0 NORMALIZED_WEAPON_DMG v=1; target 802019 triggers [803357, 803517]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_darkslayers_lantern_cost",
+      "name": "Darkslayer's Lantern: -10% mana cost",
+      "spec_id": 12,
+      "target_spell": 802139,
+      "affected_spells": [
+        802139
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        32768,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "802139 Darkslayer's Lantern cost_pct=30 power=0; 802139 mask_unique_bit=[0, 32768, 0] fam=21",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_darkslayers_lantern_crit",
+      "name": "Darkslayer's Lantern: +3% critical strike chance",
+      "spec_id": 12,
+      "target_spell": 802139,
+      "affected_spells": [
+        802139
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "802139 Darkslayer's Lantern eff0 SCHOOL_DAMAGE v=291",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_darkslayers_lantern_radius",
+      "name": "Darkslayer's Lantern: +1 yd radius",
+      "spec_id": 12,
+      "target_spell": 802139,
+      "affected_spells": [
+        802139
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "802139 Darkslayer's Lantern radius=[6.0]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_darkslayers_lantern_dur",
+      "name": "Darkslayer's Lantern: +0.75 sec duration",
+      "spec_id": 12,
+      "target_spell": 802139,
+      "affected_spells": [
+        802139
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 750
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "802139 Darkslayer's Lantern dur=5000",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "stun duration"
+    },
+    {
+      "key": "wh_smite_evil_crit",
+      "name": "Smite Evil: +3% critical strike chance",
+      "spec_id": 12,
+      "target_spell": 802004,
+      "affected_spells": [
+        802004
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "802004 Smite Evil eff0 NORMALIZED_WEAPON_DMG v=25 chain=6",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_smite_evil_jump",
+      "name": "Smite Evil: +1 additional target",
+      "spec_id": 12,
+      "target_spell": 802004,
+      "affected_spells": [
+        802004
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "JUMP_TARGETS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "802004 Smite Evil eff0 NORMALIZED_WEAPON_DMG v=25 chain=6",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_flourish_dur",
+      "name": "Flourish: +3 sec duration",
+      "spec_id": 12,
+      "target_spell": 805365,
+      "affected_spells": [
+        805365
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 3000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "805365 Flourish dur=20000",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "damage repeats while the aura lasts (scripted)"
+    },
+    {
+      "key": "wh_noctis_blade_cost",
+      "name": "Noctis Blade: -10% mana cost",
+      "spec_id": 97,
+      "target_spell": 802280,
+      "affected_spells": [
+        802280
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        64,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "802280 Noctis Blade cost_pct=7 power=0; 802280 mask_unique_bit=[0, 64, 0] fam=21",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_noctis_blade_crit",
+      "name": "Noctis Blade: +3% critical strike chance",
+      "spec_id": 97,
+      "target_spell": 802280,
+      "affected_spells": [
+        802280
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "802280 Noctis Blade eff0 SCHOOL_DAMAGE v=26 eff1 WEAPON_PERCENT_DAMAGE v=100 eff2 NORMALIZED_WEAPON_DMG v=0",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_march_of_the_black_king_cost",
+      "name": "March of the Black King: -10% mana cost",
+      "spec_id": 97,
+      "target_spell": 681095,
+      "affected_spells": [
+        681095
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        4
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "681095 March of the Black King cost_pct=8 power=0; 681095 mask_unique_bit=[0, 0, 4] fam=21",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_march_of_the_black_king_crit",
+      "name": "March of the Black King: +3% critical strike chance",
+      "spec_id": 97,
+      "target_spell": 681095,
+      "affected_spells": [
+        681094
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "681094 March of the Black King eff0 SCHOOL_DAMAGE v=1; target 681095 triggers [681094]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_march_of_the_black_king_radius",
+      "name": "March of the Black King: +1 yd radius",
+      "spec_id": 97,
+      "target_spell": 681095,
+      "affected_spells": [
+        681094
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "681094 March of the Black King radius=[8.0]; 681095 March of the Black King radius=[8.0]; target 681095 triggers [681094]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_march_of_the_black_king_dur",
+      "name": "March of the Black King: +1.5 sec duration",
+      "spec_id": 97,
+      "target_spell": 681095,
+      "affected_spells": [
+        681095
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 1500
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "681095 March of the Black King dur=10000",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "extends periodic trigger (more ticks)"
+    },
+    {
+      "key": "wh_witchblight_cost",
+      "name": "Witchblight: -10% rage cost",
+      "spec_id": 97,
+      "target_spell": 680494,
+      "affected_spells": [
+        680494
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        16384,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "680494 Witchblight cost=350 power=1; 680494 mask_unique_bit=[0, 16384, 0] fam=21",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_witchblight_crit",
+      "name": "Witchblight: +3% critical strike chance",
+      "spec_id": 97,
+      "target_spell": 680494,
+      "affected_spells": [
+        680494
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "680494 Witchblight eff0 SCHOOL_DAMAGE v=51",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_witchblight_radius",
+      "name": "Witchblight: +1 yd radius",
+      "spec_id": 97,
+      "target_spell": 680494,
+      "affected_spells": [
+        680494
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "680494 Witchblight radius=[8.0]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_witchblight_dur",
+      "name": "Witchblight: +1 sec duration",
+      "spec_id": 97,
+      "target_spell": 680494,
+      "affected_spells": [
+        680494
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 1000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "680494 Witchblight dur=6000",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "hit-reduction debuff 6 sec"
+    },
+    {
+      "key": "wh_chains_of_darkness_crit",
+      "name": "Chains of Darkness: +3% critical strike chance",
+      "spec_id": 97,
+      "target_spell": 680521,
+      "affected_spells": [
+        680522
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "680522 Chains of Darkness (Grip) eff1 SCHOOL_DAMAGE v=49; target 680521 triggers [680522]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_chains_of_darkness_radius",
+      "name": "Chains of Darkness: +2 yd radius",
+      "spec_id": 97,
+      "target_spell": 680521,
+      "affected_spells": [
+        680522
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 2
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "680522 Chains of Darkness (Grip) radius=[20.0]; 680521 Chains of Darkness radius=[20.0]; target 680521 triggers [680522]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_desecrate_crit",
+      "name": "Desecrate: +3% critical strike chance",
+      "spec_id": 97,
+      "target_spell": 680518,
+      "affected_spells": [
+        680518
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "680518 Desecrate eff0 NORMALIZED_WEAPON_DMG v=29 chain=12",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_desecrate_radius",
+      "name": "Desecrate: +1 yd radius",
+      "spec_id": 97,
+      "target_spell": 680518,
+      "affected_spells": [
+        680518
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "680518 Desecrate radius=[10.0]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_desecrate_jump",
+      "name": "Desecrate: +1 additional target",
+      "spec_id": 97,
+      "target_spell": 680518,
+      "affected_spells": [
+        680518
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "JUMP_TARGETS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "680518 Desecrate eff0 NORMALIZED_WEAPON_DMG v=29 chain=12",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_knights_seal_dur",
+      "name": "Knight's Seal: +1.5 sec duration",
+      "spec_id": 97,
+      "target_spell": 680498,
+      "affected_spells": [
+        680499
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 1500
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "680499 Knight's Seal dur=9000; 680498 Knight's Seal dur=8000; target 680498 triggers [680499]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "extends the DoT child"
+    },
+    {
+      "key": "wh_gaze_of_the_black_knight_cost",
+      "name": "Gaze of the Black Knight: -10% mana cost",
+      "spec_id": 97,
+      "target_spell": 802138,
+      "affected_spells": [
+        802138
+      ],
+      "targeting": "mask",
+      "mask": [
+        128,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "802138 Gaze of the Black Knight cost_pct=27 power=0; 802138 mask_unique_bit=[128, 0, 0] fam=21",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_gaze_of_the_black_knight_dur",
+      "name": "Gaze of the Black Knight: +2 sec duration",
+      "spec_id": 97,
+      "target_spell": 802138,
+      "affected_spells": [
+        802138
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 2000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "802138 Gaze of the Black Knight dur=12000",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_gaze_of_the_black_knight_radius",
+      "name": "Gaze of the Black Knight: +2 yd radius",
+      "spec_id": 97,
+      "target_spell": 802138,
+      "affected_spells": [
+        802138
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 2
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "802138 Gaze of the Black Knight radius=[15.0]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "area aura split-damage radius 15 yd"
     }
   ],
   "rejected": [

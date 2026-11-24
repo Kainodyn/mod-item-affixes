@@ -14,7 +14,7 @@ TARGETING = {'mask', 'spell_id', 'hook_cd'}
 PCT_ONLY = {'DAMAGE', 'DOT', 'EFFECT1', 'EFFECT2', 'EFFECT3', 'ALL_EFFECTS', 'COST'}
 MUST_BE_NEGATIVE = {'COOLDOWN', 'CASTING_TIME', 'COST'}
 MAX_EFFECTS = 3          # affix_template effects op1..op3 (plan section 5)
-MAX_PER_TARGET = 4
+MAX_PER_TARGET = 8
 CONFIDENCE = {'high', 'medium', 'low'}
 AFFIX_FIELDS = {  # name: (types, required)
     'key': (str, True), 'name': (str, True), 'spec_id': (int, True), 'target_spell': (int, True),
@@ -155,6 +155,8 @@ def check_file(path, cand_dir, seen_keys):
         elif mask not in (None, [0, 0, 0]):
             e.append('mask must be null/[0,0,0] unless targeting=mask')
 
+        if not isinstance(a.get('name'), str) or '|' in a['name'] or len(a['name']) > 56:
+            e.append('name must be a string without "|" and <= 56 chars (addon payload)')
         # effects
         effs = a['effects']
         if not 1 <= len(effs) <= MAX_EFFECTS:
@@ -224,12 +226,18 @@ def check_file(path, cand_dir, seen_keys):
             elif op == 'RADIUS':
                 if not any(s.get('radius') for s in affected + [tspell]):
                     e.append('%s: no affected spell has a radius' % ft)
+                elif v < 0 or (ty == 'PCT' and v > 15) or (ty == 'FLAT' and v > 2):
+                    e.append('%s: RADIUS must be positive, max +15 PCT / +2 yd FLAT' % ft)
             elif op == 'JUMP_TARGETS':
                 if not any(x.get('chain', 0) > 1 for s in affected + [tspell] for x in s.get('eff', [])):
                     e.append('%s: no affected spell has chain targets' % ft)
+                elif ty != 'FLAT' or not 0 < v <= 1:
+                    e.append('%s: JUMP_TARGETS only FLAT +1' % ft)
             elif op == 'RANGE':
                 if stat([tspell], 'range') <= 0:
                     e.append('%s: target_spell has no range' % ft)
+                elif v < 0 or (ty == 'PCT' and v > 15) or (ty == 'FLAT' and v > 5):
+                    e.append('%s: RANGE must be positive, max +15 PCT / +5 yd FLAT' % ft)
         errs += ['%s: %s' % (tag, x) for x in e]
 
     for tgt, n in per_target.items():

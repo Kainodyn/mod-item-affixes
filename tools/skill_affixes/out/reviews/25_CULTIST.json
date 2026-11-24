@@ -1,7 +1,7 @@
 {
   "class_id": 25,
   "class": "CULTIST",
-  "reviewed_at": "2026-11-23",
+  "reviewed_at": "2026-11-24",
   "affixes": [
     {
       "key": "cult_abyssal_ward_cd",
@@ -847,6 +847,1593 @@
       "evidence": "804056 Crushing Dissonance cd=30000 catcd=30000 dur=3000 cost_pct=18 eff0 INTERRUPT_CAST | mask_unique_bit=null -> hook_cd",
       "client_sensitive": true,
       "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "cult_abyssal_ward_dur",
+      "name": "Abyssal Ward: +20% duration",
+      "spec_id": 0,
+      "target_spell": 804670,
+      "affected_spells": [
+        804670
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "804670 Abyssal Ward cd=90000 cost_pct=20 dur=10000 range=20.0 eff0 PROC_TRIGGER_SPELL v=15 eff1 MOD_DAMAGE_PERCENT_TAKEN v=-10 eff2 ASCENSION_MODIFY_AURA_STACKS_2 v=5",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "10 s damage-reduction ward."
+    },
+    {
+      "key": "cult_void_shield_cost",
+      "name": "Void Shield: -10% resource cost",
+      "spec_id": 0,
+      "target_spell": 500715,
+      "affected_spells": [
+        500715
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        536870912,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "500715 Void Shield cost_pct=26 dur=30000 range=20.0 eff0 SCHOOL_ABSORB v=195 eff1 DUMMY v=7 per=2000 eff2 TRIGGER_SPELL | mask_unique_bit=[0, 536870912, 0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "cult_void_shield_dur",
+      "name": "Void Shield: +20% duration",
+      "spec_id": 0,
+      "target_spell": 500715,
+      "affected_spells": [
+        500715
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        536870912,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "500715 Void Shield cost_pct=26 dur=30000 range=20.0 eff0 SCHOOL_ABSORB v=195 eff1 DUMMY v=7 per=2000 eff2 TRIGGER_SPELL | mask_unique_bit=[0, 536870912, 0]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "30 s absorb shield."
+    },
+    {
+      "key": "cult_void_shield_range",
+      "name": "Void Shield: +10% range",
+      "spec_id": 0,
+      "target_spell": 500715,
+      "affected_spells": [
+        500715
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        536870912,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "500715 Void Shield cost_pct=26 dur=30000 range=20.0 eff0 SCHOOL_ABSORB v=195 eff1 DUMMY v=7 per=2000 eff2 TRIGGER_SPELL | mask_unique_bit=[0, 536870912, 0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "cult_vision_of_doom_dur",
+      "name": "Vision of Doom: +20% duration",
+      "spec_id": 0,
+      "target_spell": 520388,
+      "affected_spells": [
+        520388
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "520388 Vision of Doom cd=300000 cost_pct=40 dur=60000 eff0 ASCENSION_PROC_PERCENT_EVENT v=100",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "60 s proc buff."
+    },
+    {
+      "key": "cult_corrupt_mind_cast",
+      "name": "Corrupt Mind: -0.2 sec cast time",
+      "spec_id": 0,
+      "target_spell": 560109,
+      "affected_spells": [
+        560109
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CASTING_TIME",
+          "type": "FLAT",
+          "value": -200
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "560109 Corrupt Mind cast=1500 cd=60000 cost_pct=20 dur=40000 range=30.0 radius=[8.0] eff0 MOD_ROOT chain=3 r=8.0 eff1 MOD_FEAR chain=3 r=8.0",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "cult_corrupt_mind_dur",
+      "name": "Corrupt Mind: +15% duration",
+      "spec_id": 0,
+      "target_spell": 560109,
+      "affected_spells": [
+        560109
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "560109 Corrupt Mind cast=1500 cd=60000 cost_pct=20 dur=40000 range=30.0 radius=[8.0] eff0 MOD_ROOT chain=3 r=8.0 eff1 MOD_FEAR chain=3 r=8.0",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "40 s root/fear CC on up to 3 targets."
+    },
+    {
+      "key": "cult_corrupt_mind_jump",
+      "name": "Corrupt Mind: +1 additional target",
+      "spec_id": 0,
+      "target_spell": 560109,
+      "affected_spells": [
+        560109
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "JUMP_TARGETS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 65,
+      "evidence": "560109 Corrupt Mind cast=1500 cd=60000 cost_pct=20 dur=40000 range=30.0 radius=[8.0] eff0 MOD_ROOT chain=3 r=8.0 eff1 MOD_FEAR chain=3 r=8.0",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "cult_corrupt_mind_radius",
+      "name": "Corrupt Mind: +1 yd radius",
+      "spec_id": 0,
+      "target_spell": 560109,
+      "affected_spells": [
+        560109
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "560109 Corrupt Mind cast=1500 cd=60000 cost_pct=20 dur=40000 range=30.0 radius=[8.0] eff0 MOD_ROOT chain=3 r=8.0 eff1 MOD_FEAR chain=3 r=8.0",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "cult_twisted_seal_dur",
+      "name": "Twisted Seal: +20% duration",
+      "spec_id": 0,
+      "target_spell": 525065,
+      "affected_spells": [
+        525065
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "525065 Twisted Seal cd=120000 catcd=120000 cost_pct=27 dur=5000 range=100.0 eff0 DEFLECT_SPELLS v=100 eff1 PROC_TRIGGER_SPELL v=1 eff2 MOD_PACIFY_SILENCE v=1",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "5 s spell deflect."
+    },
+    {
+      "key": "cult_mass_nightmare_cost",
+      "name": "Mass Nightmare: -10% resource cost",
+      "spec_id": 0,
+      "target_spell": 805114,
+      "affected_spells": [
+        805114
+      ],
+      "targeting": "mask",
+      "mask": [
+        2048,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "805114 Mass Nightmare cd=180000 cost_pct=21 dur=5000 radius=[8.0] eff0 MOD_STUN r=8.0 | mask_unique_bit=[2048, 0, 0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "cult_mass_nightmare_dur",
+      "name": "Mass Nightmare: +15% duration",
+      "spec_id": 0,
+      "target_spell": 805114,
+      "affected_spells": [
+        805114
+      ],
+      "targeting": "mask",
+      "mask": [
+        2048,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "805114 Mass Nightmare cd=180000 cost_pct=21 dur=5000 radius=[8.0] eff0 MOD_STUN r=8.0 | mask_unique_bit=[2048, 0, 0]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "5 s AoE stun."
+    },
+    {
+      "key": "cult_mass_nightmare_radius",
+      "name": "Mass Nightmare: +1 yd radius",
+      "spec_id": 0,
+      "target_spell": 805114,
+      "affected_spells": [
+        805114
+      ],
+      "targeting": "mask",
+      "mask": [
+        2048,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "805114 Mass Nightmare cd=180000 cost_pct=21 dur=5000 radius=[8.0] eff0 MOD_STUN r=8.0 | mask_unique_bit=[2048, 0, 0]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "cult_dark_infusion_crit",
+      "name": "Dark Infusion: +4% critical strike chance",
+      "spec_id": 0,
+      "target_spell": 570263,
+      "affected_spells": [
+        570263
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "570263 Dark Infusion range=40.0 eff0 HEAL v=1 | child of 500721 via 500721",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "cult_embrace_the_void_dur",
+      "name": "Embrace the Void: +20% duration",
+      "spec_id": 0,
+      "target_spell": 582591,
+      "affected_spells": [
+        582591
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "582591 Embrace the Void cd=300000 cost_pct=30 dur=6000 eff0 SCHOOL_ABSORB v=50 eff1 MOD_SCALE v=25",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "6 s absorb."
+    },
+    {
+      "key": "cult_eldritch_eye_cost",
+      "name": "Eldritch Eye: -10% resource cost",
+      "spec_id": 40,
+      "target_spell": 802049,
+      "affected_spells": [
+        802049
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        67108864,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "802049 Eldritch Eye cd=60000 cost_pct=35 dur=15000 eff0 ADD_PCT_MODIFIER v=-100 eff1 ADD_FLAT_MODIFIER v=1000 | mask_unique_bit=[0, 67108864, 0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "cult_eldritch_eye_dur",
+      "name": "Eldritch Eye: +20% duration",
+      "spec_id": 40,
+      "target_spell": 802049,
+      "affected_spells": [
+        802049
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        67108864,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "802049 Eldritch Eye cd=60000 cost_pct=35 dur=15000 eff0 ADD_PCT_MODIFIER v=-100 eff1 ADD_FLAT_MODIFIER v=1000 | mask_unique_bit=[0, 67108864, 0]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "15 s buff."
+    },
+    {
+      "key": "cult_dark_veil_radius",
+      "name": "Dark Veil: +1 yd radius",
+      "spec_id": 40,
+      "target_spell": 520347,
+      "affected_spells": [
+        520347
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "520347 Dark Veil range=50000.0 radius=[8.0] eff0 MOD_STUN r=8.0 | child of 520345 via 520348",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "cult_malevolence_cast",
+      "name": "Malevolence: -0.2 sec cast time",
+      "spec_id": 40,
+      "target_spell": 500714,
+      "affected_spells": [
+        500714
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CASTING_TIME",
+          "type": "FLAT",
+          "value": -200
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "500714 Malevolence cast=1500 cost_pct=9 range=5.0 eff0 SCHOOL_DAMAGE v=40 eff1 TRIGGER_SPELL_WITH_VALUE v=25",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "cult_malevolence_crit",
+      "name": "Malevolence: +4% critical strike chance",
+      "spec_id": 40,
+      "target_spell": 500714,
+      "affected_spells": [
+        500714
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "500714 Malevolence cast=1500 cost_pct=9 range=5.0 eff0 SCHOOL_DAMAGE v=40 eff1 TRIGGER_SPELL_WITH_VALUE v=25",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "cult_black_blood_dur",
+      "name": "Malevolence (Black Blood): +20% duration",
+      "spec_id": 40,
+      "target_spell": 804153,
+      "affected_spells": [
+        804153
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        32768,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "804153 Black Blood dur=12000 range=100.0 radius=[30.0] periodic=true eff0 PERIODIC_HEAL v=1 per=3000 r=30.0 | mask_unique_bit=[0, 32768, 0] | child of 500714 via 500714",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "12 s HoT."
+    },
+    {
+      "key": "cult_black_blood_radius",
+      "name": "Malevolence (Black Blood): +2 yd radius",
+      "spec_id": 40,
+      "target_spell": 804153,
+      "affected_spells": [
+        804153
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        32768,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 2
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "804153 Black Blood dur=12000 range=100.0 radius=[30.0] periodic=true eff0 PERIODIC_HEAL v=1 per=3000 r=30.0 | mask_unique_bit=[0, 32768, 0] | child of 500714 via 500714",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "cult_hand_of_yogg_saron_cost",
+      "name": "Hand of Yogg-Saron: -10% resource cost",
+      "spec_id": 40,
+      "target_spell": 704476,
+      "affected_spells": [
+        704476
+      ],
+      "targeting": "mask",
+      "mask": [
+        1024,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "704476 Hand of Yogg-Saron cd=120000 catcd=120000 cost_pct=18 dur=15000 range=20.0 eff0 PERIODIC_TRIGGER_SPELL v=2 per=15000 eff1 MOD_DAMAGE_PERCENT_TAKEN v=-15 eff2 MOD_DAMAGE_PERCENT_DONE v=15 | mask_unique_bit=[1024, 0, 0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "cult_hand_of_yogg_saron_dur",
+      "name": "Hand of Yogg-Saron: +20% duration",
+      "spec_id": 40,
+      "target_spell": 704476,
+      "affected_spells": [
+        704476
+      ],
+      "targeting": "mask",
+      "mask": [
+        1024,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "704476 Hand of Yogg-Saron cd=120000 catcd=120000 cost_pct=18 dur=15000 range=20.0 eff0 PERIODIC_TRIGGER_SPELL v=2 per=15000 eff1 MOD_DAMAGE_PERCENT_TAKEN v=-15 eff2 MOD_DAMAGE_PERCENT_DONE v=15 | mask_unique_bit=[1024, 0, 0]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "15 s buff."
+    },
+    {
+      "key": "cult_hand_of_yogg_saron_range",
+      "name": "Hand of Yogg-Saron: +10% range",
+      "spec_id": 40,
+      "target_spell": 704476,
+      "affected_spells": [
+        704476
+      ],
+      "targeting": "mask",
+      "mask": [
+        1024,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "704476 Hand of Yogg-Saron cd=120000 catcd=120000 cost_pct=18 dur=15000 range=20.0 eff0 PERIODIC_TRIGGER_SPELL v=2 per=15000 eff1 MOD_DAMAGE_PERCENT_TAKEN v=-15 eff2 MOD_DAMAGE_PERCENT_DONE v=15 | mask_unique_bit=[1024, 0, 0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "cult_horrific_revelation_crit",
+      "name": "Horrific Revelation: +4% critical strike chance",
+      "spec_id": 40,
+      "target_spell": 704473,
+      "affected_spells": [
+        704473
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "704473 Horrific Revelation cost_pct=3 dur=15000 range=40.0 eff0 HEAL v=144 eff1 MOD_CRIT_PCT v=1 | child of 704476 via 704476",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "cult_forbidden_ritual_cast",
+      "name": "Forbidden Ritual: -0.3 sec cast time",
+      "spec_id": 40,
+      "target_spell": 800105,
+      "affected_spells": [
+        800105
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        262144
+      ],
+      "effects": [
+        {
+          "op": "CASTING_TIME",
+          "type": "FLAT",
+          "value": -300
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "800105 Forbidden Ritual cast=3000 catcd=60000 cost_pct=30 dur=10000 radius=[30.0] eff0 SCHOOL_ABSORB v=225 r=30.0 | mask_unique_bit=[0, 0, 262144]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "cult_forbidden_ritual_cost",
+      "name": "Forbidden Ritual: -10% resource cost",
+      "spec_id": 40,
+      "target_spell": 800105,
+      "affected_spells": [
+        800105
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        262144
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "800105 Forbidden Ritual cast=3000 catcd=60000 cost_pct=30 dur=10000 radius=[30.0] eff0 SCHOOL_ABSORB v=225 r=30.0 | mask_unique_bit=[0, 0, 262144]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "cult_forbidden_ritual_dur",
+      "name": "Forbidden Ritual: +20% duration",
+      "spec_id": 40,
+      "target_spell": 800105,
+      "affected_spells": [
+        800105
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        262144
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "800105 Forbidden Ritual cast=3000 catcd=60000 cost_pct=30 dur=10000 radius=[30.0] eff0 SCHOOL_ABSORB v=225 r=30.0 | mask_unique_bit=[0, 0, 262144]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "10 s group absorb."
+    },
+    {
+      "key": "cult_forbidden_ritual_radius",
+      "name": "Forbidden Ritual: +2 yd radius",
+      "spec_id": 40,
+      "target_spell": 800105,
+      "affected_spells": [
+        800105
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        262144
+      ],
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 2
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "800105 Forbidden Ritual cast=3000 catcd=60000 cost_pct=30 dur=10000 radius=[30.0] eff0 SCHOOL_ABSORB v=225 r=30.0 | mask_unique_bit=[0, 0, 262144]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "cult_psychic_suppression_cost",
+      "name": "Psychic Suppression: -10% resource cost",
+      "spec_id": 41,
+      "target_spell": 800432,
+      "affected_spells": [
+        800432
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        8388608,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "800432 Psychic Suppression cd=90000 catcd=90000 cost_pct=17 dur=5000 range=30.0 periodic=true eff0 PERIODIC_DAMAGE v=30 per=500 eff1 DUMMY v=1 eff2 FORCE_CAST v=1 | mask_unique_bit=[0, 8388608, 0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "cult_psychic_suppression_dur",
+      "name": "Psychic Suppression: +20% duration",
+      "spec_id": 41,
+      "target_spell": 800432,
+      "affected_spells": [
+        800432
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        8388608,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "800432 Psychic Suppression cd=90000 catcd=90000 cost_pct=17 dur=5000 range=30.0 periodic=true eff0 PERIODIC_DAMAGE v=30 per=500 eff1 DUMMY v=1 eff2 FORCE_CAST v=1 | mask_unique_bit=[0, 8388608, 0]",
+      "client_sensitive": false,
+      "confidence": "low",
+      "notes": "5 s DoT/CC; hover child 803296 keeps its own 5 s."
+    },
+    {
+      "key": "cult_psychic_suppression_range",
+      "name": "Psychic Suppression: +10% range",
+      "spec_id": 41,
+      "target_spell": 800432,
+      "affected_spells": [
+        800432
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        8388608,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "800432 Psychic Suppression cd=90000 catcd=90000 cost_pct=17 dur=5000 range=30.0 periodic=true eff0 PERIODIC_DAMAGE v=30 per=500 eff1 DUMMY v=1 eff2 FORCE_CAST v=1 | mask_unique_bit=[0, 8388608, 0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "cult_ancient_curse_crit",
+      "name": "Ancient Curse: +4% critical strike chance",
+      "spec_id": 41,
+      "target_spell": 354191,
+      "affected_spells": [
+        354191,
+        500712
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "354191 Ancient Curse range=50000.0 radius=[8.0] eff0 SCHOOL_DAMAGE v=1953 r=8.0 | 500712 Ancient Curse cd=30000 catcd=30000 cost_pct=19 dur=5000 range=30.0 eff0 SCHOOL_DAMAGE v=976 eff2 ASCENSION_TRIGGER_SPELL_DELAYED v=4900 | child of 500712 via 500712",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "cult_ancient_curse_radius",
+      "name": "Ancient Curse: +1 yd radius",
+      "spec_id": 41,
+      "target_spell": 354191,
+      "affected_spells": [
+        354191
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "354191 Ancient Curse range=50000.0 radius=[8.0] eff0 SCHOOL_DAMAGE v=1953 r=8.0 | child of 500712 via 500712",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "cult_obliteration_beam_cost",
+      "name": "Obliteration Beam: -10% resource cost",
+      "spec_id": 41,
+      "target_spell": 805572,
+      "affected_spells": [
+        805572
+      ],
+      "targeting": "mask",
+      "mask": [
+        8,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "805572 Obliteration Beam catcd=20000 cost_pct=19 dur=1000 range=30.0 eff0 TRIGGER_SPELL_WITH_VALUE v=126 | mask_unique_bit=[8, 0, 0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "cult_obliteration_beam_range",
+      "name": "Obliteration Beam: +10% range",
+      "spec_id": 41,
+      "target_spell": 805572,
+      "affected_spells": [
+        805572
+      ],
+      "targeting": "mask",
+      "mask": [
+        8,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "805572 Obliteration Beam catcd=20000 cost_pct=19 dur=1000 range=30.0 eff0 TRIGGER_SPELL_WITH_VALUE v=126 | mask_unique_bit=[8, 0, 0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "cult_obliteration_beam_crit",
+      "name": "Obliteration Beam: +4% critical strike chance",
+      "spec_id": 41,
+      "target_spell": 805573,
+      "affected_spells": [
+        805573
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "805573 Obliteration Beam range=100.0 radius=[8.0] eff0 SCHOOL_DAMAGE v=1 r=8.0 | child of 805572 via 805572",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "cult_obliteration_beam_radius",
+      "name": "Obliteration Beam: +1 yd radius",
+      "spec_id": 41,
+      "target_spell": 805573,
+      "affected_spells": [
+        805573
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "805573 Obliteration Beam range=100.0 radius=[8.0] eff0 SCHOOL_DAMAGE v=1 r=8.0 | child of 805572 via 805572",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "cult_eldritch_devastation_cost",
+      "name": "Eldritch Devastation: -10% resource cost",
+      "spec_id": 41,
+      "target_spell": 802727,
+      "affected_spells": [
+        802727
+      ],
+      "targeting": "mask",
+      "mask": [
+        64,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "802727 Eldritch Devastation cost_pct=19 dur=4000 range=30.0 periodic=true eff0 PERIODIC_DAMAGE v=20 per=1000 chain=5 | mask_unique_bit=[64, 0, 0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "cult_eldritch_devastation_jump",
+      "name": "Eldritch Devastation: +1 additional target",
+      "spec_id": 41,
+      "target_spell": 802727,
+      "affected_spells": [
+        802727
+      ],
+      "targeting": "mask",
+      "mask": [
+        64,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "JUMP_TARGETS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 65,
+      "evidence": "802727 Eldritch Devastation cost_pct=19 dur=4000 range=30.0 periodic=true eff0 PERIODIC_DAMAGE v=20 per=1000 chain=5 | mask_unique_bit=[64, 0, 0]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "cult_eldritch_devastation_range",
+      "name": "Eldritch Devastation: +10% range",
+      "spec_id": 41,
+      "target_spell": 802727,
+      "affected_spells": [
+        802727
+      ],
+      "targeting": "mask",
+      "mask": [
+        64,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "802727 Eldritch Devastation cost_pct=19 dur=4000 range=30.0 periodic=true eff0 PERIODIC_DAMAGE v=20 per=1000 chain=5 | mask_unique_bit=[64, 0, 0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "cult_eldritch_devastation_crit",
+      "name": "Eldritch Devastation: +4% critical strike chance",
+      "spec_id": 41,
+      "target_spell": 800434,
+      "affected_spells": [
+        800434
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "800434 Eldritch Devastation cd=5000 cost_pct=3 range=30.0 eff0 SCHOOL_DAMAGE v=1 | child of 802727 via 802727",
+      "client_sensitive": false,
+      "confidence": "low",
+      "notes": "Direct damage child, basepoints scripted (v=1)."
+    },
+    {
+      "key": "cult_darkwither_cost",
+      "name": "Darkwither: -10% resource cost",
+      "spec_id": 41,
+      "target_spell": 800446,
+      "affected_spells": [
+        800446
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        2097152,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "800446 Darkwither cost_pct=17 dur=15000 range=30.0 periodic=true eff0 PERIODIC_DAMAGE v=25 per=3000 eff1 MOD_DAMAGE_FROM_CASTER eff2 PERIODIC_TRIGGER_SPELL v=1 per=3000 | mask_unique_bit=[0, 2097152, 0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "cult_darkwither_dur",
+      "name": "Darkwither: +20% duration",
+      "spec_id": 41,
+      "target_spell": 800446,
+      "affected_spells": [
+        800446
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        2097152,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "800446 Darkwither cost_pct=17 dur=15000 range=30.0 periodic=true eff0 PERIODIC_DAMAGE v=25 per=3000 eff1 MOD_DAMAGE_FROM_CASTER eff2 PERIODIC_TRIGGER_SPELL v=1 per=3000 | mask_unique_bit=[0, 2097152, 0]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "15 s DoT."
+    },
+    {
+      "key": "cult_darkwither_range",
+      "name": "Darkwither: +10% range",
+      "spec_id": 41,
+      "target_spell": 800446,
+      "affected_spells": [
+        800446
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        2097152,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "800446 Darkwither cost_pct=17 dur=15000 range=30.0 periodic=true eff0 PERIODIC_DAMAGE v=25 per=3000 eff1 MOD_DAMAGE_FROM_CASTER eff2 PERIODIC_TRIGGER_SPELL v=1 per=3000 | mask_unique_bit=[0, 2097152, 0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "cult_empires_grasp_cost",
+      "name": "Empire's Grasp: -10% resource cost",
+      "spec_id": 42,
+      "target_spell": 500704,
+      "affected_spells": [
+        500704
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        1048576
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "500704 Empire's Grasp cd=35000 catcd=35000 cost_pct=11 range=30.0 radius=[2.0] eff0 TELEPORT_UNITS chain=1 r=2.0 | mask_unique_bit=[0, 0, 1048576]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "cult_empires_grasp_range",
+      "name": "Empire's Grasp: +10% range",
+      "spec_id": 42,
+      "target_spell": 500704,
+      "affected_spells": [
+        500704
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        1048576
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "500704 Empire's Grasp cd=35000 catcd=35000 cost_pct=11 range=30.0 radius=[2.0] eff0 TELEPORT_UNITS chain=1 r=2.0 | mask_unique_bit=[0, 0, 1048576]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "cult_voidborne_dur",
+      "name": "Voidborne: +15% duration",
+      "spec_id": 42,
+      "target_spell": 681104,
+      "affected_spells": [
+        681104
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "681104 Voidborne cd=180000 catcd=180000 cost_pct=10 dur=15000 eff0 MOD_DAMAGE_PERCENT_DONE v=25 eff1 MOD_CRIT_PCT v=25 eff2 PERIODIC_TRIGGER_SPELL per=500",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "15 s +25% damage/crit buff."
+    },
+    {
+      "key": "cult_end_times_dur",
+      "name": "End Times: +20% duration",
+      "spec_id": 42,
+      "target_spell": 805115,
+      "affected_spells": [
+        805115
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "805115 End Times cd=90000 cost_pct=25 dur=15000 eff0 ADD_FLAT_MODIFIER v=25 eff1 ADD_PCT_MODIFIER v=-50",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "15 s buff."
+    },
+    {
+      "key": "cult_netherstrike_cost",
+      "name": "Netherstrike: -10% resource cost",
+      "spec_id": 42,
+      "target_spell": 806222,
+      "affected_spells": [
+        806222
+      ],
+      "targeting": "mask",
+      "mask": [
+        262144,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "806222 Netherstrike catcd=6000 cost=35 cost_pct=10 range=5.0 eff0 NORMALIZED_WEAPON_DMG v=48 eff1 WEAPON_PERCENT_DAMAGE v=125 eff2 DISPEL v=1 | mask_unique_bit=[262144, 0, 0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "cult_netherstrike_crit",
+      "name": "Netherstrike: +4% critical strike chance",
+      "spec_id": 42,
+      "target_spell": 806222,
+      "affected_spells": [
+        806222
+      ],
+      "targeting": "mask",
+      "mask": [
+        262144,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "806222 Netherstrike catcd=6000 cost=35 cost_pct=10 range=5.0 eff0 NORMALIZED_WEAPON_DMG v=48 eff1 WEAPON_PERCENT_DAMAGE v=125 eff2 DISPEL v=1 | mask_unique_bit=[262144, 0, 0]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "cult_rift_cost",
+      "name": "Rift: -10% resource cost",
+      "spec_id": 42,
+      "target_spell": 806250,
+      "affected_spells": [
+        806250
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        4096
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "806250 Rift cd=45000 cost_pct=8 dur=15000 eff0 ASCENSION_PROC_PERCENT_EVENT v=80 eff1 ADD_FLAT_MODIFIER eff2 PROC_TRIGGER_SPELL | mask_unique_bit=[0, 0, 4096]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "cult_rift_dur",
+      "name": "Rift: +20% duration",
+      "spec_id": 42,
+      "target_spell": 806250,
+      "affected_spells": [
+        806250
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        4096
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "806250 Rift cd=45000 cost_pct=8 dur=15000 eff0 ASCENSION_PROC_PERCENT_EVENT v=80 eff1 ADD_FLAT_MODIFIER eff2 PROC_TRIGGER_SPELL | mask_unique_bit=[0, 0, 4096]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "15 s proc buff; children ignore caster mods and are not targeted."
+    },
+    {
+      "key": "cult_twilight_shieldtoss_crit",
+      "name": "Twilight Shieldtoss: +4% critical strike chance",
+      "spec_id": 96,
+      "target_spell": 524876,
+      "affected_spells": [
+        524876
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "524876 Twilight Shieldtoss catcd=8000 cost_pct=15 range=30.0 eff0 SCHOOL_DAMAGE v=72 chain=3 eff1 DUMMY chain=3",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "cult_twilight_shieldtoss_jump",
+      "name": "Twilight Shieldtoss: +1 additional target",
+      "spec_id": 96,
+      "target_spell": 524876,
+      "affected_spells": [
+        524876
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "JUMP_TARGETS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "524876 Twilight Shieldtoss catcd=8000 cost_pct=15 range=30.0 eff0 SCHOOL_DAMAGE v=72 chain=3 eff1 DUMMY chain=3",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "cult_dreadfall_crit",
+      "name": "Dreadfall: +4% critical strike chance",
+      "spec_id": 96,
+      "target_spell": 807815,
+      "affected_spells": [
+        807815
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "807815 Dreadfall range=30.0 eff0 SCHOOL_DAMAGE v=1 chain=20 eff1 THREAT v=20 | child of 806175 via 806175",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "cult_crushing_dissonance_radius",
+      "name": "Crushing Dissonance: +1 yd radius",
+      "spec_id": 96,
+      "target_spell": 804056,
+      "affected_spells": [
+        804056
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "804056 Crushing Dissonance cd=30000 catcd=30000 cost_pct=18 dur=3000 radius=[8.0] eff0 INTERRUPT_CAST r=8.0",
+      "client_sensitive": false,
+      "confidence": "medium",
       "notes": ""
     }
   ],

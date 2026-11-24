@@ -908,6 +908,1661 @@
       "client_sensitive": false,
       "confidence": "high",
       "notes": ""
+    },
+    {
+      "key": "chrono_mass_babify_cast",
+      "name": "Mass Babify: -0.1 sec cast time",
+      "spec_id": 0,
+      "target_spell": 520855,
+      "affected_spells": [
+        520855
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CASTING_TIME",
+          "type": "FLAT",
+          "value": -100
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "520855 Mass Babify cd=120000 cast=1000 cost=25 cost_pct=32 dur=40000 radius=[10.0] fam28 mask_unique_bit=None eff[APPLY_AURA/MOD_STUN APPLY_AURA/TRANSFORM=1 APPLY_AURA/PERIODIC_TRIGGER_SPELL=1]. cast 1000.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_mass_babify_dur",
+      "name": "Mass Babify: +20% duration",
+      "spec_id": 0,
+      "target_spell": 520855,
+      "affected_spells": [
+        520855
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "520855 Mass Babify cd=120000 cast=1000 cost=25 cost_pct=32 dur=40000 radius=[10.0] fam28 mask_unique_bit=None eff[APPLY_AURA/MOD_STUN APPLY_AURA/TRANSFORM=1 APPLY_AURA/PERIODIC_TRIGGER_SPELL=1]. AoE CC 40 sec (8 sec PvP).",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_mass_babify_radius",
+      "name": "Mass Babify: +1 yd radius",
+      "spec_id": 0,
+      "target_spell": 520855,
+      "affected_spells": [
+        520855
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "520855 Mass Babify cd=120000 cast=1000 cost=25 cost_pct=32 dur=40000 radius=[10.0] fam28 mask_unique_bit=None eff[APPLY_AURA/MOD_STUN APPLY_AURA/TRANSFORM=1 APPLY_AURA/PERIODIC_TRIGGER_SPELL=1]. 10 yd AoE.",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_fortify_timeline_crit",
+      "name": "Fortify Timeline: +4% critical strike chance",
+      "spec_id": 0,
+      "target_spell": 804491,
+      "affected_spells": [
+        804491
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        4194304,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "804491 Fortify Timeline cd=60000 cost_pct=36 range=40.0 radius=[40.0] fam28 mask_unique_bit=[0, 4194304, 0] eff[HEAL=100 ASCENSION_MODIFY_AURA_DURATION=5000]. HEAL on spell.",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_fortify_timeline_cost",
+      "name": "Fortify Timeline: -10% cost",
+      "spec_id": 0,
+      "target_spell": 804491,
+      "affected_spells": [
+        804491
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        4194304,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "804491 Fortify Timeline cd=60000 cost_pct=36 range=40.0 radius=[40.0] fam28 mask_unique_bit=[0, 4194304, 0] eff[HEAL=100 ASCENSION_MODIFY_AURA_DURATION=5000]. cost 36% base mana.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_desynchronization_cast",
+      "name": "Desynchronization: -0.1 sec cast time",
+      "spec_id": 0,
+      "target_spell": 561310,
+      "affected_spells": [
+        561310
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CASTING_TIME",
+          "type": "FLAT",
+          "value": -100
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "561310 Desynchronization cd=90000 cast=1250 cost=15 cost_pct=28 dur=6000 range=30.0 fam28 mask_unique_bit=None eff[APPLY_AURA/MOD_DISARM APPLY_AURA/MOD_DISARM_RANGED APPLY_AURA/MOD_DISARM_OFFHAND]. cast 1250.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_desynchronization_dur",
+      "name": "Desynchronization: +20% duration",
+      "spec_id": 0,
+      "target_spell": 561310,
+      "affected_spells": [
+        561310
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "561310 Desynchronization cd=90000 cast=1250 cost=15 cost_pct=28 dur=6000 range=30.0 fam28 mask_unique_bit=None eff[APPLY_AURA/MOD_DISARM APPLY_AURA/MOD_DISARM_RANGED APPLY_AURA/MOD_DISARM_OFFHAND]. disarm 6 sec.",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_temporal_focus_dur",
+      "name": "Temporal Focus: +20% duration",
+      "spec_id": 0,
+      "target_spell": 806165,
+      "affected_spells": [
+        806165
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "806165 Temporal Focus cd=120000 cost_pct=14 dur=10000 fam28 mask_unique_bit=None eff[APPLY_AURA/MECHANIC_IMMUNITY=1 APPLY_AURA/MECHANIC_IMMUNITY=1 APPLY_AURA/MECHANIC_IMMUNITY=1]. CC immunity 10 sec.",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_infinite_shield_cost",
+      "name": "Infinite Shield: -10% cost",
+      "spec_id": 0,
+      "target_spell": 520457,
+      "affected_spells": [
+        520457
+      ],
+      "targeting": "mask",
+      "mask": [
+        512,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "520457 Infinite Shield cd=15000 cost_pct=40 dur=30000 range=40.0 fam28 mask_unique_bit=[512, 0, 0] eff[APPLY_AURA/PROC_TRIGGER_SPELL=6 APPLY_AURA/MOD_DAMAGE_FROM_CASTER]. cost 40% base mana.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_infinite_shield_dur",
+      "name": "Infinite Shield: +20% duration",
+      "spec_id": 0,
+      "target_spell": 520457,
+      "affected_spells": [
+        520457
+      ],
+      "targeting": "mask",
+      "mask": [
+        512,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "520457 Infinite Shield cd=15000 cost_pct=40 dur=30000 range=40.0 fam28 mask_unique_bit=[512, 0, 0] eff[APPLY_AURA/PROC_TRIGGER_SPELL=6 APPLY_AURA/MOD_DAMAGE_FROM_CASTER]. 10-charge shield 30 sec.",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_infinite_shield_range",
+      "name": "Infinite Shield: +5 yd range",
+      "spec_id": 0,
+      "target_spell": 520457,
+      "affected_spells": [
+        520457
+      ],
+      "targeting": "mask",
+      "mask": [
+        512,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "FLAT",
+          "value": 5
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "520457 Infinite Shield cd=15000 cost_pct=40 dur=30000 range=40.0 fam28 mask_unique_bit=[512, 0, 0] eff[APPLY_AURA/PROC_TRIGGER_SPELL=6 APPLY_AURA/MOD_DAMAGE_FROM_CASTER]. ally 40 yd.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_infinite_shield_crit",
+      "name": "Infinite Shield: +4% critical strike chance",
+      "spec_id": 0,
+      "target_spell": 520458,
+      "affected_spells": [
+        520458
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "520458 Infinite Shield dur=8000 range=50000.0 fam28 mask_unique_bit=None eff[HEAL=190]. HEAL done by trigger child.",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_clasp_of_infinity_cost",
+      "name": "Clasp of Infinity: -10% cost",
+      "spec_id": 0,
+      "target_spell": 805847,
+      "affected_spells": [
+        805847
+      ],
+      "targeting": "mask",
+      "mask": [
+        8388608,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "805847 Clasp of Infinity cd=20000 cost_pct=23 dur=4000 range=30.0 fam28 mask_unique_bit=[8388608, 0, 0] eff[APPLY_AURA/MOD_ROOT chain=8 APPLY_AURA/MOD_DAMAGE_FROM_CASTER chain=8 APPLY_AURA/PERIODIC_TRIGGER_SPELL=1]. cost 23% base mana.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_clasp_of_infinity_dur",
+      "name": "Clasp of Infinity: +25% duration",
+      "spec_id": 0,
+      "target_spell": 805847,
+      "affected_spells": [
+        805847
+      ],
+      "targeting": "mask",
+      "mask": [
+        8388608,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 25
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "805847 Clasp of Infinity cd=20000 cost_pct=23 dur=4000 range=30.0 fam28 mask_unique_bit=[8388608, 0, 0] eff[APPLY_AURA/MOD_ROOT chain=8 APPLY_AURA/MOD_DAMAGE_FROM_CASTER chain=8 APPLY_AURA/PERIODIC_TRIGGER_SPELL=1]. bouncing root 4 sec.",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_clasp_of_infinity_jump",
+      "name": "Clasp of Infinity: +1 additional target",
+      "spec_id": 0,
+      "target_spell": 805847,
+      "affected_spells": [
+        805847
+      ],
+      "targeting": "mask",
+      "mask": [
+        8388608,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "JUMP_TARGETS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 60,
+      "evidence": "805847 Clasp of Infinity cd=20000 cost_pct=23 dur=4000 range=30.0 fam28 mask_unique_bit=[8388608, 0, 0] eff[APPLY_AURA/MOD_ROOT chain=8 APPLY_AURA/MOD_DAMAGE_FROM_CASTER chain=8 APPLY_AURA/PERIODIC_TRIGGER_SPELL=1]. chain 8 on root effect.",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_clasp_of_infinity_range",
+      "name": "Clasp of Infinity: +5 yd range",
+      "spec_id": 0,
+      "target_spell": 805847,
+      "affected_spells": [
+        805847
+      ],
+      "targeting": "mask",
+      "mask": [
+        8388608,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "FLAT",
+          "value": 5
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "805847 Clasp of Infinity cd=20000 cost_pct=23 dur=4000 range=30.0 fam28 mask_unique_bit=[8388608, 0, 0] eff[APPLY_AURA/MOD_ROOT chain=8 APPLY_AURA/MOD_DAMAGE_FROM_CASTER chain=8 APPLY_AURA/PERIODIC_TRIGGER_SPELL=1]. ranged 30 yd.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_anomaly_spike_crit",
+      "name": "Anomaly Spike: +4% critical strike chance",
+      "spec_id": 0,
+      "target_spell": 503826,
+      "affected_spells": [
+        503826
+      ],
+      "targeting": "mask",
+      "mask": [
+        134217728,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "503826 Anomaly Spike range=40.0 fam28 mask_unique_bit=[134217728, 0, 0] eff[SCHOOL_DAMAGE=161 TRIGGER_SPELL]. SCHOOL_DAMAGE on trigger child.",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_gravity_bomb_cast",
+      "name": "Gravity Bomb: -0.15 sec cast time",
+      "spec_id": 0,
+      "target_spell": 801281,
+      "affected_spells": [
+        801281
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        2147483648,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CASTING_TIME",
+          "type": "FLAT",
+          "value": -150
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "801281 Gravity Bomb cd=90000 cast=1500 cost=35 cost_pct=36 dur=6000 range=40.0 radius=[10.0] fam28 mask_unique_bit=[0, 2147483648, 0] eff[APPLY_AURA/PERIODIC_TRIGGER_SPELL=1 APPLY_AURA/DUMMY APPLY_AURA/PERIODIC_TRIGGER_SPELL=1]. cast 1500.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_gravity_bomb_cost",
+      "name": "Gravity Bomb: -10% cost",
+      "spec_id": 0,
+      "target_spell": 801281,
+      "affected_spells": [
+        801281
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        2147483648,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "801281 Gravity Bomb cd=90000 cast=1500 cost=35 cost_pct=36 dur=6000 range=40.0 radius=[10.0] fam28 mask_unique_bit=[0, 2147483648, 0] eff[APPLY_AURA/PERIODIC_TRIGGER_SPELL=1 APPLY_AURA/DUMMY APPLY_AURA/PERIODIC_TRIGGER_SPELL=1]. cost 36% base mana.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_gravity_bomb_range",
+      "name": "Gravity Bomb: +5 yd range",
+      "spec_id": 0,
+      "target_spell": 801281,
+      "affected_spells": [
+        801281
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        2147483648,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "FLAT",
+          "value": 5
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "801281 Gravity Bomb cd=90000 cast=1500 cost=35 cost_pct=36 dur=6000 range=40.0 radius=[10.0] fam28 mask_unique_bit=[0, 2147483648, 0] eff[APPLY_AURA/PERIODIC_TRIGGER_SPELL=1 APPLY_AURA/DUMMY APPLY_AURA/PERIODIC_TRIGGER_SPELL=1]. ranged 40 yd.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_gravity_bomb_crit",
+      "name": "Gravity Bomb: +4% critical strike chance",
+      "spec_id": 0,
+      "target_spell": 801282,
+      "affected_spells": [
+        801282
+      ],
+      "targeting": "mask",
+      "mask": [
+        65536,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "801282 Gravity Bomb range=50000.0 radius=[10.0] fam28 mask_unique_bit=[65536, 0, 0] eff[SCHOOL_DAMAGE=967]. SCHOOL_DAMAGE on trigger child (explosion).",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_gravity_bomb_radius",
+      "name": "Gravity Bomb: +1 yd radius",
+      "spec_id": 0,
+      "target_spell": 801282,
+      "affected_spells": [
+        801282
+      ],
+      "targeting": "mask",
+      "mask": [
+        65536,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "801282 Gravity Bomb range=50000.0 radius=[10.0] fam28 mask_unique_bit=[65536, 0, 0] eff[SCHOOL_DAMAGE=967]. 10 yd explosion.",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_temporal_anomaly_cost",
+      "name": "Temporal Anomaly: -10% cost",
+      "spec_id": 0,
+      "target_spell": 806315,
+      "affected_spells": [
+        806315
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        65536
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "806315 Temporal Anomaly cd=120000 cost=25 cost_pct=24 dur=10000 fam28 mask_unique_bit=[0, 0, 65536] eff[APPLY_AURA/SCHOOL_ABSORB=50]. cost 24% base mana.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_temporal_anomaly_dur",
+      "name": "Temporal Anomaly: +20% duration",
+      "spec_id": 0,
+      "target_spell": 806315,
+      "affected_spells": [
+        806315
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        65536
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "806315 Temporal Anomaly cd=120000 cost=25 cost_pct=24 dur=10000 fam28 mask_unique_bit=[0, 0, 65536] eff[APPLY_AURA/SCHOOL_ABSORB=50]. damage-store window 10 sec.",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_timeguard_cost",
+      "name": "Timeguard: -10% cost",
+      "spec_id": 0,
+      "target_spell": 804441,
+      "affected_spells": [
+        804441
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        134217728
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "804441 Timeguard cd=120000 cost_pct=30 dur=120000 range=30.0 fam28 mask_unique_bit=[0, 0, 134217728] eff[APPLY_AURA/SCHOOL_ABSORB=2 APPLY_AURA/DUMMY=35 APPLY_AURA/DUMMY=50]. cost 30% base mana.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_timeguard_range",
+      "name": "Timeguard: +5 yd range",
+      "spec_id": 0,
+      "target_spell": 804441,
+      "affected_spells": [
+        804441
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        134217728
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "FLAT",
+          "value": 5
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "804441 Timeguard cd=120000 cost_pct=30 dur=120000 range=30.0 fam28 mask_unique_bit=[0, 0, 134217728] eff[APPLY_AURA/SCHOOL_ABSORB=2 APPLY_AURA/DUMMY=35 APPLY_AURA/DUMMY=50]. ally 30 yd.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_accelerated_recovery_dur",
+      "name": "Accelerated Recovery: +20% duration",
+      "spec_id": 0,
+      "target_spell": 800857,
+      "affected_spells": [
+        800857
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "800857 Accelerated Recovery cost_pct=18 dur=15000 range=40.0 periodic=True fam28 mask_unique_bit=None eff[APPLY_AURA/PERIODIC_HEAL=12 chain=1]. 15 sec HoT, period 1000 -> +3 ticks.",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_waves_of_time_cost",
+      "name": "Waves of Time: -10% cost",
+      "spec_id": 0,
+      "target_spell": 801277,
+      "affected_spells": [
+        801277
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        8,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "801277 Waves of Time cd=20000 cost_pct=13 radius=[10.0] fam28 mask_unique_bit=[0, 8, 0] eff[ASCENSION_TRIGGER_SPELL_DELAYED=2000 TRIGGER_SPELL=-100]. cost 13% base mana.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_waves_of_time_radius",
+      "name": "Waves of Time: +1 yd radius",
+      "spec_id": 0,
+      "target_spell": 802600,
+      "affected_spells": [
+        802600
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "802600 Waves of Time cost_pct=10 range=20.0 radius=[10.0] fam28 mask_unique_bit=None eff[KNOCK_BACK=70]. 10 yd cone knockback on trigger child.",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_the_vast_infinite_dur",
+      "name": "The Vast Infinite: +20% duration",
+      "spec_id": 31,
+      "target_spell": 706083,
+      "affected_spells": [
+        706083
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "706083 The Vast Infinite cd=300000 cost=35 cost_pct=30 dur=10000 range=100.0 radius=[100.0] fam28 mask_unique_bit=None eff[APPLY_AURA/SCHOOL_ABSORB=26 APPLY_AURA/DUMMY=1]. raid damage share 10 sec.",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_continuum_restoration_cost",
+      "name": "Continuum Restoration: -10% cost",
+      "spec_id": 31,
+      "target_spell": 801271,
+      "affected_spells": [
+        801271
+      ],
+      "targeting": "mask",
+      "mask": [
+        8,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "801271 Continuum Restoration cd=90000 cast=1500 cost_pct=60 range=20.0 radius=[15.0] fam28 mask_unique_bit=[8, 0, 0] eff[DISPEL=100 DISPEL=100 TRIGGER_SPELL]. cost 60% base mana.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_continuum_restoration_cast",
+      "name": "Continuum Restoration: -0.15 sec cast time",
+      "spec_id": 31,
+      "target_spell": 801271,
+      "affected_spells": [
+        801271
+      ],
+      "targeting": "mask",
+      "mask": [
+        8,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CASTING_TIME",
+          "type": "FLAT",
+          "value": -150
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "801271 Continuum Restoration cd=90000 cast=1500 cost_pct=60 range=20.0 radius=[15.0] fam28 mask_unique_bit=[8, 0, 0] eff[DISPEL=100 DISPEL=100 TRIGGER_SPELL]. cast 1500.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_continuum_restoration_radius",
+      "name": "Continuum Restoration: +10% radius",
+      "spec_id": 31,
+      "target_spell": 801271,
+      "affected_spells": [
+        801271
+      ],
+      "targeting": "mask",
+      "mask": [
+        8,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "801271 Continuum Restoration cd=90000 cast=1500 cost_pct=60 range=20.0 radius=[15.0] fam28 mask_unique_bit=[8, 0, 0] eff[DISPEL=100 DISPEL=100 TRIGGER_SPELL]. 15 yd dispel area.",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_continuum_restoration_range",
+      "name": "Continuum Restoration: +5 yd range",
+      "spec_id": 31,
+      "target_spell": 801271,
+      "affected_spells": [
+        801271
+      ],
+      "targeting": "mask",
+      "mask": [
+        8,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "FLAT",
+          "value": 5
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "801271 Continuum Restoration cd=90000 cast=1500 cost_pct=60 range=20.0 radius=[15.0] fam28 mask_unique_bit=[8, 0, 0] eff[DISPEL=100 DISPEL=100 TRIGGER_SPELL]. ground target 20 yd.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_fabric_of_time_crit",
+      "name": "Fabric of Time: +4% critical strike chance",
+      "spec_id": 31,
+      "target_spell": 806299,
+      "affected_spells": [
+        806299
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        256
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "806299 Fabric of Time cd=15000 cost_pct=18 range=40.0 fam28 mask_unique_bit=[0, 0, 256] eff[TRIGGER_SPELL HEAL=378]. HEAL on spell.",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_fabric_of_time_cost",
+      "name": "Fabric of Time: -10% cost",
+      "spec_id": 31,
+      "target_spell": 806299,
+      "affected_spells": [
+        806299
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        256
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "806299 Fabric of Time cd=15000 cost_pct=18 range=40.0 fam28 mask_unique_bit=[0, 0, 256] eff[TRIGGER_SPELL HEAL=378]. cost 18% base mana.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_correct_the_mistake_crit",
+      "name": "Correct the Mistake: +4% critical strike chance",
+      "spec_id": 31,
+      "target_spell": 572352,
+      "affected_spells": [
+        572352
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "572352 Correct the Mistake cast=2500 cost_pct=36 range=40.0 radius=[30.0] fam28 mask_unique_bit=None eff[HEAL=91]. HEAL on spell.",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_correct_the_mistake_cast",
+      "name": "Correct the Mistake: -0.25 sec cast time",
+      "spec_id": 31,
+      "target_spell": 572352,
+      "affected_spells": [
+        572352
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CASTING_TIME",
+          "type": "FLAT",
+          "value": -250
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "572352 Correct the Mistake cast=2500 cost_pct=36 range=40.0 radius=[30.0] fam28 mask_unique_bit=None eff[HEAL=91]. cast 2500.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_ripple_cost",
+      "name": "Ripple: -10% cost",
+      "spec_id": 31,
+      "target_spell": 806296,
+      "affected_spells": [
+        806296
+      ],
+      "targeting": "mask",
+      "mask": [
+        1073741824,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "806296 Ripple cd=30000 cost_pct=40 dur=5000 fam28 mask_unique_bit=[1073741824, 0, 0] eff[APPLY_AURA/MECHANIC_IMMUNITY_MASK APPLY_AURA/PERIODIC_TRIGGER_SPELL APPLY_AURA/ADD_PCT_MODIFIER]. cost 40% base mana.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_incarnation_of_chaos_cost",
+      "name": "Incarnation of Chaos: -10% cost",
+      "spec_id": 32,
+      "target_spell": 570067,
+      "affected_spells": [
+        570067
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        8192
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "570067 Incarnation of Chaos cd=180000 cost_pct=18 dur=15000 fam28 mask_unique_bit=[0, 0, 8192] eff[APPLY_AURA/ADD_PCT_MODIFIER APPLY_AURA/ADD_FLAT_MODIFIER APPLY_AURA/MOD_DAMAGE_PERCENT_DONE=15]. cost 18% base mana.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_incarnation_of_chaos_dur",
+      "name": "Incarnation of Chaos: +20% duration",
+      "spec_id": 32,
+      "target_spell": 570067,
+      "affected_spells": [
+        570067
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        8192
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "570067 Incarnation of Chaos cd=180000 cost_pct=18 dur=15000 fam28 mask_unique_bit=[0, 0, 8192] eff[APPLY_AURA/ADD_PCT_MODIFIER APPLY_AURA/ADD_FLAT_MODIFIER APPLY_AURA/MOD_DAMAGE_PERCENT_DONE=15]. 15 sec form, +15% damage.",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_melt_reality_cast",
+      "name": "Melt Reality: -0.25 sec cast time",
+      "spec_id": 32,
+      "target_spell": 806335,
+      "affected_spells": [
+        806335
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        512,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CASTING_TIME",
+          "type": "FLAT",
+          "value": -250
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "806335 Melt Reality cast=2500 cost_pct=23 dur=36000 range=35.0 periodic=True fam28 mask_unique_bit=[0, 512, 0] eff[APPLY_AURA/PERIODIC_DAMAGE=181 APPLY_AURA/PERIODIC_TRIGGER_SPELL]. cast 2500.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_melt_reality_cost",
+      "name": "Melt Reality: -10% cost",
+      "spec_id": 32,
+      "target_spell": 806335,
+      "affected_spells": [
+        806335
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        512,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "806335 Melt Reality cast=2500 cost_pct=23 dur=36000 range=35.0 periodic=True fam28 mask_unique_bit=[0, 512, 0] eff[APPLY_AURA/PERIODIC_DAMAGE=181 APPLY_AURA/PERIODIC_TRIGGER_SPELL]. cost 23% base mana.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_melt_reality_dur",
+      "name": "Melt Reality: +20% duration",
+      "spec_id": 32,
+      "target_spell": 806335,
+      "affected_spells": [
+        806335
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        512,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "806335 Melt Reality cast=2500 cost_pct=23 dur=36000 range=35.0 periodic=True fam28 mask_unique_bit=[0, 512, 0] eff[APPLY_AURA/PERIODIC_DAMAGE=181 APPLY_AURA/PERIODIC_TRIGGER_SPELL]. 36 sec DoT, period 4000 -> +1 tick.",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_melt_reality_range",
+      "name": "Melt Reality: +5 yd range",
+      "spec_id": 32,
+      "target_spell": 806335,
+      "affected_spells": [
+        806335
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        512,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "FLAT",
+          "value": 5
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "806335 Melt Reality cast=2500 cost_pct=23 dur=36000 range=35.0 periodic=True fam28 mask_unique_bit=[0, 512, 0] eff[APPLY_AURA/PERIODIC_DAMAGE=181 APPLY_AURA/PERIODIC_TRIGGER_SPELL]. ranged 35 yd.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_chromatic_shard_crit",
+      "name": "Chromatic Shard: +4% critical strike chance",
+      "spec_id": 32,
+      "target_spell": 801292,
+      "affected_spells": [
+        801292
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        33554432
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "801292 Chromatic Shard cast=3500 cost_pct=23 range=35.0 fam28 mask_unique_bit=[0, 0, 33554432] eff[SCHOOL_DAMAGE=270 TRIGGER_SPELL]. SCHOOL_DAMAGE on spell.",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_chromatic_shard_cost",
+      "name": "Chromatic Shard: -10% cost",
+      "spec_id": 32,
+      "target_spell": 801292,
+      "affected_spells": [
+        801292
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        33554432
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "801292 Chromatic Shard cast=3500 cost_pct=23 range=35.0 fam28 mask_unique_bit=[0, 0, 33554432] eff[SCHOOL_DAMAGE=270 TRIGGER_SPELL]. cost 23% base mana.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_chromatic_shard_range",
+      "name": "Chromatic Shard: +5 yd range",
+      "spec_id": 32,
+      "target_spell": 801292,
+      "affected_spells": [
+        801292
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        33554432
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "FLAT",
+          "value": 5
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "801292 Chromatic Shard cast=3500 cost_pct=23 range=35.0 fam28 mask_unique_bit=[0, 0, 33554432] eff[SCHOOL_DAMAGE=270 TRIGGER_SPELL]. ranged 35 yd.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_slipstream_dur",
+      "name": "Slipstream: +20% duration",
+      "spec_id": 32,
+      "target_spell": 707555,
+      "affected_spells": [
+        707555
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "707555 Slipstream cd=120000 cost=55 cost_pct=23 dur=5000 range=20.0 fam28 mask_unique_bit=None eff[APPLY_AURA/MOD_STUN=1 APPLY_AURA/SCHOOL_IMMUNITY=1 APPLY_AURA/DUMMY]. banish 5 sec.",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_paradox_cannon_cost",
+      "name": "Paradox Cannon: -10% cost",
+      "spec_id": 33,
+      "target_spell": 806203,
+      "affected_spells": [
+        806203
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        128
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "806203 Paradox Cannon cd=15000 cost_pct=7 dur=5000 fam28 mask_unique_bit=[0, 0, 128] eff[APPLY_AURA/PERIODIC_TRIGGER_SPELL=1 APPLY_AURA/ADD_FLAT_MODIFIER=10]. cost 7% base mana.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_singularity_core_cost",
+      "name": "Singularity Core: -10% cost",
+      "spec_id": 33,
+      "target_spell": 804438,
+      "affected_spells": [
+        804438
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        64
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "804438 Singularity Core cd=15000 cost_pct=11 dur=5000 fam28 mask_unique_bit=[0, 0, 64] eff[APPLY_AURA/PROC_TRIGGER_SPELL=1 APPLY_AURA/ADD_PCT_MODIFIER APPLY_AURA/ADD_PCT_MODIFIER]. cost 11% base mana.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_singularity_core_dur",
+      "name": "Singularity Core: +20% duration",
+      "spec_id": 33,
+      "target_spell": 804438,
+      "affected_spells": [
+        804438
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        64
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "804438 Singularity Core cd=15000 cost_pct=11 dur=5000 fam28 mask_unique_bit=[0, 0, 64] eff[APPLY_AURA/PROC_TRIGGER_SPELL=1 APPLY_AURA/ADD_PCT_MODIFIER APPLY_AURA/ADD_PCT_MODIFIER]. wand empower 5 sec.",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_singularity_core_crit",
+      "name": "Singularity Core: +4% critical strike chance",
+      "spec_id": 33,
+      "target_spell": 804437,
+      "affected_spells": [
+        804437
+      ],
+      "targeting": "mask",
+      "mask": [
+        1024,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "804437 Singularity Core range=100.0 fam28 mask_unique_bit=[1024, 0, 0] eff[NORMALIZED_WEAPON_DMG=2 WEAPON_PERCENT_DAMAGE=50]. weapon damage on trigger child.",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_arc_collision_radius",
+      "name": "Arc Collision: +1 yd radius",
+      "spec_id": 33,
+      "target_spell": 524853,
+      "affected_spells": [
+        524853
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "524853 Arc Collision cost=28 cost_pct=18 dur=4000 range=35.0 radius=[10.0] periodic=True fam28 mask_unique_bit=None eff[APPLY_AURA/PERIODIC_DAMAGE=135]. 10 yd AoE DoT.",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_flux_emitter_cost",
+      "name": "Flux Emitter: -10% cost",
+      "spec_id": 33,
+      "target_spell": 804435,
+      "affected_spells": [
+        804435
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        131072
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "804435 Flux Emitter cd=15000 cost_pct=11 dur=5000 fam28 mask_unique_bit=[0, 0, 131072] eff[APPLY_AURA/ADD_FLAT_MODIFIER=3 APPLY_AURA/ADD_PCT_MODIFIER]. cost 11% base mana.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_flux_emitter_dur",
+      "name": "Flux Emitter: +20% duration",
+      "spec_id": 33,
+      "target_spell": 804435,
+      "affected_spells": [
+        804435
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        131072
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "804435 Flux Emitter cd=15000 cost_pct=11 dur=5000 fam28 mask_unique_bit=[0, 0, 131072] eff[APPLY_AURA/ADD_FLAT_MODIFIER=3 APPLY_AURA/ADD_PCT_MODIFIER]. wand cleave 5 sec.",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_shatter_echo_crit",
+      "name": "Shatter Echo: +4% critical strike chance",
+      "spec_id": 33,
+      "target_spell": 804503,
+      "affected_spells": [
+        804503
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        4
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "804503 Shatter Echo cd=3000 cost_pct=19 range=35.0 fam28 mask_unique_bit=[0, 0, 4] eff[NORMALIZED_WEAPON_DMG=4 WEAPON_PERCENT_DAMAGE=90]. weapon damage on spell.",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_shatter_echo_cost",
+      "name": "Shatter Echo: -10% cost",
+      "spec_id": 33,
+      "target_spell": 804503,
+      "affected_spells": [
+        804503
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        4
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "804503 Shatter Echo cd=3000 cost_pct=19 range=35.0 fam28 mask_unique_bit=[0, 0, 4] eff[NORMALIZED_WEAPON_DMG=4 WEAPON_PERCENT_DAMAGE=90]. cost 19% base mana.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "chrono_shatter_echo_range",
+      "name": "Shatter Echo: +5 yd range",
+      "spec_id": 33,
+      "target_spell": 804503,
+      "affected_spells": [
+        804503
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        4
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "FLAT",
+          "value": 5
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "804503 Shatter Echo cd=3000 cost_pct=19 range=35.0 fam28 mask_unique_bit=[0, 0, 4] eff[NORMALIZED_WEAPON_DMG=4 WEAPON_PERCENT_DAMAGE=90]. ranged 35 yd.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
     }
   ],
   "rejected": [

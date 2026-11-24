@@ -1,7 +1,7 @@
 {
   "class_id": 24,
   "class": "PYROMANCER",
-  "reviewed_at": "2026-11-23",
+  "reviewed_at": "2026-11-24",
   "affixes": [
     {
       "key": "pyro_ignis_ultimatus_dmg",
@@ -833,6 +833,1897 @@
       "evidence": "511109 Breath of Neltharion cd=90000 catcd=90000 cost_pct=18 eff0 TRIGGER_SPELL v=170 | mask_unique_bit=null -> hook_cd",
       "client_sensitive": true,
       "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "pyro_ignis_ultimatus_cost",
+      "name": "Ignis Ultimatus: -10% resource cost",
+      "spec_id": 0,
+      "target_spell": 680369,
+      "affected_spells": [
+        680369
+      ],
+      "targeting": "mask",
+      "mask": [
+        8388608,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "680369 Ignis Ultimatus cd=60000 cost=10 cost_pct=16 dur=2000 range=50.0 eff0 PERIODIC_TRIGGER_SPELL per=2000 eff1 MOD_ROOT | mask_unique_bit=[8388608, 0, 0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "pyro_ignis_ultimatus_crit",
+      "name": "Ignis Ultimatus: +4% critical strike chance",
+      "spec_id": 0,
+      "target_spell": 680371,
+      "affected_spells": [
+        680371,
+        680370
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "680371 Ignis Ultimatus range=50000.0 radius=[50.0] eff0 SCHOOL_DAMAGE v=1084 r=50.0 | 680370 Ignis Ultimatus range=50000.0 radius=[50.0] eff0 HEAL v=804 r=50.0 | child of 680369 via 680372",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "Damage/heal children of the channel."
+    },
+    {
+      "key": "pyro_ignis_ultimatus_radius",
+      "name": "Ignis Ultimatus: +2 yd radius",
+      "spec_id": 0,
+      "target_spell": 680371,
+      "affected_spells": [
+        680371,
+        680370
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 2
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "680371 Ignis Ultimatus range=50000.0 radius=[50.0] eff0 SCHOOL_DAMAGE v=1084 r=50.0 | 680370 Ignis Ultimatus range=50000.0 radius=[50.0] eff0 HEAL v=804 r=50.0 | child of 680369 via 680372",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "50 yd line/area of the damage and heal children."
+    },
+    {
+      "key": "pyro_ignis_ultimatus_range",
+      "name": "Ignis Ultimatus: +5 yd range",
+      "spec_id": 0,
+      "target_spell": 680369,
+      "affected_spells": [
+        680369
+      ],
+      "targeting": "mask",
+      "mask": [
+        8388608,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "FLAT",
+          "value": 5
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "680369 Ignis Ultimatus cd=60000 cost=10 cost_pct=16 dur=2000 range=50.0 eff0 PERIODIC_TRIGGER_SPELL per=2000 eff1 MOD_ROOT | mask_unique_bit=[8388608, 0, 0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "pyro_volcanic_shell_cost",
+      "name": "Volcanic Shell: -10% resource cost",
+      "spec_id": 0,
+      "target_spell": 805477,
+      "affected_spells": [
+        805477
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        2147483648,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "805477 Volcanic Shell cd=120000 catcd=120000 cost_pct=15 dur=10000 eff0 SCHOOL_ABSORB v=625 eff1 REDUCE_PUSHBACK v=100 eff2 MOD_DISPEL_RESIST v=70 | mask_unique_bit=[0, 2147483648, 0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "pyro_volcanic_shell_dur",
+      "name": "Volcanic Shell: +20% duration",
+      "spec_id": 0,
+      "target_spell": 805477,
+      "affected_spells": [
+        805477
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        2147483648,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "805477 Volcanic Shell cd=120000 catcd=120000 cost_pct=15 dur=10000 eff0 SCHOOL_ABSORB v=625 eff1 REDUCE_PUSHBACK v=100 eff2 MOD_DISPEL_RESIST v=70 | mask_unique_bit=[0, 2147483648, 0]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "10 s absorb shield."
+    },
+    {
+      "key": "pyro_circle_of_fire_cost",
+      "name": "Circle of Fire: -10% resource cost",
+      "spec_id": 0,
+      "target_spell": 800807,
+      "affected_spells": [
+        800807
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        8388608,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "800807 Circle of Fire cd=120000 catcd=120000 cost_pct=25 dur=10000 range=30.0 radius=[10.0] eff0 PERIODIC_TRIGGER_SPELL per=500 r=10.0 | mask_unique_bit=[0, 8388608, 0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "pyro_circle_of_fire_dur",
+      "name": "Circle of Fire: +20% duration",
+      "spec_id": 0,
+      "target_spell": 800807,
+      "affected_spells": [
+        800807
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        8388608,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "800807 Circle of Fire cd=120000 catcd=120000 cost_pct=25 dur=10000 range=30.0 radius=[10.0] eff0 PERIODIC_TRIGGER_SPELL per=500 r=10.0 | mask_unique_bit=[0, 8388608, 0]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "10 s fire ring pulsing every 500 ms."
+    },
+    {
+      "key": "pyro_circle_of_fire_radius",
+      "name": "Circle of Fire: +1 yd radius",
+      "spec_id": 0,
+      "target_spell": 800807,
+      "affected_spells": [
+        800807
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        8388608,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "800807 Circle of Fire cd=120000 catcd=120000 cost_pct=25 dur=10000 range=30.0 radius=[10.0] eff0 PERIODIC_TRIGGER_SPELL per=500 r=10.0 | mask_unique_bit=[0, 8388608, 0]",
+      "client_sensitive": false,
+      "confidence": "low",
+      "notes": "Radius is on the periodic trigger effect of the ring."
+    },
+    {
+      "key": "pyro_circle_of_fire_range",
+      "name": "Circle of Fire: +10% range",
+      "spec_id": 0,
+      "target_spell": 800807,
+      "affected_spells": [
+        800807
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        8388608,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "800807 Circle of Fire cd=120000 catcd=120000 cost_pct=25 dur=10000 range=30.0 radius=[10.0] eff0 PERIODIC_TRIGGER_SPELL per=500 r=10.0 | mask_unique_bit=[0, 8388608, 0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "pyro_circle_of_fire_crit",
+      "name": "Circle of Fire: +4% critical strike chance",
+      "spec_id": 0,
+      "target_spell": 680842,
+      "affected_spells": [
+        680842
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "680842 Circle of Fire dur=6000 range=50000.0 eff0 SCHOOL_DAMAGE v=172 eff1 MOD_CONFUSE eff2 ASCENSION_TRIGGER_SPELL_DELAYED v=50 | child of 800807 via 800807",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "pyro_circle_of_fire_dur_680842",
+      "name": "Circle of Fire: +20% duration",
+      "spec_id": 0,
+      "target_spell": 680842,
+      "affected_spells": [
+        680842
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "680842 Circle of Fire dur=6000 range=50000.0 eff0 SCHOOL_DAMAGE v=172 eff1 MOD_CONFUSE eff2 ASCENSION_TRIGGER_SPELL_DELAYED v=50 | child of 800807 via 800807",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "6 s disorient (MOD_CONFUSE) from the ring pulse."
+    },
+    {
+      "key": "pyro_dragon_leap_crit",
+      "name": "Dragon Leap: +4% critical strike chance",
+      "spec_id": 0,
+      "target_spell": 806611,
+      "affected_spells": [
+        806611
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "806611 Dragon Leap catcd=30000 cost_pct=14 dur=10000 range=35.0 radius=[5.0] eff0 SCHOOL_DAMAGE v=29 r=5.0 eff1 JUMP_DEST v=101 r=5.0 eff2 TRIGGER_MISSILE v=-24 r=5.0",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "pyro_dragon_leap_radius",
+      "name": "Dragon Leap: +1 yd radius",
+      "spec_id": 0,
+      "target_spell": 806611,
+      "affected_spells": [
+        806611
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "806611 Dragon Leap catcd=30000 cost_pct=14 dur=10000 range=35.0 radius=[5.0] eff0 SCHOOL_DAMAGE v=29 r=5.0 eff1 JUMP_DEST v=101 r=5.0 eff2 TRIGGER_MISSILE v=-24 r=5.0",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "pyro_cataclysm_cost",
+      "name": "Cataclysm: -10% resource cost",
+      "spec_id": 0,
+      "target_spell": 520218,
+      "affected_spells": [
+        520218
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        32
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "520218 Cataclysm cd=90000 catcd=90000 cost_pct=15 dur=2500 eff0 PERIODIC_TRIGGER_SPELL v=10 per=2299 eff1 LEAP_BACK v=201 eff2 TRIGGER_SPELL | mask_unique_bit=[0, 0, 32]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "pyro_cataclysm_crit",
+      "name": "Cataclysm: +4% critical strike chance",
+      "spec_id": 0,
+      "target_spell": 520219,
+      "affected_spells": [
+        520219,
+        520220
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "520219 Cataclysm range=50000.0 radius=[6.0] eff0 KNOCK_BACK v=150 r=6.0 eff1 SCHOOL_DAMAGE v=11 r=6.0 eff2 TRIGGER_SPELL r=6.0 | 520220 Cataclysm dur=2000 range=50000.0 radius=[6.0] eff0 KNOCK_BACK v=150 r=6.0 eff1 TRIGGER_SPELL r=6.0 eff2 SCHOOL_DAMAGE v=11 r=6.0 | child of 520218 via 520218",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "pyro_cataclysm_radius",
+      "name": "Cataclysm: +1 yd radius",
+      "spec_id": 0,
+      "target_spell": 520219,
+      "affected_spells": [
+        520219,
+        520220
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "520219 Cataclysm range=50000.0 radius=[6.0] eff0 KNOCK_BACK v=150 r=6.0 eff1 SCHOOL_DAMAGE v=11 r=6.0 eff2 TRIGGER_SPELL r=6.0 | 520220 Cataclysm dur=2000 range=50000.0 radius=[6.0] eff0 KNOCK_BACK v=150 r=6.0 eff1 TRIGGER_SPELL r=6.0 eff2 SCHOOL_DAMAGE v=11 r=6.0 | child of 520218 via 520218",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "pyro_ember_touch_crit",
+      "name": "Ember Touch: +3% critical strike chance",
+      "spec_id": 0,
+      "target_spell": 800818,
+      "affected_spells": [
+        800818
+      ],
+      "targeting": "mask",
+      "mask": [
+        64,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "800818 Ember Touch cost_pct=20 range=40.0 eff0 HEAL v=83 eff1 TRIGGER_SPELL v=1 | mask_unique_bit=[64, 0, 0]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "Spammable direct heal."
+    },
+    {
+      "key": "pyro_ember_touch_cost",
+      "name": "Ember Touch: -10% resource cost",
+      "spec_id": 0,
+      "target_spell": 800818,
+      "affected_spells": [
+        800818
+      ],
+      "targeting": "mask",
+      "mask": [
+        64,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "800818 Ember Touch cost_pct=20 range=40.0 eff0 HEAL v=83 eff1 TRIGGER_SPELL v=1 | mask_unique_bit=[64, 0, 0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "pyro_ember_touch_range",
+      "name": "Ember Touch: +10% range",
+      "spec_id": 0,
+      "target_spell": 800818,
+      "affected_spells": [
+        800818
+      ],
+      "targeting": "mask",
+      "mask": [
+        64,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "800818 Ember Touch cost_pct=20 range=40.0 eff0 HEAL v=83 eff1 TRIGGER_SPELL v=1 | mask_unique_bit=[64, 0, 0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "pyro_essence_of_malygos_dur",
+      "name": "Essence of Malygos: +20% duration",
+      "spec_id": 0,
+      "target_spell": 802120,
+      "affected_spells": [
+        802120
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "802120 Essence of Malygos cd=120000 catcd=120000 dur=6000 range=30.0 eff0 PERIODIC_ENERGIZE v=4 per=1000",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "6 s periodic mana energize buff."
+    },
+    {
+      "key": "pyro_meteor_cost",
+      "name": "Meteor: -10% resource cost",
+      "spec_id": 0,
+      "target_spell": 500135,
+      "affected_spells": [
+        500135
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        512,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "500135 Meteor catcd=30000 cost_pct=15 range=35.0 radius=[8.0] eff0 TRIGGER_SPELL_WITH_VALUE v=122 r=8.0 | mask_unique_bit=[0, 512, 0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "pyro_meteor_crit",
+      "name": "Meteor: +4% critical strike chance",
+      "spec_id": 0,
+      "target_spell": 804076,
+      "affected_spells": [
+        804076
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "804076 Meteor dur=1000 range=100.0 eff0 SCHOOL_DAMAGE v=1 | child of 500135 via 500135",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "pyro_meteor_radius",
+      "name": "Meteor: +1 yd radius",
+      "spec_id": 0,
+      "target_spell": 500135,
+      "affected_spells": [
+        500135
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        512,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "500135 Meteor catcd=30000 cost_pct=15 range=35.0 radius=[8.0] eff0 TRIGGER_SPELL_WITH_VALUE v=122 r=8.0 | mask_unique_bit=[0, 512, 0]",
+      "client_sensitive": false,
+      "confidence": "low",
+      "notes": "Parent selects targets in 8 yd and triggers 804076 per target."
+    },
+    {
+      "key": "pyro_meteor_range",
+      "name": "Meteor: +10% range",
+      "spec_id": 0,
+      "target_spell": 500135,
+      "affected_spells": [
+        500135
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        512,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "500135 Meteor catcd=30000 cost_pct=15 range=35.0 radius=[8.0] eff0 TRIGGER_SPELL_WITH_VALUE v=122 r=8.0 | mask_unique_bit=[0, 512, 0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "pyro_inferno_barrier_dur",
+      "name": "Inferno Barrier: +20% duration",
+      "spec_id": 0,
+      "target_spell": 504380,
+      "affected_spells": [
+        504380
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "504380 Inferno Barrier cd=20000 catcd=20000 cost_pct=23 dur=30000 range=40.0 eff0 SCHOOL_ABSORB v=84 eff1 PROC_TRIGGER_DAMAGE v=4",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "30 s absorb shield."
+    },
+    {
+      "key": "pyro_grace_of_alexstrasza_cost",
+      "name": "Grace of Alexstrasza: -10% resource cost",
+      "spec_id": 0,
+      "target_spell": 802167,
+      "affected_spells": [
+        802167
+      ],
+      "targeting": "mask",
+      "mask": [
+        32768,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "802167 Grace of Alexstrasza cd=300000 cost_pct=18 radius=[20.0] eff0 DUMMY v=100 r=20.0 eff1 TRIGGER_SPELL eff2 DISPEL_MECHANIC v=100 r=20.0 | mask_unique_bit=[32768, 0, 0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "pyro_grace_of_alexstrasza_radius",
+      "name": "Grace of Alexstrasza: +2 yd radius",
+      "spec_id": 0,
+      "target_spell": 802167,
+      "affected_spells": [
+        802167
+      ],
+      "targeting": "mask",
+      "mask": [
+        32768,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 2
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "802167 Grace of Alexstrasza cd=300000 cost_pct=18 radius=[20.0] eff0 DUMMY v=100 r=20.0 eff1 TRIGGER_SPELL eff2 DISPEL_MECHANIC v=100 r=20.0 | mask_unique_bit=[32768, 0, 0]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "pyro_grace_of_alexstrasza_dur",
+      "name": "Grace of Alexstrasza: +20% duration",
+      "spec_id": 0,
+      "target_spell": 803411,
+      "affected_spells": [
+        803411
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "803411 Grace of Alexstrasza cost_pct=18 dur=4000 range=50000.0 radius=[20.0] eff0 MECHANIC_IMMUNITY v=5 r=20.0 eff1 MECHANIC_IMMUNITY r=20.0 eff2 MECHANIC_IMMUNITY r=20.0 | child of 802167 via 802167",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "4 s group mechanic immunity."
+    },
+    {
+      "key": "pyro_gaze_of_ysera_cast",
+      "name": "Gaze of Ysera: -0.2 sec cast time",
+      "spec_id": 0,
+      "target_spell": 806148,
+      "affected_spells": [
+        806148
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        1073741824,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CASTING_TIME",
+          "type": "FLAT",
+          "value": -200
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "806148 Gaze of Ysera cast=1500 cd=90000 cost_pct=15 dur=40000 range=30.0 eff0 MOD_STUN v=1 eff1 DUMMY v=1 eff2 MOD_DAMAGE_PERCENT_TAKEN | mask_unique_bit=[0, 1073741824, 0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "pyro_gaze_of_ysera_cost",
+      "name": "Gaze of Ysera: -10% resource cost",
+      "spec_id": 0,
+      "target_spell": 806148,
+      "affected_spells": [
+        806148
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        1073741824,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "806148 Gaze of Ysera cast=1500 cd=90000 cost_pct=15 dur=40000 range=30.0 eff0 MOD_STUN v=1 eff1 DUMMY v=1 eff2 MOD_DAMAGE_PERCENT_TAKEN | mask_unique_bit=[0, 1073741824, 0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "pyro_gaze_of_ysera_dur",
+      "name": "Gaze of Ysera: +15% duration",
+      "spec_id": 0,
+      "target_spell": 806148,
+      "affected_spells": [
+        806148
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        1073741824,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "806148 Gaze of Ysera cast=1500 cd=90000 cost_pct=15 dur=40000 range=30.0 eff0 MOD_STUN v=1 eff1 DUMMY v=1 eff2 MOD_DAMAGE_PERCENT_TAKEN | mask_unique_bit=[0, 1073741824, 0]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "40 s stun/sleep CC."
+    },
+    {
+      "key": "pyro_gaze_of_ysera_range",
+      "name": "Gaze of Ysera: +10% range",
+      "spec_id": 0,
+      "target_spell": 806148,
+      "affected_spells": [
+        806148
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        1073741824,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "806148 Gaze of Ysera cast=1500 cd=90000 cost_pct=15 dur=40000 range=30.0 eff0 MOD_STUN v=1 eff1 DUMMY v=1 eff2 MOD_DAMAGE_PERCENT_TAKEN | mask_unique_bit=[0, 1073741824, 0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "pyro_emberheart_cost",
+      "name": "Emberheart: -10% resource cost",
+      "spec_id": 37,
+      "target_spell": 680378,
+      "affected_spells": [
+        680378
+      ],
+      "targeting": "mask",
+      "mask": [
+        33554432,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "680378 Emberheart cd=120000 cost_pct=15 dur=15000 range=40.0 radius=[30.0, 40.0] eff0 MOD_INCREASE_SPEED v=30 r=40.0 eff1 MOD_CRIT_PCT r=30.0 eff2 PROC_TRIGGER_SPELL r=30.0 | mask_unique_bit=[33554432, 0, 0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "pyro_emberheart_dur",
+      "name": "Emberheart: +20% duration",
+      "spec_id": 37,
+      "target_spell": 680378,
+      "affected_spells": [
+        680378
+      ],
+      "targeting": "mask",
+      "mask": [
+        33554432,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "680378 Emberheart cd=120000 cost_pct=15 dur=15000 range=40.0 radius=[30.0, 40.0] eff0 MOD_INCREASE_SPEED v=30 r=40.0 eff1 MOD_CRIT_PCT r=30.0 eff2 PROC_TRIGGER_SPELL r=30.0 | mask_unique_bit=[33554432, 0, 0]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "15 s group speed/crit buff."
+    },
+    {
+      "key": "pyro_emberheart_radius",
+      "name": "Emberheart: +2 yd radius",
+      "spec_id": 37,
+      "target_spell": 680378,
+      "affected_spells": [
+        680378
+      ],
+      "targeting": "mask",
+      "mask": [
+        33554432,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 2
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "680378 Emberheart cd=120000 cost_pct=15 dur=15000 range=40.0 radius=[30.0, 40.0] eff0 MOD_INCREASE_SPEED v=30 r=40.0 eff1 MOD_CRIT_PCT r=30.0 eff2 PROC_TRIGGER_SPELL r=30.0 | mask_unique_bit=[33554432, 0, 0]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "pyro_emberheart_crit",
+      "name": "Emberheart: +4% critical strike chance",
+      "spec_id": 37,
+      "target_spell": 680366,
+      "affected_spells": [
+        680366
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "680366 Emberheart range=50000.0 eff0 SCHOOL_DAMAGE v=119 | child of 680378 via 680378",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "pyro_sunstrider_array_dur",
+      "name": "Sunstrider Array: +20% duration",
+      "spec_id": 37,
+      "target_spell": 804230,
+      "affected_spells": [
+        804230
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "804230 Sunstrider Array cd=60000 cost_pct=15 dur=15000 eff0 PERIODIC_TRIGGER_SPELL per=3000 eff1 PROC_TRIGGER_SPELL v=1",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "15 s periodic Ember generator buff."
+    },
+    {
+      "key": "pyro_cleansing_flames_crit",
+      "name": "Cleansing Flames: +4% critical strike chance",
+      "spec_id": 37,
+      "target_spell": 681142,
+      "affected_spells": [
+        681142,
+        681141
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "681142 Cleansing Flames range=50000.0 radius=[15.0] eff0 SCHOOL_DAMAGE v=1 r=15.0 | 681141 Cleansing Flames range=50000.0 radius=[15.0] eff0 HEAL v=1 r=15.0 | child of 681145 via 681145",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "pyro_cleansing_flames_radius",
+      "name": "Cleansing Flames: +2 yd radius",
+      "spec_id": 37,
+      "target_spell": 681142,
+      "affected_spells": [
+        681142,
+        681141
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 2
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "681142 Cleansing Flames range=50000.0 radius=[15.0] eff0 SCHOOL_DAMAGE v=1 r=15.0 | 681141 Cleansing Flames range=50000.0 radius=[15.0] eff0 HEAL v=1 r=15.0 | child of 681145 via 681145",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "pyro_ignite_cost",
+      "name": "Ignite: -10% resource cost",
+      "spec_id": 38,
+      "target_spell": 800791,
+      "affected_spells": [
+        800791
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        256,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "800791 Ignite cast=1500 cost_pct=12 dur=21000 range=35.0 radius=[8.0] periodic=true eff0 PERIODIC_DAMAGE v=25 per=3000 r=8.0 eff1 MOD_DAMAGE_FROM_CASTER r=8.0 | mask_unique_bit=[0, 256, 0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "pyro_ignite_dur",
+      "name": "Ignite: +15% duration",
+      "spec_id": 38,
+      "target_spell": 800791,
+      "affected_spells": [
+        800791
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        256,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "800791 Ignite cast=1500 cost_pct=12 dur=21000 range=35.0 radius=[8.0] periodic=true eff0 PERIODIC_DAMAGE v=25 per=3000 r=8.0 eff1 MOD_DAMAGE_FROM_CASTER r=8.0 | mask_unique_bit=[0, 256, 0]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "21 s DoT."
+    },
+    {
+      "key": "pyro_ignite_radius",
+      "name": "Ignite: +1 yd radius",
+      "spec_id": 38,
+      "target_spell": 800791,
+      "affected_spells": [
+        800791
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        256,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "800791 Ignite cast=1500 cost_pct=12 dur=21000 range=35.0 radius=[8.0] periodic=true eff0 PERIODIC_DAMAGE v=25 per=3000 r=8.0 eff1 MOD_DAMAGE_FROM_CASTER r=8.0 | mask_unique_bit=[0, 256, 0]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "pyro_ignite_range",
+      "name": "Ignite: +10% range",
+      "spec_id": 38,
+      "target_spell": 800791,
+      "affected_spells": [
+        800791
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        256,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "800791 Ignite cast=1500 cost_pct=12 dur=21000 range=35.0 radius=[8.0] periodic=true eff0 PERIODIC_DAMAGE v=25 per=3000 r=8.0 eff1 MOD_DAMAGE_FROM_CASTER r=8.0 | mask_unique_bit=[0, 256, 0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "pyro_pyroclasm_cost",
+      "name": "Pyroclasm: -10% resource cost",
+      "spec_id": 38,
+      "target_spell": 520019,
+      "affected_spells": [
+        520019
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        512
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "520019 Pyroclasm cd=60000 cost_pct=20 range=40.0 eff0 DUMMY v=1 | mask_unique_bit=[0, 0, 512]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "pyro_pyroclasm_range",
+      "name": "Pyroclasm: +10% range",
+      "spec_id": 38,
+      "target_spell": 520019,
+      "affected_spells": [
+        520019
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        512
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "520019 Pyroclasm cd=60000 cost_pct=20 range=40.0 eff0 DUMMY v=1 | mask_unique_bit=[0, 0, 512]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "pyro_pillar_of_flame_cast",
+      "name": "Pillar of Flame: -0.2 sec cast time",
+      "spec_id": 38,
+      "target_spell": 805496,
+      "affected_spells": [
+        805496
+      ],
+      "targeting": "mask",
+      "mask": [
+        1073741824,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CASTING_TIME",
+          "type": "FLAT",
+          "value": -200
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "805496 Pillar of Flame cast=1500 cd=20000 catcd=20000 cost_pct=19 range=35.0 radius=[8.0] eff0 SCHOOL_DAMAGE v=36 eff1 SCHOOL_DAMAGE v=92 r=8.0 | mask_unique_bit=[1073741824, 0, 0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "pyro_pillar_of_flame_crit",
+      "name": "Pillar of Flame: +4% critical strike chance",
+      "spec_id": 38,
+      "target_spell": 805496,
+      "affected_spells": [
+        805496
+      ],
+      "targeting": "mask",
+      "mask": [
+        1073741824,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "805496 Pillar of Flame cast=1500 cd=20000 catcd=20000 cost_pct=19 range=35.0 radius=[8.0] eff0 SCHOOL_DAMAGE v=36 eff1 SCHOOL_DAMAGE v=92 r=8.0 | mask_unique_bit=[1073741824, 0, 0]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "pyro_pillar_of_flame_cost",
+      "name": "Pillar of Flame: -10% resource cost",
+      "spec_id": 38,
+      "target_spell": 805496,
+      "affected_spells": [
+        805496
+      ],
+      "targeting": "mask",
+      "mask": [
+        1073741824,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "805496 Pillar of Flame cast=1500 cd=20000 catcd=20000 cost_pct=19 range=35.0 radius=[8.0] eff0 SCHOOL_DAMAGE v=36 eff1 SCHOOL_DAMAGE v=92 r=8.0 | mask_unique_bit=[1073741824, 0, 0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "pyro_pillar_of_flame_radius",
+      "name": "Pillar of Flame: +1 yd radius",
+      "spec_id": 38,
+      "target_spell": 805496,
+      "affected_spells": [
+        805496
+      ],
+      "targeting": "mask",
+      "mask": [
+        1073741824,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "805496 Pillar of Flame cast=1500 cd=20000 catcd=20000 cost_pct=19 range=35.0 radius=[8.0] eff0 SCHOOL_DAMAGE v=36 eff1 SCHOOL_DAMAGE v=92 r=8.0 | mask_unique_bit=[1073741824, 0, 0]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "pyro_pillar_of_flame_range",
+      "name": "Pillar of Flame: +10% range",
+      "spec_id": 38,
+      "target_spell": 805496,
+      "affected_spells": [
+        805496
+      ],
+      "targeting": "mask",
+      "mask": [
+        1073741824,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "805496 Pillar of Flame cast=1500 cd=20000 catcd=20000 cost_pct=19 range=35.0 radius=[8.0] eff0 SCHOOL_DAMAGE v=36 eff1 SCHOOL_DAMAGE v=92 r=8.0 | mask_unique_bit=[1073741824, 0, 0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "pyro_fired_up_cost",
+      "name": "Fired Up!: -10% resource cost",
+      "spec_id": 38,
+      "target_spell": 704823,
+      "affected_spells": [
+        704823
+      ],
+      "targeting": "mask",
+      "mask": [
+        1024,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "704823 Fired Up! cd=60000 cost_pct=10 dur=15000 eff0 ADD_PCT_MODIFIER v=-100 eff1 PROC_TRIGGER_SPELL eff2 MOD_SPELL_CRIT_CHANCE v=30 | mask_unique_bit=[1024, 0, 0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "pyro_fired_up_dur",
+      "name": "Fired Up!: +20% duration",
+      "spec_id": 38,
+      "target_spell": 704823,
+      "affected_spells": [
+        704823
+      ],
+      "targeting": "mask",
+      "mask": [
+        1024,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "704823 Fired Up! cd=60000 cost_pct=10 dur=15000 eff0 ADD_PCT_MODIFIER v=-100 eff1 PROC_TRIGGER_SPELL eff2 MOD_SPELL_CRIT_CHANCE v=30 | mask_unique_bit=[1024, 0, 0]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "15 s buff (+30% spell crit)."
+    },
+    {
+      "key": "pyro_destroyers_maw_crit",
+      "name": "Destroyer's Maw: +4% critical strike chance",
+      "spec_id": 39,
+      "target_spell": 802107,
+      "affected_spells": [
+        802107
+      ],
+      "targeting": "mask",
+      "mask": [
+        134217728,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "802107 Destroyer's Maw cast=2000 cd=15000 catcd=15000 cost_pct=9 range=35.0 eff0 SCHOOL_DAMAGE v=144 | mask_unique_bit=[134217728, 0, 0]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "pyro_destroyers_maw_cost",
+      "name": "Destroyer's Maw: -10% resource cost",
+      "spec_id": 39,
+      "target_spell": 802107,
+      "affected_spells": [
+        802107
+      ],
+      "targeting": "mask",
+      "mask": [
+        134217728,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "802107 Destroyer's Maw cast=2000 cd=15000 catcd=15000 cost_pct=9 range=35.0 eff0 SCHOOL_DAMAGE v=144 | mask_unique_bit=[134217728, 0, 0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "pyro_destroyers_maw_range",
+      "name": "Destroyer's Maw: +10% range",
+      "spec_id": 39,
+      "target_spell": 802107,
+      "affected_spells": [
+        802107
+      ],
+      "targeting": "mask",
+      "mask": [
+        134217728,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "802107 Destroyer's Maw cast=2000 cd=15000 catcd=15000 cost_pct=9 range=35.0 eff0 SCHOOL_DAMAGE v=144 | mask_unique_bit=[134217728, 0, 0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "pyro_death_from_above_dot",
+      "name": "Death From Above: +10% periodic damage and healing",
+      "spec_id": 39,
+      "target_spell": 520403,
+      "affected_spells": [
+        520403
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DOT",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "520403 Death From Above dur=10000 range=50000.0 radius=[15.0] periodic=true eff0 PERIODIC_DAMAGE v=526 per=1000 r=15.0 | child of 520402 via 520404",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "Periodic damage child (newly periodic in generator)."
+    },
+    {
+      "key": "pyro_death_from_above_dur",
+      "name": "Death From Above: +20% duration",
+      "spec_id": 39,
+      "target_spell": 520404,
+      "affected_spells": [
+        520404
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "520404 Death From Above dur=10000 radius=[2.0] eff0 DUMMY v=40 eff1 PERIODIC_TRIGGER_SPELL v=1 per=500 r=2.0 eff2 PERIODIC_TRIGGER_SPELL v=1 per=1000 | child of 520402 via 520402",
+      "client_sensitive": false,
+      "confidence": "low",
+      "notes": "10 s ground area that pulses the DoT child."
+    },
+    {
+      "key": "pyro_death_from_above_radius",
+      "name": "Death From Above: +2 yd radius",
+      "spec_id": 39,
+      "target_spell": 520403,
+      "affected_spells": [
+        520403,
+        520808
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 2
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "520403 Death From Above dur=10000 range=50000.0 radius=[15.0] periodic=true eff0 PERIODIC_DAMAGE v=526 per=1000 r=15.0 | 520808 Death From Above range=50000.0 radius=[15.0] eff0 DUMMY v=626 r=15.0 | child of 520402 via 520404",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "pyro_firefall_cast",
+      "name": "Firefall: -0.2 sec cast time",
+      "spec_id": 39,
+      "target_spell": 801905,
+      "affected_spells": [
+        801905
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        8192
+      ],
+      "effects": [
+        {
+          "op": "CASTING_TIME",
+          "type": "FLAT",
+          "value": -200
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "801905 Firefall cast=1500 cd=8000 catcd=8000 cost_pct=12 range=35.0 radius=[15.0] eff0 SCHOOL_DAMAGE v=107 chain=8 r=15.0 | mask_unique_bit=[0, 0, 8192]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "pyro_firefall_crit",
+      "name": "Firefall: +4% critical strike chance",
+      "spec_id": 39,
+      "target_spell": 801905,
+      "affected_spells": [
+        801905
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        8192
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "801905 Firefall cast=1500 cd=8000 catcd=8000 cost_pct=12 range=35.0 radius=[15.0] eff0 SCHOOL_DAMAGE v=107 chain=8 r=15.0 | mask_unique_bit=[0, 0, 8192]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "pyro_firefall_cost",
+      "name": "Firefall: -10% resource cost",
+      "spec_id": 39,
+      "target_spell": 801905,
+      "affected_spells": [
+        801905
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        8192
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "801905 Firefall cast=1500 cd=8000 catcd=8000 cost_pct=12 range=35.0 radius=[15.0] eff0 SCHOOL_DAMAGE v=107 chain=8 r=15.0 | mask_unique_bit=[0, 0, 8192]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "pyro_firefall_jump",
+      "name": "Firefall: +1 additional target",
+      "spec_id": 39,
+      "target_spell": 801905,
+      "affected_spells": [
+        801905
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        8192
+      ],
+      "effects": [
+        {
+          "op": "JUMP_TARGETS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "801905 Firefall cast=1500 cd=8000 catcd=8000 cost_pct=12 range=35.0 radius=[15.0] eff0 SCHOOL_DAMAGE v=107 chain=8 r=15.0 | mask_unique_bit=[0, 0, 8192]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "pyro_firefall_radius",
+      "name": "Firefall: +2 yd radius",
+      "spec_id": 39,
+      "target_spell": 801905,
+      "affected_spells": [
+        801905
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        8192
+      ],
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 2
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "801905 Firefall cast=1500 cd=8000 catcd=8000 cost_pct=12 range=35.0 radius=[15.0] eff0 SCHOOL_DAMAGE v=107 chain=8 r=15.0 | mask_unique_bit=[0, 0, 8192]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "pyro_firefall_range",
+      "name": "Firefall: +10% range",
+      "spec_id": 39,
+      "target_spell": 801905,
+      "affected_spells": [
+        801905
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        8192
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "801905 Firefall cast=1500 cd=8000 catcd=8000 cost_pct=12 range=35.0 radius=[15.0] eff0 SCHOOL_DAMAGE v=107 chain=8 r=15.0 | mask_unique_bit=[0, 0, 8192]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "pyro_aspects_blessing_dur",
+      "name": "Aspect's Blessing: +20% duration",
+      "spec_id": 39,
+      "target_spell": 802168,
+      "affected_spells": [
+        802168
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "802168 Aspect's Blessing cd=60000 cost_pct=15 dur=15000 eff0 ADD_FLAT_MODIFIER v=100 eff1 ADD_FLAT_MODIFIER eff2 ADD_FLAT_MODIFIER v=67",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "15 s buff."
+    },
+    {
+      "key": "pyro_melt_weapon_dur",
+      "name": "Breath of Neltharion (Melt Weapon): +20% duration",
+      "spec_id": 39,
+      "target_spell": 301235,
+      "affected_spells": [
+        301235
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "301235 Melt Weapon dur=6000 range=50000.0 eff0 MOD_DISARM v=4 eff1 MOD_DISARM_OFFHAND v=4 eff2 MOD_DISARM_RANGED v=4 | child of 511109 via 511109",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "6 s disarm."
+    },
+    {
+      "key": "pyro_breath_of_neltharion_radius",
+      "name": "Breath of Neltharion: +1 yd radius",
+      "spec_id": 39,
+      "target_spell": 511109,
+      "affected_spells": [
+        511109
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "511109 Breath of Neltharion cd=90000 catcd=90000 cost_pct=18 radius=[10.0] eff0 TRIGGER_SPELL v=170 r=10.0",
+      "client_sensitive": false,
+      "confidence": "medium",
       "notes": ""
     }
   ],

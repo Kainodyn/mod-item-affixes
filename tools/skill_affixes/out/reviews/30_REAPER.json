@@ -1,7 +1,7 @@
 {
   "class_id": 30,
   "class": "REAPER",
-  "reviewed_at": "2026-11-23",
+  "reviewed_at": "2026-11-24",
   "affixes": [
     {
       "key": "reaper_limbo_cd",
@@ -794,6 +794,790 @@
       "evidence": "803992 Dreadwake; cost=300; radius=[12.0]; mask_unique_bit=[0, 1073741824, 0] fam=36; eff 0:NORMALIZED_WEAPON_DMG v=5, 1:WEAPON_PERCENT_DAMAGE v=80",
       "client_sensitive": false,
       "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "reaper_ghastly_screech_cost",
+      "name": "Ghastly Screech: -10% resource cost",
+      "spec_id": 0,
+      "target_spell": 806146,
+      "affected_spells": [
+        806146
+      ],
+      "targeting": "mask",
+      "mask": [
+        16384,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "806146 Ghastly Screech; cd=90000; catcd=90000; dur=4000; cost=200; radius=[8.0]; eff 0:INTERRUPT_CAST, 1:APPLY_AURA/MOD_SILENCE, 2:APPLY_AURA/PERIODIC_TRIGGER_SPELL_WITH_VALUE v=90; mask_unique_bit=[16384, 0, 0] fam=36",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "reaper_ghastly_screech_radius",
+      "name": "Ghastly Screech: +15% radius",
+      "spec_id": 0,
+      "target_spell": 806146,
+      "affected_spells": [
+        806146
+      ],
+      "targeting": "mask",
+      "mask": [
+        16384,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "806146 Ghastly Screech; cd=90000; catcd=90000; dur=4000; cost=200; radius=[8.0]; eff 0:INTERRUPT_CAST, 1:APPLY_AURA/MOD_SILENCE, 2:APPLY_AURA/PERIODIC_TRIGGER_SPELL_WITH_VALUE v=90; mask_unique_bit=[16384, 0, 0] fam=36",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "reaper_ghastly_screech_dur",
+      "name": "Ghastly Screech: +0.5 sec duration",
+      "spec_id": 0,
+      "target_spell": 806146,
+      "affected_spells": [
+        806146
+      ],
+      "targeting": "mask",
+      "mask": [
+        16384,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 500
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "806146 Ghastly Screech; cd=90000; catcd=90000; dur=4000; cost=200; radius=[8.0]; eff 0:INTERRUPT_CAST, 1:APPLY_AURA/MOD_SILENCE, 2:APPLY_AURA/PERIODIC_TRIGGER_SPELL_WITH_VALUE v=90; mask_unique_bit=[16384, 0, 0] fam=36",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "Silence 4 sec -> 4.5 sec; periodic trigger per3800 still ticks once."
+    },
+    {
+      "key": "reaper_ghastly_screech_crit",
+      "name": "Ghastly Screech: +4% critical strike chance",
+      "spec_id": 0,
+      "target_spell": 806147,
+      "affected_spells": [
+        806147
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "806147 Ghastly Screech (trigger child via 806146); range=50000.0; eff 0:SCHOOL_DAMAGE v=81",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "reaper_limbo_dur",
+      "name": "Limbo: +1 sec duration",
+      "spec_id": 0,
+      "target_spell": 800845,
+      "affected_spells": [
+        800845
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        16
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 1000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "800845 Limbo; cd=180000; catcd=180000; dur=6000; eff 0:DUMMY v=30, 1:ENERGIZE_PCT v=30, 2:APPLY_AURA/SCHOOL_IMMUNITY; mask_unique_bit=[0, 0, 16] fam=36",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "Spell immunity 6 sec -> 7 sec."
+    },
+    {
+      "key": "reaper_jailer_s_bargain_dur",
+      "name": "Jailer's Bargain: +15% duration",
+      "spec_id": 0,
+      "target_spell": 805718,
+      "affected_spells": [
+        805718
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "805718 Jailer's Bargain; cd=120000; dur=10000; eff 0:APPLY_AURA/SCHOOL_ABSORB v=1, 1:APPLY_AURA/MECHANIC_IMMUNITY v=1, 2:APPLY_AURA/MECHANIC_IMMUNITY v=1",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "reaper_wraithblade_cost",
+      "name": "Wraithblade: -10% resource cost",
+      "spec_id": 0,
+      "target_spell": 805258,
+      "affected_spells": [
+        805258
+      ],
+      "targeting": "mask",
+      "mask": [
+        2,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "805258 Wraithblade; catcd=30000; cost=400; range=5.0; eff 0:NORMALIZED_WEAPON_DMG, 1:SCHOOL_DAMAGE v=36, 2:WEAPON_PERCENT_DAMAGE v=150; mask_unique_bit=[2, 0, 0] fam=36",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "reaper_tormented_souls_dur",
+      "name": "Tormented Souls: +15% duration",
+      "spec_id": 0,
+      "target_spell": 500481,
+      "affected_spells": [
+        500481
+      ],
+      "targeting": "mask",
+      "mask": [
+        8192,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "500481 Tormented Souls (trigger child via 500483); dur=20000; eff 0:APPLY_AURA/MOD_DAMAGE_PERCENT_TAKEN v=-10, 1:APPLY_AURA/PROC_TRIGGER_SPELL, 2:TRIGGER_SPELL; mask_unique_bit=[8192, 0, 0] fam=36",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "reaper_tormented_souls_crit",
+      "name": "Tormented Souls: +4% critical strike chance",
+      "spec_id": 0,
+      "target_spell": 500482,
+      "affected_spells": [
+        500482
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "500482 Tormented Soul (trigger child via 500481); range=100.0; eff 0:HEAL v=10",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "reaper_masochistic_rage_dur",
+      "name": "Masochistic Rage: +15% duration",
+      "spec_id": 0,
+      "target_spell": 570097,
+      "affected_spells": [
+        570097
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "570097 Masochistic Rage (trigger child via 803030); dur=15000; eff 0:SCHOOL_DAMAGE v=420, 1:APPLY_AURA/MOD_DAMAGE_PERCENT_DONE v=20",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "reaper_ghostly_weapon_cost",
+      "name": "Ghostly Weapon: -10% resource cost",
+      "spec_id": 55,
+      "target_spell": 803997,
+      "affected_spells": [
+        803997
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        1073741824
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "803997 Ghostly Weapon; dur=15000; cost=200; eff 0:APPLY_AURA/ASCENSION_PROC_PERCENT_EVENT v=25, 1:APPLY_AURA/ADD_PCT_MODIFIER, 2:APPLY_AURA/ADD_FLAT_MODIFIER; mask_unique_bit=[0, 0, 1073741824] fam=36",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "reaper_ghostly_weapon_crit",
+      "name": "Ghostly Weapon: +4% critical strike chance",
+      "spec_id": 55,
+      "target_spell": 804474,
+      "affected_spells": [
+        804474
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        1048576
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "804474 Ghostly Weapon (trigger child via 803997); range=50000.0; eff 0:SCHOOL_DAMAGE v=1 chain=1; mask_unique_bit=[0, 0, 1048576] fam=36",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "reaper_shade_dur",
+      "name": "Shade: +15% duration",
+      "spec_id": 55,
+      "target_spell": 573038,
+      "affected_spells": [
+        573038
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "573038 Shade; cd=180000; catcd=180000; dur=10000; eff 0:APPLY_AURA/TRANSFORM v=1, 1:ASCENSION_TRIGGER_SPELL_DELAYED/DUMMY v=260, 2:APPLY_AURA/MOD_STEALTH v=300",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "reaper_endbringer_dur",
+      "name": "Endbringer: +15% duration",
+      "spec_id": 55,
+      "target_spell": 800922,
+      "affected_spells": [
+        800922
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        1024
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "800922 Endbringer; cd=180000; dur=15000; eff 0:APPLY_AURA/PROC_TRIGGER_SPELL, 1:APPLY_AURA/ADD_FLAT_MODIFIER v=20, 2:APPLY_AURA/ADD_PCT_MODIFIER v=30; mask_unique_bit=[0, 0, 1024] fam=36",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "reaper_siphon_essence_crit",
+      "name": "Siphon Essence: +4% critical strike chance",
+      "spec_id": 56,
+      "target_spell": 806125,
+      "affected_spells": [
+        806125
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "806125 Siphon Essence; cd=20000; catcd=20000; dur=3000; range=5.0; eff 0:INTERRUPT_CAST v=1, 1:HEALTH_LEECH v=22",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "reaper_doomrend_crit",
+      "name": "Doomrend: +4% critical strike chance",
+      "spec_id": 56,
+      "target_spell": 800172,
+      "affected_spells": [
+        800172
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        4194304
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "800172 Doomrend; range=5.0; eff 0:SCHOOL_DAMAGE v=17, 1:WEAPON_PERCENT_DAMAGE v=140, 2:TRIGGER_SPELL_WITH_VALUE v=75; mask_unique_bit=[0, 0, 4194304] fam=36",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "reaper_slaughter_cost",
+      "name": "Slaughter: -10% resource cost",
+      "spec_id": 56,
+      "target_spell": 500373,
+      "affected_spells": [
+        500373
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        33554432,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "500373 Slaughter; cost=200; range=5.0; eff 0:NORMALIZED_WEAPON_DMG v=17, 1:WEAPON_PERCENT_DAMAGE v=150, 2:TRIGGER_SPELL; mask_unique_bit=[0, 33554432, 0] fam=36",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "reaper_slaughter_crit",
+      "name": "Slaughter: +4% critical strike chance",
+      "spec_id": 56,
+      "target_spell": 500373,
+      "affected_spells": [
+        500373
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        33554432,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "500373 Slaughter; cost=200; range=5.0; eff 0:NORMALIZED_WEAPON_DMG v=17, 1:WEAPON_PERCENT_DAMAGE v=150, 2:TRIGGER_SPELL; mask_unique_bit=[0, 33554432, 0] fam=36",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "reaper_crow_s_harvest_cost",
+      "name": "Crow's Harvest: -10% resource cost",
+      "spec_id": 56,
+      "target_spell": 504011,
+      "affected_spells": [
+        504011
+      ],
+      "targeting": "mask",
+      "mask": [
+        2097152,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "504011 Crow's Harvest; cost=300; range=5.0; radius=[8.0]; eff 0:WEAPON_PERCENT_DAMAGE v=75, 1:NORMALIZED_WEAPON_DMG v=8, 2:TRIGGER_SPELL; mask_unique_bit=[2097152, 0, 0] fam=36",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "reaper_crow_s_harvest_crit",
+      "name": "Crow's Harvest: +3% critical strike chance",
+      "spec_id": 56,
+      "target_spell": 504011,
+      "affected_spells": [
+        504011
+      ],
+      "targeting": "mask",
+      "mask": [
+        2097152,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "504011 Crow's Harvest; cost=300; range=5.0; radius=[8.0]; eff 0:WEAPON_PERCENT_DAMAGE v=75, 1:NORMALIZED_WEAPON_DMG v=8, 2:TRIGGER_SPELL; mask_unique_bit=[2097152, 0, 0] fam=36",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "reaper_crow_s_harvest_radius",
+      "name": "Crow's Harvest: +15% radius",
+      "spec_id": 56,
+      "target_spell": 504011,
+      "affected_spells": [
+        504011
+      ],
+      "targeting": "mask",
+      "mask": [
+        2097152,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "504011 Crow's Harvest; cost=300; range=5.0; radius=[8.0]; eff 0:WEAPON_PERCENT_DAMAGE v=75, 1:NORMALIZED_WEAPON_DMG v=8, 2:TRIGGER_SPELL; mask_unique_bit=[2097152, 0, 0] fam=36",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "reaper_bolstered_form_dur",
+      "name": "Bolstered Form: +15% duration",
+      "spec_id": 57,
+      "target_spell": 680337,
+      "affected_spells": [
+        680337
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        131072
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "680337 Bolstered Form; cd=60000; dur=15000; eff 0:APPLY_AURA/MOD_RESISTANCE_PCT v=30, 1:TRIGGER_SPELL v=1, 2:APPLY_AURA/MOD_PARRY_PERCENT v=30; mask_unique_bit=[0, 0, 131072] fam=36",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "reaper_requiem_crit",
+      "name": "Requiem: +3% critical strike chance",
+      "spec_id": 57,
+      "target_spell": 805717,
+      "affected_spells": [
+        805717
+      ],
+      "targeting": "mask",
+      "mask": [
+        256,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "805717 Requiem; radius=[8.0]; eff 0:SCHOOL_DAMAGE v=67, 1:TRIGGER_SPELL v=1; mask_unique_bit=[256, 0, 0] fam=36",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "reaper_requiem_radius",
+      "name": "Requiem: +15% radius",
+      "spec_id": 57,
+      "target_spell": 805717,
+      "affected_spells": [
+        805717
+      ],
+      "targeting": "mask",
+      "mask": [
+        256,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "805717 Requiem; radius=[8.0]; eff 0:SCHOOL_DAMAGE v=67, 1:TRIGGER_SPELL v=1; mask_unique_bit=[256, 0, 0] fam=36",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "reaper_requiem_dur",
+      "name": "Requiem: +15% duration",
+      "spec_id": 57,
+      "target_spell": 572179,
+      "affected_spells": [
+        572179
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "572179 Requiem (trigger child via 805717); dur=15000; range=50000.0; eff 0:APPLY_AURA/MOD_MELEE_RANGED_HASTE v=-20",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "reaper_dreadwake_cost",
+      "name": "Dreadwake: -10% resource cost",
+      "spec_id": 57,
+      "target_spell": 803992,
+      "affected_spells": [
+        803992
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        1073741824,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "803992 Dreadwake; cost=300; radius=[12.0]; eff 0:NORMALIZED_WEAPON_DMG v=5, 1:WEAPON_PERCENT_DAMAGE v=80; mask_unique_bit=[0, 1073741824, 0] fam=36",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "reaper_dreadwake_crit",
+      "name": "Dreadwake: +3% critical strike chance",
+      "spec_id": 57,
+      "target_spell": 803992,
+      "affected_spells": [
+        803992
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        1073741824,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "803992 Dreadwake; cost=300; radius=[12.0]; eff 0:NORMALIZED_WEAPON_DMG v=5, 1:WEAPON_PERCENT_DAMAGE v=80; mask_unique_bit=[0, 1073741824, 0] fam=36",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "reaper_dreadwake_radius",
+      "name": "Dreadwake: +15% radius",
+      "spec_id": 57,
+      "target_spell": 803992,
+      "affected_spells": [
+        803992
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        1073741824,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "803992 Dreadwake; cost=300; radius=[12.0]; eff 0:NORMALIZED_WEAPON_DMG v=5, 1:WEAPON_PERCENT_DAMAGE v=80; mask_unique_bit=[0, 1073741824, 0] fam=36",
+      "client_sensitive": false,
+      "confidence": "medium",
       "notes": ""
     }
   ],

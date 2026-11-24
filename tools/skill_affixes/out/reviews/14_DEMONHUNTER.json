@@ -873,6 +873,1287 @@
       "client_sensitive": true,
       "confidence": "medium",
       "notes": ""
+    },
+    {
+      "key": "dh_whispers_of_the_pit_duration",
+      "name": "Whispers of the Pit: +15% duration",
+      "spec_id": 0,
+      "target_spell": 805235,
+      "affected_spells": [
+        805235,
+        807590
+      ],
+      "targeting": "mask",
+      "mask": [
+        2,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "805235 Whispers of the Pit; cd=60000; dur=8000; radius=[8.0]; range=30.0; eff=APPLY_AURA/MOD_FEAR,DUMMY,APPLY_AURA/MOD_DECREASE_SPEED; mask_unique_bit=[2, 0, 0]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary affix; CC/slow aura: +15% only"
+    },
+    {
+      "key": "dh_whispers_of_the_pit_radius",
+      "name": "Whispers of the Pit: +10% radius",
+      "spec_id": 0,
+      "target_spell": 805235,
+      "affected_spells": [
+        805235,
+        807590
+      ],
+      "targeting": "mask",
+      "mask": [
+        2,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "805235 Whispers of the Pit; cd=60000; dur=8000; radius=[8.0]; range=30.0; mask_unique_bit=[2, 0, 0]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "dh_whispers_of_the_pit_range",
+      "name": "Whispers of the Pit: +10% range",
+      "spec_id": 0,
+      "target_spell": 805235,
+      "affected_spells": [
+        805235,
+        807590
+      ],
+      "targeting": "mask",
+      "mask": [
+        2,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "805235 Whispers of the Pit; cd=60000; dur=8000; radius=[8.0]; range=30.0; mask_unique_bit=[2, 0, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "dh_reckoning_duration",
+      "name": "Reckoning: +20% duration",
+      "spec_id": 0,
+      "target_spell": 802058,
+      "affected_spells": [
+        802058,
+        524632
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "802058 Reckoning; cd=120000; dur=10000; eff=APPLY_AURA/ADD_PCT_MODIFIER,APPLY_AURA/ADD_FLAT_MODIFIER,APPLY_AURA/PROC_TRIGGER_SPELL | 524632 Reckoning; dur=15000; range=50000.0; eff=DUMMY/MOD_DAMAGE_PERCENT_TAKEN,APPLY_AURA/MOD_DAMAGE_PERCENT_DONE; via=802058; mask_unique_bit=None",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "dh_manaburn_range",
+      "name": "Manaburn: +10% range",
+      "spec_id": 0,
+      "target_spell": 805248,
+      "affected_spells": [
+        805248
+      ],
+      "targeting": "mask",
+      "mask": [
+        16777216,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "805248 Manaburn; cd=20000; range=30.0; mask_unique_bit=[16777216, 0, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "dh_annihilation_duration",
+      "name": "Annihilation: +20% duration",
+      "spec_id": 0,
+      "target_spell": 803904,
+      "affected_spells": [
+        803904
+      ],
+      "targeting": "mask",
+      "mask": [
+        536870912,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "803904 Annihilation; cd=60000; dur=12000; eff=APPLY_AURA/MOD_CRIT_PCT,APPLY_AURA/PROC_TRIGGER_SPELL; mask_unique_bit=[536870912, 0, 0]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "dh_felbane_cost",
+      "name": "Felbane: -10% Energy cost",
+      "spec_id": 0,
+      "target_spell": 525001,
+      "affected_spells": [
+        525001
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        8192,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "525001 Felbane; cd=30000; dur=4000; cost=15; range=20.0; mask_unique_bit=[0, 8192, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "dh_felbane_range",
+      "name": "Felbane: +10% range",
+      "spec_id": 0,
+      "target_spell": 525001,
+      "affected_spells": [
+        525001
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        8192,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "525001 Felbane; cd=30000; dur=4000; cost=15; range=20.0; mask_unique_bit=[0, 8192, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "dh_hateforged_barrier_duration",
+      "name": "Hateforged Barrier: +20% duration",
+      "spec_id": 0,
+      "target_spell": 705129,
+      "affected_spells": [
+        705129
+      ],
+      "targeting": "mask",
+      "mask": [
+        67108864,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "705129 Hateforged Barrier; dur=30000; eff=APPLY_AURA/SCHOOL_ABSORB,APPLY_AURA/MOD_DAMAGE_PERCENT_TAKEN; mask_unique_bit=[67108864, 0, 0]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "dh_skull_of_guldan_duration",
+      "name": "Skull of Gul'dan: +20% duration",
+      "spec_id": 0,
+      "target_spell": 800225,
+      "affected_spells": [
+        800225
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        64
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "800225 Skull of Gul'dan; cd=90000; dur=10000; eff=APPLY_AURA/MOD_INCREASE_HEALTH_PERCENT,APPLY_AURA/MOD_INCREASE_ENERGY_PERCENT; mask_unique_bit=[0, 0, 64]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "dh_felwrath_crit",
+      "name": "Felwrath: +4% critical strike chance",
+      "spec_id": 7,
+      "target_spell": 520236,
+      "affected_spells": [
+        520236
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        1073741824
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "520236 Felwrath; cast=1500; cost=30; radius=[8.0]; range=30.0; eff=SCHOOL_DAMAGE,APPLY_AURA/DUMMY,APPLY_AURA/MOD_DAMAGE_FROM_CASTER; mask_unique_bit=[0, 0, 1073741824]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "dh_felwrath_cost",
+      "name": "Felwrath: -10% Energy cost",
+      "spec_id": 7,
+      "target_spell": 520236,
+      "affected_spells": [
+        520236
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        1073741824
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "520236 Felwrath; cast=1500; cost=30; radius=[8.0]; range=30.0; mask_unique_bit=[0, 0, 1073741824]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "dh_felwrath_radius",
+      "name": "Felwrath: +10% radius",
+      "spec_id": 7,
+      "target_spell": 520236,
+      "affected_spells": [
+        520236
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        1073741824
+      ],
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "520236 Felwrath; cast=1500; cost=30; radius=[8.0]; range=30.0; mask_unique_bit=[0, 0, 1073741824]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "dh_felwrath_range",
+      "name": "Felwrath: +10% range",
+      "spec_id": 7,
+      "target_spell": 520236,
+      "affected_spells": [
+        520236
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        1073741824
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "520236 Felwrath; cast=1500; cost=30; radius=[8.0]; range=30.0; mask_unique_bit=[0, 0, 1073741824]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "dh_bane_of_chaos_crit",
+      "name": "Bane of Chaos: +4% critical strike chance",
+      "spec_id": 7,
+      "target_spell": 802676,
+      "affected_spells": [
+        802676
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "802676 Chaos; range=30.0; eff=SCHOOL_DAMAGE ch=1; via=803717; mask_unique_bit=None",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "dh_bane_of_chaos_duration",
+      "name": "Bane of Chaos: +20% duration",
+      "spec_id": 7,
+      "target_spell": 704368,
+      "affected_spells": [
+        704368
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "704368 Bane of Chaos; dur=21000; cost=40; range=30.0; eff=APPLY_AURA/PERIODIC_DAMAGE,APPLY_AURA/PERIODIC_TRIGGER_SPELL; periodic=true; mask_unique_bit=None",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "dh_ruin_crit",
+      "name": "Ruin: +4% critical strike chance",
+      "spec_id": 7,
+      "target_spell": 801895,
+      "affected_spells": [
+        801895
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        2,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "801895 Ruin; cast=2500; cost=30; range=30.0; eff=SCHOOL_DAMAGE,APPLY_AURA/SCHOOL_HEAL_ABSORB; mask_unique_bit=[0, 2, 0]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "dh_ruin_cost",
+      "name": "Ruin: -10% Energy cost",
+      "spec_id": 7,
+      "target_spell": 801895,
+      "affected_spells": [
+        801895
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        2,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "801895 Ruin; cast=2500; cost=30; range=30.0; mask_unique_bit=[0, 2, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "dh_ruin_range",
+      "name": "Ruin: +10% range",
+      "spec_id": 7,
+      "target_spell": 801895,
+      "affected_spells": [
+        801895
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        2,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "801895 Ruin; cast=2500; cost=30; range=30.0; mask_unique_bit=[0, 2, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "dh_felbreak_cost",
+      "name": "Felbreak: -10% Energy cost",
+      "spec_id": 7,
+      "target_spell": 800203,
+      "affected_spells": [
+        800203
+      ],
+      "targeting": "mask",
+      "mask": [
+        1024,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "800203 Felbreak; cd=18000; cast=500; dur=3000; cost=10; range=20.0; mask_unique_bit=[1024, 0, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "dh_felbreak_cast",
+      "name": "Felbreak: -10% cast time",
+      "spec_id": 7,
+      "target_spell": 800203,
+      "affected_spells": [
+        800203
+      ],
+      "targeting": "mask",
+      "mask": [
+        1024,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CASTING_TIME",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "800203 Felbreak; cd=18000; cast=500; dur=3000; cost=10; range=20.0; mask_unique_bit=[1024, 0, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "dh_felbreak_range",
+      "name": "Felbreak: +10% range",
+      "spec_id": 7,
+      "target_spell": 800203,
+      "affected_spells": [
+        800203
+      ],
+      "targeting": "mask",
+      "mask": [
+        1024,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "800203 Felbreak; cd=18000; cast=500; dur=3000; cost=10; range=20.0; mask_unique_bit=[1024, 0, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "dh_immolation_aura_crit",
+      "name": "Immolation Aura: +4% critical strike chance",
+      "spec_id": 8,
+      "target_spell": 800208,
+      "affected_spells": [
+        800208
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        512
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "800208 Immolation; radius=[5.0, 6.0]; range=50000.0; eff=SCHOOL_DAMAGE,APPLY_AURA/ASCENSION_MOD_ATTACK_POWER_FLAT; via=800207; mask_unique_bit=[0, 0, 512]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "dh_immolation_aura_cost",
+      "name": "Immolation Aura: -10% health cost",
+      "spec_id": 8,
+      "target_spell": 800207,
+      "affected_spells": [
+        800207
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        2048
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "800207 Immolation Aura; dur=60000; cost=10; mask_unique_bit=[0, 0, 2048]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "dh_immolation_aura_duration",
+      "name": "Immolation Aura: +20% duration",
+      "spec_id": 8,
+      "target_spell": 800207,
+      "affected_spells": [
+        800207
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        2048
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "800207 Immolation Aura; dur=60000; cost=10; eff=APPLY_AURA/PERIODIC_TRIGGER_SPELL_WITH_VALUE,APPLY_AURA/PERIODIC_DUMMY; mask_unique_bit=[0, 0, 2048]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "dh_immolation_aura_radius",
+      "name": "Immolation Aura: +10% radius",
+      "spec_id": 8,
+      "target_spell": 800208,
+      "affected_spells": [
+        800208
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        512
+      ],
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "800208 Immolation; radius=[5.0, 6.0]; range=50000.0; via=800207; mask_unique_bit=[0, 0, 512]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "dh_annihilan_strike_crit",
+      "name": "Annihilan Strike: +4% critical strike chance",
+      "spec_id": 8,
+      "target_spell": 801913,
+      "affected_spells": [
+        801913,
+        801914
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "801913 Annihilan Strike; cost=40; range=5.0; eff=WEAPON_PERCENT_DAMAGE; via=801903 | 801914 Annihilan Strike (Offhand); cost=40; range=5.0; eff=WEAPON_PERCENT_DAMAGE; via=801903; mask_unique_bit=None",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "dh_felhoof_charge_crit",
+      "name": "Felhoof Charge: +4% critical strike chance",
+      "spec_id": 8,
+      "target_spell": 800204,
+      "affected_spells": [
+        800204
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        256,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "800204 Felhoof Charge; range=20.0; eff=TRIGGER_SPELL,SCHOOL_DAMAGE,DUMMY/MOD_HEALING_PCT; mask_unique_bit=[0, 256, 0]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "dh_felhoof_charge_range",
+      "name": "Felhoof Charge: +10% range",
+      "spec_id": 8,
+      "target_spell": 800204,
+      "affected_spells": [
+        800204
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        256,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "800204 Felhoof Charge; range=20.0; mask_unique_bit=[0, 256, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "dh_azzinoths_assault_cost",
+      "name": "Azzinoth's Assault: -10% Energy cost",
+      "spec_id": 8,
+      "target_spell": 801904,
+      "affected_spells": [
+        801904
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        16,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "801904 Azzinoth's Assault; cost=20; range=5.0; mask_unique_bit=[0, 16, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "dh_fury_unleashed_crit",
+      "name": "Fury Unleashed: +4% critical strike chance",
+      "spec_id": 8,
+      "target_spell": 555739,
+      "affected_spells": [
+        555739
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        4194304
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "555739 Fury Unleashed; radius=[8.0]; eff=WEAPON_PERCENT_DAMAGE,NORMALIZED_WEAPON_DMG; via=555738; mask_unique_bit=[0, 0, 4194304]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "dh_fury_unleashed_duration",
+      "name": "Fury Unleashed: +20% duration",
+      "spec_id": 8,
+      "target_spell": 555738,
+      "affected_spells": [
+        555738
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "555738 Fury Unleashed; cd=180000; dur=5000; cost=60; eff=APPLY_AURA/PERIODIC_TRIGGER_SPELL,APPLY_AURA/MOD_INCREASE_SPEED,APPLY_AURA/MECHANIC_IMMUNITY_MASK; mask_unique_bit=None",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "dh_fury_unleashed_radius",
+      "name": "Fury Unleashed: +10% radius",
+      "spec_id": 8,
+      "target_spell": 555739,
+      "affected_spells": [
+        555739
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        4194304
+      ],
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "555739 Fury Unleashed; radius=[8.0]; via=555738; mask_unique_bit=[0, 0, 4194304]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "dh_felrend_crit",
+      "name": "Felrend: +4% critical strike chance",
+      "spec_id": 9,
+      "target_spell": 800210,
+      "affected_spells": [
+        800210,
+        803476
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        4,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "800210 Felrend; cost=40; radius=[6.0]; range=5.0; eff=NORMALIZED_WEAPON_DMG,TRIGGER_SPELL_WITH_VALUE | 803476 Felrend; radius=[5.0]; range=5.0; eff=NORMALIZED_WEAPON_DMG; via=800210; mask_unique_bit=[0, 4, 0]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "dh_felrend_cost",
+      "name": "Felrend: -10% Energy cost",
+      "spec_id": 9,
+      "target_spell": 800210,
+      "affected_spells": [
+        800210,
+        803476
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        4,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "800210 Felrend; cost=40; radius=[6.0]; range=5.0; mask_unique_bit=[0, 4, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "dh_felrend_radius",
+      "name": "Felrend: +10% radius",
+      "spec_id": 9,
+      "target_spell": 800210,
+      "affected_spells": [
+        800210,
+        803476
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        4,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "800210 Felrend; cost=40; radius=[6.0]; range=5.0; mask_unique_bit=[0, 4, 0]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "dh_demonic_will_duration",
+      "name": "Demonic Will: +20% duration",
+      "spec_id": 9,
+      "target_spell": 800209,
+      "affected_spells": [
+        800209
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        65536
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "800209 Demonic Will; cd=45000; dur=10000; eff=APPLY_AURA/MOD_DODGE_PERCENT,APPLY_AURA/DUMMY,APPLY_AURA/MOD_DAMAGE_PERCENT_TAKEN; mask_unique_bit=[0, 0, 65536]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "dh_tyrannical_resolve_duration",
+      "name": "Tyrannical Resolve: +20% duration",
+      "spec_id": 9,
+      "target_spell": 804823,
+      "affected_spells": [
+        804823
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "804823 Tyrannical Resolve; cd=180000; dur=30000; eff=APPLY_AURA/ADD_PCT_MODIFIER,APPLY_AURA/SCHOOL_ABSORB; mask_unique_bit=None",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "dh_tyrants_gaze_crit",
+      "name": "Tyrant's Gaze: +4% critical strike chance",
+      "spec_id": 9,
+      "target_spell": 805240,
+      "affected_spells": [
+        805240
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        2147483648,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "805240 Tyrant's Gaze; cd=10000; cost=30; radius=[8.0]; range=10.0; eff=SCHOOL_DAMAGE ch=25; mask_unique_bit=[0, 2147483648, 0]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "dh_tyrants_gaze_cost",
+      "name": "Tyrant's Gaze: -10% Energy cost",
+      "spec_id": 9,
+      "target_spell": 805240,
+      "affected_spells": [
+        805240
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        2147483648,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "805240 Tyrant's Gaze; cd=10000; cost=30; radius=[8.0]; range=10.0; mask_unique_bit=[0, 2147483648, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "dh_tyrants_gaze_radius",
+      "name": "Tyrant's Gaze: +10% radius",
+      "spec_id": 9,
+      "target_spell": 805240,
+      "affected_spells": [
+        805240
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        2147483648,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "805240 Tyrant's Gaze; cd=10000; cost=30; radius=[8.0]; range=10.0; mask_unique_bit=[0, 2147483648, 0]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "dh_tyrants_gaze_range",
+      "name": "Tyrant's Gaze: +10% range",
+      "spec_id": 9,
+      "target_spell": 805240,
+      "affected_spells": [
+        805240
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        2147483648,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "805240 Tyrant's Gaze; cd=10000; cost=30; radius=[8.0]; range=10.0; mask_unique_bit=[0, 2147483648, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "dh_burning_hatred_duration",
+      "name": "Burning Hatred: +20% duration",
+      "spec_id": 9,
+      "target_spell": 805239,
+      "affected_spells": [
+        805239
+      ],
+      "targeting": "mask",
+      "mask": [
+        262144,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "805239 Burning Hatred; cd=120000; dur=15000; eff=APPLY_AURA/ASCENSION_PROC_PERCENT_EVENT,ASCENSION_MODIFY_AURA_STACKS,TRIGGER_SPELL; mask_unique_bit=[262144, 0, 0]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "dh_infernal_whipcrack_duration",
+      "name": "Infernal Whipcrack: +20% duration",
+      "spec_id": 9,
+      "target_spell": 805243,
+      "affected_spells": [
+        805243
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "805243 Infernal Whipcrack; cd=90000; dur=10000; radius=[15.0, 20.0]; eff=APPLY_AURA/MOD_DAMAGE_PERCENT_TAKEN,APPLY_AURA/MOD_MELEE_RANGED_HASTE,APPLY_AURA/HASTE_SPELLS; mask_unique_bit=None",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "dh_infernal_whipcrack_radius",
+      "name": "Infernal Whipcrack: +10% radius",
+      "spec_id": 9,
+      "target_spell": 805243,
+      "affected_spells": [
+        805243
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "805243 Infernal Whipcrack; cd=90000; dur=10000; radius=[15.0, 20.0]; mask_unique_bit=None",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary affix"
     }
   ],
   "rejected": [

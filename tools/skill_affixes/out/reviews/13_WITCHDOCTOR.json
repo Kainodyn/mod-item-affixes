@@ -837,6 +837,1466 @@
       "client_sensitive": true,
       "confidence": "high",
       "notes": ""
+    },
+    {
+      "key": "wd_voljins_vigil_crit",
+      "name": "Vol'jin's Vigil: +4% critical strike chance",
+      "spec_id": 0,
+      "target_spell": 802097,
+      "affected_spells": [
+        802097
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "802097 Vol'jin's Vigil; range=50000.0; eff=HEAL_PCT; via=504465; mask_unique_bit=None",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "wd_voljins_vigil_cost",
+      "name": "Vol'jin's Vigil: -10% mana cost",
+      "spec_id": 0,
+      "target_spell": 504465,
+      "affected_spells": [
+        504465
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        8388608
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "504465 Vol'jin's Vigil; cd=120000; dur=10000; cost=35; cost_pct=28; mask_unique_bit=[0, 0, 8388608]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "wd_voljins_vigil_duration",
+      "name": "Vol'jin's Vigil: +20% duration",
+      "spec_id": 0,
+      "target_spell": 504465,
+      "affected_spells": [
+        504465
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        8388608
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "504465 Vol'jin's Vigil; cd=120000; dur=10000; cost=35; cost_pct=28; eff=APPLY_AURA/MOD_DAMAGE_PERCENT_TAKEN,APPLY_AURA/PROC_TRIGGER_SPELL; mask_unique_bit=[0, 0, 8388608]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "wd_slither_duration",
+      "name": "Slither: +15% duration",
+      "spec_id": 0,
+      "target_spell": 500947,
+      "affected_spells": [
+        500947
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "500947 Slither; cd=60000; dur=5000; cost=25; cost_pct=19; eff=APPLY_AURA/MOD_INCREASE_SPEED,APPLY_AURA/TRANSFORM,APPLY_AURA/MOD_PACIFY_SILENCE; mask_unique_bit=None",
+      "client_sensitive": false,
+      "confidence": "low",
+      "notes": "round 2 secondary affix; CC/slow aura: +15% only"
+    },
+    {
+      "key": "wd_veil_of_darkness_crit",
+      "name": "Veil of Darkness: +4% critical strike chance",
+      "spec_id": 0,
+      "target_spell": 806473,
+      "affected_spells": [
+        802100,
+        806473
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        4194304
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "806473 Veil of Darkness; range=40.0; eff=SCHOOL_DAMAGE; via=802100; mask_unique_bit=[0, 0, 4194304]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "wd_veil_of_darkness_cost",
+      "name": "Veil of Darkness: -10% mana cost",
+      "spec_id": 0,
+      "target_spell": 802100,
+      "affected_spells": [
+        802100,
+        806473
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        4194304
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "802100 Veil of Darkness; cd=90000; dur=15000; cost_pct=8; range=40.0; mask_unique_bit=[0, 0, 4194304]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "wd_veil_of_darkness_duration",
+      "name": "Veil of Darkness: +20% duration",
+      "spec_id": 0,
+      "target_spell": 802100,
+      "affected_spells": [
+        802100,
+        806473
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        4194304
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "802100 Veil of Darkness; cd=90000; dur=15000; cost_pct=8; range=40.0; eff=APPLY_AURA/MOD_DAMAGE_FROM_CASTER,APPLY_AURA/PERIODIC_TRIGGER_SPELL; mask_unique_bit=[0, 0, 4194304]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "wd_veil_of_darkness_range",
+      "name": "Veil of Darkness: +10% range",
+      "spec_id": 0,
+      "target_spell": 802100,
+      "affected_spells": [
+        802100,
+        806473
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        4194304
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "802100 Veil of Darkness; cd=90000; dur=15000; cost_pct=8; range=40.0; mask_unique_bit=[0, 0, 4194304]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "wd_amphibimorph_cost",
+      "name": "Amphibimorph: -10% mana cost",
+      "spec_id": 0,
+      "target_spell": 500952,
+      "affected_spells": [
+        500952
+      ],
+      "targeting": "mask",
+      "mask": [
+        2147483648,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "500952 Amphibimorph; cd=120000; cast=1000; dur=40000; cost_pct=18; radius=[8.0]; range=30.0; mask_unique_bit=[2147483648, 0, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "wd_amphibimorph_cast",
+      "name": "Amphibimorph: -10% cast time",
+      "spec_id": 0,
+      "target_spell": 500952,
+      "affected_spells": [
+        500952
+      ],
+      "targeting": "mask",
+      "mask": [
+        2147483648,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CASTING_TIME",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "500952 Amphibimorph; cd=120000; cast=1000; dur=40000; cost_pct=18; radius=[8.0]; range=30.0; mask_unique_bit=[2147483648, 0, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "wd_amphibimorph_duration",
+      "name": "Amphibimorph: +15% duration",
+      "spec_id": 0,
+      "target_spell": 500952,
+      "affected_spells": [
+        500952
+      ],
+      "targeting": "mask",
+      "mask": [
+        2147483648,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "500952 Amphibimorph; cd=120000; cast=1000; dur=40000; cost_pct=18; radius=[8.0]; range=30.0; eff=APPLY_AURA/TRANSFORM,APPLY_AURA/MOD_PACIFY_SILENCE,APPLY_AURA/MOD_DECREASE_SPEED; mask_unique_bit=[2147483648, 0, 0]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary affix; CC/slow aura: +15% only"
+    },
+    {
+      "key": "wd_amphibimorph_radius",
+      "name": "Amphibimorph: +10% radius",
+      "spec_id": 0,
+      "target_spell": 500952,
+      "affected_spells": [
+        500952
+      ],
+      "targeting": "mask",
+      "mask": [
+        2147483648,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "500952 Amphibimorph; cd=120000; cast=1000; dur=40000; cost_pct=18; radius=[8.0]; range=30.0; mask_unique_bit=[2147483648, 0, 0]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "wd_amphibimorph_range",
+      "name": "Amphibimorph: +10% range",
+      "spec_id": 0,
+      "target_spell": 500952,
+      "affected_spells": [
+        500952
+      ],
+      "targeting": "mask",
+      "mask": [
+        2147483648,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "500952 Amphibimorph; cd=120000; cast=1000; dur=40000; cost_pct=18; radius=[8.0]; range=30.0; mask_unique_bit=[2147483648, 0, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "wd_reclamation_crit",
+      "name": "Reclamation: +4% critical strike chance",
+      "spec_id": 4,
+      "target_spell": 806288,
+      "affected_spells": [
+        806288
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        4,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "806288 Reclamation; cast=1800; cost_pct=8; range=30.0; eff=NORMALIZED_WEAPON_DMG,WEAPON_PERCENT_DAMAGE; mask_unique_bit=[0, 4, 0]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "wd_reclamation_cost",
+      "name": "Reclamation: -10% mana cost",
+      "spec_id": 4,
+      "target_spell": 806288,
+      "affected_spells": [
+        806288
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        4,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "806288 Reclamation; cast=1800; cost_pct=8; range=30.0; mask_unique_bit=[0, 4, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "wd_reclamation_range",
+      "name": "Reclamation: +10% range",
+      "spec_id": 4,
+      "target_spell": 806288,
+      "affected_spells": [
+        806288
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        4,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "806288 Reclamation; cast=1800; cost_pct=8; range=30.0; mask_unique_bit=[0, 4, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "wd_spirit_eclipse_crit",
+      "name": "Spirit Eclipse: +4% critical strike chance",
+      "spec_id": 4,
+      "target_spell": 802717,
+      "affected_spells": [
+        802717
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "802717 Spirit Eclipse; range=30.0; eff=SCHOOL_DAMAGE; via=801607; mask_unique_bit=None",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "wd_shadowstalker_duration",
+      "name": "Shadowstalker: +20% duration",
+      "spec_id": 4,
+      "target_spell": 807040,
+      "affected_spells": [
+        807040
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "807040 Shadowstalker; cd=180000; dur=20000; cost_pct=30; eff=APPLY_AURA/MOD_STEALTH,TRIGGER_SPELL/DUMMY,TRIGGER_SPELL; mask_unique_bit=None",
+      "client_sensitive": false,
+      "confidence": "low",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "wd_frenzied_spirits_cost",
+      "name": "Frenzied Spirits: -10% mana cost",
+      "spec_id": 4,
+      "target_spell": 560748,
+      "affected_spells": [
+        560748
+      ],
+      "targeting": "mask",
+      "mask": [
+        4194304,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "560748 Frenzied Spirits; cd=20000; cost_pct=14; mask_unique_bit=[4194304, 0, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "wd_spirit_glaive_crit",
+      "name": "Spirit Glaive: +4% critical strike chance",
+      "spec_id": 4,
+      "target_spell": 806289,
+      "affected_spells": [
+        806289,
+        806616
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "806289 Spirit Glaive; cast=2000; dur=5000; cost_pct=10; radius=[30.0]; eff=SCHOOL_DAMAGE,APPLY_AURA/PERIODIC_TRIGGER_SPELL_WITH_VALUE,APPLY_AURA/MOD_RESISTANCE_EXCLUSIVE | 806616 Godslayer; radius=[8.0]; range=30.0; eff=SCHOOL_DAMAGE; via=806289; mask_unique_bit=[33554432, 0, 0]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "wd_spirit_glaive_cost",
+      "name": "Spirit Glaive: -10% mana cost",
+      "spec_id": 4,
+      "target_spell": 806289,
+      "affected_spells": [
+        806289
+      ],
+      "targeting": "mask",
+      "mask": [
+        33554432,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "806289 Spirit Glaive; cast=2000; dur=5000; cost_pct=10; radius=[30.0]; mask_unique_bit=[33554432, 0, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "wd_spirit_glaive_cast",
+      "name": "Spirit Glaive: -10% cast time",
+      "spec_id": 4,
+      "target_spell": 806289,
+      "affected_spells": [
+        806289
+      ],
+      "targeting": "mask",
+      "mask": [
+        33554432,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CASTING_TIME",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "806289 Spirit Glaive; cast=2000; dur=5000; cost_pct=10; radius=[30.0]; mask_unique_bit=[33554432, 0, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "wd_spirit_glaive_radius",
+      "name": "Spirit Glaive: +10% radius",
+      "spec_id": 4,
+      "target_spell": 806289,
+      "affected_spells": [
+        806289,
+        806616
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "806289 Spirit Glaive; cast=2000; dur=5000; cost_pct=10; radius=[30.0] | 806616 Godslayer; radius=[8.0]; range=30.0; via=806289; mask_unique_bit=[33554432, 0, 0]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "wd_spirit_shock_duration",
+      "name": "Spirit Shock: +15% duration",
+      "spec_id": 4,
+      "target_spell": 807743,
+      "affected_spells": [
+        807743
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "807743 Spirit Shock; cd=28000; dur=4000; cost_pct=25; range=30.0; eff=APPLY_AURA/MOD_SILENCE,ENERGIZE_PCT; mask_unique_bit=None",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary affix; CC/slow aura: +15% only"
+    },
+    {
+      "key": "wd_soul_marionette_duration",
+      "name": "Soul Marionette: +20% duration",
+      "spec_id": 5,
+      "target_spell": 704497,
+      "affected_spells": [
+        704497
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "704497 Soul Marionette; cd=90000; dur=8500; cost=115; cost_pct=22; radius=[8.0]; eff=APPLY_AURA/DUMMY,APPLY_AURA/313,APPLY_AURA/PERIODIC_DUMMY; mask_unique_bit=None",
+      "client_sensitive": false,
+      "confidence": "low",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "wd_hexfire_crit",
+      "name": "Hexfire: +4% critical strike chance",
+      "spec_id": 5,
+      "target_spell": 807042,
+      "affected_spells": [
+        807042
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "807042 Hexfire; cost_pct=17; range=30.0; eff=SCHOOL_DAMAGE ch=1; mask_unique_bit=None",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "wd_malignant_jinx_duration",
+      "name": "Malignant Jinx: +20% duration",
+      "spec_id": 5,
+      "target_spell": 803678,
+      "affected_spells": [
+        803678
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "803678 Malignant Jinx; cd=60000; dur=8000; cost=10; cost_pct=19; range=30.0; eff=APPLY_AURA/PROC_TRIGGER_SPELL; mask_unique_bit=None",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "wd_malignant_jinx_duration_803732",
+      "name": "Malignant Jinx: +15% duration",
+      "spec_id": 5,
+      "target_spell": 803732,
+      "affected_spells": [
+        803732
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "803732 Malignant Jinx; dur=5000; cost=10; cost_pct=15; range=30.0; eff=APPLY_AURA/MOD_SILENCE; via=803678; mask_unique_bit=None",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary affix; CC/slow aura: +15% only"
+    },
+    {
+      "key": "wd_voice_of_bwonsamdi_crit",
+      "name": "Voice of Bwonsamdi: +4% critical strike chance",
+      "spec_id": 5,
+      "target_spell": 504452,
+      "affected_spells": [
+        504452
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        2097152
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "504452 Trapped Spirits; range=50000.0; eff=SCHOOL_DAMAGE; via=801716; mask_unique_bit=[0, 0, 2097152]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "wd_voice_of_bwonsamdi_cost",
+      "name": "Voice of Bwonsamdi: -10% mana cost",
+      "spec_id": 5,
+      "target_spell": 801716,
+      "affected_spells": [
+        801716
+      ],
+      "targeting": "mask",
+      "mask": [
+        65536,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "801716 Voice of Bwonsamdi; cd=90000; dur=20000; cost_pct=12; mask_unique_bit=[65536, 0, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "wd_voice_of_bwonsamdi_duration",
+      "name": "Voice of Bwonsamdi: +20% duration",
+      "spec_id": 5,
+      "target_spell": 801716,
+      "affected_spells": [
+        801716
+      ],
+      "targeting": "mask",
+      "mask": [
+        65536,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "801716 Voice of Bwonsamdi; cd=90000; dur=20000; cost_pct=12; eff=APPLY_AURA/HOVER,APPLY_AURA/PROC_TRIGGER_SPELL,APPLY_AURA/MOD_TOTAL_STAT_PERCENTAGE; mask_unique_bit=[65536, 0, 0]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "wd_bad_juju_crit",
+      "name": "Bad Juju: +4% critical strike chance",
+      "spec_id": 5,
+      "target_spell": 802087,
+      "affected_spells": [
+        802087
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "802087 Bad Juju; cast=2500; cost_pct=16; range=30.0; eff=SCHOOL_DAMAGE,TRIGGER_SPELL; mask_unique_bit=None",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "wd_bad_juju_duration",
+      "name": "Bad Juju: +20% duration",
+      "spec_id": 5,
+      "target_spell": 802926,
+      "affected_spells": [
+        802926
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "802926 Mark of Malice; dur=8000; range=40.0; eff=DUMMY,APPLY_AURA/MOD_HEALING_PCT; via=802087; mask_unique_bit=None",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "wd_puppeteers_grasp_duration",
+      "name": "Puppeteer's Grasp: +15% duration",
+      "spec_id": 5,
+      "target_spell": 707209,
+      "affected_spells": [
+        707209
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "707209 Puppeteer's Grasp; cd=180000; dur=30000; cost_pct=34; radius=[8.0]; eff=APPLY_AURA/TRANSFORM,APPLY_AURA/313,APPLY_AURA/PERIODIC_TRIGGER_SPELL; mask_unique_bit=None",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary affix; CC/slow aura: +15% only"
+    },
+    {
+      "key": "wd_puppeteers_grasp_radius",
+      "name": "Puppeteer's Grasp: +10% radius",
+      "spec_id": 5,
+      "target_spell": 707209,
+      "affected_spells": [
+        707209
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "707209 Puppeteer's Grasp; cd=180000; dur=30000; cost_pct=34; radius=[8.0]; mask_unique_bit=None",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "wd_shadow_puppets_crit",
+      "name": "Shadow Puppets: +4% critical strike chance",
+      "spec_id": 5,
+      "target_spell": 801797,
+      "affected_spells": [
+        801797,
+        802745
+      ],
+      "targeting": "mask",
+      "mask": [
+        2097152,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "801797 Shadow Puppet; range=100.0; eff=SCHOOL_DAMAGE,TRIGGER_SPELL; via=500015; mask_unique_bit=[2097152, 0, 0]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "wd_shadow_puppets_cost",
+      "name": "Shadow Puppets: -10% mana cost",
+      "spec_id": 5,
+      "target_spell": 500015,
+      "affected_spells": [
+        500015
+      ],
+      "targeting": "mask",
+      "mask": [
+        8,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "500015 Shadow Puppets; cd=18000; dur=3000; cost_pct=15; range=30.0; mask_unique_bit=[8, 0, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "wd_shadow_puppets_range",
+      "name": "Shadow Puppets: +10% range",
+      "spec_id": 5,
+      "target_spell": 500015,
+      "affected_spells": [
+        500015
+      ],
+      "targeting": "mask",
+      "mask": [
+        8,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "500015 Shadow Puppets; cd=18000; dur=3000; cost_pct=15; range=30.0; mask_unique_bit=[8, 0, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "wd_splash_potion_crit",
+      "name": "Splash Potion: +4% critical strike chance",
+      "spec_id": 6,
+      "target_spell": 802710,
+      "affected_spells": [
+        802710,
+        500508
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "802710 Splash Potion; cost_pct=20; radius=[10.0]; range=40.0; eff=HEAL,TRIGGER_SPELL/DUMMY,TRIGGER_SPELL/DUMMY | 500508 Jungle Thistle; range=40.0; eff=TRIGGER_SPELL,HEAL_PCT; via=803275; mask_unique_bit=None",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "wd_splash_potion_radius",
+      "name": "Splash Potion: +10% radius",
+      "spec_id": 6,
+      "target_spell": 802710,
+      "affected_spells": [
+        802710,
+        803289,
+        803272,
+        803275,
+        803277
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "802710 Splash Potion; cost_pct=20; radius=[10.0]; range=40.0 | 803289 Splash Potion SLS 4; cd=45000; cost_pct=15; radius=[10.0]; range=40.0; via=802710 | 803272 Splash Potion SLS; cd=45000; cost_pct=15; radius=[10.0]; range=40.0; via=802710 | 803275 Splash Potion SLS 2; cd=45000; cost_pct=15; radius=[10.0]; range=40.0; via=803272 | 803277 Splash Potion SLS 3; cd=45000; cost_pct=15; radius=[10.0]; range=40.0; via=803275; mask_unique_bit=None",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "wd_splash_potion_dot",
+      "name": "Splash Potion: +8% periodic healing",
+      "spec_id": 6,
+      "target_spell": 803698,
+      "affected_spells": [
+        803698
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DOT",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "803698 Splash Potion: Jungle Shrooms; dur=12000; range=100.0; eff=APPLY_AURA/PERIODIC_HEAL; periodic=true; via=803289; mask_unique_bit=None",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "wd_splash_potion_duration",
+      "name": "Splash Potion: +20% potion effect duration",
+      "spec_id": 6,
+      "target_spell": 803698,
+      "affected_spells": [
+        803698,
+        803273,
+        803699,
+        500509
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "803698 Splash Potion: Jungle Shrooms; dur=12000; range=100.0; eff=APPLY_AURA/PERIODIC_HEAL; periodic=true; via=803289 | 803273 Splash Potion: Fish Oil; dur=8000; range=100.0; eff=APPLY_AURA/MOD_MELEE_RANGED_HASTE,APPLY_AURA/MOD_INCREASE_SPEED,APPLY_AURA/HASTE_SPELLS; via=803272 | 803699 Splash Potion: Frog Bones; dur=8000; range=100.0; eff=APPLY_AURA/SCHOOL_ABSORB; via=803272 | 500509 Frog Shrooms; dur=10000; range=40.0; eff=APPLY_AURA/MOD_INCREASE_HEALTH_PERCENT,APPLY_AURA/MOD_SCALE; via=803275; mask_unique_bit=None",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "wd_ingredient_crit",
+      "name": "Ingredient: Jungle Shrooms: +4% critical strike chance",
+      "spec_id": 6,
+      "target_spell": 802703,
+      "affected_spells": [
+        802703
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        2048
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "802703 Ingredient: Jungle Shrooms; radius=[30.0]; eff=HEAL; via=801660; mask_unique_bit=[0, 0, 2048]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "wd_ingredient_radius",
+      "name": "Ingredient: Jungle Shrooms: +10% radius",
+      "spec_id": 6,
+      "target_spell": 802703,
+      "affected_spells": [
+        802703
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        2048
+      ],
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "802703 Ingredient: Jungle Shrooms; radius=[30.0]; via=801660; mask_unique_bit=[0, 0, 2048]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "wd_potion_toss_crit",
+      "name": "Potion Toss: +4% critical strike chance",
+      "spec_id": 6,
+      "target_spell": 801661,
+      "affected_spells": [
+        801661
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        2048,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "801661 Potion Toss; cost_pct=18; range=40.0; eff=HEAL; mask_unique_bit=[0, 2048, 0]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "wd_potion_toss_cost",
+      "name": "Potion Toss: -10% mana cost",
+      "spec_id": 6,
+      "target_spell": 801661,
+      "affected_spells": [
+        801661
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        2048,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "801661 Potion Toss; cost_pct=18; range=40.0; mask_unique_bit=[0, 2048, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "wd_potion_toss_range",
+      "name": "Potion Toss: +10% range",
+      "spec_id": 6,
+      "target_spell": 801661,
+      "affected_spells": [
+        801661
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        2048,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "801661 Potion Toss; cost_pct=18; range=40.0; mask_unique_bit=[0, 2048, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "wd_base_duration",
+      "name": "Base: Beast Blood: +20% duration",
+      "spec_id": 6,
+      "target_spell": 547573,
+      "affected_spells": [
+        547573
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "547573 Base: Beast Blood; dur=10000; range=50000.0; eff=APPLY_AURA/SCHOOL_ABSORB,APPLY_AURA/DUMMY; via=705870; mask_unique_bit=None",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "wd_master_mixologist_duration",
+      "name": "Master Mixologist: +20% duration",
+      "spec_id": 6,
+      "target_spell": 705864,
+      "affected_spells": [
+        705864
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "705864 Master Mixologist; cd=120000; dur=10000; cost_pct=14; eff=APPLY_AURA/ADD_PCT_MODIFIER,APPLY_AURA/313,APPLY_AURA/ADD_PCT_MODIFIER; mask_unique_bit=None",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "wd_arcane_brew_duration",
+      "name": "Arcane Brew: +20% duration",
+      "spec_id": 6,
+      "target_spell": 801689,
+      "affected_spells": [
+        801689
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "801689 Arcane Brew; cd=120000; dur=10000; cost_pct=8; range=40.0; eff=APPLY_AURA/ASCENSION_MOD_SPELL_POWER_FLAT,APPLY_AURA/MOD_STAT; mask_unique_bit=None",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "wd_base_duration_500962",
+      "name": "Base: Crystal Water: +20% duration",
+      "spec_id": 6,
+      "target_spell": 500962,
+      "affected_spells": [
+        500962
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "500962 Base: Crystal Water; cd=90000; dur=10000; cost_pct=30; radius=[40.0]; eff=APPLY_AREA_AURA_RAID/ASCENSION_PROC_PERCENT_EVENT; mask_unique_bit=None",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "wd_mojo_beam_cost",
+      "name": "Mojo Beam: -10% mana cost",
+      "spec_id": 6,
+      "target_spell": 500950,
+      "affected_spells": [
+        500950
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        4194304,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "500950 Mojo Beam; cd=14000; dur=8000; cost_pct=15; range=40.0; periodic=true; mask_unique_bit=[0, 4194304, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
+    },
+    {
+      "key": "wd_mojo_beam_range",
+      "name": "Mojo Beam: +10% range",
+      "spec_id": 6,
+      "target_spell": 500950,
+      "affected_spells": [
+        500950
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        4194304,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "500950 Mojo Beam; cd=14000; dur=8000; cost_pct=15; range=40.0; periodic=true; mask_unique_bit=[0, 4194304, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary affix"
     }
   ],
   "rejected": [

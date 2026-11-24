@@ -1,7 +1,7 @@
 {
   "class_id": 32,
   "class": "SPIRITMAGE",
-  "reviewed_at": "2026-11-23",
+  "reviewed_at": "2026-11-24",
   "affixes": [
     {
       "key": "spiritmage_warpdagger_cd",
@@ -912,6 +912,1675 @@
       "client_sensitive": true,
       "confidence": "high",
       "notes": "Strikes are PERIODIC_DUMMY (scripted damage spell not visible); only cooldown targeted."
+    },
+    {
+      "key": "spiritmage_warpdagger_cost",
+      "name": "Warpdagger: -10% resource cost",
+      "spec_id": 0,
+      "target_spell": 500287,
+      "affected_spells": [
+        500287
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        8388608,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "500287 Warpdagger; cd=30000; catcd=30000; cost_pct=12; eff 0:DUMMY v=1; mask_unique_bit=[0, 8388608, 0] fam=38",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_power_engraving_cost",
+      "name": "Power Engraving: -10% resource cost",
+      "spec_id": 0,
+      "target_spell": 500296,
+      "affected_spells": [
+        500296
+      ],
+      "targeting": "mask",
+      "mask": [
+        2048,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "500296 Power Engraving; cd=300000; catcd=300000; dur=20000; cost_pct=18; radius=[5.0]; eff 0:PERSISTENT_AREA_AURA/MOD_DAMAGE_PERCENT_DONE v=20, 1:PERSISTENT_AREA_AURA/MOD_CRIT_PCT v=20, 2:PERSISTENT_AREA_AURA/OBS_MOD_POWER; mask_unique_bit=[2048, 0, 0] fam=38",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_power_engraving_dur",
+      "name": "Power Engraving: +15% duration",
+      "spec_id": 0,
+      "target_spell": 500296,
+      "affected_spells": [
+        500296
+      ],
+      "targeting": "mask",
+      "mask": [
+        2048,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "500296 Power Engraving; cd=300000; catcd=300000; dur=20000; cost_pct=18; radius=[5.0]; eff 0:PERSISTENT_AREA_AURA/MOD_DAMAGE_PERCENT_DONE v=20, 1:PERSISTENT_AREA_AURA/MOD_CRIT_PCT v=20, 2:PERSISTENT_AREA_AURA/OBS_MOD_POWER; mask_unique_bit=[2048, 0, 0] fam=38",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_power_engraving_radius",
+      "name": "Power Engraving: +15% radius",
+      "spec_id": 0,
+      "target_spell": 500296,
+      "affected_spells": [
+        500296
+      ],
+      "targeting": "mask",
+      "mask": [
+        2048,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "500296 Power Engraving; cd=300000; catcd=300000; dur=20000; cost_pct=18; radius=[5.0]; eff 0:PERSISTENT_AREA_AURA/MOD_DAMAGE_PERCENT_DONE v=20, 1:PERSISTENT_AREA_AURA/MOD_CRIT_PCT v=20, 2:PERSISTENT_AREA_AURA/OBS_MOD_POWER; mask_unique_bit=[2048, 0, 0] fam=38",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_zenith_cost",
+      "name": "Zenith: -10% resource cost",
+      "spec_id": 0,
+      "target_spell": 712325,
+      "affected_spells": [
+        712325
+      ],
+      "targeting": "mask",
+      "mask": [
+        268435456,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "712325 Zenith; cd=45000; dur=6000; cost_pct=10; eff 0:APPLY_AURA/ADD_FLAT_MODIFIER v=100, 1:APPLY_AURA/MOD_DAMAGE_PERCENT_TAKEN, 2:APPLY_AURA/MOD_MELEE_HASTE; mask_unique_bit=[268435456, 0, 0] fam=38",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_zenith_dur",
+      "name": "Zenith: +15% duration",
+      "spec_id": 0,
+      "target_spell": 712325,
+      "affected_spells": [
+        712325
+      ],
+      "targeting": "mask",
+      "mask": [
+        268435456,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "712325 Zenith; cd=45000; dur=6000; cost_pct=10; eff 0:APPLY_AURA/ADD_FLAT_MODIFIER v=100, 1:APPLY_AURA/MOD_DAMAGE_PERCENT_TAKEN, 2:APPLY_AURA/MOD_MELEE_HASTE; mask_unique_bit=[268435456, 0, 0] fam=38",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_convergence_dur",
+      "name": "Convergence: +15% duration",
+      "spec_id": 0,
+      "target_spell": 801086,
+      "affected_spells": [
+        801086
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "801086 Convergence; cd=90000; catcd=90000; dur=15000; cost_pct=12; eff 0:APPLY_AURA/PROC_TRIGGER_SPELL v=2, 1:APPLY_AURA/DUMMY",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_convergence_crit",
+      "name": "Convergence: +4% critical strike chance",
+      "spec_id": 0,
+      "target_spell": 560241,
+      "affected_spells": [
+        560241
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "560241 Convergence (trigger child via 801086); range=50000.0; eff 0:SCHOOL_DAMAGE v=348, 1:ASCENSION_PLAY_SPELL_VISUAL_KIT",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_speed_rune_cost",
+      "name": "Speed Rune: -10% resource cost",
+      "spec_id": 0,
+      "target_spell": 801103,
+      "affected_spells": [
+        801103
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        33554432,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "801103 Speed Rune; cd=120000; dur=100; cost=55; cost_pct=14; eff 0:APPLY_AURA/PERIODIC_TRIGGER_SPELL; mask_unique_bit=[0, 33554432, 0] fam=38",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_speed_rune_dur",
+      "name": "Speed Rune: +15% duration",
+      "spec_id": 0,
+      "target_spell": 572136,
+      "affected_spells": [
+        572136
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "572136 Speed Rune (trigger child via 572134); dur=10000; range=100.0; radius=[4.0]; eff 0:PERSISTENT_AREA_AURA/PERIODIC_TRIGGER_SPELL v=70, 1:PERSISTENT_AREA_AURA/PERIODIC_TRIGGER_SPELL",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_speed_rune_radius",
+      "name": "Speed Rune: +15% radius",
+      "spec_id": 0,
+      "target_spell": 572136,
+      "affected_spells": [
+        572136
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "572136 Speed Rune (trigger child via 572134); dur=10000; range=100.0; radius=[4.0]; eff 0:PERSISTENT_AREA_AURA/PERIODIC_TRIGGER_SPELL v=70, 1:PERSISTENT_AREA_AURA/PERIODIC_TRIGGER_SPELL",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_granite_resolve_cost",
+      "name": "Granite Resolve: -10% resource cost",
+      "spec_id": 0,
+      "target_spell": 520229,
+      "affected_spells": [
+        520229
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        2147483648
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "520229 Granite Resolve; cd=60000; dur=8000; cost_pct=12; eff 0:APPLY_AURA/MOD_DAMAGE_PERCENT_TAKEN v=-30; mask_unique_bit=[0, 0, 2147483648] fam=38",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_granite_resolve_dur",
+      "name": "Granite Resolve: +15% duration",
+      "spec_id": 0,
+      "target_spell": 520229,
+      "affected_spells": [
+        520229
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        2147483648
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "520229 Granite Resolve; cd=60000; dur=8000; cost_pct=12; eff 0:APPLY_AURA/MOD_DAMAGE_PERCENT_TAKEN v=-30; mask_unique_bit=[0, 0, 2147483648] fam=38",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_glacial_rune_cast",
+      "name": "Glacial Rune: -10% cast time",
+      "spec_id": 0,
+      "target_spell": 807842,
+      "affected_spells": [
+        807842
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CASTING_TIME",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "807842 Glacial Rune; cd=20000; cast=1250; dur=1500; cost_pct=9; range=30.0; radius=[8.0]; eff 0:PERSISTENT_AREA_AURA/PERIODIC_TRIGGER_SPELL v=1",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_glacial_rune_radius",
+      "name": "Glacial Rune: +15% radius",
+      "spec_id": 0,
+      "target_spell": 807842,
+      "affected_spells": [
+        807842
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "807842 Glacial Rune; cd=20000; cast=1250; dur=1500; cost_pct=9; range=30.0; radius=[8.0]; eff 0:PERSISTENT_AREA_AURA/PERIODIC_TRIGGER_SPELL v=1",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_glacial_rune_crit",
+      "name": "Glacial Rune: +4% critical strike chance",
+      "spec_id": 0,
+      "target_spell": 805730,
+      "affected_spells": [
+        805730
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "805730 Glacial Rune (trigger child via 807842); cd=20000; dur=40000; cost=9999; cost_pct=9; range=30.0; eff 0:APPLY_AURA/MOD_ROOT, 1:SCHOOL_DAMAGE v=45",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_warding_rune_dur",
+      "name": "Warding Rune: +15% duration",
+      "spec_id": 0,
+      "target_spell": 804232,
+      "affected_spells": [
+        804232
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "804232 Warding Rune; cd=120000; dur=6000; cost=15; cost_pct=27; eff 0:APPLY_AURA/MOD_AURA_DURATION_BY_DISPEL v=-100, 1:DISPEL v=100",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "Magic-effect immunity window 6 sec -> 6.9 sec."
+    },
+    {
+      "key": "spiritmage_permafrost_rune_cost",
+      "name": "Permafrost Rune: -10% resource cost",
+      "spec_id": 0,
+      "target_spell": 804060,
+      "affected_spells": [
+        804060
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        67108864,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "804060 Permafrost Rune; cd=60000; cast=1000; dur=40000; cost_pct=39; range=20.0; eff 0:APPLY_AURA/MOD_ROOT, 1:APPLY_AURA/MOD_STUN v=1, 2:TRIGGER_SPELL v=1; mask_unique_bit=[0, 67108864, 0] fam=38",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_permafrost_rune_cast",
+      "name": "Permafrost Rune: -10% cast time",
+      "spec_id": 0,
+      "target_spell": 804060,
+      "affected_spells": [
+        804060
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        67108864,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CASTING_TIME",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "804060 Permafrost Rune; cd=60000; cast=1000; dur=40000; cost_pct=39; range=20.0; eff 0:APPLY_AURA/MOD_ROOT, 1:APPLY_AURA/MOD_STUN v=1, 2:TRIGGER_SPELL v=1; mask_unique_bit=[0, 67108864, 0] fam=38",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_permafrost_rune_range",
+      "name": "Permafrost Rune: +15% range",
+      "spec_id": 0,
+      "target_spell": 804060,
+      "affected_spells": [
+        804060
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        67108864,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "804060 Permafrost Rune; cd=60000; cast=1000; dur=40000; cost_pct=39; range=20.0; eff 0:APPLY_AURA/MOD_ROOT, 1:APPLY_AURA/MOD_STUN v=1, 2:TRIGGER_SPELL v=1; mask_unique_bit=[0, 67108864, 0] fam=38",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_phase_out_cost",
+      "name": "Phase Out: -10% resource cost",
+      "spec_id": 0,
+      "target_spell": 500671,
+      "affected_spells": [
+        500671
+      ],
+      "targeting": "mask",
+      "mask": [
+        64,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "500671 Phase Out; cd=120000; dur=100; cost_pct=8; eff 0:TRIGGER_SPELL, 1:SANCTUARY, 2:FORCE_DESELECT; mask_unique_bit=[64, 0, 0] fam=38",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_phase_out_dur",
+      "name": "Phase Out: +15% duration",
+      "spec_id": 0,
+      "target_spell": 560269,
+      "affected_spells": [
+        560269
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "560269 Phase Out (trigger child via 500671); dur=6000; eff 0:APPLY_AURA/MOD_INCREASE_SPEED, 1:APPLY_AURA/MOD_STEALTH v=170, 2:ASCENSION_FIRST",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_fists_of_power_dur",
+      "name": "Fists of Power: +15% duration",
+      "spec_id": 61,
+      "target_spell": 805796,
+      "affected_spells": [
+        805796
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "805796 Fists of Power; cd=45000; catcd=45000; dur=15000; cost=25; cost_pct=15; eff 0:APPLY_AURA/PROC_TRIGGER_SPELL",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_runic_tempest_dur",
+      "name": "Runic Tempest: +15% duration",
+      "spec_id": 61,
+      "target_spell": 560036,
+      "affected_spells": [
+        560036
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "560036 Runic Tempest; cd=180000; catcd=180000; dur=8000; cost_pct=15; eff 0:APPLY_AURA/313, 1:ASCENSION_TRIGGER_SPELL_DURATION v=8000, 2:ASCENSION_RESET_COOLDOWN v=1",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_guarding_rune_dur",
+      "name": "Guarding Rune: +15% duration",
+      "spec_id": 61,
+      "target_spell": 500464,
+      "affected_spells": [
+        500464
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "500464 Guarding Rune; cd=120000; dur=15000; cost=35; cost_pct=23; radius=[10.0]; eff 0:PERSISTENT_AREA_AURA/MOD_DAMAGE_PERCENT_TAKEN v=-40",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_guarding_rune_radius",
+      "name": "Guarding Rune: +15% radius",
+      "spec_id": 61,
+      "target_spell": 500464,
+      "affected_spells": [
+        500464
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "500464 Guarding Rune; cd=120000; dur=15000; cost=35; cost_pct=23; radius=[10.0]; eff 0:PERSISTENT_AREA_AURA/MOD_DAMAGE_PERCENT_TAKEN v=-40",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_runic_brand_crit",
+      "name": "Runic Brand: +4% critical strike chance",
+      "spec_id": 61,
+      "target_spell": 712322,
+      "affected_spells": [
+        712322
+      ],
+      "targeting": "mask",
+      "mask": [
+        32,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "712322 Runic Brand (trigger child via 712299); range=50000.0; eff 0:SCHOOL_DAMAGE v=1; mask_unique_bit=[32, 0, 0] fam=38",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_fist_of_the_ancients_crit",
+      "name": "Fist of the Ancients: +4% critical strike chance",
+      "spec_id": 61,
+      "target_spell": 712326,
+      "affected_spells": [
+        712326
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "712326 Fist of the Ancients; cd=18000; catcd=18000; cost_pct=13; range=5.0; eff 0:SCHOOL_DAMAGE v=40 chain=2, 1:TRIGGER_SPELL",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_fist_of_the_ancients_jump",
+      "name": "Fist of the Ancients: +1 additional target",
+      "spec_id": 61,
+      "target_spell": 712326,
+      "affected_spells": [
+        712326
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "JUMP_TARGETS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "712326 Fist of the Ancients; cd=18000; catcd=18000; cost_pct=13; range=5.0; eff 0:SCHOOL_DAMAGE v=40 chain=2, 1:TRIGGER_SPELL",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_ley_power_dur",
+      "name": "Ley Power: +15% duration",
+      "spec_id": 61,
+      "target_spell": 801096,
+      "affected_spells": [
+        801096
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "801096 Ley Power; cd=90000; catcd=90000; dur=15000; cost_pct=14; radius=[20.0]; eff 0:SCRIPT_EFFECT v=1, 1:DUMMY v=1, 2:APPLY_AURA/PROC_TRIGGER_SPELL v=1",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_eye_of_the_beholder_dur",
+      "name": "Eye of the Beholder: +15% duration",
+      "spec_id": 62,
+      "target_spell": 500121,
+      "affected_spells": [
+        500121
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "500121 Eye of the Beholder; cd=180000; catcd=180000; dur=15000; cost_pct=38; eff 0:APPLY_AURA/ADD_PCT_MODIFIER v=25, 1:APPLY_AURA/MOD_SPELL_CRIT_CHANCE_SCHOOL v=25, 2:ASCENSION_PLAY_SPELL_VISUAL_KIT v=3",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_silencing_rune_cost",
+      "name": "Silencing Rune: -10% resource cost",
+      "spec_id": 62,
+      "target_spell": 802631,
+      "affected_spells": [
+        802631
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        2048,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "802631 Silencing Rune; cd=90000; cast=1500; dur=1000; cost_pct=18; range=30.0; radius=[5.0]; eff 0:ASCENSION_TRIGGER_SPELL_DELAYED/PERIODIC_TRIGGER_SPELL v=1000; mask_unique_bit=[0, 2048, 0] fam=38",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_silencing_rune_cast",
+      "name": "Silencing Rune: -10% cast time",
+      "spec_id": 62,
+      "target_spell": 802631,
+      "affected_spells": [
+        802631
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        2048,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CASTING_TIME",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "802631 Silencing Rune; cd=90000; cast=1500; dur=1000; cost_pct=18; range=30.0; radius=[5.0]; eff 0:ASCENSION_TRIGGER_SPELL_DELAYED/PERIODIC_TRIGGER_SPELL v=1000; mask_unique_bit=[0, 2048, 0] fam=38",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_silencing_rune_range",
+      "name": "Silencing Rune: +15% range",
+      "spec_id": 62,
+      "target_spell": 802631,
+      "affected_spells": [
+        802631
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        2048,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "802631 Silencing Rune; cd=90000; cast=1500; dur=1000; cost_pct=18; range=30.0; radius=[5.0]; eff 0:ASCENSION_TRIGGER_SPELL_DELAYED/PERIODIC_TRIGGER_SPELL v=1000; mask_unique_bit=[0, 2048, 0] fam=38",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_silencing_rune_radius",
+      "name": "Silencing Rune: +15% radius",
+      "spec_id": 62,
+      "target_spell": 802631,
+      "affected_spells": [
+        802631,
+        803745
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        2048,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "802631 Silencing Rune; cd=90000; cast=1500; dur=1000; cost_pct=18; range=30.0; radius=[5.0]; eff 0:ASCENSION_TRIGGER_SPELL_DELAYED/PERIODIC_TRIGGER_SPELL v=1000; mask_unique_bit=[0, 2048, 0] fam=38; 803745 Silencing Rune (trigger child via 802631); cd=120000; dur=6000; cost_pct=18; range=50000.0; radius=[5.0]; eff 0:PERSISTENT_AREA_AURA/MOD_SILENCE v=1; mask_unique_bit=[0, 2048, 0] fam=38",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_silencing_rune_dur",
+      "name": "Silencing Rune: +15% duration",
+      "spec_id": 62,
+      "target_spell": 802631,
+      "affected_spells": [
+        802631,
+        803745
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        2048,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "802631 Silencing Rune; cd=90000; cast=1500; dur=1000; cost_pct=18; range=30.0; radius=[5.0]; eff 0:ASCENSION_TRIGGER_SPELL_DELAYED/PERIODIC_TRIGGER_SPELL v=1000; mask_unique_bit=[0, 2048, 0] fam=38; 803745 Silencing Rune (trigger child via 802631); cd=120000; dur=6000; cost_pct=18; range=50000.0; radius=[5.0]; eff 0:PERSISTENT_AREA_AURA/MOD_SILENCE v=1; mask_unique_bit=[0, 2048, 0] fam=38",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "Silence area lives on child 803745 (6 sec), same mask bit."
+    },
+    {
+      "key": "spiritmage_manuscription_dur",
+      "name": "Manuscription: +1 sec duration",
+      "spec_id": 62,
+      "target_spell": 525302,
+      "affected_spells": [
+        525302
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 1000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "525302 Manuscription (trigger child via 524952); dur=5000; range=30.0; radius=[8.0]; periodic=True; eff 0:APPLY_AURA/PERIODIC_DAMAGE v=324 chain=7",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "DoT 5 sec per1000 -> 6 sec (+1 tick)."
+    },
+    {
+      "key": "spiritmage_manuscription_jump",
+      "name": "Manuscription: +1 additional target",
+      "spec_id": 62,
+      "target_spell": 525302,
+      "affected_spells": [
+        525302
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "JUMP_TARGETS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "525302 Manuscription (trigger child via 524952); dur=5000; range=30.0; radius=[8.0]; periodic=True; eff 0:APPLY_AURA/PERIODIC_DAMAGE v=324 chain=7",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_manuscription_radius",
+      "name": "Manuscription: +15% radius",
+      "spec_id": 62,
+      "target_spell": 525302,
+      "affected_spells": [
+        525302
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "525302 Manuscription (trigger child via 524952); dur=5000; range=30.0; radius=[8.0]; periodic=True; eff 0:APPLY_AURA/PERIODIC_DAMAGE v=324 chain=7",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_frigid_blast_cost",
+      "name": "Frigid Blast: -10% resource cost",
+      "spec_id": 62,
+      "target_spell": 500118,
+      "affected_spells": [
+        500118
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        134217728,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "500118 Frigid Blast; catcd=15000; cast=1500; cost_pct=15; range=35.0; eff 0:SCHOOL_DAMAGE v=40, 1:TRIGGER_SPELL; mask_unique_bit=[0, 134217728, 0] fam=38",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_frigid_blast_crit",
+      "name": "Frigid Blast: +4% critical strike chance",
+      "spec_id": 62,
+      "target_spell": 500118,
+      "affected_spells": [
+        500118
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        134217728,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "500118 Frigid Blast; catcd=15000; cast=1500; cost_pct=15; range=35.0; eff 0:SCHOOL_DAMAGE v=40, 1:TRIGGER_SPELL; mask_unique_bit=[0, 134217728, 0] fam=38",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_frigid_blast_range",
+      "name": "Frigid Blast: +15% range",
+      "spec_id": 62,
+      "target_spell": 500118,
+      "affected_spells": [
+        500118
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        134217728,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "500118 Frigid Blast; catcd=15000; cast=1500; cost_pct=15; range=35.0; eff 0:SCHOOL_DAMAGE v=40, 1:TRIGGER_SPELL; mask_unique_bit=[0, 134217728, 0] fam=38",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_frigid_blast_dur",
+      "name": "Frigid Blast: +15% duration",
+      "spec_id": 62,
+      "target_spell": 803225,
+      "affected_spells": [
+        803225
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "803225 Frigid Fusion (trigger child via 500118); dur=6000; range=50000.0; eff 0:APPLY_AURA/DUMMY, 1:APPLY_AURA/SCHOOL_ABSORB v=1, 2:APPLY_AURA/DUMMY",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_frigid_blast_572338_crit",
+      "name": "Frigid Blast: +3% critical strike chance",
+      "spec_id": 62,
+      "target_spell": 572338,
+      "affected_spells": [
+        572338
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "572338 Frigid Fusion (trigger child via 803225); range=50000.0; radius=[12.0]; eff 0:SCHOOL_DAMAGE chain=1",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_thaumaturgy_cost",
+      "name": "Thaumaturgy: -10% resource cost",
+      "spec_id": 62,
+      "target_spell": 804550,
+      "affected_spells": [
+        804550
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        2097152
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "804550 Thaumaturgy; cd=15000; catcd=15000; cost=25; cost_pct=8; range=35.0; eff 0:SCHOOL_DAMAGE v=67; mask_unique_bit=[0, 0, 2097152] fam=38",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_thaumaturgy_crit",
+      "name": "Thaumaturgy: +4% critical strike chance",
+      "spec_id": 62,
+      "target_spell": 804550,
+      "affected_spells": [
+        804550
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        2097152
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "804550 Thaumaturgy; cd=15000; catcd=15000; cost=25; cost_pct=8; range=35.0; eff 0:SCHOOL_DAMAGE v=67; mask_unique_bit=[0, 0, 2097152] fam=38",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_thaumaturgy_range",
+      "name": "Thaumaturgy: +15% range",
+      "spec_id": 62,
+      "target_spell": 804550,
+      "affected_spells": [
+        804550
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        2097152
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "804550 Thaumaturgy; cd=15000; catcd=15000; cost=25; cost_pct=8; range=35.0; eff 0:SCHOOL_DAMAGE v=67; mask_unique_bit=[0, 0, 2097152] fam=38",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_primordial_pulse_crit",
+      "name": "Primordial Pulse: +3% critical strike chance",
+      "spec_id": 62,
+      "target_spell": 520111,
+      "affected_spells": [
+        520111
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "520111 Primordial Pulse (trigger child via 300578); range=50000.0; radius=[8.0]; eff 0:SCHOOL_DAMAGE v=1",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_primordial_pulse_radius",
+      "name": "Primordial Pulse: +15% radius",
+      "spec_id": 62,
+      "target_spell": 300578,
+      "affected_spells": [
+        300578,
+        520111
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "300578 Primordial Pulse; catcd=20000; dur=2000; cost_pct=20; range=35.0; radius=[6.0]; eff 0:PERSISTENT_AREA_AURA/PERIODIC_TRIGGER_SPELL_WITH_VALUE v=23, 1:TRIGGER_SPELL, 2:TRIGGER_SPELL; 520111 Primordial Pulse (trigger child via 300578); range=50000.0; radius=[8.0]; eff 0:SCHOOL_DAMAGE v=1",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_glyphic_overload_dur",
+      "name": "Glyphic Overload: +15% duration",
+      "spec_id": 62,
+      "target_spell": 520099,
+      "affected_spells": [
+        520099
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "520099 Glyphic Overload; cd=45000; dur=15000; cost_pct=40; eff 0:APPLY_AURA/ADD_PCT_MODIFIER v=100, 1:APPLY_AURA/ADD_FLAT_MODIFIER, 2:APPLY_AURA/ADD_FLAT_MODIFIER v=3",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_glyphic_ruin_crit",
+      "name": "Glyphic Ruin: +4% critical strike chance",
+      "spec_id": 62,
+      "target_spell": 801179,
+      "affected_spells": [
+        801179
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "801179 Glyphic Ruin; cast=2500; cost_pct=10; range=35.0; eff 0:SCHOOL_DAMAGE v=82",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_primordial_fury_cost",
+      "name": "Primordial Fury: -10% resource cost",
+      "spec_id": 63,
+      "target_spell": 806543,
+      "affected_spells": [
+        806543
+      ],
+      "targeting": "mask",
+      "mask": [
+        33554432,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "806543 Primordial Fury; cd=90000; dur=15000; cost_pct=14; eff 0:APPLY_AURA/ADD_PCT_MODIFIER v=100, 1:APPLY_AURA/ADD_PCT_MODIFIER, 2:APPLY_AURA/ADD_FLAT_MODIFIER v=5; mask_unique_bit=[33554432, 0, 0] fam=38",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_primordial_fury_dur",
+      "name": "Primordial Fury: +15% duration",
+      "spec_id": 63,
+      "target_spell": 806543,
+      "affected_spells": [
+        806543
+      ],
+      "targeting": "mask",
+      "mask": [
+        33554432,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "806543 Primordial Fury; cd=90000; dur=15000; cost_pct=14; eff 0:APPLY_AURA/ADD_PCT_MODIFIER v=100, 1:APPLY_AURA/ADD_PCT_MODIFIER, 2:APPLY_AURA/ADD_FLAT_MODIFIER v=5; mask_unique_bit=[33554432, 0, 0] fam=38",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_turbulence_crit",
+      "name": "Turbulence: +3% critical strike chance",
+      "spec_id": 63,
+      "target_spell": 706526,
+      "affected_spells": [
+        706526
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "706526 Turbulence (trigger child via 705575); radius=[6.0]; eff 0:WEAPON_PERCENT_DAMAGE v=200",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_turbulence_radius",
+      "name": "Turbulence: +15% radius",
+      "spec_id": 63,
+      "target_spell": 706526,
+      "affected_spells": [
+        706526
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "706526 Turbulence (trigger child via 705575); radius=[6.0]; eff 0:WEAPON_PERCENT_DAMAGE v=200",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_fracture_crit",
+      "name": "Fracture: +4% critical strike chance",
+      "spec_id": 63,
+      "target_spell": 803018,
+      "affected_spells": [
+        803018
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "803018 Fracture; cost_pct=10; range=5.0; eff 0:SCHOOL_DAMAGE v=921, 1:DUMMY, 2:POWER_BURN v=25",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_fracture_dur",
+      "name": "Fracture: +15% duration",
+      "spec_id": 63,
+      "target_spell": 803067,
+      "affected_spells": [
+        803067
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "803067 Sigil Strike (trigger child via 803018); dur=10000; range=50000.0; eff 0:APPLY_AURA/ADD_FLAT_MODIFIER v=40, 1:APPLY_AURA/MOD_DAMAGE_PERCENT_DONE v=15",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_hoarfrost_dur",
+      "name": "Hoarfrost: +15% duration",
+      "spec_id": 63,
+      "target_spell": 801104,
+      "affected_spells": [
+        801104
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "801104 Hoarfrost; catcd=10000; dur=21000; cost_pct=10; range=8.0; radius=[8.0]; periodic=True; eff 0:TRIGGER_SPELL/DUMMY v=60, 1:APPLY_AURA/PERIODIC_DAMAGE v=13, 2:APPLY_AURA/MOD_CRIT_CHANCE_FOR_CASTER",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_hoarfrost_radius",
+      "name": "Hoarfrost: +15% radius",
+      "spec_id": 63,
+      "target_spell": 801104,
+      "affected_spells": [
+        801104
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "801104 Hoarfrost; catcd=10000; dur=21000; cost_pct=10; range=8.0; radius=[8.0]; periodic=True; eff 0:TRIGGER_SPELL/DUMMY v=60, 1:APPLY_AURA/PERIODIC_DAMAGE v=13, 2:APPLY_AURA/MOD_CRIT_CHANCE_FOR_CASTER",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_smolder_crit",
+      "name": "Smolder: +4% critical strike chance",
+      "spec_id": 63,
+      "target_spell": 801087,
+      "affected_spells": [
+        801087
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "801087 Smolder; catcd=6000; cost_pct=6; range=5.0; eff 0:NORMALIZED_WEAPON_DMG v=19, 1:APPLY_AURA/MOD_DAMAGE_FROM_CASTER v=5, 2:WEAPON_PERCENT_DAMAGE v=140",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_hurricane_cost",
+      "name": "Hurricane: -10% resource cost",
+      "spec_id": 63,
+      "target_spell": 645435,
+      "affected_spells": [
+        645435
+      ],
+      "targeting": "mask",
+      "mask": [
+        256,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "645435 Hurricane; cd=30000; dur=2000; cost_pct=14; range=10.0; radius=[10.0]; eff 0:APPLY_AURA/PERIODIC_DUMMY, 1:DUMMY, 2:APPLY_AURA/ALLOW_ONLY_ABILITY v=1; mask_unique_bit=[256, 0, 0] fam=38",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_hurricane_radius",
+      "name": "Hurricane: +15% radius",
+      "spec_id": 63,
+      "target_spell": 645435,
+      "affected_spells": [
+        645435
+      ],
+      "targeting": "mask",
+      "mask": [
+        256,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "645435 Hurricane; cd=30000; dur=2000; cost_pct=14; range=10.0; radius=[10.0]; eff 0:APPLY_AURA/PERIODIC_DUMMY, 1:DUMMY, 2:APPLY_AURA/ALLOW_ONLY_ABILITY v=1; mask_unique_bit=[256, 0, 0] fam=38",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
     }
   ],
   "rejected": [

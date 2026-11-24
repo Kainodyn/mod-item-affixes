@@ -1,7 +1,7 @@
 {
   "class_id": 16,
   "class": "STORMBRINGER",
-  "reviewed_at": "2026-11-23",
+  "reviewed_at": "2026-11-24",
   "affixes": [
     {
       "key": "sb_body_of_lightning_cd",
@@ -922,6 +922,1544 @@
       "client_sensitive": false,
       "confidence": "high",
       "notes": "Static-consuming finisher."
+    },
+    {
+      "key": "sb_body_of_lightning_dur",
+      "name": "Body of Lightning: +1.5 sec duration",
+      "spec_id": 0,
+      "target_spell": 500041,
+      "affected_spells": [
+        500041
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 1500
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "500041 Body of Lightning dur=12000",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_body_of_lightning_range",
+      "name": "Body of Lightning: +3 yd range",
+      "spec_id": 0,
+      "target_spell": 500041,
+      "affected_spells": [
+        500041
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        32,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "500041 Body of Lightning range=35.0; 500041 mask_unique_bit=[0, 32, 0] fam=22",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_body_of_lightning_crit",
+      "name": "Body of Lightning: +3% critical strike chance",
+      "spec_id": 0,
+      "target_spell": 500041,
+      "affected_spells": [
+        800406
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "800406 Body of Lightning eff0 SCHOOL_DAMAGE v=75 chain=4; target 500041 triggers [800406]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_body_of_lightning_jump",
+      "name": "Body of Lightning: +1 additional target",
+      "spec_id": 0,
+      "target_spell": 500041,
+      "affected_spells": [
+        800406
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "JUMP_TARGETS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "800406 Body of Lightning eff0 SCHOOL_DAMAGE v=75 chain=4; target 500041 triggers [800406]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_eye_of_the_storm_cost",
+      "name": "Eye of the Storm: -10% mana cost",
+      "spec_id": 0,
+      "target_spell": 806307,
+      "affected_spells": [
+        806307
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        1024
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "806307 Eye of the Storm cost_pct=37 power=0; 806307 mask_unique_bit=[0, 0, 1024] fam=22",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_eye_of_the_storm_crit",
+      "name": "Eye of the Storm: +3% critical strike chance",
+      "spec_id": 0,
+      "target_spell": 806307,
+      "affected_spells": [
+        806455,
+        806308
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "806455 Eye of the Storm eff1 SCHOOL_DAMAGE v=1; 806308 Eye of the Storm eff0 SCHOOL_DAMAGE v=1; target 806307 triggers [806455, 806308]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_eye_of_the_storm_radius",
+      "name": "Eye of the Storm: +1 yd radius",
+      "spec_id": 0,
+      "target_spell": 806307,
+      "affected_spells": [
+        806455,
+        806308
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "806455 Eye of the Storm radius=[10.0]; 806308 Eye of the Storm radius=[10.0]; target 806307 triggers [806455, 806308]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_eye_of_the_storm_range",
+      "name": "Eye of the Storm: +3 yd range",
+      "spec_id": 0,
+      "target_spell": 806307,
+      "affected_spells": [
+        806307
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        1024
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "806307 Eye of the Storm range=35.0; 806307 mask_unique_bit=[0, 0, 1024] fam=22",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_stormcloak_cost",
+      "name": "Stormcloak: -10% mana cost",
+      "spec_id": 0,
+      "target_spell": 804833,
+      "affected_spells": [
+        804833
+      ],
+      "targeting": "mask",
+      "mask": [
+        524288,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "804833 Stormcloak cost_pct=21 power=0; 804833 mask_unique_bit=[524288, 0, 0] fam=22",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_stormcloak_dur",
+      "name": "Stormcloak: +2 sec duration",
+      "spec_id": 0,
+      "target_spell": 804833,
+      "affected_spells": [
+        804833
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 2000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "804833 Stormcloak dur=15000",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_charge_dur",
+      "name": "Charge: +1.5 sec duration",
+      "spec_id": 0,
+      "target_spell": 804826,
+      "affected_spells": [
+        804826
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 1500
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "804826 Charge dur=10000",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_invigorating_winds_cost",
+      "name": "Invigorating Winds: -10% mana cost",
+      "spec_id": 0,
+      "target_spell": 705661,
+      "affected_spells": [
+        705661
+      ],
+      "targeting": "mask",
+      "mask": [
+        4194304,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "705661 Invigorating Winds cost_pct=31 power=0; 705661 mask_unique_bit=[4194304, 0, 0] fam=22",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_invigorating_winds_dur",
+      "name": "Invigorating Winds: +3 sec duration",
+      "spec_id": 0,
+      "target_spell": 705661,
+      "affected_spells": [
+        705661
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 3000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "705661 Invigorating Winds dur=20000",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_invigorating_winds_range",
+      "name": "Invigorating Winds: +4 yd range",
+      "spec_id": 0,
+      "target_spell": 705661,
+      "affected_spells": [
+        705661
+      ],
+      "targeting": "mask",
+      "mask": [
+        4194304,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "705661 Invigorating Winds range=40.0; 705661 mask_unique_bit=[4194304, 0, 0] fam=22",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_thunder_king_dur",
+      "name": "Thunder King: +3 sec duration",
+      "spec_id": 0,
+      "target_spell": 804591,
+      "affected_spells": [
+        804591
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 3000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "804591 Thunder King dur=20000",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_thunder_king_crit",
+      "name": "Thunder King: +3% critical strike chance",
+      "spec_id": 0,
+      "target_spell": 804591,
+      "affected_spells": [
+        800020
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "800020 Thunder Fist eff0 SCHOOL_DAMAGE v=373; target 804591 triggers [800020]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_cloudburst_cost",
+      "name": "Cloudburst: -10% mana cost",
+      "spec_id": 0,
+      "target_spell": 801838,
+      "affected_spells": [
+        801838
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        8388608
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "801838 Cloudburst cost_pct=27 power=0; 801838 mask_unique_bit=[0, 0, 8388608] fam=22",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_fog_dur",
+      "name": "Fog: +1.5 sec duration",
+      "spec_id": 0,
+      "target_spell": 806100,
+      "affected_spells": [
+        806100,
+        300831
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 1500
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "806100 Fog dur=8000; 300831 Gale Disturbance dur=6000; target 806100 triggers [806100, 300831]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_fog_radius",
+      "name": "Fog: +1 yd radius",
+      "spec_id": 0,
+      "target_spell": 806100,
+      "affected_spells": [
+        806100,
+        300831
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "806100 Fog radius=[8.0]; 300831 Gale Disturbance radius=[8.0]; target 806100 triggers [806100, 300831]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_exhale_radius",
+      "name": "Exhale: +2 yd radius",
+      "spec_id": 0,
+      "target_spell": 705672,
+      "affected_spells": [
+        520496
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 2
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "520496 Pressure Release radius=[30.0, 40.0]; target 705672 triggers [520496]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "child in family 33, spell_id targeting"
+    },
+    {
+      "key": "sb_storm_ascendance_cost",
+      "name": "Storm Ascendance: -10% mana cost",
+      "spec_id": 0,
+      "target_spell": 681110,
+      "affected_spells": [
+        681110
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        1
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "681110 Storm Ascendance cost_pct=16 power=0; 681110 mask_unique_bit=[0, 0, 1] fam=22",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_unshackle_dur",
+      "name": "Unshackle: +2 sec duration",
+      "spec_id": 13,
+      "target_spell": 706625,
+      "affected_spells": [
+        706625
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 2000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "706625 Unshackle dur=15000",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "aura on the Air Elemental, cast by the player"
+    },
+    {
+      "key": "sb_aerodynamics_radius",
+      "name": "Aerodynamics: +2 yd radius",
+      "spec_id": 13,
+      "target_spell": 806124,
+      "affected_spells": [
+        806124
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 2
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "806124 Aerodynamics radius=[40.0]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_tempests_call_dur",
+      "name": "Tempest's Call: +3 sec duration",
+      "spec_id": 13,
+      "target_spell": 560567,
+      "affected_spells": [
+        560567
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 3000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "560567 Tempest's Call dur=20000",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_surge_of_might_dur",
+      "name": "Surge of Might: +2 sec duration",
+      "spec_id": 13,
+      "target_spell": 520083,
+      "affected_spells": [
+        520084
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 2000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "520084 Surge of Might dur=15000; 520083 Surge of Might dur=15000; target 520083 triggers [520084]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "520084 is the 15 sec ally aura"
+    },
+    {
+      "key": "sb_kiss_of_the_clouds_dur",
+      "name": "Kiss of the Clouds: +1.5 sec duration",
+      "spec_id": 13,
+      "target_spell": 500039,
+      "affected_spells": [
+        500292
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 1500
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "500292 Kiss of the Clouds dur=10000; target 500039 triggers [500292]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "absorb shield duration"
+    },
+    {
+      "key": "sb_windsurf_cost",
+      "name": "Windsurf: -10% mana cost",
+      "spec_id": 13,
+      "target_spell": 500042,
+      "affected_spells": [
+        500042
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        4194304
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "500042 Windsurf cost_pct=21 power=0; 500042 mask_unique_bit=[0, 0, 4194304] fam=22",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_gale_cost",
+      "name": "Gale: -10% mana cost",
+      "spec_id": 13,
+      "target_spell": 804036,
+      "affected_spells": [
+        804036
+      ],
+      "targeting": "mask",
+      "mask": [
+        16384,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "804036 Gale cost_pct=29 power=0; 804036 mask_unique_bit=[16384, 0, 0] fam=22",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_gale_crit",
+      "name": "Gale: +3% critical strike chance",
+      "spec_id": 13,
+      "target_spell": 804036,
+      "affected_spells": [
+        804036
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "804036 Gale eff0 SCHOOL_DAMAGE v=62 chain=3",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_gale_jump",
+      "name": "Gale: +1 additional target",
+      "spec_id": 13,
+      "target_spell": 804036,
+      "affected_spells": [
+        804036
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "JUMP_TARGETS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "804036 Gale eff0 SCHOOL_DAMAGE v=62 chain=3",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_gale_range",
+      "name": "Gale: +3 yd range",
+      "spec_id": 13,
+      "target_spell": 804036,
+      "affected_spells": [
+        804036
+      ],
+      "targeting": "mask",
+      "mask": [
+        16384,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "804036 Gale range=30.0; 804036 mask_unique_bit=[16384, 0, 0] fam=22",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_mystic_thunder_dur",
+      "name": "Mystic Thunder: +1 sec duration",
+      "spec_id": 14,
+      "target_spell": 504846,
+      "affected_spells": [
+        505214
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 1000
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "505214 Mystic Thunder dur=5000; 504846 Mystic Thunder dur=5000; target 504846 triggers [505214]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "mark duration"
+    },
+    {
+      "key": "sb_deluge_crit",
+      "name": "Deluge: +3% critical strike chance",
+      "spec_id": 14,
+      "target_spell": 806400,
+      "affected_spells": [
+        806400
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "806400 Deluge eff0 SCHOOL_DAMAGE v=118",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_deluge_radius",
+      "name": "Deluge: +1 yd radius",
+      "spec_id": 14,
+      "target_spell": 806400,
+      "affected_spells": [
+        806400
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "806400 Deluge radius=[10.0]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_deluge_dur",
+      "name": "Deluge: +1.5 sec duration",
+      "spec_id": 14,
+      "target_spell": 806400,
+      "affected_spells": [
+        806399
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 1500
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "806399 Deluge dur=10000; 806400 Deluge dur=4000; target 806400 triggers [806399]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "sb_stormfury_dur",
+      "name": "Stormfury: +2 sec duration",
+      "spec_id": 14,
+      "target_spell": 532751,
+      "affected_spells": [
+        532751
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 2000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "532751 Stormfury dur=20000",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "extends periodic trigger (more ticks)"
+    },
+    {
+      "key": "sb_stormfury_radius",
+      "name": "Stormfury: +2 yd radius",
+      "spec_id": 14,
+      "target_spell": 532751,
+      "affected_spells": [
+        532751
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 2
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "532751 Stormfury radius=[30.0]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_stormfury_crit",
+      "name": "Stormfury: +3% critical strike chance",
+      "spec_id": 14,
+      "target_spell": 532751,
+      "affected_spells": [
+        532753
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "532753 Stormfury eff0 SCHOOL_DAMAGE v=540; target 532751 triggers [532753]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_drown_cost",
+      "name": "Drown: -10% mana cost",
+      "spec_id": 14,
+      "target_spell": 806407,
+      "affected_spells": [
+        806407
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        134217728,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "806407 Drown cost_pct=31 power=0; 806407 mask_unique_bit=[0, 134217728, 0] fam=22",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_drown_crit",
+      "name": "Drown: +3% critical strike chance",
+      "spec_id": 14,
+      "target_spell": 806407,
+      "affected_spells": [
+        806408
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "806408 Drown eff0 SCHOOL_DAMAGE v=1; target 806407 triggers [806408]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_drown_range",
+      "name": "Drown: +3 yd range",
+      "spec_id": 14,
+      "target_spell": 806407,
+      "affected_spells": [
+        806407
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        134217728,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "806407 Drown range=35.0; 806407 mask_unique_bit=[0, 134217728, 0] fam=22",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_stormflow_range",
+      "name": "Stormflow: +3 yd range",
+      "spec_id": 14,
+      "target_spell": 567555,
+      "affected_spells": [
+        567555
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        65536,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "567555 Stormflow range=35.0; 567555 mask_unique_bit=[0, 65536, 0] fam=22",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": "channel; mask so the client knows the range"
+    },
+    {
+      "key": "sb_stormcloud_cost",
+      "name": "Stormcloud: -10% mana cost",
+      "spec_id": 14,
+      "target_spell": 801859,
+      "affected_spells": [
+        801859
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        8388608,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "801859 Stormcloud cost_pct=42 power=0; 801859 mask_unique_bit=[0, 8388608, 0] fam=22",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_stormcloud_dur",
+      "name": "Stormcloud: +2 sec duration",
+      "spec_id": 14,
+      "target_spell": 801859,
+      "affected_spells": [
+        801859
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 2000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "801859 Stormcloud dur=15000",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_stormcloud_range",
+      "name": "Stormcloud: +4 yd range",
+      "spec_id": 14,
+      "target_spell": 801859,
+      "affected_spells": [
+        801859
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        8388608,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "801859 Stormcloud range=40.0; 801859 mask_unique_bit=[0, 8388608, 0] fam=22",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_thunder_ward_dur",
+      "name": "Thunder Ward: +1.5 sec duration",
+      "spec_id": 14,
+      "target_spell": 800098,
+      "affected_spells": [
+        800098
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 1500
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "800098 Thunder Ward dur=10000",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_lightning_cage_cost",
+      "name": "Lightning Cage: -10% mana cost",
+      "spec_id": 15,
+      "target_spell": 560030,
+      "affected_spells": [
+        560030
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        33554432
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "560030 Lightning Cage cost_pct=47 power=0; 560030 mask_unique_bit=[0, 0, 33554432] fam=22",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_lightning_cage_dur",
+      "name": "Lightning Cage: +3 sec duration",
+      "spec_id": 15,
+      "target_spell": 560030,
+      "affected_spells": [
+        560030
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 3000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "560030 Lightning Cage dur=30000",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "sb_volt_cost",
+      "name": "Volt: -10% mana cost",
+      "spec_id": 15,
+      "target_spell": 500928,
+      "affected_spells": [
+        500928
+      ],
+      "targeting": "mask",
+      "mask": [
+        134217728,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "500928 Volt cost_pct=15 power=0; 500928 mask_unique_bit=[134217728, 0, 0] fam=22",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_volt_dur",
+      "name": "Volt: +3 sec duration",
+      "spec_id": 15,
+      "target_spell": 500928,
+      "affected_spells": [
+        500928
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 3000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "500928 Volt dur=18000",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "extends the DoT"
+    },
+    {
+      "key": "sb_volt_range",
+      "name": "Volt: +3 yd range",
+      "spec_id": 15,
+      "target_spell": 500928,
+      "affected_spells": [
+        500928
+      ],
+      "targeting": "mask",
+      "mask": [
+        134217728,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "500928 Volt range=35.0; 500928 mask_unique_bit=[134217728, 0, 0] fam=22",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_ride_the_lightning_crit",
+      "name": "Ride the Lightning: +3% critical strike chance",
+      "spec_id": 15,
+      "target_spell": 800099,
+      "affected_spells": [
+        800099
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "800099 Ride the Lightning eff2 SCHOOL_DAMAGE v=540",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_forked_lightning_cost",
+      "name": "Forked Lightning: -10% mana cost",
+      "spec_id": 15,
+      "target_spell": 801851,
+      "affected_spells": [
+        801851
+      ],
+      "targeting": "mask",
+      "mask": [
+        256,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "801851 Forked Lightning cost_pct=37 power=0; 801851 mask_unique_bit=[256, 0, 0] fam=22",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_forked_lightning_crit",
+      "name": "Forked Lightning: +3% critical strike chance",
+      "spec_id": 15,
+      "target_spell": 801851,
+      "affected_spells": [
+        801851
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "801851 Forked Lightning eff0 SCHOOL_DAMAGE v=77 chain=4",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_forked_lightning_jump",
+      "name": "Forked Lightning: +1 additional target",
+      "spec_id": 15,
+      "target_spell": 801851,
+      "affected_spells": [
+        801851
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "JUMP_TARGETS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "801851 Forked Lightning eff0 SCHOOL_DAMAGE v=77 chain=4",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_forked_lightning_range",
+      "name": "Forked Lightning: +3 yd range",
+      "spec_id": 15,
+      "target_spell": 801851,
+      "affected_spells": [
+        801851
+      ],
+      "targeting": "mask",
+      "mask": [
+        256,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "801851 Forked Lightning range=35.0; 801851 mask_unique_bit=[256, 0, 0] fam=22",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_arm_of_thorim_crit",
+      "name": "Arm of Thorim: +3% critical strike chance",
+      "spec_id": 15,
+      "target_spell": 801847,
+      "affected_spells": [
+        801847
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "801847 Arm of Thorim eff0 SCHOOL_DAMAGE v=128",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_arm_of_thorim_cast",
+      "name": "Arm of Thorim: -0.2 sec cast time",
+      "spec_id": 15,
+      "target_spell": 801847,
+      "affected_spells": [
+        801847
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CASTING_TIME",
+          "type": "FLAT",
+          "value": -200
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "801847 Arm of Thorim cast=1000",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
     }
   ],
   "rejected": [

@@ -1,7 +1,7 @@
 {
   "class_id": 19,
   "class": "MONK",
-  "reviewed_at": "2026-11-23",
+  "reviewed_at": "2026-11-24",
   "affixes": [
     {
       "key": "monk_libram_fervor_cd",
@@ -879,6 +879,1444 @@
       "client_sensitive": true,
       "confidence": "high",
       "notes": ""
+    },
+    {
+      "key": "monk_libram_of_fervor_dur",
+      "name": "Libram of Fervor: +3 sec duration",
+      "spec_id": 0,
+      "target_spell": 805423,
+      "affected_spells": [
+        805423
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 3000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "805423 Libram of Fervor dur=20000 cd=180000 fam=25 [eff0=APPLY_AURA/MOD_ATTACK_POWER_OF_STAT_PERCENT v=30;eff1=APPLY_AURA/MOD_SPELL_DAMAGE_OF_STAT_PERCENT v=30;eff2=APPLY_AURA/MOD_SPELL_HEALING_OF_STAT_PERCENT v=25]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "monk_glory_dur",
+      "name": "Glory: +1 sec duration",
+      "spec_id": 0,
+      "target_spell": 801481,
+      "affected_spells": [
+        801481
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 1000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "801481 Glory dur=5000 cd=120000 fam=25 [eff0=APPLY_AURA/MOD_MELEE_HASTE v=30;eff1=APPLY_AURA/PERIODIC_TRIGGER_SPELL v=1]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "monk_blade_of_faith_cost",
+      "name": "Blade of Faith: -10% Energy cost",
+      "spec_id": 0,
+      "target_spell": 803872,
+      "affected_spells": [
+        803872
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        2048,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "803872 Blade of Faith power=3 cost=35 dur=30000 range=5.0 periodic=True mask_unique_bit=[0, 2048, 0] fam=25 [eff0=APPLY_AURA/PERIODIC_DAMAGE v=26;eff1=APPLY_AURA/MOD_DAMAGE_FROM_CASTER v=0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "monk_blade_of_faith_dur",
+      "name": "Blade of Faith: +4 sec duration",
+      "spec_id": 0,
+      "target_spell": 803872,
+      "affected_spells": [
+        803872
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        2048,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 4000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "803872 Blade of Faith power=3 cost=35 dur=30000 range=5.0 periodic=True mask_unique_bit=[0, 2048, 0] fam=25 [eff0=APPLY_AURA/PERIODIC_DAMAGE v=26;eff1=APPLY_AURA/MOD_DAMAGE_FROM_CASTER v=0]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "monk_divine_force_cost",
+      "name": "Divine Force: -10% Energy cost",
+      "spec_id": 0,
+      "target_spell": 806153,
+      "affected_spells": [
+        806153
+      ],
+      "targeting": "mask",
+      "mask": [
+        262144,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "806153 Divine Force power=3 cost=15 range=15.0 mask_unique_bit=[262144, 0, 0] fam=25 [eff0=TRIGGER_SPELL v=1;eff1=JUMP_DEST v=0;eff2=SCHOOL_DAMAGE v=20]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "monk_divine_force_crit",
+      "name": "Divine Force: +4% critical strike chance",
+      "spec_id": 0,
+      "target_spell": 806153,
+      "affected_spells": [
+        806153
+      ],
+      "targeting": "mask",
+      "mask": [
+        262144,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "806153 Divine Force power=3 cost=15 range=15.0 mask_unique_bit=[262144, 0, 0] fam=25 [eff0=TRIGGER_SPELL v=1;eff1=JUMP_DEST v=0;eff2=SCHOOL_DAMAGE v=20]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "monk_divine_force_range",
+      "name": "Divine Force: +3 yd range",
+      "spec_id": 0,
+      "target_spell": 806153,
+      "affected_spells": [
+        806153
+      ],
+      "targeting": "mask",
+      "mask": [
+        262144,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "806153 Divine Force power=3 cost=15 range=15.0 mask_unique_bit=[262144, 0, 0] fam=25 [eff0=TRIGGER_SPELL v=1;eff1=JUMP_DEST v=0;eff2=SCHOOL_DAMAGE v=20]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "monk_divine_force_dur",
+      "name": "Divine Force: +1 sec duration",
+      "spec_id": 0,
+      "target_spell": 807890,
+      "affected_spells": [
+        807890
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 1000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "807890 Divine Force power=3 cost=15 dur=6000 range=15.0 mask_unique_bit=[262144, 0, 0] fam=25 [eff0=APPLY_AURA/MOD_STUN v=0]; trigger child of 806153",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "monk_libram_of_tenacity_dur",
+      "name": "Libram of Tenacity: +3 sec duration",
+      "spec_id": 0,
+      "target_spell": 801461,
+      "affected_spells": [
+        801461
+      ],
+      "targeting": "mask",
+      "mask": [
+        65536,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 3000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "801461 Libram of Tenacity dur=20000 cd=180000 mask_unique_bit=[65536, 0, 0] fam=25 [eff0=HEAL_PCT v=0;eff1=APPLY_AURA/MOD_DAMAGE_PERCENT_TAKEN v=-30;eff2=APPLY_AURA/MOD_DAMAGE_PERCENT_TAKEN v=-15]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "monk_silverhand_incantation_cost",
+      "name": "Silverhand Incantation: -10% Energy cost",
+      "spec_id": 0,
+      "target_spell": 801465,
+      "affected_spells": [
+        801465
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        536870912,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "801465 Silverhand Incantation power=3 cost=30 cd=90000 range=40.0 mask_unique_bit=[0, 536870912, 0] fam=25 [eff0=TRIGGER_MISSILE_SPELL_WITH_VALUE v=300;eff1=CHARGE v=1]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "monk_silverhand_incantation_range",
+      "name": "Silverhand Incantation: +4 yd range",
+      "spec_id": 0,
+      "target_spell": 801465,
+      "affected_spells": [
+        801465
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        536870912,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "801465 Silverhand Incantation power=3 cost=30 cd=90000 range=40.0 mask_unique_bit=[0, 536870912, 0] fam=25 [eff0=TRIGGER_MISSILE_SPELL_WITH_VALUE v=300;eff1=CHARGE v=1]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "monk_silverhand_incantation_crit",
+      "name": "Silverhand Incantation: +4% critical strike chance",
+      "spec_id": 0,
+      "target_spell": 801501,
+      "affected_spells": [
+        801501
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        536870912,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "801501 Silverhand Incantation cd=90000 radius=[8.0] mask_unique_bit=[0, 536870912, 0] fam=25 [eff0=SCHOOL_DAMAGE v=1;eff1=HEAL v=1]; trigger child of 801465",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "monk_silverhand_incantation_radius",
+      "name": "Silverhand Incantation: +1 yd radius",
+      "spec_id": 0,
+      "target_spell": 801501,
+      "affected_spells": [
+        801501
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        536870912,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "801501 Silverhand Incantation cd=90000 radius=[8.0] mask_unique_bit=[0, 536870912, 0] fam=25 [eff0=SCHOOL_DAMAGE v=1;eff1=HEAL v=1]; trigger child of 801465",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "monk_testament_of_will_dur",
+      "name": "Testament of Will: +1.5 sec duration",
+      "spec_id": 0,
+      "target_spell": 801455,
+      "affected_spells": [
+        801455
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 1500
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "801455 Testament of Will power=3 cost=50 dur=10000 cd=60000 range=20.0 fam=25 [eff0=APPLY_AURA/MECHANIC_IMMUNITY_MASK v=1;eff1=APPLY_AURA/MECHANIC_IMMUNITY v=1;eff2=TRIGGER_SPELL v=1]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "monk_interdict_dur",
+      "name": "Interdict: +1 sec duration",
+      "spec_id": 0,
+      "target_spell": 560116,
+      "affected_spells": [
+        560116,
+        561309
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 1000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "560116 Interdict dur=6000 cd=120000 range=20.0 fam=25 [eff0=APPLY_AURA/MOD_SILENCE v=1;eff1=TRIGGER_SPELL v=1]; 561309 Atone for your Sins! power=3 cost=10 dur=6000 cd=120000 range=20.0 fam=25 [eff0=APPLY_AURA/MOD_HEALING_PCT v=-100]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "monk_reckoning_crit",
+      "name": "Reckoning: +4% critical strike chance",
+      "spec_id": 22,
+      "target_spell": 805421,
+      "affected_spells": [
+        805421
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        131072,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "805421 Reckoning range=5.0 radius=[8.0] mask_unique_bit=[0, 131072, 0] fam=25 [eff0=SCHOOL_DAMAGE v=36]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "monk_reckoning_radius",
+      "name": "Reckoning: +1 yd radius",
+      "spec_id": 22,
+      "target_spell": 805421,
+      "affected_spells": [
+        805421
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        131072,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "805421 Reckoning range=5.0 radius=[8.0] mask_unique_bit=[0, 131072, 0] fam=25 [eff0=SCHOOL_DAMAGE v=36]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "monk_eternal_blessing_dur",
+      "name": "Eternal Blessing: +4 sec duration",
+      "spec_id": 22,
+      "target_spell": 705300,
+      "affected_spells": [
+        705300
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        1048576
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 4000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "705300 Eternal Blessing dur=30000 cd=60000 mask_unique_bit=[0, 0, 1048576] fam=25 [eff0=APPLY_AURA/MOD_DAMAGE_PERCENT_DONE v=15;eff1=APPLY_AURA/PROC_TRIGGER_SPELL v=0;eff2=APPLY_AURA/MOD_HEALING_PCT v=15]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "monk_eternal_blessing_crit",
+      "name": "Eternal Blessing: +4% critical strike chance",
+      "spec_id": 22,
+      "target_spell": 707111,
+      "affected_spells": [
+        707111
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "707111 Eternal Blessing radius=[5.0] fam=25 [eff0=TRIGGER_SPELL v=0;eff1=TRIGGER_SPELL v=0;eff2=SCHOOL_DAMAGE v=141]; trigger child of 705300",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "monk_eternal_blessing_radius",
+      "name": "Eternal Blessing: +1 yd radius",
+      "spec_id": 22,
+      "target_spell": 707111,
+      "affected_spells": [
+        707111
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "707111 Eternal Blessing radius=[5.0] fam=25 [eff0=TRIGGER_SPELL v=0;eff1=TRIGGER_SPELL v=0;eff2=SCHOOL_DAMAGE v=141]; trigger child of 705300",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "monk_barrier_of_light_dur",
+      "name": "Barrier of Light: +2 sec duration",
+      "spec_id": 22,
+      "target_spell": 805417,
+      "affected_spells": [
+        805417
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        64
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 2000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "805417 Barrier of Light dur=15000 cd=90000 radius=[20.0] mask_unique_bit=[0, 0, 64] fam=25 [eff0=APPLY_AREA_AURA_RAID/MOD_DAMAGE_PERCENT_TAKEN v=0;eff1=APPLY_AREA_AURA_RAID/PERIODIC_TRIGGER_SPELL v=1;eff2=APPLY_AREA_AURA_RAID/ASCENSION_MOD_HEALING_RECEIVED_PCT v=40]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "monk_barrier_of_light_radius",
+      "name": "Barrier of Light: +2 yd radius",
+      "spec_id": 22,
+      "target_spell": 805417,
+      "affected_spells": [
+        805417
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        64
+      ],
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 2
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "805417 Barrier of Light dur=15000 cd=90000 radius=[20.0] mask_unique_bit=[0, 0, 64] fam=25 [eff0=APPLY_AREA_AURA_RAID/MOD_DAMAGE_PERCENT_TAKEN v=0;eff1=APPLY_AREA_AURA_RAID/PERIODIC_TRIGGER_SPELL v=1;eff2=APPLY_AREA_AURA_RAID/ASCENSION_MOD_HEALING_RECEIVED_PCT v=40]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "monk_tome_of_light_dur",
+      "name": "Tome of Light: +4 sec duration",
+      "spec_id": 22,
+      "target_spell": 805422,
+      "affected_spells": [
+        805422
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 4000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "805422 Tome of Light dur=30000 cd=300000 fam=25 [eff0=ASCENSION_FIRST v=0;eff1=APPLY_AURA/SCHOOL_ABSORB v=1;eff2=ASCENSION_FIRST v=0]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "monk_sacred_swing_cost",
+      "name": "Sacred Swing: -10% Energy cost",
+      "spec_id": 22,
+      "target_spell": 705293,
+      "affected_spells": [
+        705293
+      ],
+      "targeting": "mask",
+      "mask": [
+        67108864,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "705293 Sacred Swing power=3 cost=20 radius=[6.0] mask_unique_bit=[67108864, 0, 0] fam=25 [eff0=NORMALIZED_WEAPON_DMG v=13;eff1=WEAPON_PERCENT_DAMAGE v=140;eff2=TRIGGER_SPELL v=0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "monk_sacred_swing_crit",
+      "name": "Sacred Swing: +4% critical strike chance",
+      "spec_id": 22,
+      "target_spell": 705293,
+      "affected_spells": [
+        705293
+      ],
+      "targeting": "mask",
+      "mask": [
+        67108864,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "705293 Sacred Swing power=3 cost=20 radius=[6.0] mask_unique_bit=[67108864, 0, 0] fam=25 [eff0=NORMALIZED_WEAPON_DMG v=13;eff1=WEAPON_PERCENT_DAMAGE v=140;eff2=TRIGGER_SPELL v=0]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "monk_sacred_swing_radius",
+      "name": "Sacred Swing: +1 yd radius",
+      "spec_id": 22,
+      "target_spell": 705293,
+      "affected_spells": [
+        705293
+      ],
+      "targeting": "mask",
+      "mask": [
+        67108864,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "705293 Sacred Swing power=3 cost=20 radius=[6.0] mask_unique_bit=[67108864, 0, 0] fam=25 [eff0=NORMALIZED_WEAPON_DMG v=13;eff1=WEAPON_PERCENT_DAMAGE v=140;eff2=TRIGGER_SPELL v=0]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "monk_sacred_swing_dur",
+      "name": "Sacred Swing: +1.5 sec duration",
+      "spec_id": 22,
+      "target_spell": 301061,
+      "affected_spells": [
+        301061
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 1500
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "301061 Sacred Swing dur=10000 range=50000.0 fam=25 [eff0=APPLY_AURA/MOD_MELEE_RANGED_HASTE v=-20;eff1=APPLY_AURA/MOD_DECREASE_SPEED v=-20;eff2=THREAT v=50]; trigger child of 705293",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "monk_absolution_radius",
+      "name": "Absolution: +1 yd radius",
+      "spec_id": 22,
+      "target_spell": 800424,
+      "affected_spells": [
+        800424
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "800424 Absolution dur=4000 cd=150000 radius=[8.0] fam=25 [eff0=APPLY_AURA/MOD_TAUNT v=100]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "monk_norgannons_wrath_cost",
+      "name": "Norgannon's Wrath: -10% Energy cost",
+      "spec_id": 23,
+      "target_spell": 524739,
+      "affected_spells": [
+        524739
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        524288
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "524739 Norgannon's Wrath power=3 cost=30 dur=1500 cd=30000 range=40.0 mask_unique_bit=[0, 0, 524288] fam=25 [eff0=LEAP_BACK v=201;eff1=ASCENSION_TRIGGER_SPELL_DELAYED v=1500;eff2=ASCENSION_TRIGGER_SPELL_DELAYED v=500]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "monk_norgannons_wrath_range",
+      "name": "Norgannon's Wrath: +3 yd range",
+      "spec_id": 23,
+      "target_spell": 524739,
+      "affected_spells": [
+        524739
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        524288
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "524739 Norgannon's Wrath power=3 cost=30 dur=1500 cd=30000 range=40.0 mask_unique_bit=[0, 0, 524288] fam=25 [eff0=LEAP_BACK v=201;eff1=ASCENSION_TRIGGER_SPELL_DELAYED v=1500;eff2=ASCENSION_TRIGGER_SPELL_DELAYED v=500]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "monk_norgannons_wrath_crit",
+      "name": "Norgannon's Wrath: +4% critical strike chance",
+      "spec_id": 23,
+      "target_spell": 524740,
+      "affected_spells": [
+        524740
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        524288
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "524740 Norgannon's Wrath range=50000.0 radius=[5.0] mask_unique_bit=[0, 0, 524288] fam=25 [eff0=SCHOOL_DAMAGE v=1500;eff1=TRIGGER_SPELL v=0]; trigger child of 524739",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "monk_norgannons_wrath_radius",
+      "name": "Norgannon's Wrath: +1 yd radius",
+      "spec_id": 23,
+      "target_spell": 524740,
+      "affected_spells": [
+        524740
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        524288
+      ],
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "524740 Norgannon's Wrath range=50000.0 radius=[5.0] mask_unique_bit=[0, 0, 524288] fam=25 [eff0=SCHOOL_DAMAGE v=1500;eff1=TRIGGER_SPELL v=0]; trigger child of 524739",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "monk_norgannons_wrath_dur",
+      "name": "Norgannon's Wrath: +1 sec duration",
+      "spec_id": 23,
+      "target_spell": 520842,
+      "affected_spells": [
+        520842
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 1000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "520842 Norgannon's Wrath dur=5000 range=50000.0 fam=25 [eff0=APPLY_AURA/MOD_DAMAGE_PERCENT_DONE v=-10;eff1=APPLY_AURA/MOD_HEALING_DONE_PERCENT v=-10]; trigger child of 524739",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "monk_righteous_upheaval_cost",
+      "name": "Righteous Upheaval: -10% Energy cost",
+      "spec_id": 23,
+      "target_spell": 501562,
+      "affected_spells": [
+        501562
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        128,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "501562 Righteous Upheaval power=3 cost=35 range=5.0 radius=[8.0] mask_unique_bit=[0, 128, 0] fam=25 [eff0=SCHOOL_DAMAGE v=72]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "monk_righteous_upheaval_crit",
+      "name": "Righteous Upheaval: +4% critical strike chance",
+      "spec_id": 23,
+      "target_spell": 501562,
+      "affected_spells": [
+        501562
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        128,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "501562 Righteous Upheaval power=3 cost=35 range=5.0 radius=[8.0] mask_unique_bit=[0, 128, 0] fam=25 [eff0=SCHOOL_DAMAGE v=72]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "monk_righteous_upheaval_radius",
+      "name": "Righteous Upheaval: +1 yd radius",
+      "spec_id": 23,
+      "target_spell": 501562,
+      "affected_spells": [
+        501562
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        128,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "501562 Righteous Upheaval power=3 cost=35 range=5.0 radius=[8.0] mask_unique_bit=[0, 128, 0] fam=25 [eff0=SCHOOL_DAMAGE v=72]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "monk_libram_of_zeal_dur",
+      "name": "Libram of Zeal: +3 sec duration",
+      "spec_id": 23,
+      "target_spell": 801466,
+      "affected_spells": [
+        801466
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 3000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "801466 Libram of Zeal dur=20000 cd=180000 fam=25 [eff0=APPLY_AURA/PROC_TRIGGER_SPELL v=-25;eff1=APPLY_AURA/MOD_MELEE_HASTE v=20]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "monk_vindication_crit",
+      "name": "Vindication: +4% critical strike chance",
+      "spec_id": 23,
+      "target_spell": 801446,
+      "affected_spells": [
+        801446
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "801446 Vindication power=3 cost=35 range=5.0 fam=25 [eff0=SCHOOL_DAMAGE v=40]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "monk_force_of_golganneth_cost",
+      "name": "Force of Golganneth: -10% Energy cost",
+      "spec_id": 23,
+      "target_spell": 500694,
+      "affected_spells": [
+        500694
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        524288,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "500694 Force of Golganneth power=3 cost=40 dur=5000 cd=120000 mask_unique_bit=[0, 524288, 0] fam=25 [eff0=APPLY_AURA/ADD_PCT_MODIFIER v=-50;eff1=APPLY_AURA/DUMMY v=-100;eff2=APPLY_AURA/PERIODIC_TRIGGER_SPELL v=-50]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "monk_force_of_golganneth_crit",
+      "name": "Force of Golganneth: +4% critical strike chance",
+      "spec_id": 23,
+      "target_spell": 803153,
+      "affected_spells": [
+        803153
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "803153 Force of Golganneth range=100.0 radius=[8.0] fam=25 [eff0=SCHOOL_DAMAGE v=54;eff1=TRIGGER_SPELL v=100]; trigger child of 500694",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "monk_force_of_golganneth_radius",
+      "name": "Force of Golganneth: +1 yd radius",
+      "spec_id": 23,
+      "target_spell": 803153,
+      "affected_spells": [
+        803153
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "803153 Force of Golganneth range=100.0 radius=[8.0] fam=25 [eff0=SCHOOL_DAMAGE v=54;eff1=TRIGGER_SPELL v=100]; trigger child of 500694",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "monk_zealotry_crit",
+      "name": "Zealotry: +4% critical strike chance",
+      "spec_id": 23,
+      "target_spell": 801450,
+      "affected_spells": [
+        801450
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        256,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "801450 Zealotry range=5.0 mask_unique_bit=[0, 256, 0] fam=25 [eff0=NORMALIZED_WEAPON_DMG v=1;eff1=WEAPON_PERCENT_DAMAGE v=80]; trigger child of 500694",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "monk_crusaders_brand_cost",
+      "name": "Crusader's Brand: -10% Energy cost",
+      "spec_id": 24,
+      "target_spell": 300513,
+      "affected_spells": [
+        300513
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        1024
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "300513 Crusader's Brand power=3 cost=20 dur=20000 cd=60000 range=30.0 mask_unique_bit=[0, 0, 1024] fam=25 [eff0=APPLY_AURA/PROC_TRIGGER_SPELL v=1;eff1=APPLY_AURA/MOD_STALKED v=0;eff2=APPLY_AURA/MECHANIC_IMMUNITY v=1]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "monk_crusaders_brand_dur",
+      "name": "Crusader's Brand: +3 sec duration",
+      "spec_id": 24,
+      "target_spell": 300513,
+      "affected_spells": [
+        300513
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        1024
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 3000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "300513 Crusader's Brand power=3 cost=20 dur=20000 cd=60000 range=30.0 mask_unique_bit=[0, 0, 1024] fam=25 [eff0=APPLY_AURA/PROC_TRIGGER_SPELL v=1;eff1=APPLY_AURA/MOD_STALKED v=0;eff2=APPLY_AURA/MECHANIC_IMMUNITY v=1]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "monk_crusaders_brand_range",
+      "name": "Crusader's Brand: +3 yd range",
+      "spec_id": 24,
+      "target_spell": 300513,
+      "affected_spells": [
+        300513
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        1024
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "300513 Crusader's Brand power=3 cost=20 dur=20000 cd=60000 range=30.0 mask_unique_bit=[0, 0, 1024] fam=25 [eff0=APPLY_AURA/PROC_TRIGGER_SPELL v=1;eff1=APPLY_AURA/MOD_STALKED v=0;eff2=APPLY_AURA/MECHANIC_IMMUNITY v=1]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "monk_crusaders_brand_crit",
+      "name": "Crusader's Brand: +4% critical strike chance",
+      "spec_id": 24,
+      "target_spell": 573020,
+      "affected_spells": [
+        573020
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "573020 Crusader's Brand range=50000.0 fam=25 [eff0=SCHOOL_DAMAGE v=243]; trigger child of 300513",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "monk_argent_blade_cost",
+      "name": "Argent Blade: -10% Energy cost",
+      "spec_id": 24,
+      "target_spell": 804929,
+      "affected_spells": [
+        804929
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        32
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "804929 Argent Blade power=3 cost=50 cd=5000 range=5.0 mask_unique_bit=[0, 0, 32] fam=25 [eff0=NORMALIZED_WEAPON_DMG v=20;eff1=WEAPON_PERCENT_DAMAGE v=215;eff2=TRIGGER_SPELL v=0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "monk_argent_blade_crit",
+      "name": "Argent Blade: +4% critical strike chance",
+      "spec_id": 24,
+      "target_spell": 804929,
+      "affected_spells": [
+        804929,
+        801832
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "804929 Argent Blade power=3 cost=50 cd=5000 range=5.0 mask_unique_bit=[0, 0, 32] fam=25 [eff0=NORMALIZED_WEAPON_DMG v=20;eff1=WEAPON_PERCENT_DAMAGE v=215;eff2=TRIGGER_SPELL v=0]; 801832 Scourgebane range=50000.0 mask_unique_bit=[0, 8388608, 0] fam=25 [eff0=SCHOOL_DAMAGE v=262;eff1=WEAPON_PERCENT_DAMAGE v=50]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "monk_divine_charge_dur",
+      "name": "Divine Charge: +2 sec duration",
+      "spec_id": 24,
+      "target_spell": 527023,
+      "affected_spells": [
+        527023
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        8
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 2000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "527023 Divine Charge dur=15000 cd=180000 radius=[20.0] mask_unique_bit=[0, 0, 8] fam=25 [eff0=APPLY_AURA/DUMMY v=1]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "monk_testament_of_strength_dur",
+      "name": "Testament of Strength: +6 sec duration",
+      "spec_id": 24,
+      "target_spell": 300514,
+      "affected_spells": [
+        300514
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 6000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "300514 Testament of Strength power=3 cost=40 dur=60000 cd=180000 fam=25 [eff0=APPLY_AURA/ADD_PCT_MODIFIER v=-50;eff1=APPLY_AURA/ADD_PCT_MODIFIER v=25;eff2=APPLY_AURA/ABILITY_IGNORE_AURASTATE v=1]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "monk_righteous_tempest_crit",
+      "name": "Righteous Tempest: +4% critical strike chance",
+      "spec_id": 24,
+      "target_spell": 805410,
+      "affected_spells": [
+        805410
+      ],
+      "targeting": "mask",
+      "mask": [
+        2,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "805410 Righteous Tempest range=15.0 radius=[5.0] mask_unique_bit=[2, 0, 0] fam=25 [eff0=NORMALIZED_WEAPON_DMG v=7;eff1=WEAPON_PERCENT_DAMAGE v=100]; trigger child of 805409",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "monk_righteous_tempest_radius",
+      "name": "Righteous Tempest: +1 yd radius",
+      "spec_id": 24,
+      "target_spell": 805410,
+      "affected_spells": [
+        805410
+      ],
+      "targeting": "mask",
+      "mask": [
+        2,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "805410 Righteous Tempest range=15.0 radius=[5.0] mask_unique_bit=[2, 0, 0] fam=25 [eff0=NORMALIZED_WEAPON_DMG v=7;eff1=WEAPON_PERCENT_DAMAGE v=100]; trigger child of 805409",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary"
     }
   ],
   "rejected": [

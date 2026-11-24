@@ -1,7 +1,7 @@
 {
   "class_id": 26,
   "class": "STARCALLER",
-  "reviewed_at": "2026-11-23",
+  "reviewed_at": "2026-11-24",
   "affixes": [
     {
       "key": "star_shooting_star_cd",
@@ -915,6 +915,1775 @@
       "evidence": "805550 Starsweep cd=20000 catcd=20000 cost_pct=5 eff0 SCHOOL_DAMAGE v=39; eff1 TRIGGER_SPELL",
       "client_sensitive": false,
       "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "star_shooting_star_cost",
+      "name": "Shooting Star: -10% resource cost",
+      "spec_id": 0,
+      "target_spell": 800505,
+      "affected_spells": [
+        800505
+      ],
+      "targeting": "mask",
+      "mask": [
+        4096,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "800505 Shooting Star catcd=60000 cost_pct=12 dur=4000 eff0 MOD_INCREASE_SPEED v=60 eff1 PERIODIC_TRIGGER_SPELL per=200 r=0.0 eff2 FORCE_MOVE_FORWARD v=50 | mask_unique_bit=[4096, 0, 0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "star_elunes_presence_dur",
+      "name": "Elune's Presence: +20% duration",
+      "spec_id": 0,
+      "target_spell": 680774,
+      "affected_spells": [
+        680774
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "680774 Elune's Presence cd=180000 cost_pct=23 dur=10000 radius=[40.0] eff0 MOD_INCREASE_HEALTH_PERCENT v=20 r=40.0",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "10 s raid health buff."
+    },
+    {
+      "key": "star_elunes_presence_radius",
+      "name": "Elune's Presence: +2 yd radius",
+      "spec_id": 0,
+      "target_spell": 680774,
+      "affected_spells": [
+        680774
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 2
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "680774 Elune's Presence cd=180000 cost_pct=23 dur=10000 radius=[40.0] eff0 MOD_INCREASE_HEALTH_PERCENT v=20 r=40.0",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "star_reverse_magic_cost",
+      "name": "Reverse Magic: -10% resource cost",
+      "spec_id": 0,
+      "target_spell": 570231,
+      "affected_spells": [
+        570231
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        2
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "570231 Reverse Magic cd=40000 cost_pct=11 dur=3000 eff0 REFLECT_SPELLS v=100 eff1 PROC_TRIGGER_SPELL v=1 | mask_unique_bit=[0, 0, 2]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "star_starshatter_dur",
+      "name": "Starshatter: +20% duration",
+      "spec_id": 0,
+      "target_spell": 712461,
+      "affected_spells": [
+        712461
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "712461 Starshatter dur=5000 range=50000.0 radius=[5.0] eff0 MOD_STUN v=23 r=5.0 eff1 TRIGGER_SPELL v=1 | child of 801135 via 707725",
+      "client_sensitive": false,
+      "confidence": "low",
+      "notes": "5 s stun from the shards."
+    },
+    {
+      "key": "star_starshatter_radius",
+      "name": "Starshatter: +1 yd radius",
+      "spec_id": 0,
+      "target_spell": 712461,
+      "affected_spells": [
+        712461
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "712461 Starshatter dur=5000 range=50000.0 radius=[5.0] eff0 MOD_STUN v=23 r=5.0 eff1 TRIGGER_SPELL v=1 | child of 801135 via 707725",
+      "client_sensitive": false,
+      "confidence": "low",
+      "notes": ""
+    },
+    {
+      "key": "star_moonwell_cast",
+      "name": "Moonwell: -0.2 sec cast time",
+      "spec_id": 0,
+      "target_spell": 804739,
+      "affected_spells": [
+        804739
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        8388608,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CASTING_TIME",
+          "type": "FLAT",
+          "value": -200
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "804739 Moonwell cast=2000 cd=120000 cost_pct=35 dur=15000 range=30.0 radius=[10.0] eff0 MOD_HEALING_PCT v=25 r=10.0 eff1 DUMMY v=40 r=10.0 eff2 MOD_POWER_REGEN_PERCENT v=100 r=10.0 | mask_unique_bit=[0, 8388608, 0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "star_moonwell_cost",
+      "name": "Moonwell: -10% resource cost",
+      "spec_id": 0,
+      "target_spell": 804739,
+      "affected_spells": [
+        804739
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        8388608,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "804739 Moonwell cast=2000 cd=120000 cost_pct=35 dur=15000 range=30.0 radius=[10.0] eff0 MOD_HEALING_PCT v=25 r=10.0 eff1 DUMMY v=40 r=10.0 eff2 MOD_POWER_REGEN_PERCENT v=100 r=10.0 | mask_unique_bit=[0, 8388608, 0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "star_moonwell_dur",
+      "name": "Moonwell: +20% duration",
+      "spec_id": 0,
+      "target_spell": 804739,
+      "affected_spells": [
+        804739
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        8388608,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "804739 Moonwell cast=2000 cd=120000 cost_pct=35 dur=15000 range=30.0 radius=[10.0] eff0 MOD_HEALING_PCT v=25 r=10.0 eff1 DUMMY v=40 r=10.0 eff2 MOD_POWER_REGEN_PERCENT v=100 r=10.0 | mask_unique_bit=[0, 8388608, 0]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "15 s healing/regen area."
+    },
+    {
+      "key": "star_moonwell_radius",
+      "name": "Moonwell: +1 yd radius",
+      "spec_id": 0,
+      "target_spell": 804739,
+      "affected_spells": [
+        804739
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        8388608,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "804739 Moonwell cast=2000 cd=120000 cost_pct=35 dur=15000 range=30.0 radius=[10.0] eff0 MOD_HEALING_PCT v=25 r=10.0 eff1 DUMMY v=40 r=10.0 eff2 MOD_POWER_REGEN_PERCENT v=100 r=10.0 | mask_unique_bit=[0, 8388608, 0]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "star_moonwell_range",
+      "name": "Moonwell: +10% range",
+      "spec_id": 0,
+      "target_spell": 804739,
+      "affected_spells": [
+        804739
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        8388608,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "804739 Moonwell cast=2000 cd=120000 cost_pct=35 dur=15000 range=30.0 radius=[10.0] eff0 MOD_HEALING_PCT v=25 r=10.0 eff1 DUMMY v=40 r=10.0 eff2 MOD_POWER_REGEN_PERCENT v=100 r=10.0 | mask_unique_bit=[0, 8388608, 0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "star_wardens_blade_cost",
+      "name": "Warden's Blade: -10% resource cost",
+      "spec_id": 0,
+      "target_spell": 805508,
+      "affected_spells": [
+        805508
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        67108864,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "805508 Warden's Blade cd=20000 catcd=20000 cost=30 cost_pct=5 range=10.0 eff0 NORMALIZED_WEAPON_DMG v=1 eff1 WEAPON_PERCENT_DAMAGE v=150 | mask_unique_bit=[0, 67108864, 0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "star_wardens_blade_crit",
+      "name": "Warden's Blade: +4% critical strike chance",
+      "spec_id": 0,
+      "target_spell": 805508,
+      "affected_spells": [
+        805508
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        67108864,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "805508 Warden's Blade cd=20000 catcd=20000 cost=30 cost_pct=5 range=10.0 eff0 NORMALIZED_WEAPON_DMG v=1 eff1 WEAPON_PERCENT_DAMAGE v=150 | mask_unique_bit=[0, 67108864, 0]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "star_vial_of_moonwell_water_cost",
+      "name": "Vial of Moonwell Water: -10% resource cost",
+      "spec_id": 0,
+      "target_spell": 804652,
+      "affected_spells": [
+        804652
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        8192,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "804652 Vial of Moonwell Water cd=180000 catcd=180000 cost_pct=40 dur=3000 eff0 MECHANIC_IMMUNITY v=1 eff1 MECHANIC_IMMUNITY v=1 eff2 MECHANIC_IMMUNITY v=1 | mask_unique_bit=[0, 8192, 0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "star_touch_of_moonlight_cast",
+      "name": "Touch of Moonlight: -0.15 sec cast time",
+      "spec_id": 0,
+      "target_spell": 574328,
+      "affected_spells": [
+        574328
+      ],
+      "targeting": "mask",
+      "mask": [
+        262144,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CASTING_TIME",
+          "type": "FLAT",
+          "value": -150
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "574328 Touch of Moonlight cast=1500 range=40.0 eff0 HEAL v=31 | mask_unique_bit=[262144, 0, 0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "star_touch_of_moonlight_crit",
+      "name": "Touch of Moonlight: +3% critical strike chance",
+      "spec_id": 0,
+      "target_spell": 574328,
+      "affected_spells": [
+        574328
+      ],
+      "targeting": "mask",
+      "mask": [
+        262144,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "574328 Touch of Moonlight cast=1500 range=40.0 eff0 HEAL v=31 | mask_unique_bit=[262144, 0, 0]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "Spammable direct heal."
+    },
+    {
+      "key": "star_touch_of_moonlight_range",
+      "name": "Touch of Moonlight: +10% range",
+      "spec_id": 0,
+      "target_spell": 574328,
+      "affected_spells": [
+        574328
+      ],
+      "targeting": "mask",
+      "mask": [
+        262144,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "574328 Touch of Moonlight cast=1500 range=40.0 eff0 HEAL v=31 | mask_unique_bit=[262144, 0, 0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "star_moonlit_slumber_dur",
+      "name": "Moonlit Slumber: +15% duration",
+      "spec_id": 43,
+      "target_spell": 805546,
+      "affected_spells": [
+        805546
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "805546 Moonlit Slumber cd=60000 dur=30000 range=30.0 radius=[8.0] eff0 MOD_STUN v=10 r=8.0",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "30 s AoE sleep/stun CC."
+    },
+    {
+      "key": "star_moonlit_slumber_radius",
+      "name": "Moonlit Slumber: +1 yd radius",
+      "spec_id": 43,
+      "target_spell": 805546,
+      "affected_spells": [
+        805546
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "805546 Moonlit Slumber cd=60000 dur=30000 range=30.0 radius=[8.0] eff0 MOD_STUN v=10 r=8.0",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "star_celestial_form_dur",
+      "name": "Celestial Form: +20% duration",
+      "spec_id": 43,
+      "target_spell": 801231,
+      "affected_spells": [
+        801231
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "801231 Celestial Form cd=60000 cost_pct=20 dur=15000 eff0 MOD_CRIT_PCT v=10 eff1 PROC_TRIGGER_SPELL v=1 eff2 PROC_TRIGGER_SPELL v=1",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "15 s form buff."
+    },
+    {
+      "key": "star_moonflow_cost",
+      "name": "Moonflow: -10% resource cost",
+      "spec_id": 43,
+      "target_spell": 575030,
+      "affected_spells": [
+        575030
+      ],
+      "targeting": "mask",
+      "mask": [
+        131072,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "575030 Moonflow catcd=10000 cost_pct=15 radius=[40.0] eff0 HEAL v=85 r=40.0 eff1 TRIGGER_SPELL | mask_unique_bit=[131072, 0, 0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "star_moonflow_crit",
+      "name": "Moonflow: +4% critical strike chance",
+      "spec_id": 43,
+      "target_spell": 575030,
+      "affected_spells": [
+        575030
+      ],
+      "targeting": "mask",
+      "mask": [
+        131072,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "575030 Moonflow catcd=10000 cost_pct=15 radius=[40.0] eff0 HEAL v=85 r=40.0 eff1 TRIGGER_SPELL | mask_unique_bit=[131072, 0, 0]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "star_moonflow_radius",
+      "name": "Moonflow: +2 yd radius",
+      "spec_id": 43,
+      "target_spell": 575030,
+      "affected_spells": [
+        575030
+      ],
+      "targeting": "mask",
+      "mask": [
+        131072,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 2
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "575030 Moonflow catcd=10000 cost_pct=15 radius=[40.0] eff0 HEAL v=85 r=40.0 eff1 TRIGGER_SPELL | mask_unique_bit=[131072, 0, 0]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "star_prayer_of_elune_cast",
+      "name": "Prayer of Elune: -0.2 sec cast time",
+      "spec_id": 43,
+      "target_spell": 801987,
+      "affected_spells": [
+        801987
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        4096,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CASTING_TIME",
+          "type": "FLAT",
+          "value": -200
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "801987 Prayer of Elune cast=1500 cd=30000 catcd=30000 cost_pct=33 radius=[40.0] eff0 HEAL v=77 r=40.0 eff1 DISPEL v=1 r=40.0 | mask_unique_bit=[0, 4096, 0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "star_prayer_of_elune_crit",
+      "name": "Prayer of Elune: +4% critical strike chance",
+      "spec_id": 43,
+      "target_spell": 801987,
+      "affected_spells": [
+        801987
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        4096,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "801987 Prayer of Elune cast=1500 cd=30000 catcd=30000 cost_pct=33 radius=[40.0] eff0 HEAL v=77 r=40.0 eff1 DISPEL v=1 r=40.0 | mask_unique_bit=[0, 4096, 0]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "star_prayer_of_elune_cost",
+      "name": "Prayer of Elune: -10% resource cost",
+      "spec_id": 43,
+      "target_spell": 801987,
+      "affected_spells": [
+        801987
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        4096,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "801987 Prayer of Elune cast=1500 cd=30000 catcd=30000 cost_pct=33 radius=[40.0] eff0 HEAL v=77 r=40.0 eff1 DISPEL v=1 r=40.0 | mask_unique_bit=[0, 4096, 0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "star_prayer_of_elune_radius",
+      "name": "Prayer of Elune: +2 yd radius",
+      "spec_id": 43,
+      "target_spell": 801987,
+      "affected_spells": [
+        801987
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        4096,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 2
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "801987 Prayer of Elune cast=1500 cd=30000 catcd=30000 cost_pct=33 radius=[40.0] eff0 HEAL v=77 r=40.0 eff1 DISPEL v=1 r=40.0 | mask_unique_bit=[0, 4096, 0]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "star_eclipsing_arrows_dur",
+      "name": "Stellar Convergence (Eclipsing Arrows): +20% duration",
+      "spec_id": 43,
+      "target_spell": 574154,
+      "affected_spells": [
+        574154
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "574154 Eclipsing Arrows dur=20000 range=40.0 eff0 DUMMY v=1 eff1 MOD_DAMAGE_PERCENT_TAKEN | child of 572784 via 572784",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "20 s debuff."
+    },
+    {
+      "key": "star_starcall_cast",
+      "name": "Starcall: -0.2 sec cast time",
+      "spec_id": 44,
+      "target_spell": 800497,
+      "affected_spells": [
+        800497
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        536870912,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CASTING_TIME",
+          "type": "FLAT",
+          "value": -200
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "800497 Starcall cast=1500 catcd=12000 cost_pct=11 range=45.0 radius=[10.0] eff0 SCHOOL_DAMAGE v=127 r=10.0 | mask_unique_bit=[0, 536870912, 0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "star_starcall_crit",
+      "name": "Starcall: +4% critical strike chance",
+      "spec_id": 44,
+      "target_spell": 800497,
+      "affected_spells": [
+        800497
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        536870912,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "800497 Starcall cast=1500 catcd=12000 cost_pct=11 range=45.0 radius=[10.0] eff0 SCHOOL_DAMAGE v=127 r=10.0 | mask_unique_bit=[0, 536870912, 0]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "star_starcall_cost",
+      "name": "Starcall: -10% resource cost",
+      "spec_id": 44,
+      "target_spell": 800497,
+      "affected_spells": [
+        800497
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        536870912,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "800497 Starcall cast=1500 catcd=12000 cost_pct=11 range=45.0 radius=[10.0] eff0 SCHOOL_DAMAGE v=127 r=10.0 | mask_unique_bit=[0, 536870912, 0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "star_starcall_radius",
+      "name": "Starcall: +1 yd radius",
+      "spec_id": 44,
+      "target_spell": 800497,
+      "affected_spells": [
+        800497
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        536870912,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "800497 Starcall cast=1500 catcd=12000 cost_pct=11 range=45.0 radius=[10.0] eff0 SCHOOL_DAMAGE v=127 r=10.0 | mask_unique_bit=[0, 536870912, 0]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "star_starcall_range",
+      "name": "Starcall: +10% range",
+      "spec_id": 44,
+      "target_spell": 800497,
+      "affected_spells": [
+        800497
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        536870912,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "800497 Starcall cast=1500 catcd=12000 cost_pct=11 range=45.0 radius=[10.0] eff0 SCHOOL_DAMAGE v=127 r=10.0 | mask_unique_bit=[0, 536870912, 0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "star_arrows_in_the_night_dur",
+      "name": "Arrows In The Night: +20% duration",
+      "spec_id": 44,
+      "target_spell": 520481,
+      "affected_spells": [
+        520481
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "520481 Arrows In The Night cd=60000 catcd=60000 cost_pct=12 dur=10000 eff0 ADD_FLAT_MODIFIER v=4 eff1 PROC_TRIGGER_SPELL",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "10 s buff."
+    },
+    {
+      "key": "star_arrows_in_the_night_crit",
+      "name": "Arrows In The Night: +4% critical strike chance",
+      "spec_id": 44,
+      "target_spell": 805548,
+      "affected_spells": [
+        805548
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "805548 Arrows In The Night range=100.0 radius=[8.0] eff0 SCHOOL_DAMAGE v=30 chain=1 r=8.0 | child of 520481 via 520481",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "star_arrows_in_the_night_radius",
+      "name": "Arrows In The Night: +1 yd radius",
+      "spec_id": 44,
+      "target_spell": 805548,
+      "affected_spells": [
+        805548
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "805548 Arrows In The Night range=100.0 radius=[8.0] eff0 SCHOOL_DAMAGE v=30 chain=1 r=8.0 | child of 520481 via 520481",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "star_arrow_of_the_goddess_cast",
+      "name": "Arrow of the Goddess: -0.2 sec cast time",
+      "spec_id": 44,
+      "target_spell": 563725,
+      "affected_spells": [
+        563725
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        32,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CASTING_TIME",
+          "type": "FLAT",
+          "value": -200
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "563725 Arrow of the Goddess cast=2000 cd=60000 radius=[40.0] eff0 SCHOOL_DAMAGE v=2 r=40.0 eff1 NORMALIZED_WEAPON_DMG v=1 r=40.0 eff2 WEAPON_PERCENT_DAMAGE v=400 r=40.0 | mask_unique_bit=[0, 32, 0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "star_arrow_of_the_goddess_crit",
+      "name": "Arrow of the Goddess: +4% critical strike chance",
+      "spec_id": 44,
+      "target_spell": 563725,
+      "affected_spells": [
+        563725
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        32,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "563725 Arrow of the Goddess cast=2000 cd=60000 radius=[40.0] eff0 SCHOOL_DAMAGE v=2 r=40.0 eff1 NORMALIZED_WEAPON_DMG v=1 r=40.0 eff2 WEAPON_PERCENT_DAMAGE v=400 r=40.0 | mask_unique_bit=[0, 32, 0]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "star_arrow_of_the_goddess_radius",
+      "name": "Arrow of the Goddess: +2 yd radius",
+      "spec_id": 44,
+      "target_spell": 563725,
+      "affected_spells": [
+        563725
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        32,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 2
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "563725 Arrow of the Goddess cast=2000 cd=60000 radius=[40.0] eff0 SCHOOL_DAMAGE v=2 r=40.0 eff1 NORMALIZED_WEAPON_DMG v=1 r=40.0 eff2 WEAPON_PERCENT_DAMAGE v=400 r=40.0 | mask_unique_bit=[0, 32, 0]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "star_trueshot_cast",
+      "name": "Trueshot: -0.18 sec cast time",
+      "spec_id": 44,
+      "target_spell": 520590,
+      "affected_spells": [
+        520590
+      ],
+      "targeting": "mask",
+      "mask": [
+        1024,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CASTING_TIME",
+          "type": "FLAT",
+          "value": -180
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "520590 Trueshot cast=1800 range=30.0 eff0 TRIGGER_SPELL v=1 | mask_unique_bit=[1024, 0, 0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "star_trueshot_range",
+      "name": "Trueshot: +10% range",
+      "spec_id": 44,
+      "target_spell": 520590,
+      "affected_spells": [
+        520590
+      ],
+      "targeting": "mask",
+      "mask": [
+        1024,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "520590 Trueshot cast=1800 range=30.0 eff0 TRIGGER_SPELL v=1 | mask_unique_bit=[1024, 0, 0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "star_trueshot_crit",
+      "name": "Trueshot: +4% critical strike chance",
+      "spec_id": 44,
+      "target_spell": 562319,
+      "affected_spells": [
+        562319
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "562319 Trueshot cast=1800 range=30.0 radius=[8.0] eff0 SCHOOL_DAMAGE v=2 r=8.0 eff1 NORMALIZED_WEAPON_DMG v=40 r=8.0 eff2 TRIGGER_SPELL r=8.0 | child of 520590 via 520590",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "star_trueshot_radius",
+      "name": "Trueshot: +1 yd radius",
+      "spec_id": 44,
+      "target_spell": 562319,
+      "affected_spells": [
+        562319
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "562319 Trueshot cast=1800 range=30.0 radius=[8.0] eff0 SCHOOL_DAMAGE v=2 r=8.0 eff1 NORMALIZED_WEAPON_DMG v=40 r=8.0 eff2 TRIGGER_SPELL r=8.0 | child of 520590 via 520590",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "star_starfire_shot_crit",
+      "name": "Starfire Shot: +4% critical strike chance",
+      "spec_id": 44,
+      "target_spell": 801978,
+      "affected_spells": [
+        801978
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "801978 Starfire Shot cast=2500 range=30.0 eff0 NORMALIZED_WEAPON_DMG v=16 eff1 WEAPON_PERCENT_DAMAGE v=100 eff2 TRIGGER_SPELL",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "star_drawstring_of_elune_dur",
+      "name": "Drawstring of Elune: +20% duration",
+      "spec_id": 44,
+      "target_spell": 801975,
+      "affected_spells": [
+        801975
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "801975 Drawstring of Elune cd=120000 catcd=120000 cost_pct=15 dur=20000 eff0 PROC_TRIGGER_SPELL v=10 eff1 ADD_FLAT_MODIFIER v=5 eff2 DUMMY v=1",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "20 s buff."
+    },
+    {
+      "key": "star_umbral_blade_crit",
+      "name": "Umbral Blade: +4% critical strike chance",
+      "spec_id": 45,
+      "target_spell": 574165,
+      "affected_spells": [
+        574165
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        16
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "574165 Umbral Blade range=5.0 radius=[8.0] eff0 SCHOOL_DAMAGE v=97 chain=8 r=8.0 | mask_unique_bit=[0, 0, 16] | child of 680704 via 680704",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "star_umbral_blade_jump",
+      "name": "Umbral Blade: +1 additional target",
+      "spec_id": 45,
+      "target_spell": 574165,
+      "affected_spells": [
+        574165
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        16
+      ],
+      "effects": [
+        {
+          "op": "JUMP_TARGETS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "574165 Umbral Blade range=5.0 radius=[8.0] eff0 SCHOOL_DAMAGE v=97 chain=8 r=8.0 | mask_unique_bit=[0, 0, 16] | child of 680704 via 680704",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "star_umbral_blade_radius",
+      "name": "Umbral Blade: +1 yd radius",
+      "spec_id": 45,
+      "target_spell": 574165,
+      "affected_spells": [
+        574165
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        16
+      ],
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "574165 Umbral Blade range=5.0 radius=[8.0] eff0 SCHOOL_DAMAGE v=97 chain=8 r=8.0 | mask_unique_bit=[0, 0, 16] | child of 680704 via 680704",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "star_avatar_of_vengeance_dur",
+      "name": "Avatar of Vengeance: +15% duration",
+      "spec_id": 45,
+      "target_spell": 680822,
+      "affected_spells": [
+        680822
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "680822 Avatar of Vengeance cd=90000 catcd=90000 dur=30000 range=40.0 eff0 TRANSFORM eff1 MOD_TOTAL_STAT_PERCENTAGE v=25 eff2 TRIGGER_SPELL",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "30 s +25% stats transform."
+    },
+    {
+      "key": "star_sentinel_glaive_crit",
+      "name": "Sentinel Glaive: +4% critical strike chance",
+      "spec_id": 45,
+      "target_spell": 800506,
+      "affected_spells": [
+        800506
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "800506 Sentinel Glaive cd=15000 catcd=15000 dur=8000 range=20.0 eff0 NORMALIZED_WEAPON_DMG eff1 SCHOOL_DAMAGE v=105 eff2 TRIGGER_SPELL",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "star_sentinel_glaive_dur",
+      "name": "Sentinel Glaive: +20% duration",
+      "spec_id": 45,
+      "target_spell": 800559,
+      "affected_spells": [
+        800559
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "800559 Sentinel Glaive cd=15000 catcd=15000 dur=8000 range=20.0 eff0 MOD_POWER_COST_SCHOOL_PCT v=15 | child of 800506 via 800506",
+      "client_sensitive": false,
+      "confidence": "low",
+      "notes": "8 s cost-reduction buff."
+    },
+    {
+      "key": "star_fan_of_knives_crit",
+      "name": "Fan of Knives: +4% critical strike chance",
+      "spec_id": 45,
+      "target_spell": 680703,
+      "affected_spells": [
+        680703
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "680703 Fan of Knives cd=15000 catcd=15000 range=5.0 radius=[10.0] eff0 SCHOOL_DAMAGE v=10 r=10.0 eff1 APPLY_AURA r=10.0",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "star_fan_of_knives_radius",
+      "name": "Fan of Knives: +1 yd radius",
+      "spec_id": 45,
+      "target_spell": 680703,
+      "affected_spells": [
+        680703
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "680703 Fan of Knives cd=15000 catcd=15000 range=5.0 radius=[10.0] eff0 SCHOOL_DAMAGE v=10 r=10.0 eff1 APPLY_AURA r=10.0",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "star_vengeance_dur",
+      "name": "Fan of Knives (Vengeance): +20% duration",
+      "spec_id": 45,
+      "target_spell": 680710,
+      "affected_spells": [
+        680710
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "680710 Vengeance dur=10000 range=50000.0 eff0 MOD_DAMAGE_FROM_CASTER v=30 | child of 680703 via 680703",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "10 s Vengeance debuff (+30% damage from caster)."
+    },
+    {
+      "key": "star_shadowsongs_mandate_dur",
+      "name": "Shadowsong's Mandate: +20% duration",
+      "spec_id": 45,
+      "target_spell": 805439,
+      "affected_spells": [
+        805439
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        32
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "805439 Shadowsong's Mandate cd=120000 dur=10000 eff0 MOD_CRIT_PCT v=15 eff1 MOD_INCREASE_SPEED eff2 PROC_TRIGGER_SPELL | mask_unique_bit=[0, 0, 32]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "10 s buff."
+    },
+    {
+      "key": "star_astral_blade_crit",
+      "name": "Astral Blade: +4% critical strike chance",
+      "spec_id": 45,
+      "target_spell": 805563,
+      "affected_spells": [
+        805563
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        2097152
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "805563 Astral Blade cd=20000 dur=5000 range=5.0 eff0 SCHOOL_DAMAGE v=106 eff1 MOD_DAMAGE_FROM_CASTER v=15 | mask_unique_bit=[0, 0, 2097152]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "star_astral_blade_dur",
+      "name": "Astral Blade: +20% duration",
+      "spec_id": 45,
+      "target_spell": 805563,
+      "affected_spells": [
+        805563
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        2097152
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "805563 Astral Blade cd=20000 dur=5000 range=5.0 eff0 SCHOOL_DAMAGE v=106 eff1 MOD_DAMAGE_FROM_CASTER v=15 | mask_unique_bit=[0, 0, 2097152]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "5 s debuff (+15% damage from caster)."
+    },
+    {
+      "key": "star_chosen_of_the_moon_dur",
+      "name": "Chosen of the Moon: +15% duration",
+      "spec_id": 100,
+      "target_spell": 680755,
+      "affected_spells": [
+        680755
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 15
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "680755 Chosen of the Moon cd=180000 catcd=180000 cost_pct=40 dur=10000 eff0 MOD_DAMAGE_PERCENT_TAKEN v=-60 eff1 TRIGGER_SPELL eff2 ADD_FLAT_MODIFIER v=80",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "10 s -60% damage taken."
+    },
+    {
+      "key": "star_moonlit_bulwark_dur",
+      "name": "Moonlit Bulwark: +20% duration",
+      "spec_id": 100,
+      "target_spell": 805433,
+      "affected_spells": [
+        805433
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "805433 Moonlit Bulwark cd=180000 dur=10000 eff0 SCHOOL_ABSORB v=1 eff2 ADD_PCT_MODIFIER",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "10 s absorb."
+    },
+    {
+      "key": "star_blanket_of_stars_dur",
+      "name": "Blanket of Stars: +20% duration",
+      "spec_id": 100,
+      "target_spell": 804381,
+      "affected_spells": [
+        804381
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "804381 Blanket of Stars cd=35000 dur=8000 eff0 MOD_BLOCK_PERCENT v=100 eff1 MOD_SHIELD_BLOCKVALUE_PCT v=100",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "8 s block buff."
+    },
+    {
+      "key": "star_starburst_crit",
+      "name": "Starburst: +4% critical strike chance",
+      "spec_id": 100,
+      "target_spell": 801996,
+      "affected_spells": [
+        801996
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "801996 Starburst cd=20000 cost_pct=10 range=5.0 radius=[5.0] eff0 SCHOOL_DAMAGE v=2 r=5.0 eff1 TRIGGER_SPELL r=5.0 eff2 TRIGGER_SPELL r=5.0",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "star_starburst_radius",
+      "name": "Starburst: +1 yd radius",
+      "spec_id": 100,
+      "target_spell": 801996,
+      "affected_spells": [
+        801996
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "801996 Starburst cd=20000 cost_pct=10 range=5.0 radius=[5.0] eff0 SCHOOL_DAMAGE v=2 r=5.0 eff1 TRIGGER_SPELL r=5.0 eff2 TRIGGER_SPELL r=5.0",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "star_starburst_dur",
+      "name": "Starburst: +20% duration",
+      "spec_id": 100,
+      "target_spell": 704796,
+      "affected_spells": [
+        704796
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "PCT",
+          "value": 20
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "704796 Starburst dur=10000 range=50000.0 eff0 MOD_MELEE_RANGED_HASTE v=-20 | child of 801996 via 801996",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "10 s attack-speed debuff."
+    },
+    {
+      "key": "star_starsweep_crit",
+      "name": "Starsweep: +4% critical strike chance",
+      "spec_id": 100,
+      "target_spell": 805550,
+      "affected_spells": [
+        805550
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "805550 Starsweep cd=20000 catcd=20000 cost_pct=5 range=5.0 radius=[8.0] eff0 SCHOOL_DAMAGE v=39 r=8.0 eff1 TRIGGER_SPELL",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "star_starsweep_radius",
+      "name": "Starsweep: +1 yd radius",
+      "spec_id": 100,
+      "target_spell": 805550,
+      "affected_spells": [
+        805550
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "805550 Starsweep cd=20000 catcd=20000 cost_pct=5 range=5.0 radius=[8.0] eff0 SCHOOL_DAMAGE v=39 r=8.0 eff1 TRIGGER_SPELL",
+      "client_sensitive": false,
+      "confidence": "medium",
       "notes": ""
     }
   ],

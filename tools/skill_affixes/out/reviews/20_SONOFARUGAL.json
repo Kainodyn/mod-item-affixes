@@ -1,7 +1,7 @@
 {
   "class_id": 20,
   "class": "SONOFARUGAL",
-  "reviewed_at": "2026-11-23",
+  "reviewed_at": "2026-11-24",
   "affixes": [
     {
       "key": "arugal_wicked_howl_cd",
@@ -1203,6 +1203,2601 @@
       "client_sensitive": true,
       "confidence": "high",
       "notes": ""
+    },
+    {
+      "key": "arugal_wicked_howl_dur",
+      "name": "Wicked Howl: +2 sec duration",
+      "spec_id": 0,
+      "target_spell": 804207,
+      "affected_spells": [
+        804207
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 2000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "804207 Wicked Howl power=4294967294 cost_pct=17 dur=15000 cd=120000 fam=26 [eff0=APPLY_AURA/MOD_INCREASE_HEALTH_PERCENT v=30]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_scarlet_delirium_cost",
+      "name": "Scarlet Delirium: -10% Health cost",
+      "spec_id": 0,
+      "target_spell": 801074,
+      "affected_spells": [
+        801074
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        256
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "801074 Scarlet Delirium power=4294967294 cast=2000 cost=10 cost_pct=20 dur=40000 radius=[8.0] periodic=True mask_unique_bit=[0, 0, 256] fam=26 [eff0=APPLY_AURA/MOD_FEAR v=0;eff1=APPLY_AURA/PERIODIC_LEECH v=8;eff2=APPLY_AURA/MOD_DAMAGE_FROM_CASTER v=0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_scarlet_delirium_dur",
+      "name": "Scarlet Delirium: +4 sec duration",
+      "spec_id": 0,
+      "target_spell": 801074,
+      "affected_spells": [
+        801074
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        256
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 4000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "801074 Scarlet Delirium power=4294967294 cast=2000 cost=10 cost_pct=20 dur=40000 radius=[8.0] periodic=True mask_unique_bit=[0, 0, 256] fam=26 [eff0=APPLY_AURA/MOD_FEAR v=0;eff1=APPLY_AURA/PERIODIC_LEECH v=8;eff2=APPLY_AURA/MOD_DAMAGE_FROM_CASTER v=0]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_scarlet_delirium_radius",
+      "name": "Scarlet Delirium: +1 yd radius",
+      "spec_id": 0,
+      "target_spell": 801074,
+      "affected_spells": [
+        801074
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        256
+      ],
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "801074 Scarlet Delirium power=4294967294 cast=2000 cost=10 cost_pct=20 dur=40000 radius=[8.0] periodic=True mask_unique_bit=[0, 0, 256] fam=26 [eff0=APPLY_AURA/MOD_FEAR v=0;eff1=APPLY_AURA/PERIODIC_LEECH v=8;eff2=APPLY_AURA/MOD_DAMAGE_FROM_CASTER v=0]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_fleshcraft_cost",
+      "name": "Fleshcraft: -10% Rage cost",
+      "spec_id": 0,
+      "target_spell": 801952,
+      "affected_spells": [
+        801952
+      ],
+      "targeting": "mask",
+      "mask": [
+        8388608,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "801952 Fleshcraft power=1 cost=500 cd=300000 range=40.0 mask_unique_bit=[8388608, 0, 0] fam=26 [eff0=HEAL_PCT v=50;eff1=ENERGIZE_PCT v=0;eff2=APPLY_AURA/HASTE_SPELLS v=30]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_blood_pact_cost",
+      "name": "Blood Pact: -10% Health cost",
+      "spec_id": 0,
+      "target_spell": 801955,
+      "affected_spells": [
+        801955
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        65536
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "801955 Blood Pact power=4294967294 cost_pct=20 dur=12000 cd=120000 mask_unique_bit=[0, 0, 65536] fam=26 [eff0=APPLY_AURA/MOD_ATTACKER_RANGED_HIT_CHANCE v=-50;eff1=APPLY_AURA/MOD_HEALING_PCT v=0;eff2=APPLY_AURA/MOD_DODGE_PERCENT v=50]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_blood_pact_dur",
+      "name": "Blood Pact: +2 sec duration",
+      "spec_id": 0,
+      "target_spell": 801955,
+      "affected_spells": [
+        801955
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        65536
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 2000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "801955 Blood Pact power=4294967294 cost_pct=20 dur=12000 cd=120000 mask_unique_bit=[0, 0, 65536] fam=26 [eff0=APPLY_AURA/MOD_ATTACKER_RANGED_HIT_CHANCE v=-50;eff1=APPLY_AURA/MOD_HEALING_PCT v=0;eff2=APPLY_AURA/MOD_DODGE_PERCENT v=50]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_liquify_cost",
+      "name": "Liquify: -10% Health cost",
+      "spec_id": 0,
+      "target_spell": 806310,
+      "affected_spells": [
+        806310
+      ],
+      "targeting": "mask",
+      "mask": [
+        2147483648,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "806310 Liquify power=4294967294 cost_pct=20 dur=6000 cd=120000 mask_unique_bit=[2147483648, 0, 0] fam=26 [eff0=APPLY_AURA/ALLOW_ONLY_ABILITY v=0;eff1=APPLY_AURA/DAMAGE_IMMUNITY v=0;eff2=APPLY_AURA/MOD_DECREASE_SPEED v=-30]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_liquify_dur",
+      "name": "Liquify: +1 sec duration",
+      "spec_id": 0,
+      "target_spell": 806310,
+      "affected_spells": [
+        806310
+      ],
+      "targeting": "mask",
+      "mask": [
+        2147483648,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 1000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "806310 Liquify power=4294967294 cost_pct=20 dur=6000 cd=120000 mask_unique_bit=[2147483648, 0, 0] fam=26 [eff0=APPLY_AURA/ALLOW_ONLY_ABILITY v=0;eff1=APPLY_AURA/DAMAGE_IMMUNITY v=0;eff2=APPLY_AURA/MOD_DECREASE_SPEED v=-30]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_shadow_howl_dur",
+      "name": "Shadow Howl: +1 sec duration",
+      "spec_id": 0,
+      "target_spell": 806177,
+      "affected_spells": [
+        806177
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 1000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "806177 Shadow Howl power=4294967294 cost_pct=15 dur=6000 cd=60000 radius=[30.0] fam=26 [eff0=APPLY_AURA/MECHANIC_IMMUNITY v=0;eff1=APPLY_AURA/MECHANIC_IMMUNITY v=0]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_shadow_howl_radius",
+      "name": "Shadow Howl: +2 yd radius",
+      "spec_id": 0,
+      "target_spell": 806177,
+      "affected_spells": [
+        806177
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 2
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "806177 Shadow Howl power=4294967294 cost_pct=15 dur=6000 cd=60000 radius=[30.0] fam=26 [eff0=APPLY_AURA/MECHANIC_IMMUNITY v=0;eff1=APPLY_AURA/MECHANIC_IMMUNITY v=0]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_transfusion_cost",
+      "name": "Transfusion: -10% Rage cost",
+      "spec_id": 0,
+      "target_spell": 705734,
+      "affected_spells": [
+        705734
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        8,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "705734 Transfusion power=1 cost=200 cd=180000 range=30.0 mask_unique_bit=[0, 8, 0] fam=26 [eff0=SCRIPT_EFFECT v=40]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_transfusion_range",
+      "name": "Transfusion: +3 yd range",
+      "spec_id": 0,
+      "target_spell": 705734,
+      "affected_spells": [
+        705734
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        8,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "705734 Transfusion power=1 cost=200 cd=180000 range=30.0 mask_unique_bit=[0, 8, 0] fam=26 [eff0=SCRIPT_EFFECT v=40]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_blood_veil_dur",
+      "name": "Blood Veil: +2 sec duration",
+      "spec_id": 0,
+      "target_spell": 504263,
+      "affected_spells": [
+        504263
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 2000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "504263 Blood Veil power=4294967294 cost_pct=8 dur=15000 cd=30000 range=30.0 fam=26 [eff0=APPLY_AURA/SCHOOL_ABSORB v=50;eff1=APPLY_AURA/SCHOOL_ABSORB v=511]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_hemostasis_dur",
+      "name": "Hemostasis: +0.5 sec duration",
+      "spec_id": 0,
+      "target_spell": 681304,
+      "affected_spells": [
+        681304
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 500
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "681304 Hemostasis power=4294967294 cost_pct=25 dur=4000 cd=120000 range=20.0 fam=26 [eff0=APPLY_AURA/MOD_STUN v=0;eff1=APPLY_AURA/TRANSFORM v=1;eff2=APPLY_AURA/MOD_SCALE v=10]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_heartbreak_cost",
+      "name": "Heartbreak: -10% Rage cost",
+      "spec_id": 25,
+      "target_spell": 520314,
+      "affected_spells": [
+        520314
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        16384,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "520314 Heartbreak power=1 cast=2000 cost=400 range=40.0 mask_unique_bit=[0, 16384, 0] fam=26 [eff0=HEALTH_LEECH v=172;eff1=TRIGGER_SPELL_WITH_VALUE v=95;eff2=TRIGGER_SPELL_WITH_VALUE v=162]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_heartbreak_cast",
+      "name": "Heartbreak: -0.2 sec cast time",
+      "spec_id": 25,
+      "target_spell": 520314,
+      "affected_spells": [
+        520314
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        16384,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CASTING_TIME",
+          "type": "FLAT",
+          "value": -200
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "520314 Heartbreak power=1 cast=2000 cost=400 range=40.0 mask_unique_bit=[0, 16384, 0] fam=26 [eff0=HEALTH_LEECH v=172;eff1=TRIGGER_SPELL_WITH_VALUE v=95;eff2=TRIGGER_SPELL_WITH_VALUE v=162]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_heartbreak_crit",
+      "name": "Heartbreak: +4% critical strike chance",
+      "spec_id": 25,
+      "target_spell": 520314,
+      "affected_spells": [
+        520314,
+        520315
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "520314 Heartbreak power=1 cast=2000 cost=400 range=40.0 mask_unique_bit=[0, 16384, 0] fam=26 [eff0=HEALTH_LEECH v=172;eff1=TRIGGER_SPELL_WITH_VALUE v=95;eff2=TRIGGER_SPELL_WITH_VALUE v=162]; 520315 Heartbreak range=50000.0 radius=[20.0] fam=26 [eff0=HEAL v=1]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_heartbreak_range",
+      "name": "Heartbreak: +3 yd range",
+      "spec_id": 25,
+      "target_spell": 520314,
+      "affected_spells": [
+        520314
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        16384,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "520314 Heartbreak power=1 cast=2000 cost=400 range=40.0 mask_unique_bit=[0, 16384, 0] fam=26 [eff0=HEALTH_LEECH v=172;eff1=TRIGGER_SPELL_WITH_VALUE v=95;eff2=TRIGGER_SPELL_WITH_VALUE v=162]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_heartbreak_dur",
+      "name": "Heartbreak: +3 sec duration",
+      "spec_id": 25,
+      "target_spell": 807563,
+      "affected_spells": [
+        807563
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 3000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "807563 Heartbreak dur=20000 radius=[100.0] fam=26 [eff0=APPLY_AURA/ASCENSION_MOD_ATTACK_POWER_FLAT v=1;eff1=APPLY_AURA/ASCENSION_MOD_SPELL_POWER_FLAT v=1;eff2=APPLY_AURA/DUMMY v=0]; trigger child of 520314",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_purify_blood_dur",
+      "name": "Purify Blood: +2 sec duration",
+      "spec_id": 25,
+      "target_spell": 520839,
+      "affected_spells": [
+        520839
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 2000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "520839 Purify Blood dur=15000 range=100.0 fam=26 [eff0=APPLY_AURA/PROC_TRIGGER_SPELL_WITH_VALUE v=1;eff1=TRIGGER_SPELL v=0]; trigger child of 680679",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_infuse_cost",
+      "name": "Infuse: -10% Health cost",
+      "spec_id": 25,
+      "target_spell": 681403,
+      "affected_spells": [
+        681403
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        4194304
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "681403 Infuse power=4294967294 cost_pct=35 dur=10000 cd=30000 range=40.0 mask_unique_bit=[0, 0, 4194304] fam=26 [eff0=APPLY_AURA/DUMMY v=1;eff1=APPLY_AURA/SCHOOL_ABSORB v=1]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_infuse_dur",
+      "name": "Infuse: +1.5 sec duration",
+      "spec_id": 25,
+      "target_spell": 681403,
+      "affected_spells": [
+        681403
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        4194304
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 1500
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "681403 Infuse power=4294967294 cost_pct=35 dur=10000 cd=30000 range=40.0 mask_unique_bit=[0, 0, 4194304] fam=26 [eff0=APPLY_AURA/DUMMY v=1;eff1=APPLY_AURA/SCHOOL_ABSORB v=1]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_infuse_range",
+      "name": "Infuse: +3 yd range",
+      "spec_id": 25,
+      "target_spell": 681403,
+      "affected_spells": [
+        681403
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        4194304
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "681403 Infuse power=4294967294 cost_pct=35 dur=10000 cd=30000 range=40.0 mask_unique_bit=[0, 0, 4194304] fam=26 [eff0=APPLY_AURA/DUMMY v=1;eff1=APPLY_AURA/SCHOOL_ABSORB v=1]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_infuse_crit",
+      "name": "Infuse: +4% critical strike chance",
+      "spec_id": 25,
+      "target_spell": 681404,
+      "affected_spells": [
+        681404
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "681404 Infuse dur=10000 range=50000.0 radius=[10.0] fam=26 [eff0=SCHOOL_DAMAGE v=1]; trigger child of 681403",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_infuse_radius",
+      "name": "Infuse: +1 yd radius",
+      "spec_id": 25,
+      "target_spell": 681404,
+      "affected_spells": [
+        681404
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "681404 Infuse dur=10000 range=50000.0 radius=[10.0] fam=26 [eff0=SCHOOL_DAMAGE v=1]; trigger child of 681403",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_hemal_excision_cast",
+      "name": "Hemal Excision: -0.2 sec cast time",
+      "spec_id": 25,
+      "target_spell": 803681,
+      "affected_spells": [
+        803681
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CASTING_TIME",
+          "type": "FLAT",
+          "value": -200
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "803681 Hemal Excision power=4294967294 cast=1000 cost_pct=25 cd=90000 range=30.0 fam=26 [eff0=DISPEL v=20]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_vampyrs_kiss_cost",
+      "name": "Vampyr's Kiss: -10% Health cost",
+      "spec_id": 25,
+      "target_spell": 504275,
+      "affected_spells": [
+        504275
+      ],
+      "targeting": "mask",
+      "mask": [
+        32768,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "504275 Vampyr's Kiss power=4294967294 cost=28 cost_pct=20 dur=30000 range=30.0 periodic=True mask_unique_bit=[32768, 0, 0] fam=26 [eff0=APPLY_AURA/PERIODIC_DAMAGE v=28]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_vampyrs_kiss_dur",
+      "name": "Vampyr's Kiss: +4 sec duration",
+      "spec_id": 25,
+      "target_spell": 504275,
+      "affected_spells": [
+        504275
+      ],
+      "targeting": "mask",
+      "mask": [
+        32768,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 4000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "504275 Vampyr's Kiss power=4294967294 cost=28 cost_pct=20 dur=30000 range=30.0 periodic=True mask_unique_bit=[32768, 0, 0] fam=26 [eff0=APPLY_AURA/PERIODIC_DAMAGE v=28]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_vampyrs_kiss_range",
+      "name": "Vampyr's Kiss: +3 yd range",
+      "spec_id": 25,
+      "target_spell": 504275,
+      "affected_spells": [
+        504275
+      ],
+      "targeting": "mask",
+      "mask": [
+        32768,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "504275 Vampyr's Kiss power=4294967294 cost=28 cost_pct=20 dur=30000 range=30.0 periodic=True mask_unique_bit=[32768, 0, 0] fam=26 [eff0=APPLY_AURA/PERIODIC_DAMAGE v=28]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_crimson_tide_cost",
+      "name": "Crimson Tide: -10% Rage cost",
+      "spec_id": 25,
+      "target_spell": 504282,
+      "affected_spells": [
+        504282
+      ],
+      "targeting": "mask",
+      "mask": [
+        16384,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "504282 Crimson Tide power=1 cost=400 dur=15000 radius=[10.0] periodic=True mask_unique_bit=[16384, 0, 0] fam=26 [eff0=APPLY_AURA/PERIODIC_DAMAGE v=33]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_crimson_tide_dur",
+      "name": "Crimson Tide: +2 sec duration",
+      "spec_id": 25,
+      "target_spell": 504282,
+      "affected_spells": [
+        504282
+      ],
+      "targeting": "mask",
+      "mask": [
+        16384,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 2000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "504282 Crimson Tide power=1 cost=400 dur=15000 radius=[10.0] periodic=True mask_unique_bit=[16384, 0, 0] fam=26 [eff0=APPLY_AURA/PERIODIC_DAMAGE v=33]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_crimson_tide_radius",
+      "name": "Crimson Tide: +1 yd radius",
+      "spec_id": 25,
+      "target_spell": 504282,
+      "affected_spells": [
+        504282
+      ],
+      "targeting": "mask",
+      "mask": [
+        16384,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "504282 Crimson Tide power=1 cost=400 dur=15000 radius=[10.0] periodic=True mask_unique_bit=[16384, 0, 0] fam=26 [eff0=APPLY_AURA/PERIODIC_DAMAGE v=33]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_arterial_bind_dur",
+      "name": "Arterial Bind: +0.5 sec duration",
+      "spec_id": 25,
+      "target_spell": 681077,
+      "affected_spells": [
+        681077,
+        681082
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 500
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "681077 Arterial Bind power=4294967294 cost_pct=15 dur=4000 cd=90000 range=25.0 radius=[8.0] fam=26 [eff0=APPLY_AURA/MOD_SILENCE v=1;eff1=TRIGGER_SPELL v=1]; 681082 Arterial Bind power=4294967294 cost_pct=15 dur=4000 range=50000.0 radius=[8.0] periodic=True fam=26 [eff0=APPLY_AURA/PERIODIC_HEAL v=99]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_arterial_bind_radius",
+      "name": "Arterial Bind: +1 yd radius",
+      "spec_id": 25,
+      "target_spell": 681077,
+      "affected_spells": [
+        681077,
+        681082
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "681077 Arterial Bind power=4294967294 cost_pct=15 dur=4000 cd=90000 range=25.0 radius=[8.0] fam=26 [eff0=APPLY_AURA/MOD_SILENCE v=1;eff1=TRIGGER_SPELL v=1]; 681082 Arterial Bind power=4294967294 cost_pct=15 dur=4000 range=50000.0 radius=[8.0] periodic=True fam=26 [eff0=APPLY_AURA/PERIODIC_HEAL v=99]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_dark_liturgy_cost",
+      "name": "Dark Liturgy: -10% Health cost",
+      "spec_id": 25,
+      "target_spell": 800781,
+      "affected_spells": [
+        800781
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        2048,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "800781 Dark Liturgy power=4294967294 cast=2000 cost_pct=15 range=30.0 radius=[25.0] mask_unique_bit=[0, 2048, 0] fam=26 [eff0=HEAL v=77;eff1=TRIGGER_SPELL v=1]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_dark_liturgy_cast",
+      "name": "Dark Liturgy: -0.2 sec cast time",
+      "spec_id": 25,
+      "target_spell": 800781,
+      "affected_spells": [
+        800781
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        2048,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CASTING_TIME",
+          "type": "FLAT",
+          "value": -200
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "800781 Dark Liturgy power=4294967294 cast=2000 cost_pct=15 range=30.0 radius=[25.0] mask_unique_bit=[0, 2048, 0] fam=26 [eff0=HEAL v=77;eff1=TRIGGER_SPELL v=1]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_dark_liturgy_crit",
+      "name": "Dark Liturgy: +4% critical strike chance",
+      "spec_id": 25,
+      "target_spell": 800781,
+      "affected_spells": [
+        800781
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        2048,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "800781 Dark Liturgy power=4294967294 cast=2000 cost_pct=15 range=30.0 radius=[25.0] mask_unique_bit=[0, 2048, 0] fam=26 [eff0=HEAL v=77;eff1=TRIGGER_SPELL v=1]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_dark_liturgy_radius",
+      "name": "Dark Liturgy: +2 yd radius",
+      "spec_id": 25,
+      "target_spell": 800781,
+      "affected_spells": [
+        800781
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        2048,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 2
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "800781 Dark Liturgy power=4294967294 cast=2000 cost_pct=15 range=30.0 radius=[25.0] mask_unique_bit=[0, 2048, 0] fam=26 [eff0=HEAL v=77;eff1=TRIGGER_SPELL v=1]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_dark_liturgy_range",
+      "name": "Dark Liturgy: +3 yd range",
+      "spec_id": 25,
+      "target_spell": 800781,
+      "affected_spells": [
+        800781
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        2048,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "800781 Dark Liturgy power=4294967294 cast=2000 cost_pct=15 range=30.0 radius=[25.0] mask_unique_bit=[0, 2048, 0] fam=26 [eff0=HEAL v=77;eff1=TRIGGER_SPELL v=1]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_blood_rituals_dur",
+      "name": "Blood Rituals: +3 sec duration",
+      "spec_id": 25,
+      "target_spell": 706623,
+      "affected_spells": [
+        706623
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 3000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "706623 Blood Rituals dur=20000 range=50000.0 fam=26 [eff0=APPLY_AURA/DUMMY v=0;eff1=APPLY_AURA/MOD_DAMAGE_PERCENT_TAKEN v=0]; trigger child of 800781",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_gorge_dur",
+      "name": "Gorge: +2 sec duration",
+      "spec_id": 25,
+      "target_spell": 804805,
+      "affected_spells": [
+        804805
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 2000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "804805 Gorge power=4294967294 cost=100 cost_pct=20 dur=15000 cd=90000 fam=26 [eff0=APPLY_AURA/PERIODIC_TRIGGER_SPELL v=0]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_darkfallen_lament_crit",
+      "name": "Darkfallen Lament: +4% critical strike chance",
+      "spec_id": 25,
+      "target_spell": 524180,
+      "affected_spells": [
+        524180,
+        630874
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "524180 Darkfallen Lament range=50000.0 radius=[30.0] fam=26 [eff0=HEAL v=72]; 630874 Darkfallen Lament range=50000.0 fam=26 [eff0=HEALTH_LEECH v=72]; trigger child of 680828",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_darkfallen_lament_radius",
+      "name": "Darkfallen Lament: +2 yd radius",
+      "spec_id": 25,
+      "target_spell": 524180,
+      "affected_spells": [
+        524180
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 2
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "524180 Darkfallen Lament range=50000.0 radius=[30.0] fam=26 [eff0=HEAL v=72]; trigger child of 680828",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_hemoglobe_dur",
+      "name": "Hemoglobe: +2 sec duration",
+      "spec_id": 25,
+      "target_spell": 524907,
+      "affected_spells": [
+        524907
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 2000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "524907 Hemoglobe power=4294967294 cost_pct=50 dur=15000 cd=180000 fam=26 [eff0=APPLY_AURA/PERIODIC_TRIGGER_SPELL v=0;eff1=APPLY_AURA/PERIODIC_TRIGGER_SPELL v=0;eff2=APPLY_AURA/PERIODIC_ENERGIZE v=50]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_hemopulse_crit",
+      "name": "Hemoglobe: +4% critical strike chance",
+      "spec_id": 25,
+      "target_spell": 524906,
+      "affected_spells": [
+        524906
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "524906 Hemopulse range=50000.0 radius=[20.0] fam=26 [eff0=HEAL v=540]; trigger child of 524907",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_hemopulse_radius",
+      "name": "Hemoglobe: +2 yd radius",
+      "spec_id": 25,
+      "target_spell": 524906,
+      "affected_spells": [
+        524906
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 2
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "524906 Hemopulse range=50000.0 radius=[20.0] fam=26 [eff0=HEAL v=540]; trigger child of 524907",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_vampiric_fang_cost",
+      "name": "Vampiric Fang: -10% Rage cost",
+      "spec_id": 26,
+      "target_spell": 804726,
+      "affected_spells": [
+        804726
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        524288,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "804726 Vampiric Fang power=1 cost=200 range=30.0 mask_unique_bit=[0, 524288, 0] fam=26 [eff0=SCHOOL_DAMAGE v=36;eff1=APPLY_AURA/MOD_DAMAGE_FROM_CASTER v=0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_vampiric_fang_crit",
+      "name": "Vampiric Fang: +4% critical strike chance",
+      "spec_id": 26,
+      "target_spell": 804726,
+      "affected_spells": [
+        804726
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        524288,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "804726 Vampiric Fang power=1 cost=200 range=30.0 mask_unique_bit=[0, 524288, 0] fam=26 [eff0=SCHOOL_DAMAGE v=36;eff1=APPLY_AURA/MOD_DAMAGE_FROM_CASTER v=0]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_vampiric_fang_range",
+      "name": "Vampiric Fang: +3 yd range",
+      "spec_id": 26,
+      "target_spell": 804726,
+      "affected_spells": [
+        804726
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        524288,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "804726 Vampiric Fang power=1 cost=200 range=30.0 mask_unique_bit=[0, 524288, 0] fam=26 [eff0=SCHOOL_DAMAGE v=36;eff1=APPLY_AURA/MOD_DAMAGE_FROM_CASTER v=0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_atheranns_anguish_cost",
+      "name": "Atherann's Anguish: -10% Rage cost",
+      "spec_id": 26,
+      "target_spell": 680680,
+      "affected_spells": [
+        680680
+      ],
+      "targeting": "mask",
+      "mask": [
+        4096,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "680680 Atherann's Anguish power=1 cost=400 dur=10000 cd=90000 range=30.0 radius=[8.0] mask_unique_bit=[4096, 0, 0] fam=26 [eff0=APPLY_AURA/DUMMY v=0;eff1=APPLY_AURA/SCHOOL_ABSORB v=1;eff2=APPLY_AURA/DUMMY v=0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_atheranns_anguish_dur",
+      "name": "Atherann's Anguish: +1.5 sec duration",
+      "spec_id": 26,
+      "target_spell": 680680,
+      "affected_spells": [
+        680680
+      ],
+      "targeting": "mask",
+      "mask": [
+        4096,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 1500
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "680680 Atherann's Anguish power=1 cost=400 dur=10000 cd=90000 range=30.0 radius=[8.0] mask_unique_bit=[4096, 0, 0] fam=26 [eff0=APPLY_AURA/DUMMY v=0;eff1=APPLY_AURA/SCHOOL_ABSORB v=1;eff2=APPLY_AURA/DUMMY v=0]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_atheranns_anguish_range",
+      "name": "Atherann's Anguish: +3 yd range",
+      "spec_id": 26,
+      "target_spell": 680680,
+      "affected_spells": [
+        680680
+      ],
+      "targeting": "mask",
+      "mask": [
+        4096,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "680680 Atherann's Anguish power=1 cost=400 dur=10000 cd=90000 range=30.0 radius=[8.0] mask_unique_bit=[4096, 0, 0] fam=26 [eff0=APPLY_AURA/DUMMY v=0;eff1=APPLY_AURA/SCHOOL_ABSORB v=1;eff2=APPLY_AURA/DUMMY v=0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_atheranns_anguish_radius",
+      "name": "Atherann's Anguish: +1 yd radius",
+      "spec_id": 26,
+      "target_spell": 680680,
+      "affected_spells": [
+        680680
+      ],
+      "targeting": "mask",
+      "mask": [
+        4096,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "680680 Atherann's Anguish power=1 cost=400 dur=10000 cd=90000 range=30.0 radius=[8.0] mask_unique_bit=[4096, 0, 0] fam=26 [eff0=APPLY_AURA/DUMMY v=0;eff1=APPLY_AURA/SCHOOL_ABSORB v=1;eff2=APPLY_AURA/DUMMY v=0]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_blood_craving_dur",
+      "name": "Blood Craving: +2 sec duration",
+      "spec_id": 26,
+      "target_spell": 800780,
+      "affected_spells": [
+        800780
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 2000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "800780 Blood Craving dur=12000 cd=180000 fam=26 [eff0=APPLY_AURA/MECHANIC_IMMUNITY v=0;eff1=APPLY_AURA/PERIODIC_TRIGGER_SPELL v=10;eff2=APPLY_AURA/MECHANIC_IMMUNITY v=0]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_keleseths_calamity_cost",
+      "name": "Keleseth's Calamity: -10% Health cost",
+      "spec_id": 26,
+      "target_spell": 560249,
+      "affected_spells": [
+        560249
+      ],
+      "targeting": "mask",
+      "mask": [
+        131072,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "560249 Keleseth's Calamity power=4294967294 cast=6000 cost_pct=27 range=30.0 radius=[8.0] mask_unique_bit=[131072, 0, 0] fam=26 [eff0=SCHOOL_DAMAGE v=177]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_keleseths_calamity_crit",
+      "name": "Keleseth's Calamity: +4% critical strike chance",
+      "spec_id": 26,
+      "target_spell": 560249,
+      "affected_spells": [
+        560249
+      ],
+      "targeting": "mask",
+      "mask": [
+        131072,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "560249 Keleseth's Calamity power=4294967294 cast=6000 cost_pct=27 range=30.0 radius=[8.0] mask_unique_bit=[131072, 0, 0] fam=26 [eff0=SCHOOL_DAMAGE v=177]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_keleseths_calamity_range",
+      "name": "Keleseth's Calamity: +3 yd range",
+      "spec_id": 26,
+      "target_spell": 560249,
+      "affected_spells": [
+        560249
+      ],
+      "targeting": "mask",
+      "mask": [
+        131072,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "560249 Keleseth's Calamity power=4294967294 cast=6000 cost_pct=27 range=30.0 radius=[8.0] mask_unique_bit=[131072, 0, 0] fam=26 [eff0=SCHOOL_DAMAGE v=177]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_keleseths_calamity_radius",
+      "name": "Keleseth's Calamity: +1 yd radius",
+      "spec_id": 26,
+      "target_spell": 560249,
+      "affected_spells": [
+        560249
+      ],
+      "targeting": "mask",
+      "mask": [
+        131072,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "560249 Keleseth's Calamity power=4294967294 cast=6000 cost_pct=27 range=30.0 radius=[8.0] mask_unique_bit=[131072, 0, 0] fam=26 [eff0=SCHOOL_DAMAGE v=177]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_malediction_dur",
+      "name": "Malediction: +2 sec duration",
+      "spec_id": 26,
+      "target_spell": 704120,
+      "affected_spells": [
+        704120
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 2000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "704120 Malediction power=1 cost=150 dur=12000 range=40.0 periodic=True fam=26 [eff0=APPLY_AURA/MOD_DAMAGE_FROM_CASTER v=20;eff1=APPLY_AURA/PERIODIC_DAMAGE v=50]; trigger child of 800776",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_sacrificial_rite_cost",
+      "name": "Sacrificial Rite: -10% Health cost",
+      "spec_id": 26,
+      "target_spell": 800785,
+      "affected_spells": [
+        800785
+      ],
+      "targeting": "mask",
+      "mask": [
+        256,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "800785 Sacrificial Rite power=4294967294 cast=1000 cost=250 dur=15000 cd=120000 range=40.0 mask_unique_bit=[256, 0, 0] fam=26 [eff0=APPLY_AURA/MOD_MELEE_RANGED_HASTE v=20;eff1=APPLY_AURA/PROC_TRIGGER_SPELL v=0;eff2=APPLY_AURA/HASTE_SPELLS v=20]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_sacrificial_rite_cast",
+      "name": "Sacrificial Rite: -0.2 sec cast time",
+      "spec_id": 26,
+      "target_spell": 800785,
+      "affected_spells": [
+        800785
+      ],
+      "targeting": "mask",
+      "mask": [
+        256,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CASTING_TIME",
+          "type": "FLAT",
+          "value": -200
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "800785 Sacrificial Rite power=4294967294 cast=1000 cost=250 dur=15000 cd=120000 range=40.0 mask_unique_bit=[256, 0, 0] fam=26 [eff0=APPLY_AURA/MOD_MELEE_RANGED_HASTE v=20;eff1=APPLY_AURA/PROC_TRIGGER_SPELL v=0;eff2=APPLY_AURA/HASTE_SPELLS v=20]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_sacrificial_rite_dur",
+      "name": "Sacrificial Rite: +2 sec duration",
+      "spec_id": 26,
+      "target_spell": 800785,
+      "affected_spells": [
+        800785
+      ],
+      "targeting": "mask",
+      "mask": [
+        256,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 2000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "800785 Sacrificial Rite power=4294967294 cast=1000 cost=250 dur=15000 cd=120000 range=40.0 mask_unique_bit=[256, 0, 0] fam=26 [eff0=APPLY_AURA/MOD_MELEE_RANGED_HASTE v=20;eff1=APPLY_AURA/PROC_TRIGGER_SPELL v=0;eff2=APPLY_AURA/HASTE_SPELLS v=20]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_cursed_blood_crit",
+      "name": "Cursed Blood: +4% critical strike chance",
+      "spec_id": 26,
+      "target_spell": 806163,
+      "affected_spells": [
+        806163
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "806163 Cursed Blood range=50000.0 fam=26 [eff0=SCHOOL_DAMAGE v=71]; trigger child of 800785",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_valanars_vengeance_cost",
+      "name": "Valanar's Vengeance: -10% Health cost",
+      "spec_id": 26,
+      "target_spell": 560315,
+      "affected_spells": [
+        560315
+      ],
+      "targeting": "mask",
+      "mask": [
+        262144,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "560315 Valanar's Vengeance power=4294967294 cast=6000 cost=15 cost_pct=30 range=30.0 mask_unique_bit=[262144, 0, 0] fam=26 [eff0=SCHOOL_DAMAGE v=188]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_valanars_vengeance_crit",
+      "name": "Valanar's Vengeance: +4% critical strike chance",
+      "spec_id": 26,
+      "target_spell": 560315,
+      "affected_spells": [
+        560315
+      ],
+      "targeting": "mask",
+      "mask": [
+        262144,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "560315 Valanar's Vengeance power=4294967294 cast=6000 cost=15 cost_pct=30 range=30.0 mask_unique_bit=[262144, 0, 0] fam=26 [eff0=SCHOOL_DAMAGE v=188]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_valanars_vengeance_range",
+      "name": "Valanar's Vengeance: +3 yd range",
+      "spec_id": 26,
+      "target_spell": 560315,
+      "affected_spells": [
+        560315
+      ],
+      "targeting": "mask",
+      "mask": [
+        262144,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "560315 Valanar's Vengeance power=4294967294 cast=6000 cost=15 cost_pct=30 range=30.0 mask_unique_bit=[262144, 0, 0] fam=26 [eff0=SCHOOL_DAMAGE v=188]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_bloodsurge_dur",
+      "name": "Bloodsurge: +3 sec duration",
+      "spec_id": 27,
+      "target_spell": 553267,
+      "affected_spells": [
+        553267
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 3000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "553267 Bloodsurge power=4294967294 cost_pct=20 dur=20000 cd=180000 fam=26 [eff0=APPLY_AURA/MOD_DAMAGE_PERCENT_DONE v=30;eff1=APPLY_AURA/PROC_TRIGGER_SPELL v=0;eff2=APPLY_AURA/HASTE_SPELLS v=30]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_aortic_assault_cost",
+      "name": "Aortic Assault: -10% Health cost",
+      "spec_id": 27,
+      "target_spell": 806212,
+      "affected_spells": [
+        806212
+      ],
+      "targeting": "mask",
+      "mask": [
+        2048,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "806212 Aortic Assault power=4294967294 cost_pct=25 dur=3000 cd=20000 radius=[10.0] mask_unique_bit=[2048, 0, 0] fam=26 [eff0=APPLY_AURA/PERIODIC_TRIGGER_SPELL_WITH_VALUE v=20;eff1=ASCENSION_MODIFY_AURA_DURATION v=3000;eff2=APPLY_AURA/PERIODIC_TRIGGER_SPELL v=1]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_aortic_assault_crit",
+      "name": "Aortic Assault: +4% critical strike chance",
+      "spec_id": 27,
+      "target_spell": 806502,
+      "affected_spells": [
+        806502,
+        806214
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "806502 Aortic Assault range=50000.0 radius=[8.0] fam=26 [eff0=SCHOOL_DAMAGE v=1]; 806214 Clotting power=1 cost=100 range=10.0 radius=[10.0] mask_unique_bit=[0, 1048576, 0] fam=26 [eff0=SCHOOL_DAMAGE v=600]; trigger child of 806212",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_aortic_assault_radius",
+      "name": "Aortic Assault: +1 yd radius",
+      "spec_id": 27,
+      "target_spell": 806502,
+      "affected_spells": [
+        806502
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "806502 Aortic Assault range=50000.0 radius=[8.0] fam=26 [eff0=SCHOOL_DAMAGE v=1]; trigger child of 806212",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_endure_the_curse_dur",
+      "name": "Endure the Curse: +1.5 sec duration",
+      "spec_id": 27,
+      "target_spell": 681190,
+      "affected_spells": [
+        681190
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        8192
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 1500
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "681190 Endure the Curse dur=10000 cd=60000 mask_unique_bit=[0, 0, 8192] fam=26 [eff0=APPLY_AURA/SCHOOL_ABSORB v=0;eff1=APPLY_AURA/MOD_DAMAGE_PERCENT_TAKEN v=-30]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_veinburst_cost",
+      "name": "Veinburst: -10% Rage cost",
+      "spec_id": 27,
+      "target_spell": 504260,
+      "affected_spells": [
+        504260
+      ],
+      "targeting": "mask",
+      "mask": [
+        2097152,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "504260 Veinburst power=1 cast=2000 cost=300 range=30.0 mask_unique_bit=[2097152, 0, 0] fam=26 [eff0=SCHOOL_DAMAGE v=123;eff1=DUMMY v=1]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_veinburst_cast",
+      "name": "Veinburst: -0.2 sec cast time",
+      "spec_id": 27,
+      "target_spell": 504260,
+      "affected_spells": [
+        504260
+      ],
+      "targeting": "mask",
+      "mask": [
+        2097152,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CASTING_TIME",
+          "type": "FLAT",
+          "value": -200
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "504260 Veinburst power=1 cast=2000 cost=300 range=30.0 mask_unique_bit=[2097152, 0, 0] fam=26 [eff0=SCHOOL_DAMAGE v=123;eff1=DUMMY v=1]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_veinburst_crit",
+      "name": "Veinburst: +4% critical strike chance",
+      "spec_id": 27,
+      "target_spell": 504260,
+      "affected_spells": [
+        504260
+      ],
+      "targeting": "mask",
+      "mask": [
+        2097152,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "504260 Veinburst power=1 cast=2000 cost=300 range=30.0 mask_unique_bit=[2097152, 0, 0] fam=26 [eff0=SCHOOL_DAMAGE v=123;eff1=DUMMY v=1]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_veinburst_range",
+      "name": "Veinburst: +3 yd range",
+      "spec_id": 27,
+      "target_spell": 504260,
+      "affected_spells": [
+        504260
+      ],
+      "targeting": "mask",
+      "mask": [
+        2097152,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RANGE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "504260 Veinburst power=1 cast=2000 cost=300 range=30.0 mask_unique_bit=[2097152, 0, 0] fam=26 [eff0=SCHOOL_DAMAGE v=123;eff1=DUMMY v=1]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_final_embrace_cost",
+      "name": "Final Embrace: -10% Health cost",
+      "spec_id": 27,
+      "target_spell": 524865,
+      "affected_spells": [
+        524865
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        134217728,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "524865 Final Embrace power=4294967294 cost_pct=10 dur=20000 cd=180000 radius=[8.0] mask_unique_bit=[0, 134217728, 0] fam=26 [eff0=APPLY_AURA/TRANSFORM v=1;eff1=APPLY_AURA/MOD_INCREASE_SPEED v=15;eff2=APPLY_AURA/PERIODIC_TRIGGER_SPELL v=1]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_final_embrace_dur",
+      "name": "Final Embrace: +3 sec duration",
+      "spec_id": 27,
+      "target_spell": 524865,
+      "affected_spells": [
+        524865
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        134217728,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 3000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "524865 Final Embrace power=4294967294 cost_pct=10 dur=20000 cd=180000 radius=[8.0] mask_unique_bit=[0, 134217728, 0] fam=26 [eff0=APPLY_AURA/TRANSFORM v=1;eff1=APPLY_AURA/MOD_INCREASE_SPEED v=15;eff2=APPLY_AURA/PERIODIC_TRIGGER_SPELL v=1]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_hematoma_crit",
+      "name": "Hematoma: +4% critical strike chance",
+      "spec_id": 27,
+      "target_spell": 803392,
+      "affected_spells": [
+        803392
+      ],
+      "targeting": "mask",
+      "mask": [
+        64,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "803392 Hematoma dur=6000 range=100.0 radius=[8.0] mask_unique_bit=[64, 0, 0] fam=26 [eff0=SCHOOL_DAMAGE v=55;eff1=APPLY_AURA/MOD_DAMAGE_FROM_CASTER v=3]; trigger child of 524865",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_hematoma_radius",
+      "name": "Hematoma: +1 yd radius",
+      "spec_id": 27,
+      "target_spell": 803392,
+      "affected_spells": [
+        803392
+      ],
+      "targeting": "mask",
+      "mask": [
+        64,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "803392 Hematoma dur=6000 range=100.0 radius=[8.0] mask_unique_bit=[64, 0, 0] fam=26 [eff0=SCHOOL_DAMAGE v=55;eff1=APPLY_AURA/MOD_DAMAGE_FROM_CASTER v=3]; trigger child of 524865",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_hemoburst_cast",
+      "name": "Hemoburst: -0.2 sec cast time",
+      "spec_id": 27,
+      "target_spell": 572855,
+      "affected_spells": [
+        572855
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CASTING_TIME",
+          "type": "FLAT",
+          "value": -200
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "572855 Hemoburst power=1 cast=1500 cost=300 cd=10000 range=30.0 radius=[8.0] fam=26 [eff0=SCHOOL_DAMAGE v=1480]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_hemoburst_crit",
+      "name": "Hemoburst: +4% critical strike chance",
+      "spec_id": 27,
+      "target_spell": 572855,
+      "affected_spells": [
+        572855
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "572855 Hemoburst power=1 cast=1500 cost=300 cd=10000 range=30.0 radius=[8.0] fam=26 [eff0=SCHOOL_DAMAGE v=1480]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_hemoburst_radius",
+      "name": "Hemoburst: +1 yd radius",
+      "spec_id": 27,
+      "target_spell": 572855,
+      "affected_spells": [
+        572855
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "572855 Hemoburst power=1 cast=1500 cost=300 cd=10000 range=30.0 radius=[8.0] fam=26 [eff0=SCHOOL_DAMAGE v=1480]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_reave_cost",
+      "name": "Reave: -10% Rage cost",
+      "spec_id": 27,
+      "target_spell": 800490,
+      "affected_spells": [
+        800490
+      ],
+      "targeting": "mask",
+      "mask": [
+        4194304,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "800490 Reave power=1 cost=350 range=5.0 mask_unique_bit=[4194304, 0, 0] fam=26 [eff0=NORMALIZED_WEAPON_DMG v=26;eff1=WEAPON_PERCENT_DAMAGE v=125]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_reave_crit",
+      "name": "Reave: +4% critical strike chance",
+      "spec_id": 27,
+      "target_spell": 800490,
+      "affected_spells": [
+        800490
+      ],
+      "targeting": "mask",
+      "mask": [
+        4194304,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "800490 Reave power=1 cost=350 range=5.0 mask_unique_bit=[4194304, 0, 0] fam=26 [eff0=NORMALIZED_WEAPON_DMG v=26;eff1=WEAPON_PERCENT_DAMAGE v=125]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_night_hunters_howl_crit",
+      "name": "Night Hunter's Howl: +4% critical strike chance",
+      "spec_id": 99,
+      "target_spell": 500124,
+      "affected_spells": [
+        500124
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "500124 Night Hunter's Howl power=1 cost=250 dur=6000 cd=8000 radius=[8.0] fam=26 [eff0=SCHOOL_DAMAGE v=71;eff1=TRIGGER_SPELL_WITH_VALUE v=-60]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_night_hunters_howl_radius",
+      "name": "Night Hunter's Howl: +1 yd radius",
+      "spec_id": 99,
+      "target_spell": 500124,
+      "affected_spells": [
+        500124
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "500124 Night Hunter's Howl power=1 cost=250 dur=6000 cd=8000 radius=[8.0] fam=26 [eff0=SCHOOL_DAMAGE v=71;eff1=TRIGGER_SPELL_WITH_VALUE v=-60]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_night_hunters_howl_dur",
+      "name": "Night Hunter's Howl: +1 sec duration",
+      "spec_id": 99,
+      "target_spell": 520459,
+      "affected_spells": [
+        520459
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 1000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "520459 Night Hunter's Howl dur=6000 range=8.0 fam=26 [eff0=APPLY_AURA/MOD_DECREASE_SPEED v=0]; trigger child of 500124",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_rotclaw_cost",
+      "name": "Rotclaw: -10% Health cost",
+      "spec_id": 99,
+      "target_spell": 804197,
+      "affected_spells": [
+        804197
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        512,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 65,
+      "evidence": "804197 Rotclaw power=4294967294 cost_pct=10 dur=4000 radius=[12.0] periodic=True mask_unique_bit=[0, 512, 0] fam=26 [eff0=SCHOOL_DAMAGE v=28;eff1=APPLY_AURA/PERIODIC_DAMAGE v=6;eff2=APPLY_AURA/ASCENSION_MOD_IGNORE_ARMOR_PCT v=0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_rotclaw_crit",
+      "name": "Rotclaw: +4% critical strike chance",
+      "spec_id": 99,
+      "target_spell": 804197,
+      "affected_spells": [
+        804197
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        512,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "804197 Rotclaw power=4294967294 cost_pct=10 dur=4000 radius=[12.0] periodic=True mask_unique_bit=[0, 512, 0] fam=26 [eff0=SCHOOL_DAMAGE v=28;eff1=APPLY_AURA/PERIODIC_DAMAGE v=6;eff2=APPLY_AURA/ASCENSION_MOD_IGNORE_ARMOR_PCT v=0]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_rotclaw_radius",
+      "name": "Rotclaw: +2 yd radius",
+      "spec_id": 99,
+      "target_spell": 804197,
+      "affected_spells": [
+        804197
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        512,
+        0
+      ],
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 2
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "804197 Rotclaw power=4294967294 cost_pct=10 dur=4000 radius=[12.0] periodic=True mask_unique_bit=[0, 512, 0] fam=26 [eff0=SCHOOL_DAMAGE v=28;eff1=APPLY_AURA/PERIODIC_DAMAGE v=6;eff2=APPLY_AURA/ASCENSION_MOD_IGNORE_ARMOR_PCT v=0]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_rotclaw_dur",
+      "name": "Rotclaw: +1 sec duration",
+      "spec_id": 99,
+      "target_spell": 804197,
+      "affected_spells": [
+        804197
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        512,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 1000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "804197 Rotclaw power=4294967294 cost_pct=10 dur=4000 radius=[12.0] periodic=True mask_unique_bit=[0, 512, 0] fam=26 [eff0=SCHOOL_DAMAGE v=28;eff1=APPLY_AURA/PERIODIC_DAMAGE v=6;eff2=APPLY_AURA/ASCENSION_MOD_IGNORE_ARMOR_PCT v=0]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_blood_howl_radius",
+      "name": "Blood Howl: +1 yd radius",
+      "spec_id": 99,
+      "target_spell": 800782,
+      "affected_spells": [
+        800782
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "RADIUS",
+          "type": "FLAT",
+          "value": 1
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "800782 Blood Howl power=4294967294 cost_pct=11 dur=5000 cd=150000 radius=[10.0] fam=26 [eff0=APPLY_AURA/MOD_TAUNT v=0;eff1=APPLY_AURA/MOD_TAUNT v=20]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "round 2 secondary"
+    },
+    {
+      "key": "arugal_eternal_resolve_dur",
+      "name": "Eternal Resolve: +4 sec duration",
+      "spec_id": 99,
+      "target_spell": 801962,
+      "affected_spells": [
+        801962
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 4000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "801962 Eternal Resolve power=4294967294 cost_pct=22 dur=30000 cd=180000 fam=26 [eff0=APPLY_AURA/MOD_MELEE_HASTE v=50;eff1=APPLY_AURA/MOD_INCREASE_HEALTH_PERCENT v=50;eff2=APPLY_AURA/MOD_HEALING_PCT v=50]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "round 2 secondary"
     }
   ],
   "rejected": [
