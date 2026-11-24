@@ -92,6 +92,12 @@ local function ParseSlots(parts, first, slotCount)
     return data
 end
 
+-- Compare tooltips reset the guard in OnTooltipCleared (each client refill); resetting it again in
+-- post-hooks would append the lines twice.
+local function ResetAffixKey(tooltip)
+    if not tooltip._affixUsesClearHook then tooltip._affixLinesKey = nil end
+end
+
 -- Appends the affix lines once per tooltip content (tooltip._affixLinesKey guards repeats).
 local function RenderAffixes(tooltip, data, renderKey)
     if not data or data.slotCount == 0 then return end
@@ -264,7 +270,7 @@ handlers.DATA = function(parts)
         for _, name in ipairs({ "ShoppingTooltip1", "ShoppingTooltip2" }) do
             local tt = _G[name]
             if tt and tt:IsShown() and tt._affixCompareEquipSlot == slot then
-                tt._affixLinesKey = nil
+                ResetAffixKey(tt)
                 AddOwnLines(tt, 255, slot)
             end
         end
@@ -413,21 +419,53 @@ local function AddCompareAffixes()
             end
             if resolved then
                 tt._affixCompareEquipSlot = resolved
-                tt._affixLinesKey = nil
+                ResetAffixKey(tt)
                 AddOwnLines(tt, 255, resolved)
             end
         end
     end
 end
 
+-- The client refills ShoppingTooltip1/2 while the compare modifier is held, not always through
+-- GameTooltip_ShowCompareItem, which wiped the appended lines after a moment. OnTooltipSetItem
+-- fires for every refill, so the equipped item's affixes are appended there.
+local function EquippedSlotForLink(link)
+    local uid = GetItemUniqueId(link)
+    if uid and uid ~= 0 then
+        for slot = 1, 19 do
+            if GetItemUniqueId(GetInventoryItemLink("player", slot)) == uid then return slot end
+        end
+    end
+    local itemId = ItemIdFromLink(link)
+    local equipSlot = itemId and select(9, GetItemInfo(link))
+    for _, slot in ipairs((equipSlot and INVTYPE_TO_SLOTS[equipSlot]) or {}) do
+        if ItemIdFromLink(GetInventoryItemLink("player", slot)) == itemId then return slot end
+    end
+    return nil
+end
+
+local function HookCompareTooltip(tt)
+    tt._affixUsesClearHook = true
+    tt:HookScript("OnTooltipCleared", function(self)
+        self._affixLinesKey = nil
+    end)
+    tt:HookScript("OnTooltipSetItem", function(self)
+        local _, link = self:GetItem()
+        local slot = link and EquippedSlotForLink(link)
+        if not slot then return end
+        self._affixCompareEquipSlot = slot
+        AddOwnLines(self, 255, slot)
+    end)
+end
+
 local function HookTooltip(tt, isMain)
     hooksecurefunc(tt, "SetBagItem", function(self, bag, slot)
-        self._affixLinesKey = nil
+        ResetAffixKey(self)
         if isMain then SetCurrent({ kind = "own", bag = bag, slot = slot }) end
         AddOwnLines(self, bag, slot)
     end)
     hooksecurefunc(tt, "SetInventoryItem", function(self, unit, slot)
-        self._affixLinesKey = nil
+        ResetAffixKey(self)
         if unit == "player" then
             if isMain then SetCurrent({ kind = "own", bag = 255, slot = slot }) end
             AddOwnLines(self, 255, slot)
@@ -437,7 +475,7 @@ local function HookTooltip(tt, isMain)
         end
     end)
     hooksecurefunc(tt, "SetHyperlink", function(self, link)
-        self._affixLinesKey = nil
+        ResetAffixKey(self)
         if isMain then SetCurrent({ kind = "link", link = link }) end
         local uid = GetItemUniqueId(link)
         if not uid or uid == 0 then return end
@@ -474,6 +512,7 @@ local function TryHookFrames()
         if tt and not hooked[name] then
             hooked[name] = true
             pcall(HookTooltip, tt, false)
+            if name ~= "ItemRefTooltip" then pcall(HookCompareTooltip, tt) end
         end
     end
 end
@@ -482,21 +521,21 @@ local function Init()
     HookTooltip(GameTooltip, true)
     pcall(function()
         hooksecurefunc(GameTooltip, "SetAuctionItem", function(self, auctionType, index)
-            self._affixLinesKey = nil
+            ResetAffixKey(self)
             SetCurrent({ kind = "auction", auctionType = auctionType, index = index })
             AddAuctionLines(self, auctionType, index)
         end)
     end)
     pcall(function()
         hooksecurefunc(GameTooltip, "SetTradePlayerItem", function(self, tradeSlot)
-            self._affixLinesKey = nil
+            ResetAffixKey(self)
             SetCurrent({ kind = "trade", isPlayer = true, slot = tradeSlot })
             AddTradeLines(self, tradeSlot, true)
         end)
     end)
     pcall(function()
         hooksecurefunc(GameTooltip, "SetTradeTargetItem", function(self, tradeSlot)
-            self._affixLinesKey = nil
+            ResetAffixKey(self)
             SetCurrent({ kind = "trade", isPlayer = false, slot = tradeSlot })
             AddTradeLines(self, tradeSlot, false)
         end)
