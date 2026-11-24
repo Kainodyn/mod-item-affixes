@@ -1029,8 +1029,8 @@ std::vector<std::pair<uint32, uint32>> ItemAffixMgr::BuildWeightedPool(RollConte
             continue;
         if (def.requiresMana && !ctx.hasMana)
             continue;
-        if (int32(ctx.budget / GetStatCost(def.statOp)) < 1)
-            continue;
+        // No budget floor here: BudgetRange gives every stat at least 1 point, so very low item levels
+        // still roll (+1) instead of storing an empty slot.
 
         uint32 weight = def.weight;
         if (!ctx.profile.anyRole)
@@ -1170,6 +1170,10 @@ void ItemAffixMgr::RollItem(Player* player, Item* item)
 
     uint64 itemGuid = item->GetGUID().GetRawValue();
     std::vector<AffixSlot> slots = GetSlots(itemGuid);
+    // Slots stored empty (affix_id 0, e.g. by builds that skipped stats worth < 1 point) roll again.
+    auto const empty = std::find_if(slots.begin(), slots.end(),
+        [](AffixSlot const& slot) { return slot.affixId == 0; });
+    slots.erase(empty, slots.end());
     uint8 const target = GetSlotCount(item);
     if (slots.size() >= target)
         return;
