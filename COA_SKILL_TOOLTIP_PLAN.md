@@ -126,12 +126,19 @@ tooltip, sweep, cost; (1) core-patch + `.affix`-debug; (2) modul-overgang til ta
 2b. (2026-11-24, Hallvar: "få alle til å treffe") Kravet om 0,5–1,5× er fjernet: nærmeste verdi som treffer en rad
     eksakt innen validator-takene (32 til + 2 som PCT). Én kopi (x1): cast 73/75, duration 370/370, range 130/130,
     radius 205/206 (Crush +7 % = 8,025 yd mot rad 8,0). Keleseth/Valanar cast satt til −1 s (rad 5000 ms; Hallvar godkjente over 500 ms-taket; validator: maks(500 ms, 17 % av cast)).
-3. Maske-modus beholdes til den streamede rad-metoden er klienttestet.
+3. Maske-modus beholdes til den streamede rad-metoden er klienttestet. (Gjort: fjernet 2026-11-24, se status.)
 
 ## Status og klienttest (2026-11-24)
 
-**Implementert, ikke verifisert** (kun `-fsyntax-only`, codestyle og `validate_reviews.py`; ikke bygget, ikke
-klienttestet).
+**Oppdatert 2026-11-24: test A og B bestått i klienten (Hallvar). Streaming er nå eneste modus.**
+`ItemAffixes.SkillAffixes.StreamSpellRows` er fjernet (ignoreres med `LOG_WARN` hvis den står i conf); maske-stien
+og `hook_cd` (`OnSpellCast` + `ModifySpellCooldown`) er fjernet fra modulen. Alle affixer er server-side
+`SpellModifier` med `targetSpellId` (alle ranks av målene), cooldown via `SPELLMOD_COOLDOWN`. Testprosedyren under er
+historikk; punkt A.* og B.7 (`StreamSpellRows = 0`) gjelder ikke lenger. `.affix row` er beholdt for feilsøk.
+`ItemAffixes.SkillAffixChance` default i conf.dist er 20 (live bruker 40).
+
+Opprinnelig status: **Implementert, ikke verifisert** (kun `-fsyntax-only`, codestyle og `validate_reviews.py`; ikke
+bygget, ikke klienttestet).
 
 - Core-patch `/home/coa/namdalnode/patches/core-ascension-spell-row-api.patch` (`AscensionClientSpellRows.h`,
   `AscensionCompat.cpp`): `AscensionSpellRow` (170 dword-slots + Name/Description/Rank/ToolTip, `Get/Set(dbcField)`

@@ -10,6 +10,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 OPS = {'DAMAGE', 'DOT', 'EFFECT1', 'EFFECT2', 'EFFECT3', 'ALL_EFFECTS', 'CRITICAL_CHANCE', 'CASTING_TIME',
        'DURATION', 'RADIUS', 'JUMP_TARGETS', 'COOLDOWN', 'COST', 'RANGE'}
 TYPES = {'FLAT', 'PCT'}
+# Legacy affix_template.targeting values (still written; the module ignores targeting and mask since
+# 2026-11-24: every affix is a targetSpellId spellmod, cooldown via SPELLMOD_COOLDOWN).
 TARGETING = {'mask', 'spell_id', 'hook_cd'}
 PCT_ONLY = {'DAMAGE', 'DOT', 'EFFECT1', 'EFFECT2', 'EFFECT3', 'ALL_EFFECTS', 'COST'}
 MUST_BE_NEGATIVE = {'COOLDOWN', 'CASTING_TIME', 'COST'}
@@ -137,23 +139,13 @@ def check_file(path, cand_dir, seen_keys):
         affected = [spells[x] for x in ids if x in spells] or ([spells[tgt]] if tgt in spells else [])
         tspell = spells.get(tgt, {})
 
-        # targeting
+        # targeting (legacy column, any known value; mask is not checked)
         mode = a['targeting']
         mask = a.get('mask')
         if mode not in TARGETING:
             e.append('targeting "%s" not in %s' % (mode, sorted(TARGETING)))
-        elif mode == 'mask':
-            want = tspell.get('mask_unique_bit')
-            if not want:
-                e.append('targeting=mask but target_spell has no mask_unique_bit')
-            elif mask != want:
-                e.append('mask %s != mask_unique_bit %s of target_spell' % (mask, want))
-            else:
-                for s in affected:
-                    if not any(s.get('flags', [0, 0, 0])[w] & want[w] for w in range(3)) or s.get('fam') != tspell.get('fam'):
-                        e.append('affected spell %d does not carry mask bit %s (would not be hit)' % (s['id'], want))
-        elif mask not in (None, [0, 0, 0]):
-            e.append('mask must be null/[0,0,0] unless targeting=mask')
+        if mask is not None and (not isinstance(mask, list) or len(mask) != 3 or not all(is_int(x) for x in mask)):
+            e.append('mask must be null or three integers')
 
         if not isinstance(a.get('name'), str) or '|' in a['name'] or len(a['name']) > 56:
             e.append('name must be a string without "|" and <= 56 chars (addon payload)')
@@ -174,12 +166,6 @@ def check_file(path, cand_dir, seen_keys):
             if not is_int(v) or v == 0:
                 e.append('%s: value must be a non-zero integer' % ft); continue
             ft = '%s %s %s %d' % (ft, op, ty, v)
-            if mode == 'hook_cd' and op != 'COOLDOWN':
-                e.append('%s: targeting=hook_cd only allows COOLDOWN' % ft)
-            if op in ('COST', 'RANGE') and mode != 'mask':
-                e.append('%s: %s requires targeting=mask' % (ft, op))
-            if op == 'COOLDOWN' and mode not in ('mask', 'hook_cd'):
-                e.append('%s: COOLDOWN requires targeting=mask or hook_cd' % ft)
             if op in PCT_ONLY and ty != 'PCT':
                 e.append('%s: %s only as PCT' % (ft, op))
             if op in MUST_BE_NEGATIVE and v > 0:

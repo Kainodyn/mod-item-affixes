@@ -119,30 +119,22 @@ ItemAffixes.CritRollChance  = 10
 #                     data/sql/db-world/mod_item_affixes_template_skill.sql (affix_template skill
 #                     rows, affix_skill_target and carrier spell 9979001 in spell_dbc). 0 = rolled
 #                     skill affixes stay on items but neither roll nor apply.
+#                     Every affix is a server-side SpellModifier (targetSpellId, cooldown via
+#                     SPELLMOD_COOLDOWN) and is shown in the client by sending the player a
+#                     modified Spell row (SMSG_PATCH_SPELL) for every affected spell: cooldown,
+#                     cost, effect base points and jump targets exactly; cast time, duration,
+#                     radius and range rounded to an existing SpellCastTimes / SpellDuration /
+#                     SpellRadius / SpellRange row (range never above the server's); other
+#                     effects (damage %, crit, DoT, ...) as an "Affixes:" line in the
+#                     description. The original row is sent when an affix goes, at login and
+#                     after a spec change. Needs the core patch core-ascension-spell-row-api and
+#                     CoA.SendDisplayPatches = 1. Bots never get rows.
+#                     The former ItemAffixes.SkillAffixes.StreamSpellRows is gone (streaming is
+#                     the only mode); if still set it is ignored with a warning at startup.
 #        Default:     1
 #
 
 ItemAffixes.SkillAffixes.Enable = 1
-
-#
-#    ItemAffixes.SkillAffixes.StreamSpellRows
-#        Description: Experimental, not client-tested. Show skill affixes in the client by sending
-#                     the player a modified Spell row (SMSG_PATCH_SPELL) for every affected spell:
-#                     cooldown, cost, effect base points and jump targets exactly; cast time,
-#                     duration, radius and range rounded to an existing SpellCastTimes /
-#                     SpellDuration / SpellRadius / SpellRange row (range never above the
-#                     server's); other effects (damage %, crit, DoT, ...) as an "Affixes:" line in
-#                     the description. The original row is sent when an affix goes, at login and
-#                     after a spec change. While on, every affix is a server-side targetSpellId
-#                     modifier (mask affixes too, so the client gets no spell modifier packet and
-#                     counts nothing twice) and hook_cd affixes become SPELLMOD_COOLDOWN
-#                     modifiers. Needs the core patch core-ascension-spell-row-api and
-#                     CoA.SendDisplayPatches = 1. Bots never get rows. Read at startup only.
-#        Default:     0 - mask spellmods and hook_cd cooldown cuts (unchanged behaviour)
-#                     1 - streamed Spell rows
-#
-
-ItemAffixes.SkillAffixes.StreamSpellRows = 0
 
 #
 #    ItemAffixes.SkillAffixChance
@@ -153,6 +145,7 @@ ItemAffixes.SkillAffixes.StreamSpellRows = 0
 #                     most one skill affix per item. A Reforge option of a stat line uses the
 #                     same chance; a skill line always reforges into skill affixes. A crit roll
 #                     (CritRollChance) gives 1.5x only for affixes with scales_with_crit.
+#                     (The live server overrides this to 40; the default stays 20.)
 #        Default:     20
 #
 

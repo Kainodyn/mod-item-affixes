@@ -4,7 +4,6 @@
 #include "Player.h"
 #include "ScriptMgr.h"
 #include "SharedDefines.h"
-#include "Spell.h"
 #include "SpellAuras.h"
 
 class ItemAffixWorldScript : public WorldScript
@@ -85,10 +84,8 @@ public:
         if (!data)
             return;
         data->activeSkillAffixes.clear();
-        data->cooldownCuts.clear();
         data->rowEffects.clear();
         data->sentRows.clear();
-        sItemAffixMgr->TrackCooldownCuts(data, false);
         sItemAffixMgr->ClearSkillMods(player, data);
     }
 
@@ -136,26 +133,9 @@ public:
     }
 };
 
-// hook_cd skill affixes: cut the cooldown the cast just started.
-class ItemAffixAllSpellScript : public AllSpellScript
-{
-public:
-    ItemAffixAllSpellScript() : AllSpellScript("ItemAffixAllSpellScript", { ALLSPELLHOOK_ON_CAST }) { }
-
-    void OnSpellCast(Spell* spell, Unit* caster, SpellInfo const* spellInfo, bool /*skipCheck*/) override
-    {
-        if (!sItemAffixMgr->HasAnyCooldownCuts() || !caster || !spell || !spellInfo)
-            return;
-        Player* player = caster->ToPlayer();
-        if (player && sItemAffixMgr->Handles(player))
-            sItemAffixMgr->OnSpellCast(player, spell, spellInfo);
-    }
-};
-
 void AddSC_item_affix_scripts()
 {
     new ItemAffixWorldScript();
     new ItemAffixPlayerScript();
     new ItemAffixUnitScript();
-    new ItemAffixAllSpellScript();
 }

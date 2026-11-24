@@ -6,7 +6,6 @@
 #include "ObjectGuid.h"
 #include "Define.h"
 #include <array>
-#include <atomic>
 #include <cstdint>
 #include <mutex>
 #include <string>
@@ -15,8 +14,6 @@
 
 class Item;
 class Player;
-class Spell;
-class SpellInfo;
 struct AscensionSpellRow;
 struct SpellModifier;
 
@@ -71,14 +68,6 @@ enum AffixType : uint8
     AFFIX_TYPE_STAT  = 1,
 };
 
-// affix_template.targeting (skill affixes)
-enum SkillAffixTargeting : uint8
-{
-    SKILL_TARGET_MASK     = 0,  // SpellModifier on target_spell's family with a unique family bit
-    SKILL_TARGET_SPELL_ID = 1,  // SpellModifier on the carrier spell, targetSpellId per affix_skill_target row
-    SKILL_TARGET_HOOK_CD  = 2,  // cooldown cut after the cast (Player::ModifySpellCooldown)
-};
-
 // Hidden passive dummy aura from data/sql/db-world/mod_item_affixes_template_skill.sql. Every skill
 // SpellModifier is owned by it, so Player::ApplyModToSpell never sees a null ownerAura.
 constexpr uint32 SKILL_AFFIX_CARRIER_SPELL = 9979001;
@@ -112,12 +101,10 @@ struct AffixDefinition
     uint16      specId         = 0;
     uint32      targetSpell    = 0;
     uint32      knownSpell     = 0;
-    uint8       targeting      = SKILL_TARGET_MASK;
-    uint32      mask[3]        = { 0, 0, 0 };
     bool        scalesWithCrit = false;
     std::vector<SkillAffixEffect> effects;
-    std::vector<uint32> targets;  // affix_skill_target
-    std::vector<uint32> rankTargets;  // targets plus their other ranks (mask affixes while rows stream)
+    // affix_skill_target plus every other rank of those spells; one targetSpellId modifier each.
+    std::vector<uint32> targets;
 
     bool IsSkill() const { return affixType == AFFIX_TYPE_SKILL; }
 };
@@ -142,8 +129,8 @@ struct ActiveSkillAffix
     int32  scalePct;
 };
 
-// Summed skill affix modifiers of one spell, written into the Spell row streamed to the client
-// (ItemAffixes.SkillAffixes.StreamSpellRows). Indexed by SpellModOp.
+// Summed skill affix modifiers of one spell, written into the Spell row streamed to the client.
+// Indexed by SpellModOp.
 constexpr uint8 SKILL_ROW_MAX_OPS = 32;
 struct SkillRowEffects
 {
@@ -161,7 +148,6 @@ struct ItemAffixPlayerData : public DataMap::Base
     std::unordered_map<uint64, std::vector<ActiveStatMod>>    activeStatMods;
     std::unordered_map<uint64, std::vector<ActiveSkillAffix>> activeSkillAffixes;
     std::vector<SpellModifier*>          skillMods;      // registered with Player::AddSpellMod
-    std::unordered_map<uint32, uint32>   cooldownCuts;   // spell id -> ms cut after each cast (hook_cd)
     std::unordered_map<uint32, SkillRowEffects> rowEffects;  // spell id -> modifiers its streamed row shows
     std::unordered_map<uint32, size_t>   sentRows;       // spell id -> signature of the modified row the client has
     bool   rowsReady          = true;    // false from login until the delayed first row sync
@@ -171,7 +157,6 @@ struct ItemAffixPlayerData : public DataMap::Base
     bool   removingCarrier    = false;
     bool   rebuildScheduled   = false;
     bool   statusScheduled    = false;
-    bool   countedForCuts     = false;
 };
 
 // Reforge candidate (also the serialized form "id:val:crit").
@@ -242,24 +227,20 @@ public:
 
     // Skill affixes
     bool  PlayerKnowsSkillAffix(Player const* player, AffixDefinition const& def) const;
-    // Rebuilds the carrier aura, spell modifiers and cooldown cuts from every applied skill affix.
+    // Rebuilds the carrier aura, spell modifiers and streamed rows from every applied skill affix.
     void  RebuildSkillMods(Player* player);
     // Removes and deletes every skill spell modifier (carrier aura removal, logout).
     void  ClearSkillMods(Player* player, ItemAffixPlayerData* data);
     void  OnCarrierRemoved(Player* player);
-    void  OnSpellCast(Player* player, Spell* spell, SpellInfo const* spellInfo);
     void  ScheduleSkillStatusRefresh(Player* player);
     // GM command: put one skill affix on an equipped item (replaces its skill slot, else appends one).
     bool  GiveSkillAffix(Player* player, Item* item, AffixDefinition const& def, bool crit);
-    bool  HasAnyCooldownCuts() const { return _playersWithCooldownCuts.load(std::memory_order_relaxed) != 0; }
-    void  TrackCooldownCuts(ItemAffixPlayerData* data, bool has);
     size_t GetSkillAffixCount() const { return _skillAffixCount; }
 
-    // Per-player streamed Spell rows (ItemAffixes.SkillAffixes.StreamSpellRows, core patch
-    // core-ascension-spell-row-api). Sends the modified row of every affected spell and the original
-    // row of every spell that is no longer affected. resetClassSpells also sends the original row of
-    // every other spell the class's skill affixes can target (login, spec change).
-    bool  StreamsSpellRows() const { return _streamSpellRows; }
+    // Per-player streamed Spell rows (core patch core-ascension-spell-row-api). Sends the modified row
+    // of every affected spell and the original row of every spell that is no longer affected.
+    // resetClassSpells also sends the original row of every other spell the class's skill affixes can
+    // target (login, spec change).
     void  SyncSpellRows(Player* player, bool resetClassSpells);
     void  ScheduleSpellRowReset(Player* player);
     static void ApplySpellRowEffects(SkillRowEffects const& effects, AscensionSpellRow& row);
@@ -316,14 +297,12 @@ private:
     uint32 _reforgeBaseCost[5]       = { 0, 0, 5000, 20000, 75000 };
     uint32 _reforgeBaseCostLegendary = 250000;
     bool   _skillAffixesEnabled      = true;
-    bool   _streamSpellRows          = false;
     uint32 _skillAffixChance         = 25;
 
     std::unordered_map<uint32, AffixDefinition> _defs;
     std::unordered_map<std::string, uint32>     _defsByKey;
     std::unordered_map<uint8, std::vector<uint32>> _skillPoolByClass;
     size_t _skillAffixCount = 0;
-    std::atomic<uint32> _playersWithCooldownCuts{ 0 };
 
     // Item GUID -> slots. Authoritative once loaded; every write goes through StoreSlots.
     // Player hooks run on map update threads, so access is serialized.

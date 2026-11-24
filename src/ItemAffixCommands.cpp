@@ -239,7 +239,8 @@ public:
         return true;
     }
 
-    // .affix skills -- skill affixes on equipped items and the spell modifiers they produce.
+    // .affix skills -- skill affixes on equipped items, the spell modifiers they produce and the
+    // streamed Spell rows.
     static bool HandleSkillsCommand(ChatHandler* handler)
     {
         Player* player = handler->GetSession()->GetPlayer();
@@ -259,11 +260,10 @@ public:
 
         for (SpellModifier const* mod : data->skillMods)
         {
-            SpellInfo const* info = sSpellMgr->GetSpellInfo(mod->targetSpellId ? mod->targetSpellId : mod->spellId);
-            handler->PSendSysMessage("  mod op {} {} {} spell {} {} mask {:#x}:{:#x}:{:#x} owner {}", uint32(mod->op),
-                mod->type == SPELLMOD_PCT ? "pct" : "flat", mod->value, mod->targetSpellId ? mod->targetSpellId : mod->spellId,
-                info ? info->SpellName[0] : "?", mod->mask[0], mod->mask[1], mod->mask[2],
-                mod->ownerAura == carrier ? "carrier" : "STALE");
+            SpellInfo const* info = sSpellMgr->GetSpellInfo(mod->targetSpellId);
+            handler->PSendSysMessage("  mod op {} {} {} spell {} {} owner {}", uint32(mod->op),
+                mod->type == SPELLMOD_PCT ? "pct" : "flat", mod->value, mod->targetSpellId,
+                info ? info->SpellName[0] : "?", mod->ownerAura == carrier ? "carrier" : "STALE");
         }
         for (auto const& [spellId, effects] : data->rowEffects)
         {
@@ -277,12 +277,6 @@ public:
             }
             handler->PSendSysMessage("  row spell {}:{} notes {} {}", spellId, ops, effects.notes.size(),
                 data->sentRows.count(spellId) ? "sent" : "not sent");
-        }
-        for (auto const& [spellId, cut] : data->cooldownCuts)
-        {
-            SpellInfo const* info = sSpellMgr->GetSpellInfo(spellId);
-            handler->PSendSysMessage("  cooldown cut spell {} {}: -{} ms after cast", spellId,
-                info ? info->SpellName[0] : "?", cut);
         }
         return true;
     }
@@ -317,7 +311,7 @@ public:
 
     // .affix row <spellId> [field=value ...] [desc="..."] [desc+="..."] [tooltip="..."] | reset
     // Sends this player one Spell row (SMSG_PATCH_SPELL) to test what the client follows mid-session.
-    // reset sends the row the server normally sends (with streamed affixes when StreamSpellRows = 1).
+    // reset sends the row the server normally sends (with the player's streamed affixes).
     static bool HandleRowCommand(ChatHandler* handler, uint32 spellId, Tail args)
     {
         Player* player = handler->GetSession()->GetPlayer();

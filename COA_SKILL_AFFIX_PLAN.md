@@ -117,6 +117,11 @@ Tooltip: item-linja vises av addonen (tekst bygges server-side i `BuildAffixDisp
 
 ## 4. Anbefalt mekanisme
 
+> **Status 2026-11-24:** punkt 3 (maske-modus) og `hook_cd` er fjernet. Alle affixer bruker spell-id-modus (punkt 4,
+> `targetSpellId` per mål-spell og alle ranks av den), cooldown via `SPELLMOD_COOLDOWN`, og vises i klienten med
+> per-spiller streamede Spell-rader (eneste modus; klienttest A/B bestått 2026-11-24, se `COA_SKILL_TOOLTIP_PLAN.md`).
+> Carrier-aura-livssyklusen (punkt 1, 2, 5) er uendret.
+
 **Hybrid, alt eid av én skjult carrier-aura per spiller:**
 1. Ny server-side spell i `spell_dbc` (f.eks. 9979001): passiv, skjult, `SPELL_AURA_DUMMY`, familie 0. Legges på ved
    login når spilleren har minst én skill-affix utstyrt (`AddAura`), fjernes når ingen. Ingen klient-DBC.
@@ -136,8 +141,8 @@ Fungerer for skade/crit/CD, men ikke cast time/cost/duration/radius og er mer ko
 ## 5. Datamodell og integrasjon i modulen
 
 - **`affix_template`** (world): nye kolonner `affix_type` (1 = stat, default; 0 = skill), `class_id`, `spec_id`
-  (0 = klassetab/alle specs), `target_spell` (rank 1, for visning), `targeting` (0 mask, 1 spell-id),
-  `mask0..2`, `effects` som `op1,type1,value1 … op3` (som upstream), `value_scale` (0/1 skaleres av crit/2H).
+  (0 = klassetab/alle specs), `target_spell` (rank 1, for visning), `targeting` (0 mask, 1 spell-id, 2 hook_cd;
+  legacy, ignoreres av modulen siden 2026-11-24), `mask0..2` (legacy, ignoreres), `effects` som `op1,type1,value1 … op3` (som upstream), `value_scale` (0/1 skaleres av crit/2H).
 - **`affix_skill_target`** (world, generert): `(affix_id, spell_id)` – alle ranks og triggered barn som skal treffes.
 - **`item_affix`** (characters, begge DB-er inkl. `acore_characters_wc`): uendret skjema; `affix_id` peker på
   skill-raden, `rolled_value` = endelig verdi (etter tier/crit), `is_crit` som i dag.
@@ -273,7 +278,7 @@ Et merge-script lager `affix_template`/`affix_skill_target`-SQL og avviser ukjen
   (spell/maske, op, type) over alle items; CD/cast/cost klippes ved 0. Mods fjernes før carrieren i
   `UnitScript::OnAuraRemove` og `OnPlayerLogout`; fjernet utenfra (RemoveAllAuras, `.unaura`) → gjenopprettes etter
   0,5 s via `m_Events`. Død beholder passive auraer.
-- Targeting: `mask` = `mod->spellId` = target_spell + unik bit; `spell_id` = carrier, mask 0, `targetSpellId` per id
+- Targeting (**erstattet 2026-11-24**: kun `targetSpellId` + streamede rader, se nederst) – opprinnelig: `mask` = `mod->spellId` = target_spell + unik bit; `spell_id` = carrier, mask 0, `targetSpellId` per id
   (ingen global hook, `OnSpellModFamilyMask` ikke brukt); `hook_cd` = `AllSpellScript::OnSpellCast` (etter
   `SendSpellCooldown`) → `ModifySpellCooldown` på castens ferske CD-entry (< 1 s gammel) og på ferske entries med
   samme category når spellen har `CategoryRecoveryTime`; hopper over item-cast, `TRIGGERED_IGNORE_SPELL_AND_CATEGORY_CD`
@@ -289,3 +294,12 @@ og `codestyle-cpp.py` OK; merge gir identisk fil ved ny kjøring.
 spillet: carrier/`ownerAura`-livssyklus (logout, død, `RemoveAllAuras`, prestige, spec-bytte), om Ascension-klienten
 bruker spellmod-pakker for CD/cost i maske-modus, `SMSG_MODIFY_COOLDOWN` på action bar (også category), at mods treffer
 riktige (trigger-)spells, tooltip-lengde ≤ 255 med lange navn.
+
+**Oppdatert 2026-11-24 (streaming eneste modus):** klienttest A/B i `COA_SKILL_TOOLTIP_PLAN.md` bestått.
+`ItemAffixes.SkillAffixes.StreamSpellRows` er fjernet (står nøkkelen i conf: `LOG_WARN` ved oppstart, ignoreres).
+Maske-stien og `hook_cd` (`AllSpellScript::OnSpellCast`, `ModifySpellCooldown`, atomic teller) er fjernet; alle
+affixer er `SpellModifier` på carrieren med `targetSpellId` på hver `affix_skill_target`-spell og alle ranks av den
+(`spell_ranks`; tidligere bare for maske-affixer), cooldown via `SPELLMOD_COOLDOWN`. `targeting`/`mask0..2` står
+fortsatt i `affix_template` (generert SQL uendret), men leses ikke. `validate_reviews.py` sjekker ikke lenger maske-bits
+eller COST/RANGE/COOLDOWN-mot-targeting; `merge_reviews.py` avviser ikke lenger maske-mål som er spesialtilfeller i
+`SpellInfo::IsAffectedBySpellMod`. `ItemAffixes.SkillAffixChance` default i conf.dist er 20 (live bruker 40).

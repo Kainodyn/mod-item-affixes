@@ -5,7 +5,6 @@
 #include "Config.h"
 #include "DBCStores.h"
 #include "DatabaseEnv.h"
-#include "GameTime.h"
 #include "Item.h"
 #include "ItemTemplate.h"
 #include "Log.h"
@@ -15,7 +14,6 @@
 #include "Opcodes.h"
 #include "Player.h"
 #include "Random.h"
-#include "Spell.h"
 #include "SpellAuras.h"
 #include "SpellInfo.h"
 #include "SpellMgr.h"
@@ -41,10 +39,10 @@ constexpr float PEEK_UNIT_MAX_DISTANCE = 100.0f;
 constexpr uint8 FIRST_COA_CLASS = 12;
 constexpr uint8 LAST_COA_CLASS = 32;
 constexpr size_t MAX_SKILL_TEXT = 60;
-// A cooldown entry younger than this was started by the cast being handled (hook_cd).
-constexpr uint32 FRESH_COOLDOWN_MS = 1000;
 constexpr Milliseconds CARRIER_RESTORE_DELAY = 500ms;
 constexpr Milliseconds STATUS_REFRESH_DELAY = 1000ms;
+// Removed 2026-11-24 (rows are always streamed); only warned about when still set.
+constexpr char const* REMOVED_STREAM_SPELL_ROWS_KEY = "ItemAffixes.SkillAffixes.StreamSpellRows";
 
 uint8 GetItemCategory(ItemTemplate const* proto)
 {
@@ -362,7 +360,7 @@ void ForEachCarriedItem(Player* player, Fn&& fn)
 }
 
 // ---------------------------------------------------------------------------
-// Streamed Spell rows (ItemAffixes.SkillAffixes.StreamSpellRows)
+// Streamed Spell rows
 // ---------------------------------------------------------------------------
 
 namespace
@@ -521,7 +519,7 @@ size_t RowSignature(SkillRowEffects const& fx)
 
 void SkillAffixSpellRowOverride(Player* player, AscensionSpellRow& row)
 {
-    if (!player || !sItemAffixMgr->StreamsSpellRows() || !sItemAffixMgr->Handles(player))
+    if (!player || !sItemAffixMgr->Handles(player))
         return;
     ItemAffixPlayerData* data = player->CustomData.Get<ItemAffixPlayerData>("ItemAffixData");
     if (!data)
@@ -618,10 +616,9 @@ void ItemAffixMgr::SyncSpellRows(Player* player, bool resetClassSpells)
         if (auto pool = _skillPoolByClass.find(player->getClass()); pool != _skillPoolByClass.end())
             for (uint32 affixId : pool->second)
                 if (AffixDefinition const* def = GetAffixDef(affixId))
-                    for (std::vector<uint32> const* list : { &def->targets, &def->rankTargets })
-                        for (uint32 spellId : *list)
-                            if (!data->rowEffects.count(spellId))
-                                originals.insert(spellId);
+                    for (uint32 spellId : def->targets)
+                        if (!data->rowEffects.count(spellId))
+                            originals.insert(spellId);
 
     for (uint32 spellId : originals)
     {
@@ -644,7 +641,7 @@ void ItemAffixMgr::SyncSpellRows(Player* player, bool resetClassSpells)
 // every spell the class's skill affixes can touch is sent again.
 void ItemAffixMgr::ScheduleSpellRowReset(Player* player)
 {
-    if (!_streamSpellRows || !_skillAffixCount || !Handles(player))
+    if (!_skillAffixCount || !Handles(player))
         return;
     ItemAffixPlayerData* data = player->CustomData.GetDefault<ItemAffixPlayerData>("ItemAffixData");
     data->rowsReady = false;
@@ -679,8 +676,6 @@ ItemAffixPlayerData::~ItemAffixPlayerData()
     // Only reached with mods left when the Player is destroyed without a carrier removal or logout.
     for (SpellModifier* mod : skillMods)
         delete mod;
-    if (countedForCuts)
-        sItemAffixMgr->TrackCooldownCuts(this, false);
 }
 
 ItemAffixMgr* ItemAffixMgr::instance()
@@ -730,8 +725,11 @@ void ItemAffixMgr::LoadConfig()
 
     _skillAffixesEnabled = sConfigMgr->GetOption<bool>("ItemAffixes.SkillAffixes.Enable", true);
     _skillAffixChance    = std::min<uint32>(sConfigMgr->GetOption<uint32>("ItemAffixes.SkillAffixChance", 20), 100);
-    _streamSpellRows     = sConfigMgr->GetOption<bool>("ItemAffixes.SkillAffixes.StreamSpellRows", false);
-    AscensionSetSpellRowOverride(_streamSpellRows ? &SkillAffixSpellRowOverride : nullptr);
+    for (std::string const& key : sConfigMgr->GetKeysByString(REMOVED_STREAM_SPELL_ROWS_KEY))
+        if (key == REMOVED_STREAM_SPELL_ROWS_KEY)
+            LOG_WARN("module", "mod-item-affixes: {} is no longer used and is ignored; skill affix Spell rows are "
+                "always streamed. Remove it from the config.", REMOVED_STREAM_SPELL_ROWS_KEY);
+    AscensionSetSpellRowOverride(&SkillAffixSpellRowOverride);
 }
 
 void ItemAffixMgr::LoadAffixTemplates()
@@ -838,8 +836,8 @@ void ItemAffixMgr::LoadSkillAffixes()
     }
 
     QueryResult result = WorldDatabase.Query(
-        "SELECT id, name, weight, min_quality, affix_key, class_id, spec_id, target_spell, known_spell, targeting, "
-        "mask0, mask1, mask2, op1, type1, value1, op2, type2, value2, op3, type3, value3, scales_with_crit "
+        "SELECT id, name, weight, min_quality, affix_key, class_id, spec_id, target_spell, known_spell, "
+        "op1, type1, value1, op2, type2, value2, op3, type3, value3, scales_with_crit "
         "FROM affix_template WHERE affix_type = 0 AND weight > 0");
     if (!result)
     {
@@ -861,49 +859,40 @@ void ItemAffixMgr::LoadSkillAffixes()
         def.specId         = f[6].Get<uint16>();
         def.targetSpell    = f[7].Get<uint32>();
         def.knownSpell     = f[8].Get<uint32>();
-        def.targeting      = f[9].Get<uint8>();
-        def.mask[0]        = f[10].Get<uint32>();
-        def.mask[1]        = f[11].Get<uint32>();
-        def.mask[2]        = f[12].Get<uint32>();
-        def.scalesWithCrit = f[22].Get<uint8>() != 0;
+        def.scalesWithCrit = f[18].Get<uint8>() != 0;
         def.affixType      = AFFIX_TYPE_SKILL;
 
         std::string error;
         for (uint8 i = 0; i < MAX_SKILL_AFFIX_EFFECTS; ++i)
         {
             SkillAffixEffect fx;
-            fx.op    = f[13 + i * 3].Get<uint8>();
-            uint8 type = f[14 + i * 3].Get<uint8>();
+            fx.op    = f[9 + i * 3].Get<uint8>();
+            uint8 type = f[10 + i * 3].Get<uint8>();
             fx.pct   = type == 1;
-            fx.value = f[15 + i * 3].Get<int32>();
+            fx.value = f[11 + i * 3].Get<int32>();
             if (!fx.value)
                 continue;
             if (fx.op >= MAX_SPELLMOD || type > 1)
                 error = Acore::StringFormat("effect {} has op {} type {}", i + 1, fx.op, type);
-            else if (def.targeting == SKILL_TARGET_HOOK_CD && fx.op != SPELLMOD_COOLDOWN)
-                error = "hook_cd allows only COOLDOWN effects";
             def.effects.push_back(fx);
         }
 
+        std::vector<uint32> listed;
         if (auto it = targets.find(def.id); it != targets.end())
             for (uint32 spellId : it->second)
                 if (sSpellMgr->GetSpellInfo(spellId))
-                    def.targets.push_back(spellId);
-        if (def.targets.empty() && sSpellMgr->GetSpellInfo(def.targetSpell))
-            def.targets.push_back(def.targetSpell);
-        for (uint32 spellId : def.targets)
+                    listed.push_back(spellId);
+        if (listed.empty() && sSpellMgr->GetSpellInfo(def.targetSpell))
+            listed.push_back(def.targetSpell);
+        for (uint32 spellId : listed)
             for (uint32 rank = sSpellMgr->GetFirstSpellInChain(spellId); rank; rank = sSpellMgr->GetNextSpellInChain(rank))
-                if (std::find(def.rankTargets.begin(), def.rankTargets.end(), rank) == def.rankTargets.end())
-                    def.rankTargets.push_back(rank);
+                if (std::find(def.targets.begin(), def.targets.end(), rank) == def.targets.end())
+                    def.targets.push_back(rank);
 
         if (def.classId < FIRST_COA_CLASS || def.classId > LAST_COA_CLASS)
             error = Acore::StringFormat("class {} is not a CoA class", def.classId);
         else if (!sSpellMgr->GetSpellInfo(def.targetSpell) || !sSpellMgr->GetSpellInfo(def.knownSpell))
             error = Acore::StringFormat("target spell {} or known spell {} does not exist", def.targetSpell, def.knownSpell);
-        else if (def.targeting > SKILL_TARGET_HOOK_CD)
-            error = Acore::StringFormat("targeting {}", def.targeting);
-        else if (def.targeting == SKILL_TARGET_MASK && !def.mask[0] && !def.mask[1] && !def.mask[2])
-            error = "targeting mask without a mask";
         else if (def.effects.empty())
             error = "no effect";
         else if (def.name.find("$v") == std::string::npos)
@@ -1367,17 +1356,6 @@ void ItemAffixMgr::SetBatch(Player* player, bool begin)
 // Skill affixes: one hidden carrier aura owns every SpellModifier the module adds
 // ---------------------------------------------------------------------------
 
-void ItemAffixMgr::TrackCooldownCuts(ItemAffixPlayerData* data, bool has)
-{
-    if (has == data->countedForCuts)
-        return;
-    data->countedForCuts = has;
-    if (has)
-        _playersWithCooldownCuts.fetch_add(1, std::memory_order_relaxed);
-    else
-        _playersWithCooldownCuts.fetch_sub(1, std::memory_order_relaxed);
-}
-
 void ItemAffixMgr::ClearSkillMods(Player* player, ItemAffixPlayerData* data)
 {
     if (!data)
@@ -1397,12 +1375,12 @@ void ItemAffixMgr::RebuildSkillMods(Player* player)
     if (!player)
         return;
     BuildSkillMods(player);
-    if (_streamSpellRows)
-        SyncSpellRows(player, false);
+    SyncSpellRows(player, false);
 }
 
-// With streamed rows every affix is a targetSpellId modifier (mask=0): the core sends no client spell
-// modifier for it, so the client applies the affix only once, through the streamed row.
+// Every affix is a server-side targetSpellId modifier (mask 0, so the core sends the client no spell
+// modifier) on each of its targets; the client sees it only through the streamed row. Cooldown
+// affixes are SPELLMOD_COOLDOWN like any other op.
 void ItemAffixMgr::BuildSkillMods(Player* player)
 {
     ItemAffixPlayerData* data = player->CustomData.GetDefault<ItemAffixPlayerData>("ItemAffixData");
@@ -1410,26 +1388,11 @@ void ItemAffixMgr::BuildSkillMods(Player* player)
 
     // Modifiers always go before the aura that owns them.
     ClearSkillMods(player, data);
-    data->cooldownCuts.clear();
     data->rowEffects.clear();
-    bool const stream = _streamSpellRows;
     std::unordered_map<uint32, std::vector<std::string>> notes;
 
-    struct ModKey
-    {
-        uint32 spellId;
-        uint32 targetSpellId;
-        uint32 mask[3];
-        uint8  op;
-        bool   pct;
-        bool operator<(ModKey const& o) const
-        {
-            return std::tie(spellId, targetSpellId, mask[0], mask[1], mask[2], op, pct) <
-                std::tie(o.spellId, o.targetSpellId, o.mask[0], o.mask[1], o.mask[2], o.op, o.pct);
-        }
-    };
-    std::map<ModKey, int32> sums;
-    std::unordered_map<uint32, int64> cuts;
+    // (target spell, op, pct) -> summed value
+    std::map<std::tuple<uint32, uint8, bool>, int32> sums;
 
     bool const usable = Handles(player) && player->IsInWorld() && !player->GetSession()->PlayerLogout();
     if (usable)
@@ -1440,42 +1403,22 @@ void ItemAffixMgr::BuildSkillMods(Player* player)
                 AffixDefinition const* def = GetAffixDef(active.affixId);
                 if (!def || !def->IsSkill())
                     continue;
-                std::vector<uint32> const& targets = stream && def->targeting == SKILL_TARGET_MASK ?
-                    def->rankTargets : def->targets;
                 bool noted = false;
                 for (SkillAffixEffect const& fx : def->effects)
                 {
-                    int32 value = ScaleSkillValue(fx.value, active.scalePct);
-                    if (stream)
+                    int32 const value = ScaleSkillValue(fx.value, active.scalePct);
+                    for (uint32 spellId : def->targets)
+                        sums[{ spellId, fx.op, fx.pct }] += value;
+                    if (!noted && !HasRowField(fx.op))
                     {
-                        for (uint32 spellId : targets)
-                            sums[{ SKILL_AFFIX_CARRIER_SPELL, spellId, { 0, 0, 0 }, fx.op, fx.pct }] += value;
-                        if (!noted && !HasRowField(fx.op))
-                        {
-                            noted = true;
-                            std::string const text = BuildAffixDisplayString(def, active.scalePct);
-                            for (uint32 spellId : targets)
-                                notes[spellId].push_back(text);
-                        }
-                    }
-                    else if (def->targeting == SKILL_TARGET_HOOK_CD)
-                    {
+                        noted = true;
+                        std::string const text = BuildAffixDisplayString(def, active.scalePct);
                         for (uint32 spellId : def->targets)
-                            cuts[spellId] += -int64(value);
+                            notes[spellId].push_back(text);
                     }
-                    else if (def->targeting == SKILL_TARGET_MASK)
-                        sums[{ def->targetSpell, 0, { def->mask[0], def->mask[1], def->mask[2] }, fx.op, fx.pct }] += value;
-                    else
-                        for (uint32 spellId : def->targets)
-                            sums[{ SKILL_AFFIX_CARRIER_SPELL, spellId, { 0, 0, 0 }, fx.op, fx.pct }] += value;
                 }
             }
     }
-
-    for (auto const& [spellId, cut] : cuts)
-        if (cut > 0)
-            data->cooldownCuts[spellId] = uint32(std::min<int64>(cut, std::numeric_limits<int32>::max()));
-    TrackCooldownCuts(data, !data->cooldownCuts.empty());
 
     Aura* carrier = player->GetAura(SKILL_AFFIX_CARRIER_SPELL);
     if (sums.empty())
@@ -1500,23 +1443,23 @@ void ItemAffixMgr::BuildSkillMods(Player* player)
 
     for (auto const& [key, sum] : sums)
     {
-        SpellInfo const* reference = sSpellMgr->GetSpellInfo(key.targetSpellId ? key.targetSpellId : key.spellId);
-        int32 value = ClampSkillValue(key.op, key.pct, sum, reference);
+        auto const& [targetSpellId, op, pct] = key;
+        int32 const value = ClampSkillValue(op, pct, sum, sSpellMgr->GetSpellInfo(targetSpellId));
         if (!value)
             continue;
         SpellModifier* mod = new SpellModifier(carrier);
-        mod->op            = SpellModOp(key.op);
-        mod->type          = key.pct ? SPELLMOD_PCT : SPELLMOD_FLAT;
+        mod->op            = SpellModOp(op);
+        mod->type          = pct ? SPELLMOD_PCT : SPELLMOD_FLAT;
         mod->value         = value;
-        mod->mask          = flag96(key.mask[0], key.mask[1], key.mask[2]);
-        mod->spellId       = key.spellId;
-        mod->targetSpellId = key.targetSpellId;
+        mod->mask          = flag96(0, 0, 0);
+        mod->spellId       = SKILL_AFFIX_CARRIER_SPELL;
+        mod->targetSpellId = targetSpellId;
         data->skillMods.push_back(mod);
         player->AddSpellMod(mod, true);
-        if (stream && key.targetSpellId && key.op < SKILL_ROW_MAX_OPS)
+        if (op < SKILL_ROW_MAX_OPS)
         {
-            SkillRowEffects& row = data->rowEffects[key.targetSpellId];
-            (key.pct ? row.pct : row.flat)[key.op] += value;
+            SkillRowEffects& row = data->rowEffects[targetSpellId];
+            (pct ? row.pct : row.flat)[op] += value;
         }
     }
     for (auto& [spellId, texts] : notes)
@@ -1544,37 +1487,6 @@ void ItemAffixMgr::OnCarrierRemoved(Player* player)
         if (player->IsInWorld())
             sItemAffixMgr->RebuildSkillMods(player);
     }, CARRIER_RESTORE_DELAY);
-}
-
-// AllSpellScript::OnSpellCast runs after Spell::SendSpellCooldown started the cooldown of this cast.
-void ItemAffixMgr::OnSpellCast(Player* player, Spell* spell, SpellInfo const* spellInfo)
-{
-    ItemAffixPlayerData* data = player->CustomData.Get<ItemAffixPlayerData>("ItemAffixData");
-    if (!data || data->cooldownCuts.empty())
-        return;
-    auto cutIt = data->cooldownCuts.find(spellInfo->Id);
-    if (cutIt == data->cooldownCuts.end())
-        return;
-    if (spell->m_CastItem || spell->HasTriggeredCastFlag(TRIGGERED_IGNORE_SPELL_AND_CATEGORY_CD) ||
-        spellInfo->IsCooldownStartedOnEvent())
-        return;
-
-    uint32 const now = GameTime::GetGameTimeMS().count();
-    uint32 const cut = cutIt->second;
-    uint32 const category = spellInfo->CategoryRecoveryTime ? spellInfo->GetCategory() : 0;
-
-    std::vector<std::pair<uint32, int32>> changes;
-    for (auto const& [spellId, cooldown] : player->GetSpellCooldownMap())
-    {
-        if (spellId != spellInfo->Id && (!category || cooldown.category != category))
-            continue;
-        if (cooldown.end <= now || cooldown.maxduration < cooldown.end - now ||
-            cooldown.maxduration - (cooldown.end - now) > FRESH_COOLDOWN_MS)
-            continue;
-        changes.emplace_back(spellId, -int32(std::min(cut, cooldown.end - now)));
-    }
-    for (auto const& [spellId, delta] : changes)
-        player->ModifySpellCooldown(spellId, delta);
 }
 
 // After the affixes of an equipped item changed: swap its stats if the core currently applies the item.

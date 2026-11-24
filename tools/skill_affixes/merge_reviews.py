@@ -17,7 +17,6 @@ import validate_reviews  # noqa: E402
 
 OUT_SQL = os.path.join(MODULE, 'data', 'sql', 'db-world', 'mod_item_affixes_template_skill.sql')
 ID_FILE = os.path.join(HERE, 'affix_ids.json')
-CORE_SPELLINFO = '/opt/coa/azerothcore/src/server/game/Spells/SpellInfo.cpp'
 
 CARRIER_SPELL = 9979001
 ID_BASE, ID_CLASS_STRIDE = 100000, 1000
@@ -81,17 +80,6 @@ def name_format(a):
     return prefix + sep + rest[:m.start()] + '$v' + rest[m.end():]
 
 
-def spellmod_case_ids():
-    try:
-        src = open(CORE_SPELLINFO, encoding='utf-8').read()
-    except OSError:
-        return None
-    s = src.index('bool SpellInfo::IsAffectedBySpellMod')
-    e = src.index('\n}\n', s)
-    body = src[s:e]
-    return {int(x) for x in re.findall(r'case (\d+)', body)} | {int(x) for x in re.findall(r'mod->spellId == (\d+)', body)}
-
-
 def load_ids():
     if not os.path.exists(ID_FILE):
         return {}
@@ -136,7 +124,6 @@ def main():
         sys.exit('validate_reviews.py failed; fix the reviews first')
 
     cand_dir = os.path.join(HERE, 'out', 'candidates')
-    case_ids = spellmod_case_ids()
     affixes, errs = [], []
     targets = {}
     for path in sorted(glob.glob(os.path.join(HERE, 'out', 'reviews', '*.json'))):
@@ -158,9 +145,6 @@ def main():
                                                         a['effects'][0]['value'])))
             if '|' in a['name'] or len(a['name']) > MAX_NAME:
                 errs.append('%s: name must not contain "|" and be <= %d chars (addon payload)' % (a['key'], MAX_NAME))
-            if a['targeting'] == 'mask' and case_ids and a['target_spell'] in case_ids:
-                errs.append('%s: target_spell %d is special-cased in SpellInfo::IsAffectedBySpellMod' % (
-                    a['key'], a['target_spell']))
             ids = list(a['affected_spells']) or [a['target_spell']]
             expanded = []
             for sid in ids:
