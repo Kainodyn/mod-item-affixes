@@ -1,0 +1,1114 @@
+{
+  "class_id": 21,
+  "class": "RANGER",
+  "reviewed_at": "2026-11-23",
+  "affixes": [
+    {
+      "key": "ranger_brutal_shot_dmg",
+      "name": "Brutal Shot: +8% damage",
+      "spec_id": 28,
+      "target_spell": 570014,
+      "affected_spells": [
+        570014
+      ],
+      "targeting": "mask",
+      "mask": [
+        128,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 100,
+      "evidence": "570014 Brutal Shot cd=25000 cast=2000 cost=45 fam27 mask_unique_bit=[128, 0, 0] eff[NORMALIZED_WEAPON_DMG=300, WEAPON_PERCENT_DAMAGE=450, TRIGGER_MISSILE=1]. Archery signature nuke; damage done by the spell itself (NORMALIZED_WEAPON_DMG/WEAPON_PERCENT_DAMAGE).",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "ranger_brutal_shot_cd",
+      "name": "Brutal Shot: -3 sec cooldown",
+      "spec_id": 28,
+      "target_spell": 570014,
+      "affected_spells": [
+        570014
+      ],
+      "targeting": "mask",
+      "mask": [
+        128,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -3000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "570014 Brutal Shot cd=25000 cast=2000 cost=45 fam27 mask_unique_bit=[128, 0, 0] eff[NORMALIZED_WEAPON_DMG=300, WEAPON_PERCENT_DAMAGE=450, TRIGGER_MISSILE=1]. -3000 = 12% of cd 25000.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "ranger_incendiary_shot_dmg",
+      "name": "Incendiary Shot: +8% damage",
+      "spec_id": 28,
+      "target_spell": 524870,
+      "affected_spells": [
+        524870
+      ],
+      "targeting": "mask",
+      "mask": [
+        8,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "524870 Incendiary Shot cd=15000 catcd=15000 cast=2000 cost=20 fam27 mask_unique_bit=[8, 0, 0] eff[SCHOOL_DAMAGE=791, TRIGGER_SPELL]. Direct SCHOOL_DAMAGE on the spell itself; Incendiary Explosion 570182 has ignore_caster_mods and is not targeted.",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "ranger_precision_shot_dmg",
+      "name": "Precision Shot: +8% damage",
+      "spec_id": 28,
+      "target_spell": 500075,
+      "affected_spells": [
+        500075
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        8388608,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "500075 Precision Shot cast=3000 cost=40 fam27 mask_unique_bit=[0, 8388608, 0] eff[SCHOOL_DAMAGE=76, APPLY_AURA/MOD_DAMAGE_FROM_CASTER=10, APPLY_AURA/ASCENSION_MOD_CRIT_CHANCE_AGAINST_TARGET]. SCHOOL_DAMAGE on the spell itself.",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "ranger_precision_shot_cast",
+      "name": "Precision Shot: -0.3 sec cast time",
+      "spec_id": 28,
+      "target_spell": 500075,
+      "affected_spells": [
+        500075
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        8388608,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CASTING_TIME",
+          "type": "FLAT",
+          "value": -300
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "500075 Precision Shot cast=3000 cost=40 fam27 mask_unique_bit=[0, 8388608, 0] eff[SCHOOL_DAMAGE=76, APPLY_AURA/MOD_DAMAGE_FROM_CASTER=10, APPLY_AURA/ASCENSION_MOD_CRIT_CHANCE_AGAINST_TARGET]. -300 = 10% of cast 3000.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "ranger_deadshot_dmg",
+      "name": "Deadshot: +8% damage",
+      "spec_id": 28,
+      "target_spell": 520227,
+      "affected_spells": [
+        520227
+      ],
+      "targeting": "mask",
+      "mask": [
+        1048576,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "520227 Deadshot cost=50 fam27 mask_unique_bit=[1048576, 0, 0] eff[NORMALIZED_WEAPON_DMG=14, WEAPON_PERCENT_DAMAGE=250]. Execute; WEAPON_PERCENT_DAMAGE on the spell itself.",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "ranger_hunting_shot_dmg",
+      "name": "Hunting Shot: +8% damage",
+      "spec_id": 28,
+      "target_spell": 801191,
+      "affected_spells": [
+        801191
+      ],
+      "targeting": "mask",
+      "mask": [
+        4096,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "801191 Hunting Shot cost=40 fam27 mask_unique_bit=[4096, 0, 0] eff[NORMALIZED_WEAPON_DMG=6, APPLY_AURA/ASCENSION_MOD_CRIT_CHANCE_AGAINST_TARGET]. Chain (ch3) weapon damage on the spell itself.",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "ranger_snapseed_cd",
+      "name": "Snapseed: -3 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 804027,
+      "affected_spells": [
+        804027,
+        807167
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        16,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -3000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "804027 Snapseed cd=20000 catcd=20000 cost=35 fam27 mask_unique_bit=[0, 16, 0] eff[SCHOOL_DAMAGE=27, APPLY_AURA/MOD_DAMAGE_FROM_CASTER=20, TRIGGER_SPELL=80]; 807167 Snapseed cd=20000 catcd=20000 cost=25 fam27 mask_unique_bit=[0, 16, 0] eff[KNOCK_BACK=80]. -3000 = 15% of cd 20000; knockback child 807167 carries the same mask bit.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "ranger_cutthroat_dmg",
+      "name": "Cutthroat: +8% damage",
+      "spec_id": 0,
+      "target_spell": 800359,
+      "affected_spells": [
+        800359
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        16777216
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "800359 Cutthroat cd=45000 cost=10 fam27 mask_unique_bit=[0, 0, 16777216] eff[NORMALIZED_WEAPON_DMG=40, TRIGGER_SPELL=1]. NORMALIZED_WEAPON_DMG on the spell itself.",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "ranger_cutthroat_cd",
+      "name": "Cutthroat: -6 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 800359,
+      "affected_spells": [
+        800359
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        16777216
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -6000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "800359 Cutthroat cd=45000 cost=10 fam27 mask_unique_bit=[0, 0, 16777216] eff[NORMALIZED_WEAPON_DMG=40, TRIGGER_SPELL=1]. -6000 = 13% of cd 45000.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "ranger_whipvine_arrow_cd",
+      "name": "Whipvine Arrow: -8 sec cooldown",
+      "spec_id": 29,
+      "target_spell": 806342,
+      "affected_spells": [
+        806342
+      ],
+      "targeting": "mask",
+      "mask": [
+        65536,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -8000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "806342 Whipvine Arrow cd=60000 catcd=60000 cast=1700 dur=40000 cost=25 fam27 mask_unique_bit=[65536, 0, 0] eff[APPLY_AURA/MOD_ROOT, SCHOOL_DAMAGE=78]. -8000 = 13% of cd 60000.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "ranger_emerald_arrow_dmg",
+      "name": "Emerald Arrow: +8% damage",
+      "spec_id": 29,
+      "target_spell": 804712,
+      "affected_spells": [
+        804712
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        67108864,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "804712 Emerald Arrow cast=4000 cost=30 fam27 mask_unique_bit=[0, 67108864, 0] eff[SCHOOL_DAMAGE=10]. SCHOOL_DAMAGE on the spell itself.",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "ranger_emerald_arrow_cast",
+      "name": "Emerald Arrow: -0.4 sec cast time",
+      "spec_id": 29,
+      "target_spell": 804712,
+      "affected_spells": [
+        804712
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        67108864,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CASTING_TIME",
+          "type": "FLAT",
+          "value": -400
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "804712 Emerald Arrow cast=4000 cost=30 fam27 mask_unique_bit=[0, 67108864, 0] eff[SCHOOL_DAMAGE=10]. -400 = 10% of cast 4000.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "ranger_woodland_arrow_dmg",
+      "name": "Woodland Arrow: +8% damage",
+      "spec_id": 29,
+      "target_spell": 806368,
+      "affected_spells": [
+        806368
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "806368 Woodland Arrow cast=2000 cost=25 eff[SCHOOL_DAMAGE=38, TRIGGER_SPELL=1, TRIGGER_SPELL]. SCHOOL_DAMAGE on the spell itself; no mask_unique_bit -> spell_id.",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "ranger_thalassian_brand_dot",
+      "name": "Thalassian Brand: +8% periodic damage",
+      "spec_id": 29,
+      "target_spell": 560805,
+      "affected_spells": [
+        560805
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DOT",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "560805 Thalassian Brand cd=120000 catcd=120000 dur=15000 cost=30 periodic eff[APPLY_AURA/RANGED_ATTACK_POWER_ATTACKER_BONUS=300, APPLY_AURA/PERIODIC_DAMAGE=423, APPLY_AURA/MOD_STALKED]. PERIODIC_DAMAGE p3000 on the spell itself.",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "ranger_ravage_dot",
+      "name": "Ravage: +8% bleed damage",
+      "spec_id": 30,
+      "target_spell": 803851,
+      "affected_spells": [
+        803851
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DOT",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "803851 Ravage dur=12000 cost=50 periodic eff[APPLY_AURA/PERIODIC_DAMAGE=35]. Bleed PERIODIC_DAMAGE p3000 on the spell itself.",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "ranger_vipers_bite_dmg",
+      "name": "Viper's Bite: +8% damage",
+      "spec_id": 30,
+      "target_spell": 803105,
+      "affected_spells": [
+        803105
+      ],
+      "targeting": "mask",
+      "mask": [
+        256,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "803105 Viper's Bite fam27 mask_unique_bit=[256, 0, 0] eff[WEAPON_PERCENT_DAMAGE=110]. Parent 803104 only PERIODIC_TRIGGER_SPELL p250 -> 803105; strikes (WEAPON_PERCENT_DAMAGE=110) are done by child 803105, which has its own mask_unique_bit.",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "ranger_vipers_bite_cd",
+      "name": "Viper's Bite: -3 sec cooldown",
+      "spec_id": 30,
+      "target_spell": 803104,
+      "affected_spells": [
+        803104
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -3000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "803104 Viper's Bite cd=20000 catcd=20000 dur=1000 cost=60 eff[APPLY_AURA/PERIODIC_TRIGGER_SPELL=12]. -3000 = 15% of cd 20000; parent has no mask_unique_bit.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "ranger_assault_dmg",
+      "name": "Assault: +8% damage",
+      "spec_id": 30,
+      "target_spell": 803108,
+      "affected_spells": [
+        803108
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "803108 Assault cost=55 eff[SCHOOL_DAMAGE=8, TRIGGER_SPELL_WITH_VALUE=5, WEAPON_PERCENT_DAMAGE=100]. SCHOOL_DAMAGE + WEAPON_PERCENT_DAMAGE on the spell itself; no mask_unique_bit -> spell_id.",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "ranger_quills_dmg",
+      "name": "Quills: +8% damage",
+      "spec_id": 30,
+      "target_spell": 560966,
+      "affected_spells": [
+        560966
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        4,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "560966 Quills cost=30 fam27 mask_unique_bit=[0, 4, 0] eff[SCHOOL_DAMAGE=15]. SCHOOL_DAMAGE on the spell itself.",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "ranger_skewer_dmg",
+      "name": "Skewer: +8% damage",
+      "spec_id": 30,
+      "target_spell": 800093,
+      "affected_spells": [
+        800093
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "800093 Skewer cd=25000 cost=50 eff[WEAPON_PERCENT_DAMAGE=200, TRIGGER_SPELL/DUMMY=1, NORMALIZED_WEAPON_DMG=1]. WEAPON_PERCENT_DAMAGE=200 on the spell itself.",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "Reactivation pull may be a separate scripted spell; affix covers the initial swing."
+    },
+    {
+      "key": "ranger_hookshot_dmg",
+      "name": "Hookshot: +8% damage",
+      "spec_id": 30,
+      "target_spell": 800360,
+      "affected_spells": [
+        800360
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "800360 Hookshot cd=25000 cost=25 eff[SCHOOL_DAMAGE=99, TRIGGER_SPELL=1]. SCHOOL_DAMAGE=99 on the spell itself.",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "Reactivation (300% weapon damage) is scripted/not visible; affix covers the initial hook."
+    },
+    {
+      "key": "ranger_dirty_blades_dur",
+      "name": "Dirty Blades: +1 sec duration",
+      "spec_id": 30,
+      "target_spell": 680276,
+      "affected_spells": [
+        680276
+      ],
+      "targeting": "mask",
+      "mask": [
+        16777216,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 1000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "680276 Dirty Blades dur=4000 cost=20 fam27 mask_unique_bit=[16777216, 0, 0] eff[APPLY_AURA/ASCENSION_PROC_PERCENT_EVENT=70, APPLY_AURA/ADD_FLAT_MODIFIER]. dur 4000, extended by Advantage stacks; proc damage child 520571 SCHOOL_DAMAGE=1 is value-scripted so no damage affix.",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "ranger_briar_veil_cd",
+      "name": "Briar Veil: -15 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 800084,
+      "affected_spells": [
+        800084
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        16384,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -15000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 100,
+      "evidence": "800084 Briar Veil cd=120000 dur=10000 fam27 mask_unique_bit=[0, 16384, 0] eff[APPLY_AURA/MOD_DODGE_PERCENT=50, APPLY_AURA/PROC_TRIGGER_SPELL]. -15000 = 12.5% of cd 120000.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "ranger_adrenaline_rush_cd",
+      "name": "Adrenaline Rush: -12 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 520578,
+      "affected_spells": [
+        520578
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        32,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -12000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "520578 Adrenaline Rush cd=90000 dur=10000 fam27 mask_unique_bit=[0, 32, 0] eff[APPLY_AURA/MOD_INCREASE_SPEED=40, DISPEL=100, DISPEL_MECHANIC=100]. -12000 = 13% of cd 90000.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "ranger_survival_potion_cd",
+      "name": "Survival Potion: -8 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 802839,
+      "affected_spells": [
+        802839
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        536870912
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -8000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "802839 Survival Potion cd=60000 dur=9000 fam27 mask_unique_bit=[0, 0, 536870912] eff[APPLY_AURA/PERIODIC_TRIGGER_SPELL, DISPEL/MECHANIC_IMMUNITY=100, DISPEL/MECHANIC_IMMUNITY=100]. -8000 = 13% of cd 60000.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "ranger_knockout_cd",
+      "name": "Knockout: -2 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 801435,
+      "affected_spells": [
+        801435
+      ],
+      "targeting": "mask",
+      "mask": [
+        32,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -2000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "801435 Knockout cd=18000 cost=25 fam27 mask_unique_bit=[32, 0, 0] eff[FORCE_CAST]. -2000 = 11% of cd 18000.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "ranger_backstep_cd",
+      "name": "Backstep: -3 sec cooldown",
+      "spec_id": 29,
+      "target_spell": 800685,
+      "affected_spells": [
+        800685
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        268435456,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -3000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "800685 Backstep cd=20000 dur=10000 cost=20 fam27 mask_unique_bit=[0, 268435456, 0] eff[KNOCK_BACK_DEST=100, APPLY_AURA/PERIODIC_TRIGGER_SPELL=1]. -3000 = 15% of cd 20000.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "ranger_guise_cd",
+      "name": "Guise: -20 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 520753,
+      "affected_spells": [
+        520753
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -20000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 100,
+      "evidence": "520753 Guise cd=180000 cost=25 eff[TRIGGER_SPELL, APPLY_AURA/DUMMY]. -20000 = 11% of cd 180000; no mask_unique_bit -> hook_cd.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "ranger_natural_disguise_cd",
+      "name": "Natural Disguise: -15 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 520585,
+      "affected_spells": [
+        520585
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -15000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "520585 Natural Disguise cd=120000 catcd=120000 dur=20000 eff[APPLY_AURA/MOD_STEALTH=150, APPLY_AURA/TRANSFORM, DISPEL_MECHANIC=150]. -15000 = 12.5% of cd/catcd 120000; no mask_unique_bit -> hook_cd.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "catcd equals cd; verify ModifySpellCooldown also shortens the category cooldown."
+    },
+    {
+      "key": "ranger_crippling_shot_cd",
+      "name": "Crippling Shot: -1.5 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 804725,
+      "affected_spells": [
+        804725
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -1500
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "804725 Crippling Shot cd=10000 dur=5000 cost=25 eff[APPLY_AURA/MECHANIC_IMMUNITY, APPLY_AURA/PROC_TRIGGER_SPELL, APPLY_AURA/MOD_DECREASE_SPEED=-50]. -1500 = 15% of cd 10000; no mask_unique_bit -> hook_cd.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "ranger_snatch_cd",
+      "name": "Snatch: -6 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 803115,
+      "affected_spells": [
+        803115
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -6000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "803115 Snatch cd=45000 catcd=45000 dur=4000 cost=40 eff[TRIGGER_SPELL, TRIGGER_SPELL=1]. -6000 = 13% of cd/catcd 45000; hook_cd.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "ranger_onslaught_cd",
+      "name": "Onslaught: -15 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 801951,
+      "affected_spells": [
+        801951
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -15000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 100,
+      "evidence": "801951 Onslaught cd=120000 dur=15000 eff[APPLY_AURA/ABILITY_IGNORE_AURASTATE=1, APPLY_AURA/MOD_IGNORE_SHAPESHIFT=1, ASCENSION_MODIFY_AURA_STACKS=1]. -15000 = 12.5% of cd 120000; hook_cd.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "ranger_woodland_adept_cd",
+      "name": "Woodland Adept: -20 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 570015,
+      "affected_spells": [
+        570015
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -20000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "570015 Woodland Adept cd=180000 catcd=180000 eff[TRIGGER_SPELL=2, TRIGGER_SPELL, TRIGGER_SPELL]. -20000 = 11% of cd/catcd 180000; hook_cd.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "ranger_neurotoxin_arrow_cd",
+      "name": "Neurotoxin Arrow: -15 sec cooldown",
+      "spec_id": 28,
+      "target_spell": 500071,
+      "affected_spells": [
+        500071
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -15000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "500071 Neurotoxin Arrow cd=120000 catcd=120000 cost=30 eff[SCHOOL_DAMAGE=25, TRIGGER_SPELL=1]. -15000 = 12.5% of cd/catcd 120000; hook_cd on parent.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "Child 500616 has its own cd 90000 (silence); not targeted."
+    },
+    {
+      "key": "ranger_horn_of_war_cd",
+      "name": "Horn of War: -6 sec cooldown",
+      "spec_id": 29,
+      "target_spell": 800086,
+      "affected_spells": [
+        800086
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -6000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "800086 Horn of War cd=60000 catcd=60000 dur=30000 eff[APPLY_AREA_AURA_RAID/MOD_CRIT_PCT=5, APPLY_AURA/PERIODIC_ENERGIZE=3]. -6000 = 10% of cd/catcd 60000; hook_cd. Synergy: Woodland Arrow reduces Horn cooldowns.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "ranger_horn_of_alacrity_cd",
+      "name": "Horn of Alacrity: -6 sec cooldown",
+      "spec_id": 29,
+      "target_spell": 806360,
+      "affected_spells": [
+        806360
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -6000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "806360 Horn of Alacrity cd=60000 catcd=60000 dur=30000 eff[APPLY_AURA/MOD_MELEE_RANGED_HASTE=5, APPLY_AURA/HASTE_SPELLS=5, APPLY_AURA/PERIODIC_ENERGIZE=3]. -6000 = 10% of cd/catcd 60000; hook_cd.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "ranger_freedom_cd",
+      "name": "Freedom: -10 sec cooldown",
+      "spec_id": 29,
+      "target_spell": 520628,
+      "affected_spells": [
+        520628
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -10000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 50,
+      "evidence": "520628 Freedom cd=90000 catcd=90000 dur=8000 cost=25 eff[APPLY_AREA_AURA_RAID/MECHANIC_IMMUNITY, APPLY_AREA_AURA_RAID/MECHANIC_IMMUNITY, APPLY_AREA_AURA_RAID/PROC_TRIGGER_SPELL]. -10000 = 11% of cd/catcd 90000; hook_cd.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "ranger_outmaneuver_cd",
+      "name": "Outmaneuver: -8 sec cooldown",
+      "spec_id": 30,
+      "target_spell": 557325,
+      "affected_spells": [
+        557325
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -8000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 50,
+      "evidence": "557325 Outmaneuver cd=60000 catcd=60000 dur=8000 eff[TELEPORT_UNITS=1, TRIGGER_SPELL, APPLY_AURA/MOD_DAMAGE_FROM_CASTER=30]. -8000 = 13% of cd/catcd 60000; hook_cd.",
+      "client_sensitive": true,
+      "confidence": "low",
+      "notes": "Has a reactivation within 8 sec (child 557334 modifies 557325); hook_cd after the first cast could interfere - test."
+    },
+    {
+      "key": "ranger_throatpunch_cd",
+      "name": "Throatpunch: -1.5 sec cooldown",
+      "spec_id": 30,
+      "target_spell": 500617,
+      "affected_spells": [
+        500617
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -1500
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "500617 Throatpunch cd=12000 catcd=12000 dur=2000 cost=25 eff[INTERRUPT_CAST=25]. -1500 = 12.5% of cd/catcd 12000; hook_cd.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    }
+  ],
+  "rejected": [
+    {
+      "spell": 804715,
+      "reason": "summon (is_summon=child: Falcon 800251)"
+    },
+    {
+      "spell": 802039,
+      "reason": "Skirmish: no cd/duration in data, crit/cost values are scripted per Advantage; no meaningful op"
+    },
+    {
+      "spell": 705070,
+      "reason": "Battle Screech: raid buff without cooldown; utility"
+    },
+    {
+      "spell": 524600,
+      "reason": "Command Aura: damage procs from allies (537249) and Exhaustion 573255 dur 60000 = cd, so CD reduction is useless"
+    },
+    {
+      "spell": 520492,
+      "reason": "Frenzy: allies get Worn Out 804457 dur 300000 = cd, so CD reduction is useless; haste buff utility"
+    }
+  ]
+}

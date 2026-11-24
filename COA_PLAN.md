@@ -104,6 +104,7 @@ Separat system, ikke en affix-type. Av i fase 1. Om det slås på senere:
    Move Speed; SQL for begge character-DB-er; `ProgressionEnabled = 0`; `LootMode = 1`.
    Bygg i egen build-katalog, test på testoppsett før live. Ingen deploy uten godkjenning.
 2. **Fase 2**: pet-affixer for pet-specs, Block/Spell Pen, Reforge-NPC-spawn, tuning etter klienttest.
+   Først: GM-kommandoene (se §9).
 3. **Fase 3 (valgfri)**: Player Progression; ev. egne CoA "class skill"-affixer bygget generisk fra
    `ChrSpecs.SignatureSpell` (felt 24) i stedet for håndskrevne spell-lister.
 
@@ -127,3 +128,15 @@ Implementert på branch `coa`:
 - Addon-meldinger «svelges» ved å tømme teksten i stedet for `type = 0` (som ga feillogg uten core-patch).
 - Verifisert: alle `.cpp` kompilerer (`-fsyntax-only`, ingen warnings) mot CoA-core med live-byggets flagg.
 - Ikke verifisert: full build/link, oppstart, SQL mot DB, Lua-syntaks (ingen Lua-parser tilgjengelig) og klienttest.
+
+## 9. Kjent feil: `.affix`-kommandoene er utilgjengelige (funnet 2026-11-23 på live)
+- **Symptom:** `.affix info`, `.affix spec` m.fl. virker ikke i spillet, heller ikke for `ADMIN` (GM-nivå 3).
+- **Årsak (arvet fra upstream):** `ItemAffixCommands.cpp` registrerer kommandoene med `rbac::RBAC_PERM_COMMAND_GM`
+  (= 371). CoA-coren tolker verdien som sikkerhetsnivå (`Chat.cpp`: `GetSecurity() >= AccountTypes(371)`), så ingen
+  konto (maks 3) kommer gjennom; bare konsoll/SOAP.
+- **Fiks (neste kodeendring):** bruk `SEC_GAMEMASTER` for `info`/`spec` og `SEC_ADMINISTRATOR` for `reroll` og
+  `reforge roll/pick` (de endrer items og trekker gull). Krever rebuild og restart.
+- **Alternativ uten rebuild:** rader i `acore_world.command` med ønsket `security` overstyrer koden; leses ved oppstart.
+  Foretrekk kodefiksen, så modulen er riktig uten lokal DB-data.
+- **Verifisering:** som `ADMIN` gir `.affix spec` spec-id og roller; som konto uten GM-nivå finnes ikke kommandoen.
+- Merk: kontoene `HALLVAR`, `HALLVAR1` og `EAGLEEYE` har ingen GM-nivå; test med `ADMIN` eller gi kontoen GM-nivå.

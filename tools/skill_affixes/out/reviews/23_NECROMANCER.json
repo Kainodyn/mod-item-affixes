@@ -1,0 +1,667 @@
+{
+  "class_id": 23,
+  "class": "NECROMANCER",
+  "reviewed_at": "2026-11-23",
+  "affixes": [
+    {
+      "key": "necro_glacial_tap_cd",
+      "name": "Glacial Tap: -1.5 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 805369,
+      "affected_spells": [
+        805369
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        262144,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -1500
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "805369 Glacial Tap cd=12000 cost_pct=40 fam29 mask_unique_bit=[0, 262144, 0] eff[ENERGIZE=300]. -1500 = 12.5% of cd 12000.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "necro_glacial_tap_rp",
+      "name": "Glacial Tap: +10% Runic Power generated",
+      "spec_id": 0,
+      "target_spell": 805369,
+      "affected_spells": [
+        805369
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        262144,
+        0
+      ],
+      "effects": [
+        {
+          "op": "EFFECT1",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "805369 Glacial Tap cd=12000 cost_pct=40 fam29 mask_unique_bit=[0, 262144, 0] eff[ENERGIZE=300]. EFFECT1 = ENERGIZE=300 (30 Runic Power) on the spell itself.",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "necro_bone_tithe_cd",
+      "name": "Bone Tithe: -15 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 802121,
+      "affected_spells": [
+        802121
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        2147483648,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -15000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 100,
+      "evidence": "802121 Bone Tithe cd=120000 catcd=120000 cost_pct=25 fam29 mask_unique_bit=[0, 2147483648, 0] eff[SCRIPT_EFFECT=40]. -15000 = 12.5% of cd/catcd 120000.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "necro_deaths_due_dmg",
+      "name": "Death's Due: +8% damage",
+      "spec_id": 0,
+      "target_spell": 808016,
+      "affected_spells": [
+        808016
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "808016 Death's Due cd=60000 cast=1000 dur=5000 cost_pct=10 eff[SCHOOL_DAMAGE=1]. Parent 807796 PERIODIC_TRIGGER_SPELL_WITH_VALUE=800 -> 808016; execute damage (SCHOOL_DAMAGE) done by child 808016 -> spell_id.",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "necro_deaths_due_cd",
+      "name": "Death's Due: -10 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 807796,
+      "affected_spells": [
+        807796
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -10000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "807796 Death's Due cd=90000 cast=1000 dur=5000 cost=300 eff[DISPEL_MECHANIC=100, APPLY_AURA/PERIODIC_TRIGGER_SPELL_WITH_VALUE=800, DISPEL_MECHANIC=100]. -10000 = 11% of cd 90000; no mask_unique_bit -> hook_cd.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "necro_fetid_ward_leech",
+      "name": "Fetid Ward: +10% damage converted to healing",
+      "spec_id": 0,
+      "target_spell": 680388,
+      "affected_spells": [
+        680388
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "EFFECT1",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "680388 Fetid Ward dur=1800000 cost_pct=20 eff[APPLY_AURA/ASCENSION_PROC_PERCENT_EVENT=30, APPLY_AURA/MOD_HEALING_PCT=10]. EFFECT1 = ASCENSION_PROC_PERCENT_EVENT=30 (30% of damage heals); heal child 681463 has ignore_caster_mods so the aura amount is the only lever.",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "Assumes SPELLMOD_EFFECT1 scales the proc percent aura amount (30 -> 33); verify in test."
+    },
+    {
+      "key": "necro_mass_grave_cd",
+      "name": "Mass Grave: -5 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 803741,
+      "affected_spells": [
+        803741
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -5000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "803741 Mass Grave cd=40000 cast=2000 dur=40000 cost_pct=22 eff[APPLY_AURA/MOD_FEAR, APPLY_AURA/TRANSFORM=1]. -5000 = 12.5% of cd 40000; hook_cd.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "necro_mutation_cd",
+      "name": "Mutation: -20 sec cooldown",
+      "spec_id": 34,
+      "target_spell": 500342,
+      "affected_spells": [
+        500342
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -20000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 80,
+      "evidence": "500342 Mutation cd=180000 catcd=180000 dur=15000 cost_pct=10 eff[APPLY_AURA/ADD_PCT_MODIFIER=-50, APPLY_AURA/ADD_PCT_MODIFIER]. -20000 = 11% of cd/catcd 180000; hook_cd.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "necro_flesh_to_worms_dot",
+      "name": "Flesh to Worms: +8% periodic damage",
+      "spec_id": 34,
+      "target_spell": 500338,
+      "affected_spells": [
+        500338
+      ],
+      "targeting": "mask",
+      "mask": [
+        16384,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DOT",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "500338 Flesh to Worms dur=18000 cost_pct=12 periodic fam29 mask_unique_bit=[16384, 0, 0] eff[APPLY_AURA/PERIODIC_DAMAGE=15]. Disease PERIODIC_DAMAGE p3000 on the spell itself.",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "necro_virulency_cd",
+      "name": "Virulency: -8 sec cooldown",
+      "spec_id": 34,
+      "target_spell": 801938,
+      "affected_spells": [
+        801938
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -8000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "801938 Virulency cd=60000 cost_pct=18 eff[TRIGGER_SPELL]. -8000 = 13% of cd 60000; hook_cd.",
+      "client_sensitive": true,
+      "confidence": "low",
+      "notes": "Reactivation within 10 sec (Infestation 803782); hook_cd after first cast could interfere - test."
+    },
+    {
+      "key": "necro_lichplague_dot",
+      "name": "Lichplague: +8% periodic damage",
+      "spec_id": 34,
+      "target_spell": 802132,
+      "affected_spells": [
+        802132
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DOT",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 100,
+      "evidence": "802132 Lichplague cd=30000 catcd=30000 cast=1500 dur=18000 cost=300 periodic eff[APPLY_AURA/PERIODIC_DAMAGE=151]. Death signature disease; PERIODIC_DAMAGE=151 p3000 on the spell itself; no mask_unique_bit -> spell_id.",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "necro_lichplague_cd",
+      "name": "Lichplague: -4 sec cooldown",
+      "spec_id": 34,
+      "target_spell": 802132,
+      "affected_spells": [
+        802132
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -4000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "802132 Lichplague cd=30000 catcd=30000 cast=1500 dur=18000 cost=300 periodic eff[APPLY_AURA/PERIODIC_DAMAGE=151]. -4000 = 13% of catcd 30000; hook_cd.",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": "Only category cooldown; verify ModifySpellCooldown shortens catcd."
+    },
+    {
+      "key": "necro_plague_of_undeath_dot",
+      "name": "Plague of Undeath: +8% periodic damage",
+      "spec_id": 34,
+      "target_spell": 801945,
+      "affected_spells": [
+        801945
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DOT",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "801945 Plague of Undeath cast=1500 dur=20000 cost=300 periodic eff[APPLY_AURA/PERIODIC_DAMAGE=32, APPLY_AURA/MOD_HEALING_PCT=-40]. PERIODIC_DAMAGE p2500 on the spell itself; spell_id.",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "necro_plague_of_undeath_cast",
+      "name": "Plague of Undeath: -0.15 sec cast time",
+      "spec_id": 34,
+      "target_spell": 801945,
+      "affected_spells": [
+        801945
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CASTING_TIME",
+          "type": "FLAT",
+          "value": -150
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "801945 Plague of Undeath cast=1500 dur=20000 cost=300 periodic eff[APPLY_AURA/PERIODIC_DAMAGE=32, APPLY_AURA/MOD_HEALING_PCT=-40]. -150 = 10% of cast 1500; spell_id (cast bar is server-sent).",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "necro_glacial_impact_dmg",
+      "name": "Glacial Impact: +8% damage",
+      "spec_id": 36,
+      "target_spell": 707592,
+      "affected_spells": [
+        707592
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "707592 Glacial Impact eff[SCHOOL_DAMAGE=113]. Parent 704355 TRIGGER_SPELL_WITH_VALUE=142 -> 707592; damage (SCHOOL_DAMAGE) done by child 707592 (no mask bit) -> spell_id.",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "necro_glacial_impact_crit",
+      "name": "Glacial Impact: +4% critical strike chance",
+      "spec_id": 36,
+      "target_spell": 707592,
+      "affected_spells": [
+        707592
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "707592 Glacial Impact eff[SCHOOL_DAMAGE=113]. Crit on the damaging child 707592; spell_id.",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "necro_heartchill_cd",
+      "name": "Heartchill: -4 sec cooldown",
+      "spec_id": 36,
+      "target_spell": 801739,
+      "affected_spells": [
+        801739
+      ],
+      "targeting": "mask",
+      "mask": [
+        8192,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -4000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "801739 Heartchill cd=30000 cost_pct=19 fam29 mask_unique_bit=[8192, 0, 0] eff[INTERRUPT_CAST=1]. -4000 = 13% of cd 30000.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "necro_ice_barrage_dmg",
+      "name": "Ice Barrage: +8% damage",
+      "spec_id": 36,
+      "target_spell": 803779,
+      "affected_spells": [
+        803779
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "803779 Ice Barrage eff[SCHOOL_DAMAGE=1]. Parent 801760 PERIODIC_TRIGGER_SPELL_WITH_VALUE=26 p250 -> 803779; damage (SCHOOL_DAMAGE) done by child 803779 -> spell_id.",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "necro_ice_barrage_cd",
+      "name": "Ice Barrage: -1.5 sec cooldown",
+      "spec_id": 36,
+      "target_spell": 801760,
+      "affected_spells": [
+        801760
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        64,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -1500
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "801760 Ice Barrage cd=10000 catcd=10000 cast=2000 dur=1000 cost=300 fam29 mask_unique_bit=[0, 64, 0] eff[APPLY_AURA/PERIODIC_TRIGGER_SPELL_WITH_VALUE=26, APPLY_AURA/PERIODIC_TRIGGER_SPELL=1]. -1500 = 15% of cd/catcd 10000.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "necro_ice_barrage_cast",
+      "name": "Ice Barrage: -0.2 sec cast time",
+      "spec_id": 36,
+      "target_spell": 801760,
+      "affected_spells": [
+        801760
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        64,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CASTING_TIME",
+          "type": "FLAT",
+          "value": -200
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "801760 Ice Barrage cd=10000 catcd=10000 cast=2000 dur=1000 cost=300 fam29 mask_unique_bit=[0, 64, 0] eff[APPLY_AURA/PERIODIC_TRIGGER_SPELL_WITH_VALUE=26, APPLY_AURA/PERIODIC_TRIGGER_SPELL=1]. -200 = 10% of cast 2000.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "necro_command_hook_cd",
+      "name": "Command: Hook: -3 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 504316,
+      "affected_spells": [
+        504316
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -3000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "504316 Command: Hook cd=30000 mask_unique_bit=null; -3000 = 10% of cd.",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": "Minion command; added per Hallvar 2026-11-24. Only cooldown, effect is done by minions."
+    },
+    {
+      "key": "necro_command_bonefreeze_cd",
+      "name": "Command: Bonefreeze: -2 sec cooldown",
+      "spec_id": 36,
+      "target_spell": 504489,
+      "affected_spells": [
+        504489
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -2000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "504489 Command: Bonefreeze cd=20000 mask_unique_bit=null; -2000 = 10% of cd.",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": "Minion command; added per Hallvar 2026-11-24. Only cooldown, effect is done by minions."
+    }
+  ],
+  "rejected": [
+    {
+      "spell": 500989,
+      "reason": "summon (is_summon=self)"
+    },
+    {
+      "spell": 500335,
+      "reason": "summon (is_summon=self)"
+    },
+    {
+      "spell": 805428,
+      "reason": "summon (is_summon=self)"
+    },
+    {
+      "spell": 804371,
+      "reason": "is_summon flagged (ASCENSION_APPLY_AURA_TO_SUMMONS); form buff"
+    },
+    {
+      "spell": 504861,
+      "reason": "summon (is_summon=self)"
+    },
+    {
+      "spell": 500933,
+      "reason": "summon (is_summon=self)"
+    },
+    {
+      "spell": 500329,
+      "reason": "summon (is_summon=self)"
+    },
+    {
+      "spell": 805038,
+      "reason": "summon (is_summon=self)"
+    },
+    {
+      "spell": 805040,
+      "reason": "summon (is_summon=self)"
+    },
+    {
+      "spell": 805032,
+      "reason": "summon (is_summon=self)"
+    },
+    {
+      "spell": 531130,
+      "reason": "summon (is_summon=self)"
+    },
+    {
+      "spell": 805044,
+      "reason": "summon (is_summon=self)"
+    },
+    {
+      "spell": 805048,
+      "reason": "summon (is_summon=self)"
+    },
+    {
+      "spell": 500971,
+      "reason": "summon (is_summon=self)"
+    },
+    {
+      "spell": 561138,
+      "reason": "summon (is_summon=self)"
+    },
+    {
+      "spell": 500331,
+      "reason": "summon (is_summon=self)"
+    },
+    {
+      "spell": 504050,
+      "reason": "Command: Blight: minion command (summon-based), no cooldown"
+    },
+    {
+      "spell": 707007,
+      "reason": "March of the Dead: SCRIPT_EFFECT; damage done by scripted marching dead (creatures)"
+    },
+    {
+      "spell": 803772,
+      "reason": "Create Frozen Reliquary: item creation utility, no numbers"
+    },
+    {
+      "spell": 500981,
+      "reason": "Lich Form: permanent form (dur -1); only a 10% damage aura, too small/odd to modify"
+    }
+  ]
+}

@@ -1,0 +1,937 @@
+{
+  "class_id": 16,
+  "class": "STORMBRINGER",
+  "reviewed_at": "2026-11-23",
+  "affixes": [
+    {
+      "key": "sb_body_of_lightning_cd",
+      "name": "Body of Lightning: -9 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 500041,
+      "affected_spells": [
+        500041
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        32,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -9000
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "500041 Body of Lightning cd=90000 catcd=90000; 500041 mask_unique_bit=[0, 32, 0] fam=22",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_eye_of_storm_dmg",
+      "name": "Eye of the Storm: +8% damage",
+      "spec_id": 0,
+      "target_spell": 806307,
+      "affected_spells": [
+        806455,
+        806308
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "806455 Eye of the Storm child via 806307: eff1 SCHOOL_DAMAGE v=1; 806308 Eye of the Storm child via 806307: eff0 SCHOOL_DAMAGE v=1",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "Pulse (806308) and final burst (806455) are trigger children."
+    },
+    {
+      "key": "sb_stormcloak_cd",
+      "name": "Stormcloak: -3 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 804833,
+      "affected_spells": [
+        804833
+      ],
+      "targeting": "mask",
+      "mask": [
+        524288,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -3000
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "804833 Stormcloak cd=30000 catcd=0; 804833 mask_unique_bit=[524288, 0, 0] fam=22",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_charge_cd",
+      "name": "Charge: -6 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 804826,
+      "affected_spells": [
+        804826
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -6000
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "804826 Charge cd=60000 catcd=0",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_invigorating_winds_cd",
+      "name": "Invigorating Winds: -12 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 705661,
+      "affected_spells": [
+        705661
+      ],
+      "targeting": "mask",
+      "mask": [
+        4194304,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -12000
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "705661 Invigorating Winds cd=120000 catcd=0; 705661 mask_unique_bit=[4194304, 0, 0] fam=22",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_thunder_king_cd",
+      "name": "Thunder King: -18 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 804591,
+      "affected_spells": [
+        804591
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -18000
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "804591 Thunder King cd=180000 catcd=0",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_cloudburst_cd",
+      "name": "Cloudburst: -3.5 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 801838,
+      "affected_spells": [
+        801838
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        8388608
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -3500
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "801838 Cloudburst cd=35000 catcd=35000; 801838 mask_unique_bit=[0, 0, 8388608] fam=22",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_fog_cd",
+      "name": "Fog: -9 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 806100,
+      "affected_spells": [
+        806100
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -9000
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "806100 Fog cd=90000 catcd=0",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_exhale_cd",
+      "name": "Exhale: -9 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 705672,
+      "affected_spells": [
+        705672
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        131072
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -9000
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 50,
+      "evidence": "705672 Exhale cd=90000 catcd=0; 705672 mask_unique_bit=[0, 0, 131072] fam=22",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_storm_ascendance_cd",
+      "name": "Storm Ascendance: -12 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 681110,
+      "affected_spells": [
+        681110
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        1
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -12000
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "681110 Storm Ascendance cd=120000 catcd=0; 681110 mask_unique_bit=[0, 0, 1] fam=22",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_storm_ascendance_dur",
+      "name": "Storm Ascendance: +1.5 sec duration",
+      "spec_id": 0,
+      "target_spell": 681110,
+      "affected_spells": [
+        681110
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 1500
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 4,
+      "weight": 80,
+      "evidence": "681110 dur=15000",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_unshackle_cd",
+      "name": "Unshackle: -12 sec cooldown",
+      "spec_id": 13,
+      "target_spell": 706625,
+      "affected_spells": [
+        706625
+      ],
+      "targeting": "mask",
+      "mask": [
+        16,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -12000
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "706625 Unshackle cd=120000 catcd=0; 706625 mask_unique_bit=[16, 0, 0] fam=22",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "Buff lands on Air Elemental; CD on player spell only."
+    },
+    {
+      "key": "sb_flurry_cd",
+      "name": "Flurry: -1 sec cooldown",
+      "spec_id": 13,
+      "target_spell": 707543,
+      "affected_spells": [
+        707543
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -1000
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "707543 Flurry cd=8000 catcd=0",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": "Damage is FORCE_CAST by Air Elemental (creature caster); CD only."
+    },
+    {
+      "key": "sb_aerodynamics_dur",
+      "name": "Aerodynamics: +1.5 sec duration",
+      "spec_id": 13,
+      "target_spell": 806124,
+      "affected_spells": [
+        806124
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 1500
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "806124 dur=15000",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_tempests_call_cd",
+      "name": "Tempest's Call: -30 sec cooldown",
+      "spec_id": 13,
+      "target_spell": 560567,
+      "affected_spells": [
+        560567
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -30000
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 4,
+      "weight": 70,
+      "evidence": "560567 Tempest's Call cd=300000 catcd=0",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "Raid haste; Worn Out 804457 (300s) still limits recipients."
+    },
+    {
+      "key": "sb_surge_of_might_cd",
+      "name": "Surge of Might: -6 sec cooldown",
+      "spec_id": 13,
+      "target_spell": 520083,
+      "affected_spells": [
+        520083
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -6000
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "520083 Surge of Might cd=60000 catcd=0",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_kiss_of_clouds_absorb",
+      "name": "Kiss of the Clouds: +8% absorb",
+      "spec_id": 13,
+      "target_spell": 500039,
+      "affected_spells": [
+        500292
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "EFFECT1",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "500292 Kiss of the Clouds child via 500039: eff0 APPLY_AURA/SCHOOL_ABSORB v=0",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "Absorb aura on trigger child 500292 eff0, amount passed via TRIGGER_SPELL_WITH_VALUE v=101; verify EFFECT1 mod applies to custom basepoints."
+    },
+    {
+      "key": "sb_windsurf_cd",
+      "name": "Windsurf: -9 sec cooldown",
+      "spec_id": 13,
+      "target_spell": 500042,
+      "affected_spells": [
+        500042
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        4194304
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -9000
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "500042 Windsurf cd=90000 catcd=90000; 500042 mask_unique_bit=[0, 0, 4194304] fam=22",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_skyfall_cd",
+      "name": "Skyfall: -9 sec cooldown",
+      "spec_id": 13,
+      "target_spell": 804830,
+      "affected_spells": [
+        804830
+      ],
+      "targeting": "mask",
+      "mask": [
+        262144,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -9000
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "804830 Skyfall cd=90000 catcd=0; 804830 mask_unique_bit=[262144, 0, 0] fam=22",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "Damage 807133 triggered from Air Elemental proc; CD only."
+    },
+    {
+      "key": "sb_nimbus_cd",
+      "name": "Nimbus: -30 sec cooldown",
+      "spec_id": 13,
+      "target_spell": 704212,
+      "affected_spells": [
+        704212
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -30000
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 50,
+      "evidence": "704212 Nimbus cd=300000 catcd=0",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_gale_dmg",
+      "name": "Gale: +8% damage",
+      "spec_id": 13,
+      "target_spell": 804036,
+      "affected_spells": [
+        804036
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "804036 Gale: eff0 SCHOOL_DAMAGE v=62",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_tailwind_dur",
+      "name": "Tailwind: +1.5 sec duration",
+      "spec_id": 13,
+      "target_spell": 804035,
+      "affected_spells": [
+        804035
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 1500
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "804035 dur=15000",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_mystic_thunder_cd",
+      "name": "Mystic Thunder: -3 sec cooldown",
+      "spec_id": 14,
+      "target_spell": 504846,
+      "affected_spells": [
+        504846
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -3000
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "504846 Mystic Thunder cd=30000 catcd=30000",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": "Child 505214 also has cd 30000/catcd 30000; hook must reset the right one."
+    },
+    {
+      "key": "sb_deluge_dmg",
+      "name": "Deluge: +8% damage",
+      "spec_id": 14,
+      "target_spell": 806400,
+      "affected_spells": [
+        806400
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "806400 Deluge: eff0 SCHOOL_DAMAGE v=118",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_stormfury_dmg",
+      "name": "Stormfury: +8% damage",
+      "spec_id": 14,
+      "target_spell": 532751,
+      "affected_spells": [
+        532753
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "532753 Stormfury child via 532751: eff0 SCHOOL_DAMAGE v=540",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "Zaps are trigger child 532753."
+    },
+    {
+      "key": "sb_drown_dmg",
+      "name": "Drown: +8% damage",
+      "spec_id": 14,
+      "target_spell": 806407,
+      "affected_spells": [
+        806408
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "806408 Drown child via 806407: eff0 SCHOOL_DAMAGE v=1",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "Final hit is trigger child 806408 (value-passed)."
+    },
+    {
+      "key": "sb_stormflow_dot",
+      "name": "Stormflow: +8% periodic damage",
+      "spec_id": 14,
+      "target_spell": 567555,
+      "affected_spells": [
+        567555
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DOT",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "567555 Stormflow: eff0 APPLY_AURA/PERIODIC_DAMAGE v=16 per=1000, periodic=true",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_stormcloud_cd",
+      "name": "Stormcloud: -6 sec cooldown",
+      "spec_id": 14,
+      "target_spell": 801859,
+      "affected_spells": [
+        801859
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        8388608,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -6000
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "801859 Stormcloud cd=60000 catcd=0; 801859 mask_unique_bit=[0, 8388608, 0] fam=22",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_thunder_ward_cd",
+      "name": "Thunder Ward: -30 sec cooldown",
+      "spec_id": 14,
+      "target_spell": 800098,
+      "affected_spells": [
+        800098
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -30000
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "800098 Thunder Ward cd=300000 catcd=300000",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_lightning_cage_cd",
+      "name": "Lightning Cage: -18 sec cooldown",
+      "spec_id": 15,
+      "target_spell": 560030,
+      "affected_spells": [
+        560030
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        33554432
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -18000
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "560030 Lightning Cage cd=180000 catcd=0; 560030 mask_unique_bit=[0, 0, 33554432] fam=22",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_volt_dot",
+      "name": "Volt: +8% periodic damage",
+      "spec_id": 15,
+      "target_spell": 500928,
+      "affected_spells": [
+        500928
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DOT",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "500928 Volt: eff0 APPLY_AURA/PERIODIC_DAMAGE v=28 per=3000, periodic=true",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_ride_lightning_dmg",
+      "name": "Ride the Lightning: +8% damage",
+      "spec_id": 15,
+      "target_spell": 800099,
+      "affected_spells": [
+        800099
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "800099 Ride the Lightning: eff2 SCHOOL_DAMAGE v=540",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_forked_lightning_dmg",
+      "name": "Forked Lightning: +8% damage",
+      "spec_id": 15,
+      "target_spell": 801851,
+      "affected_spells": [
+        801851
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "801851 Forked Lightning: eff0 SCHOOL_DAMAGE v=77",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_forked_lightning_cast",
+      "name": "Forked Lightning: -0.2 sec cast time",
+      "spec_id": 15,
+      "target_spell": 801851,
+      "affected_spells": [
+        801851
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CASTING_TIME",
+          "type": "FLAT",
+          "value": -200
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "801851 cast=2000",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "sb_arm_of_thorim_dmg",
+      "name": "Arm of Thorim: +10% damage",
+      "spec_id": 15,
+      "target_spell": 801847,
+      "affected_spells": [
+        801847
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 100,
+      "evidence": "801847 Arm of Thorim: eff0 SCHOOL_DAMAGE v=128",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "Static-consuming finisher."
+    }
+  ],
+  "rejected": [
+    {
+      "spell": 504401,
+      "reason": "summon (Wind Gate)"
+    },
+    {
+      "spell": 520087,
+      "reason": "summon support only (next Summon: Air Elemental instant/free); summons excluded"
+    }
+  ]
+}

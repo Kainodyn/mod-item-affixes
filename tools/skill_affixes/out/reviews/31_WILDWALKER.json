@@ -1,0 +1,1081 @@
+{
+  "class_id": 31,
+  "class": "WILDWALKER",
+  "reviewed_at": "2026-11-23",
+  "affixes": [
+    {
+      "key": "wildwalker_grove_guardian_effect",
+      "name": "Grove Guardian: +10% damage and healing",
+      "spec_id": 0,
+      "target_spell": 504824,
+      "affected_spells": [
+        504824,
+        505208
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "EFFECT1",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "504824 Grove Guardian; trigger child via 503721; dur=20000; radius=[15.0]; bonus=[0.0, 0.0, 0.0, 0.45]; eff 0:PERSISTENT_AREA_AURA/PERIODIC_DAMAGE v=504, 1:PERSISTENT_AREA_AURA/PERIODIC_TRIGGER_SPELL v=1, 2:PERSISTENT_AREA_AURA/MOD_DECREASE_SPEED v=-30; 505208 Grove Guardian; trigger child via 503721; dur=20000; radius=[15.0]; bonus=[0.0, 0.0, 0.0, 0.25]; eff 0:PERSISTENT_AREA_AURA/PERIODIC_HEAL v=404, 1:PERSISTENT_AREA_AURA/PERIODIC_TRIGGER_SPELL v=1, 2:PERSISTENT_AREA_AURA/MOD_INCREASE_SPEED v=30",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "Periodic damage/heal live on persistent-area-aura children 504824/505208 (effect 0); generator did not flag them periodic, so EFFECT1 is used instead of DOT."
+    },
+    {
+      "key": "wildwalker_boulder_dash_cd",
+      "name": "Boulder Dash: -20 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 500692,
+      "affected_spells": [
+        500692
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        536870912
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -20000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 100,
+      "evidence": "500692 Boulder Dash; cd=180000; catcd=180000; dur=10000; cost_pct=35; mask_unique_bit=[0, 0, 536870912] fam=37",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wildwalker_boulder_dash_dmg",
+      "name": "Boulder Dash: +10% damage",
+      "spec_id": 0,
+      "target_spell": 500693,
+      "affected_spells": [
+        500693
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "500693 Boulder Dash; trigger child via 500692; dur=1000; radius=[4.0]; bonus=[1.0, 0.0, 0.5, 0.0]; eff 0:SCHOOL_DAMAGE v=1, 2:APPLY_AURA/ALLOW_ONLY_ABILITY v=0",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "Roll damage is trigger child 500693."
+    },
+    {
+      "key": "wildwalker_bramblepatch_cd",
+      "name": "Bramblepatch: -15 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 806415,
+      "affected_spells": [
+        806415
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -15000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "806415 Bramblepatch; cd=120000; dur=12000; cost=50; cost_pct=18; radius=[6.0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "wildwalker_bearskin_cd",
+      "name": "Bearskin: -30 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 800094,
+      "affected_spells": [
+        800094
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        1048576,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -30000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 100,
+      "evidence": "800094 Bearskin; cd=300000; catcd=300000; dur=10000; cost=25; cost_pct=24; mask_unique_bit=[0, 1048576, 0] fam=37",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wildwalker_wildheart_cd",
+      "name": "Wildheart: -30 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 803980,
+      "affected_spells": [
+        803980
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        2147483648,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -30000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 100,
+      "evidence": "803980 Wildheart; cd=300000; dur=15000; cost=100; cost_pct=15; mask_unique_bit=[0, 2147483648, 0] fam=37",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wildwalker_stone_grip_cast",
+      "name": "Stone Grip: -10% cast time",
+      "spec_id": 0,
+      "target_spell": 800145,
+      "affected_spells": [
+        800145
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CASTING_TIME",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "800145 Stone Grip; cast=1500; dur=40000; cost_pct=8",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "wildwalker_geode_dmg",
+      "name": "Rock Barrier: +10% Geode damage",
+      "spec_id": 0,
+      "target_spell": 804002,
+      "affected_spells": [
+        804002
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        4096
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "804002 Geode; trigger child via 503630; mask_unique_bit=[0, 0, 4096] fam=37; bonus=[0.349, 0.0, 0.085, 0.0]; eff 0:SCHOOL_DAMAGE v=173, 1:TRIGGER_SPELL_WITH_VALUE v=50",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "Geode child 804002 has own unique bit [0,0,4096]."
+    },
+    {
+      "key": "wildwalker_protective_roar_cd",
+      "name": "Protective Roar: -15 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 802782,
+      "affected_spells": [
+        802782
+      ],
+      "targeting": "mask",
+      "mask": [
+        67108864,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -15000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "802782 Protective Roar; cd=120000; dur=12000; cost_pct=4; radius=[30.0]; mask_unique_bit=[67108864, 0, 0] fam=37",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wildwalker_primal_convergence_cd",
+      "name": "Primal Convergence: -20 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 800181,
+      "affected_spells": [
+        800181
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -20000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 100,
+      "evidence": "800181 Primal Convergence; cd=180000; catcd=180000; dur=30000; cost_pct=33",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "wildwalker_dreamslip_cd",
+      "name": "Dreamslip: -20 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 805867,
+      "affected_spells": [
+        805867
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -20000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 60,
+      "evidence": "805867 Dreamslip; cd=180000; cast=2000; dur=15000; cost_pct=33",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "wildwalker_primal_rush_dmg",
+      "name": "Primal Rush: +10% damage",
+      "spec_id": 0,
+      "target_spell": 500696,
+      "affected_spells": [
+        500696
+      ],
+      "targeting": "mask",
+      "mask": [
+        16384,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "500696 Primal Rush; catcd=25000; cost_pct=10; radius=[20.0]; mask_unique_bit=[16384, 0, 0] fam=37; eff 0:ENERGIZE v=200, 1:CHARGE_DEST v=1, 2:SCHOOL_DAMAGE v=40",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wildwalker_earthmothers_binding_heal",
+      "name": "Earthmother's Binding: +8% healing",
+      "spec_id": 58,
+      "target_spell": 805107,
+      "affected_spells": [
+        805107
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        1073741824
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "805107 Earthmother's Binding; cd=60000; cost=50; cost_pct=22; mask_unique_bit=[0, 0, 1073741824] fam=37; bonus=[1.0, 0.0, 1.0, 0.0]; eff 0:HEAL v=501",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "Mask bit also on child 807858 (DUMMY/SPLIT_DAMAGE), harmless."
+    },
+    {
+      "key": "wildwalker_ancient_of_lore_cd",
+      "name": "Ancient of Lore: -20 sec cooldown",
+      "spec_id": 58,
+      "target_spell": 805105,
+      "affected_spells": [
+        805105
+      ],
+      "targeting": "mask",
+      "mask": [
+        8388608,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -20000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "805105 Ancient of Lore; cd=150000; dur=20000; radius=[20.0]; mask_unique_bit=[8388608, 0, 0] fam=37",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wildwalker_neptulons_wrath_cd",
+      "name": "Neptulon's Wrath: -8 sec cooldown",
+      "spec_id": 58,
+      "target_spell": 807467,
+      "affected_spells": [
+        807467
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -8000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "807467 Neptulon's Wrath; cd=60000; dur=15000; cost_pct=19; radius=[100.0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": "Proc damage 537252 is v=1 + scripted AP scaling; not targeted."
+    },
+    {
+      "key": "wildwalker_seismic_wave_dmg",
+      "name": "Seismic Wave: +8% healing and damage",
+      "spec_id": 58,
+      "target_spell": 805462,
+      "affected_spells": [
+        805462
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "805462 Seismic Wave; catcd=8000; cost=400; radius=[10.0, 25.0]; bonus=[0.3, 0.0, 0.28, 0.0]; eff 0:HEAL v=67, 1:SCHOOL_DAMAGE v=47",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "wildwalker_sacred_grove_heal",
+      "name": "Sacred Grove: +10% healing",
+      "spec_id": 58,
+      "target_spell": 800180,
+      "affected_spells": [
+        800180
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        262144,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "800180 Sacred Grove; cd=180000; catcd=180000; dur=16000; cost_pct=35; radius=[15.0]; mask_unique_bit=[0, 262144, 0] fam=37; bonus=[0.0, 0.0, 1.0, 0.0]; eff 0:HEAL v=2002, 1:PERSISTENT_AREA_AURA/DUMMY v=0",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wildwalker_spirit_charge_dmg",
+      "name": "Spirit Charge: +8% healing and damage",
+      "spec_id": 58,
+      "target_spell": 800144,
+      "affected_spells": [
+        800144
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "800144 Spirit Charge; catcd=30000; cost_pct=16; radius=[5.0]; bonus=[0.2, 0.0, 0.2, 0.0]; eff 0:CHARGE_DEST v=1, 1:HEAL v=53, 2:SCHOOL_DAMAGE v=67",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "wildwalker_ancient_of_war_cd",
+      "name": "Ancient of War: -20 sec cooldown",
+      "spec_id": 58,
+      "target_spell": 504222,
+      "affected_spells": [
+        504222
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -20000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "504222 Ancient of War; cd=150000; dur=20000; radius=[20.0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "wildwalker_frenzied_roar_cd",
+      "name": "Frenzied Roar: -8 sec cooldown",
+      "spec_id": 59,
+      "target_spell": 800133,
+      "affected_spells": [
+        800133
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -8000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "800133 Frenzied Roar; cd=60000; catcd=60000; dur=15000; cost_pct=8; radius=[30.0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "wildwalker_throat_clamp_cd",
+      "name": "Throat Clamp: -2 sec cooldown",
+      "spec_id": 59,
+      "target_spell": 500764,
+      "affected_spells": [
+        500764
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -2000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "500764 Throat Clamp; cd=14000; dur=3000; cost_pct=9",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": "Player-cast command; pet performs the interrupt."
+    },
+    {
+      "key": "wildwalker_savage_frenzy_cd",
+      "name": "Savage Frenzy: -20 sec cooldown",
+      "spec_id": 59,
+      "target_spell": 806549,
+      "affected_spells": [
+        806549
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -20000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 100,
+      "evidence": "806549 Savage Frenzy; cd=180000; dur=18000; cost_pct=15",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "wildwalker_totemic_smash_dmg",
+      "name": "Totemic Smash: +8% damage",
+      "spec_id": 59,
+      "target_spell": 800178,
+      "affected_spells": [
+        800178
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "800178 Totemic Smash; cd=6000; catcd=6000; cost=350; radius=[5.0]; bonus=[0.0, 0.0, 0.35, 0.0]; eff 0:WEAPON_PERCENT_DAMAGE v=140, 1:SCHOOL_DAMAGE v=10, 2:NORMALIZED_WEAPON_DMG v=20",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "wildwalker_rylaks_bite_dmg",
+      "name": "Rylak's Bite: +8% damage",
+      "spec_id": 59,
+      "target_spell": 706342,
+      "affected_spells": [
+        706342
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "706342 Rylak's Bite; cost=200; eff 0:NORMALIZED_WEAPON_DMG v=8, 1:WEAPON_PERCENT_DAMAGE v=120",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "wildwalker_bring_me_their_bones_cd",
+      "name": "Bring Me Their Bones: -8 sec cooldown",
+      "spec_id": 59,
+      "target_spell": 806552,
+      "affected_spells": [
+        806552
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -8000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "806552 Bring Me Their Bones; cd=60000; dur=15000; cost_pct=8",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": "Burst damage 806553 is dealt by the pet; only the player cooldown is modified."
+    },
+    {
+      "key": "wildwalker_quake_dmg",
+      "name": "Quake: +8% damage",
+      "spec_id": 60,
+      "target_spell": 803974,
+      "affected_spells": [
+        803974
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        256
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "803974 Quake; cost_pct=5; radius=[8.0]; mask_unique_bit=[0, 0, 256] fam=37; bonus=[0.2, 0.0, 0.1, 0.0]; eff 0:NORMALIZED_WEAPON_DMG v=0, 2:SCHOOL_DAMAGE v=13",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wildwalker_mountain_hammer_cd",
+      "name": "Mountain Hammer: -8 sec cooldown",
+      "spec_id": 60,
+      "target_spell": 681130,
+      "affected_spells": [
+        681130
+      ],
+      "targeting": "mask",
+      "mask": [
+        1048576,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -8000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "681130 Mountain Hammer; catcd=60000; dur=5000; cost=200; mask_unique_bit=[1048576, 0, 0] fam=37; bonus=[0.355, 0.0, 0.155, 0.0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "Only catcd=60000."
+    },
+    {
+      "key": "wildwalker_bash_dmg",
+      "name": "Bash: +10% damage",
+      "spec_id": 60,
+      "target_spell": 680949,
+      "affected_spells": [
+        680949
+      ],
+      "targeting": "mask",
+      "mask": [
+        1073741824,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "680949 Bashed; trigger child via 680964; dur=1000; mask_unique_bit=[1073741824, 0, 0] fam=37; eff 0:WEAPON_PERCENT_DAMAGE v=100",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "Proc child 680949 (own unique bit) deals the weapon damage."
+    },
+    {
+      "key": "wildwalker_seismic_smash_dmg",
+      "name": "Seismic Smash: +8% damage",
+      "spec_id": 60,
+      "target_spell": 300693,
+      "affected_spells": [
+        300693
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        1024
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "300693 Seismic Smash; cd=8000; catcd=8000; cost=400; radius=[12.0]; mask_unique_bit=[0, 0, 1024] fam=37; eff 0:SCHOOL_DAMAGE v=94",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wildwalker_earthen_avatar_cd",
+      "name": "Earthen Avatar: -20 sec cooldown",
+      "spec_id": 60,
+      "target_spell": 680421,
+      "affected_spells": [
+        680421
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        524288,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -20000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 100,
+      "evidence": "680421 Earthen Avatar; cd=180000; catcd=180000; dur=20000; cost_pct=25; mask_unique_bit=[0, 524288, 0] fam=37",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wildwalker_mountain_fury_dmg",
+      "name": "Mountain Fury: +10% damage",
+      "spec_id": 60,
+      "target_spell": 806186,
+      "affected_spells": [
+        806186
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "806186 Mountain Fury; trigger child via 807724; radius=[3.0]; bonus=[0.65, 0.0, 0.17, 0.0]; eff 0:PULL_TOWARDS_DEST v=0, 1:SCHOOL_DAMAGE v=892",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "Damage dealt by depth-2 child 806186 (SCHOOL_DAMAGE v=892)."
+    },
+    {
+      "key": "wildwalker_three_hammers_dmg",
+      "name": "Judgement of The Three Hammers: +10% damage",
+      "spec_id": 60,
+      "target_spell": 520468,
+      "affected_spells": [
+        520468
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "520468 Judgement of The Three Hammers; trigger child via 520467; bonus=[0.325, 0.0, 0.278, 0.0]; eff 0:SCHOOL_DAMAGE v=100, 1:APPLY_AURA/MOD_DAMAGE_PERCENT_TAKEN v=2",
+      "client_sensitive": false,
+      "confidence": "low",
+      "notes": "Hammer damage child 520468; desc says it scales with Mountain Hammer modifiers (scripted), so effect may stack."
+    },
+    {
+      "key": "wildwalker_magma_fissure_dmg",
+      "name": "Magma Fissure: +8% damage",
+      "spec_id": 95,
+      "target_spell": 802793,
+      "affected_spells": [
+        802793
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        8192
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "802793 Magma Fissure; cd=90000; cost_pct=15; radius=[20.0]; mask_unique_bit=[0, 0, 8192] fam=37; bonus=[1.0, 0.0, 0.0, 0.0]; eff 0:SCHOOL_DAMAGE v=684, 1:SCRIPT_EFFECT v=1",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wildwalker_cave_in_cd",
+      "name": "Cave In: -3 sec cooldown",
+      "spec_id": 95,
+      "target_spell": 500615,
+      "affected_spells": [
+        500615
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -3000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "500615 Cave In; cd=24000; dur=4000; cost_pct=18",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "wildwalker_eruption_dmg",
+      "name": "Eruption: +10% damage",
+      "spec_id": 95,
+      "target_spell": 803140,
+      "affected_spells": [
+        803140
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        128
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "803140 Magma Geode; trigger child via 802335; mask_unique_bit=[0, 0, 128] fam=37; bonus=[0.2, 0.0, 0.0, 0.0]; eff 0:SCHOOL_DAMAGE v=225",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "Magma Geode child 803140 has own unique bit [0,0,128]."
+    },
+    {
+      "key": "wildwalker_seismic_tremor_dot",
+      "name": "Seismic Tremor: +10% periodic damage",
+      "spec_id": 95,
+      "target_spell": 680442,
+      "affected_spells": [
+        680442
+      ],
+      "targeting": "mask",
+      "mask": [
+        64,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DOT",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "680442 Seismic Tremor; catcd=8000; dur=24000; cost_pct=12; mask_unique_bit=[64, 0, 0] fam=37; periodic; bonus=[0.6, 0.0, 0.0, 0.0]; eff 0:SCHOOL_DAMAGE v=70, 1:APPLY_AURA/PERIODIC_DAMAGE v=71, 2:APPLY_AURA/MOD_DAMAGE_FROM_CASTER v=0",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wildwalker_golem_form_cd",
+      "name": "Golem Form: -15 sec cooldown",
+      "spec_id": 95,
+      "target_spell": 805335,
+      "affected_spells": [
+        805335
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -15000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "805335 Golem Form; cd=120000; dur=20000; cost=15; cost_pct=15",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "wildwalker_terrasurge_dmg",
+      "name": "Terrasurge: +8% damage",
+      "spec_id": 95,
+      "target_spell": 681119,
+      "affected_spells": [
+        681119
+      ],
+      "targeting": "mask",
+      "mask": [
+        8,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "681119 Terrasurge; catcd=20000; cast=2500; cost=450; mask_unique_bit=[8, 0, 0] fam=37; bonus=[1.3, 0.0, 0.0, 0.0]; eff 0:SCHOOL_DAMAGE v=154, 1:ASCENSION_TRIGGER_SPELL_DURATION v=10000",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wildwalker_earths_embrace_cd",
+      "name": "Earth's Embrace: -30 sec cooldown",
+      "spec_id": 95,
+      "target_spell": 806143,
+      "affected_spells": [
+        806143
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        268435456,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -30000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 80,
+      "evidence": "806143 Earth's Embrace; cd=300000; dur=8000; cost_pct=33; mask_unique_bit=[0, 268435456, 0] fam=37; periodic",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    }
+  ],
+  "rejected": [
+    {
+      "spell": 504229,
+      "reason": "summon (is_summon=self)"
+    },
+    {
+      "spell": 807560,
+      "reason": "raid haste with 300 sec Worn Out on allies; cooldown reduction is meaningless, no other numeric op"
+    },
+    {
+      "spell": 805442,
+      "reason": "raid buff; duration (20 sec) already exceeds cooldown (10 sec), nothing meaningful to modify"
+    },
+    {
+      "spell": 500940,
+      "reason": "pet force-casts 504669; damage by creature, player spellmods do not apply"
+    },
+    {
+      "spell": 537218,
+      "reason": "weapon-based buff toggle; utility without numbers to modify"
+    }
+  ]
+}

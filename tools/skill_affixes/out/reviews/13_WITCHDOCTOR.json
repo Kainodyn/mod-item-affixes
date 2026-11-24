@@ -1,0 +1,912 @@
+{
+  "class_id": 13,
+  "class": "WITCHDOCTOR",
+  "reviewed_at": "2026-11-23",
+  "affixes": [
+    {
+      "key": "wd_vol_jin_s_vigil_cooldown",
+      "name": "Vol'jin's Vigil: -15 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 504465,
+      "affected_spells": [
+        504465
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        8388608
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -15000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "504465 Vol'jin's Vigil; cd=120000; dur=10000; cost=35; cost_pct=28; mask_unique_bit=[0, 0, 8388608]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wd_slither_cooldown",
+      "name": "Slither: -8 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 500947,
+      "affected_spells": [
+        500947
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -8000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "500947 Slither; cd=60000; catcd=60000; dur=5000; cost=25; cost_pct=19; mask_unique_bit=None",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "wd_veil_of_darkness_damage",
+      "name": "Veil of Darkness: +8% damage",
+      "spec_id": 0,
+      "target_spell": 806473,
+      "affected_spells": [
+        806473
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        4194304
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "806473 Veil of Darkness; eff0 SCHOOL_DAMAGE v=194; mask_unique_bit=[0, 0, 4194304]; trigger child of 802100; parent 802100 PERIODIC_TRIGGER_SPELL per=1500 trig=806473; same mask bit",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wd_veil_of_darkness_cooldown",
+      "name": "Veil of Darkness: -10 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 802100,
+      "affected_spells": [
+        802100
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        4194304
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -10000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "802100 Veil of Darkness; cd=90000; dur=15000; cost_pct=8; mask_unique_bit=[0, 0, 4194304]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wd_amphibimorph_cooldown",
+      "name": "Amphibimorph: -15 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 500952,
+      "affected_spells": [
+        500952
+      ],
+      "targeting": "mask",
+      "mask": [
+        2147483648,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -15000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "500952 Amphibimorph; cd=120000; cast=1000; dur=40000; cost_pct=18; mask_unique_bit=[2147483648, 0, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wd_reclamation_damage",
+      "name": "Reclamation: +8% damage",
+      "spec_id": 4,
+      "target_spell": 806288,
+      "affected_spells": [
+        806288
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        4,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "806288 Reclamation; cast=1800; cost_pct=8; eff0 NORMALIZED_WEAPON_DMG v=15; eff1 WEAPON_PERCENT_DAMAGE v=100; mask_unique_bit=[0, 4, 0]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wd_reclamation_casting_time",
+      "name": "Reclamation: -0.15 sec cast time",
+      "spec_id": 4,
+      "target_spell": 806288,
+      "affected_spells": [
+        806288
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        4,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CASTING_TIME",
+          "type": "FLAT",
+          "value": -150
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "806288 Reclamation; cast=1800; cost_pct=8; eff0 NORMALIZED_WEAPON_DMG v=15; eff1 WEAPON_PERCENT_DAMAGE v=100; mask_unique_bit=[0, 4, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wd_spirit_eclipse_damage",
+      "name": "Spirit Eclipse: +8% damage",
+      "spec_id": 4,
+      "target_spell": 802717,
+      "affected_spells": [
+        802717
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "802717 Spirit Eclipse; eff0 SCHOOL_DAMAGE v=1; mask_unique_bit=None; trigger child of 801607; parent 801607 PERIODIC_TRIGGER_SPELL_WITH_VALUE per=250 trig=802717",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "spirit explosion part is not a visible child; affix covers the bolt damage"
+    },
+    {
+      "key": "wd_shadowstalker_cooldown",
+      "name": "Shadowstalker: -20 sec cooldown",
+      "spec_id": 4,
+      "target_spell": 807040,
+      "affected_spells": [
+        807040
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -20000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "807040 Shadowstalker; cd=180000; dur=20000; cost_pct=30; mask_unique_bit=None",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "wd_frenzied_spirits_cooldown",
+      "name": "Frenzied Spirits: -3 sec cooldown",
+      "spec_id": 4,
+      "target_spell": 560748,
+      "affected_spells": [
+        560748
+      ],
+      "targeting": "mask",
+      "mask": [
+        4194304,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -3000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "560748 Frenzied Spirits; cd=20000; cost_pct=14; mask_unique_bit=[4194304, 0, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wd_spirit_glaive_damage",
+      "name": "Spirit Glaive: +8% damage",
+      "spec_id": 4,
+      "target_spell": 806289,
+      "affected_spells": [
+        806289
+      ],
+      "targeting": "mask",
+      "mask": [
+        33554432,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "806289 Spirit Glaive; catcd=20000; cast=2000; dur=5000; cost_pct=10; eff0 SCHOOL_DAMAGE v=66; mask_unique_bit=[33554432, 0, 0]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "Godslayer 806616 (talent end-of-duration hit) not included: no mask bit"
+    },
+    {
+      "key": "wd_spirit_shock_cooldown",
+      "name": "Spirit Shock: -4 sec cooldown",
+      "spec_id": 4,
+      "target_spell": 807743,
+      "affected_spells": [
+        807743
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -4000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "807743 Spirit Shock; cd=28000; dur=4000; cost_pct=25; mask_unique_bit=None",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "wd_soul_marionette_cooldown",
+      "name": "Soul Marionette: -10 sec cooldown",
+      "spec_id": 5,
+      "target_spell": 704497,
+      "affected_spells": [
+        704497
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -10000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "704497 Soul Marionette; cd=90000; dur=8500; cost=115; cost_pct=22; mask_unique_bit=None",
+      "client_sensitive": true,
+      "confidence": "low",
+      "notes": "clones are created by script; affix only shortens CD"
+    },
+    {
+      "key": "wd_hexfire_damage",
+      "name": "Hexfire: +8% damage",
+      "spec_id": 5,
+      "target_spell": 807042,
+      "affected_spells": [
+        807042
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "807042 Hexfire; catcd=10000; cost_pct=17; eff0 SCHOOL_DAMAGE v=60; mask_unique_bit=None",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "wd_malignant_jinx_cooldown",
+      "name": "Malignant Jinx: -8 sec cooldown",
+      "spec_id": 5,
+      "target_spell": 803678,
+      "affected_spells": [
+        803678
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -8000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "803678 Malignant Jinx; cd=60000; dur=8000; cost=10; cost_pct=19; mask_unique_bit=None",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "wd_voice_of_bwonsamdi_cooldown",
+      "name": "Voice of Bwonsamdi: -10 sec cooldown",
+      "spec_id": 5,
+      "target_spell": 801716,
+      "affected_spells": [
+        801716
+      ],
+      "targeting": "mask",
+      "mask": [
+        65536,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -10000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "801716 Voice of Bwonsamdi; cd=90000; dur=20000; cost_pct=12; mask_unique_bit=[65536, 0, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wd_trapped_spirits_damage",
+      "name": "Trapped Spirits: +8% damage",
+      "spec_id": 5,
+      "target_spell": 504452,
+      "affected_spells": [
+        504452
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        2097152
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "504452 Trapped Spirits; eff0 SCHOOL_DAMAGE v=162; mask_unique_bit=[0, 0, 2097152]; trigger child of 801716; parent 801716 eff1 PROC_TRIGGER_SPELL trig=504452",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wd_bad_juju_damage",
+      "name": "Bad Juju: +8% damage",
+      "spec_id": 5,
+      "target_spell": 802087,
+      "affected_spells": [
+        802087
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "802087 Bad Juju; catcd=15000; cast=2500; cost_pct=16; eff0 SCHOOL_DAMAGE v=191; mask_unique_bit=None",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "wd_bad_juju_casting_time",
+      "name": "Bad Juju: -0.25 sec cast time",
+      "spec_id": 5,
+      "target_spell": 802087,
+      "affected_spells": [
+        802087
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CASTING_TIME",
+          "type": "FLAT",
+          "value": -250
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "802087 Bad Juju; catcd=15000; cast=2500; cost_pct=16; eff0 SCHOOL_DAMAGE v=191; mask_unique_bit=None",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "wd_puppeteer_s_grasp_cooldown",
+      "name": "Puppeteer's Grasp: -20 sec cooldown",
+      "spec_id": 5,
+      "target_spell": 707209,
+      "affected_spells": [
+        707209
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -20000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "707209 Puppeteer's Grasp; cd=180000; dur=30000; cost_pct=34; mask_unique_bit=None",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "wd_shadow_puppets_damage",
+      "name": "Shadow Puppets: +8% damage",
+      "spec_id": 5,
+      "target_spell": 801797,
+      "affected_spells": [
+        801797
+      ],
+      "targeting": "mask",
+      "mask": [
+        2097152,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "801797 Shadow Puppet; eff0 SCHOOL_DAMAGE v=1; mask_unique_bit=[2097152, 0, 0]; trigger child of 500015; parent 500015 PERIODIC_TRIGGER_SPELL_WITH_VALUE per=750 trig=801797 (SCHOOL_DAMAGE)",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wd_jungle_shrooms_damage",
+      "name": "Jungle Shrooms: +8% healing",
+      "spec_id": 6,
+      "target_spell": 802703,
+      "affected_spells": [
+        802703
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        2048
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "802703 Ingredient: Jungle Shrooms; eff0 HEAL v=91; mask_unique_bit=[0, 0, 2048]; trigger child of 705850; parent 801660 PERIODIC_TRIGGER_SPELL per=6000 trig=802703 (cauldron heal)",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wd_splash_potion_damage",
+      "name": "Splash Potion: +8% healing",
+      "spec_id": 6,
+      "target_spell": 802710,
+      "affected_spells": [
+        802710
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "802710 Splash Potion; catcd=15000; cost_pct=20; eff0 HEAL v=54; mask_unique_bit=None",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "direct HEAL eff0; ingredient potion effects not included"
+    },
+    {
+      "key": "wd_rage_brew_cooldown",
+      "name": "Rage Brew: -15 sec cooldown",
+      "spec_id": 6,
+      "target_spell": 503750,
+      "affected_spells": [
+        503750
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -15000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "503750 Rage Brew; cd=120000; cost_pct=8; mask_unique_bit=None",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "wd_potion_toss_damage",
+      "name": "Potion Toss: +8% healing",
+      "spec_id": 6,
+      "target_spell": 801661,
+      "affected_spells": [
+        801661
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        2048,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "801661 Potion Toss; catcd=15000; cost_pct=18; eff0 HEAL v=108; mask_unique_bit=[0, 2048, 0]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wd_base_beast_blood_cooldown",
+      "name": "Base: Beast Blood: -10 sec cooldown",
+      "spec_id": 6,
+      "target_spell": 705870,
+      "affected_spells": [
+        705870
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -10000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "705870 Base: Beast Blood; cd=90000; dur=10000; cost_pct=30; mask_unique_bit=None",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "wd_master_mixologist_cooldown",
+      "name": "Master Mixologist: -15 sec cooldown",
+      "spec_id": 6,
+      "target_spell": 705864,
+      "affected_spells": [
+        705864
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -15000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 80,
+      "evidence": "705864 Master Mixologist; cd=120000; dur=10000; cost_pct=14; mask_unique_bit=None",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "wd_arcane_brew_cooldown",
+      "name": "Arcane Brew: -15 sec cooldown",
+      "spec_id": 6,
+      "target_spell": 801689,
+      "affected_spells": [
+        801689
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -15000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "801689 Arcane Brew; cd=120000; dur=10000; cost_pct=8; mask_unique_bit=None",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "wd_base_crystal_water_cooldown",
+      "name": "Base: Crystal Water: -10 sec cooldown",
+      "spec_id": 6,
+      "target_spell": 500962,
+      "affected_spells": [
+        500962
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -10000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "500962 Base: Crystal Water; cd=90000; dur=10000; cost_pct=30; mask_unique_bit=None",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "wd_mojo_beam_dot",
+      "name": "Mojo Beam: +10% periodic healing",
+      "spec_id": 6,
+      "target_spell": 500950,
+      "affected_spells": [
+        500950
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        4194304,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DOT",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "500950 Mojo Beam; cd=14000; catcd=14000; dur=8000; cost_pct=15; eff0 APPLY_AURA/PERIODIC_HEAL v=126; mask_unique_bit=[0, 4194304, 0]; periodic",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wd_mojo_beam_cooldown",
+      "name": "Mojo Beam: -2 sec cooldown",
+      "spec_id": 6,
+      "target_spell": 500950,
+      "affected_spells": [
+        500950
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        4194304,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -2000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "500950 Mojo Beam; cd=14000; catcd=14000; dur=8000; cost_pct=15; eff0 APPLY_AURA/PERIODIC_HEAL v=126; mask_unique_bit=[0, 4194304, 0]; periodic",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    }
+  ],
+  "rejected": [
+    {
+      "spell": 706542,
+      "reason": "summon (is_summon=self); damage/heal by creature"
+    },
+    {
+      "spell": 804226,
+      "reason": "summon (is_summon=self); damage/heal by creature"
+    },
+    {
+      "spell": 707162,
+      "reason": "summon (is_summon=self); damage/heal by creature"
+    },
+    {
+      "spell": 504840,
+      "reason": "summon (is_summon=self); damage/heal by creature"
+    },
+    {
+      "spell": 500957,
+      "reason": "summon (is_summon=self); damage/heal by creature"
+    },
+    {
+      "spell": 501136,
+      "reason": "summon (is_summon=self): leaves a copy behind"
+    },
+    {
+      "spell": 681222,
+      "reason": "summon (Serpent Wards via child 572899)"
+    },
+    {
+      "spell": 800330,
+      "reason": "summon (is_summon=self); damage/heal by creature"
+    },
+    {
+      "spell": 706369,
+      "reason": "summon (is_summon=self); damage/heal by creature"
+    },
+    {
+      "spell": 804684,
+      "reason": "summon (cauldron); periodic heal tied to summoned object"
+    },
+    {
+      "spell": 681007,
+      "reason": "summons a copy of the target via SCRIPT_EFFECT; no player-owned number"
+    },
+    {
+      "spell": 602220,
+      "reason": "utility (feign death); no meaningful op"
+    },
+    {
+      "spell": 500472,
+      "reason": "utility: resets Potion Toss/Splash Potion and swaps ingredients (choice talent)"
+    },
+    {
+      "spell": 705850,
+      "reason": "utility: resets Potion Toss/Splash Potion and swaps ingredients (choice talent)"
+    },
+    {
+      "spell": 705851,
+      "reason": "utility: resets Potion Toss/Splash Potion and swaps ingredients (choice talent)"
+    },
+    {
+      "spell": 801664,
+      "reason": "ingredient toggle (dur=-1), aura % buff; no meaningful op"
+    },
+    {
+      "spell": 801663,
+      "reason": "ingredient toggle (dur=-1), aura % buff; no meaningful op"
+    }
+  ]
+}

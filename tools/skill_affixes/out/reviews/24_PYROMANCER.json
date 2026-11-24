@@ -1,0 +1,869 @@
+{
+  "class_id": 24,
+  "class": "PYROMANCER",
+  "reviewed_at": "2026-11-23",
+  "affixes": [
+    {
+      "key": "pyro_ignis_ultimatus_dmg",
+      "name": "Ignis Ultimatus: +8% damage and healing",
+      "spec_id": 0,
+      "target_spell": 680371,
+      "affected_spells": [
+        680371,
+        680370
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 100,
+      "evidence": "680371 Ignis Ultimatus eff0 SCHOOL_DAMAGE v=1084 child via 680372 | 680370 Ignis Ultimatus eff0 HEAL v=804 child via 680372",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "Damage/heal done by trigger children 680371/680370 (via 680372); SPELLMOD_DAMAGE also applies to healing."
+    },
+    {
+      "key": "pyro_ignis_ultimatus_cd",
+      "name": "Ignis Ultimatus: -8 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 680369,
+      "affected_spells": [
+        680369
+      ],
+      "targeting": "mask",
+      "mask": [
+        8388608,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -8000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 100,
+      "evidence": "680369 Ignis Ultimatus cd=60000 dur=2000 cost=10 cost_pct=16 eff0 PERIODIC_TRIGGER_SPELL per=2000; eff1 MOD_ROOT | mask_unique_bit=[8388608, 0, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "13% of 60 s base."
+    },
+    {
+      "key": "pyro_volcanic_shell_absorb",
+      "name": "Volcanic Shell: +10% absorb",
+      "spec_id": 0,
+      "target_spell": 805477,
+      "affected_spells": [
+        805477
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        2147483648,
+        0
+      ],
+      "effects": [
+        {
+          "op": "EFFECT1",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "805477 Volcanic Shell cd=120000 catcd=120000 dur=10000 cost_pct=15 eff0 SCHOOL_ABSORB v=625; eff1 REDUCE_PUSHBACK v=100; eff2 MOD_DISPEL_RESIST v=70 | mask_unique_bit=[0, 2147483648, 0]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "Absorb is effect index 0 (SCHOOL_ABSORB); SP bonus may be script-added outside basepoints."
+    },
+    {
+      "key": "pyro_volcanic_shell_cd",
+      "name": "Volcanic Shell: -15 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 805477,
+      "affected_spells": [
+        805477
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        2147483648,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -15000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "805477 Volcanic Shell cd=120000 catcd=120000 dur=10000 cost_pct=15 eff0 SCHOOL_ABSORB v=625; eff1 REDUCE_PUSHBACK v=100; eff2 MOD_DISPEL_RESIST v=70 | mask_unique_bit=[0, 2147483648, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "pyro_circle_of_fire_dmg",
+      "name": "Circle of Fire: +8% damage",
+      "spec_id": 0,
+      "target_spell": 680842,
+      "affected_spells": [
+        680842
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "680842 Circle of Fire dur=6000 eff0 SCHOOL_DAMAGE v=172; eff1 MOD_CONFUSE; eff2 ASCENSION_TRIGGER_SPELL_DELAYED v=50 child via 800807",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "Damage by periodic trigger child 680842; its flag bit 16777216 is shared with Emberheart 680366, so spell_id."
+    },
+    {
+      "key": "pyro_circle_of_fire_cd",
+      "name": "Circle of Fire: -15 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 800807,
+      "affected_spells": [
+        800807
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        8388608,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -15000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "800807 Circle of Fire cd=120000 catcd=120000 dur=10000 cost_pct=25 eff0 PERIODIC_TRIGGER_SPELL per=500 | mask_unique_bit=[0, 8388608, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "pyro_dragon_leap_cd",
+      "name": "Dragon Leap: -4 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 806611,
+      "affected_spells": [
+        806611
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -4000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "806611 Dragon Leap catcd=30000 dur=10000 cost_pct=14 eff0 SCHOOL_DAMAGE v=29; eff1 JUMP_DEST v=101; eff2 TRIGGER_MISSILE v=-24 | mask_unique_bit=null -> hook_cd",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": "Only catcd=30000; hook must reduce category cooldown."
+    },
+    {
+      "key": "pyro_cataclysm_cd",
+      "name": "Cataclysm: -12 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 520218,
+      "affected_spells": [
+        520218
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        32
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -12000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "520218 Cataclysm cd=90000 catcd=90000 dur=2500 cost_pct=15 eff0 PERIODIC_TRIGGER_SPELL v=10 per=2299; eff1 LEAP_BACK v=201; eff2 TRIGGER_SPELL | mask_unique_bit=[0, 0, 32]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "pyro_ember_touch_heal",
+      "name": "Ember Touch: +8% healing",
+      "spec_id": 0,
+      "target_spell": 800818,
+      "affected_spells": [
+        800818
+      ],
+      "targeting": "mask",
+      "mask": [
+        64,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "800818 Ember Touch cost_pct=20 eff0 HEAL v=83; eff1 TRIGGER_SPELL v=1 | mask_unique_bit=[64, 0, 0]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "pyro_essence_of_malygos_cd",
+      "name": "Essence of Malygos: -15 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 802120,
+      "affected_spells": [
+        802120
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -15000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "802120 Essence of Malygos cd=120000 catcd=120000 dur=6000 eff0 PERIODIC_ENERGIZE v=4 per=1000 | mask_unique_bit=null -> hook_cd",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "pyro_meteor_dmg",
+      "name": "Meteor: +8% damage",
+      "spec_id": 0,
+      "target_spell": 804076,
+      "affected_spells": [
+        804076
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "804076 Meteor dur=1000 eff0 SCHOOL_DAMAGE v=1 child via 500135",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "Damage by child 804076 (v=1, amount passed by TRIGGER_SPELL_WITH_VALUE 122 from 500135)."
+    },
+    {
+      "key": "pyro_meteor_cd",
+      "name": "Meteor: -4 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 500135,
+      "affected_spells": [
+        500135
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        512,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -4000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "500135 Meteor catcd=30000 cost_pct=15 eff0 TRIGGER_SPELL_WITH_VALUE v=122 | mask_unique_bit=[0, 512, 0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": "Only catcd=30000."
+    },
+    {
+      "key": "pyro_inferno_barrier_absorb",
+      "name": "Inferno Barrier: +10% absorb",
+      "spec_id": 0,
+      "target_spell": 504380,
+      "affected_spells": [
+        504380
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "EFFECT1",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "504380 Inferno Barrier cd=20000 catcd=20000 dur=30000 cost_pct=23 eff0 SCHOOL_ABSORB v=84; eff1 PROC_TRIGGER_DAMAGE v=4",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "No mask_unique_bit; absorb is effect index 0."
+    },
+    {
+      "key": "pyro_grace_of_alexstrasza_cd",
+      "name": "Grace of Alexstrasza: -30 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 802167,
+      "affected_spells": [
+        802167
+      ],
+      "targeting": "mask",
+      "mask": [
+        32768,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -30000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "802167 Grace of Alexstrasza cd=300000 cost_pct=18 eff0 DUMMY v=100; eff1 TRIGGER_SPELL; eff2 DISPEL_MECHANIC v=100 | mask_unique_bit=[32768, 0, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "10% of 300 s base."
+    },
+    {
+      "key": "pyro_gaze_of_ysera_cd",
+      "name": "Gaze of Ysera: -12 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 806148,
+      "affected_spells": [
+        806148
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        1073741824,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -12000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "806148 Gaze of Ysera cd=90000 cast=1500 dur=40000 cost_pct=15 eff0 MOD_STUN v=1; eff1 DUMMY v=1; eff2 MOD_DAMAGE_PERCENT_TAKEN | mask_unique_bit=[0, 1073741824, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "pyro_emberheart_cd",
+      "name": "Emberheart: -15 sec cooldown",
+      "spec_id": 37,
+      "target_spell": 680378,
+      "affected_spells": [
+        680378
+      ],
+      "targeting": "mask",
+      "mask": [
+        33554432,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -15000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 100,
+      "evidence": "680378 Emberheart cd=120000 dur=15000 cost_pct=15 eff0 MOD_INCREASE_SPEED v=30; eff1 MOD_CRIT_PCT; eff2 PROC_TRIGGER_SPELL | mask_unique_bit=[33554432, 0, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "pyro_sunstrider_array_cd",
+      "name": "Sunstrider Array: -8 sec cooldown",
+      "spec_id": 37,
+      "target_spell": 804230,
+      "affected_spells": [
+        804230
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -8000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "804230 Sunstrider Array cd=60000 dur=15000 cost_pct=15 eff0 PERIODIC_TRIGGER_SPELL per=3000; eff1 PROC_TRIGGER_SPELL v=1 | mask_unique_bit=null -> hook_cd",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "pyro_cleansing_flames_dmg",
+      "name": "Cleansing Flames: +8% damage and healing",
+      "spec_id": 37,
+      "target_spell": 681142,
+      "affected_spells": [
+        681142,
+        681141
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        8,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "681142 Cleansing Flames eff0 SCHOOL_DAMAGE v=1 child via 681145 | 681141 Cleansing Flames eff0 HEAL v=1 child via 681145 | mask_unique_bit=[0, 8, 0]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "Damage/heal by children 681142/681141, both carry mask [0,8,0]."
+    },
+    {
+      "key": "pyro_cleansing_flames_cost",
+      "name": "Cleansing Flames: -10% cost",
+      "spec_id": 37,
+      "target_spell": 681145,
+      "affected_spells": [
+        681145
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        4194304
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "681145 Cleansing Flames dur=3000 cost_pct=10 eff0 PERIODIC_TRIGGER_SPELL_WITH_VALUE v=23 per=750; eff1 PERIODIC_TRIGGER_SPELL_WITH_VALUE v=23 per=750; eff2 PERIODIC_TRIGGER_SPELL v=2 per=750 | mask_unique_bit=[0, 0, 4194304]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "pyro_ignite_dot",
+      "name": "Ignite: +10% periodic damage",
+      "spec_id": 38,
+      "target_spell": 800791,
+      "affected_spells": [
+        800791
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        256,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DOT",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 100,
+      "evidence": "800791 Ignite cast=1500 dur=21000 cost_pct=12 periodic eff0 PERIODIC_DAMAGE v=25 per=3000; eff1 MOD_DAMAGE_FROM_CASTER | mask_unique_bit=[0, 256, 0]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "Incineration signature DoT (PERIODIC_DAMAGE)."
+    },
+    {
+      "key": "pyro_ignite_cast",
+      "name": "Ignite: -10% cast time",
+      "spec_id": 38,
+      "target_spell": 800791,
+      "affected_spells": [
+        800791
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        256,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CASTING_TIME",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "800791 Ignite cast=1500 dur=21000 cost_pct=12 periodic eff0 PERIODIC_DAMAGE v=25 per=3000; eff1 MOD_DAMAGE_FROM_CASTER | mask_unique_bit=[0, 256, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "pyro_pyroclasm_cd",
+      "name": "Pyroclasm: -8 sec cooldown",
+      "spec_id": 38,
+      "target_spell": 520019,
+      "affected_spells": [
+        520019
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        512
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -8000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "520019 Pyroclasm cd=60000 cost_pct=20 eff0 DUMMY v=1 | mask_unique_bit=[0, 0, 512]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "Damage is scripted (DUMMY), so only cooldown."
+    },
+    {
+      "key": "pyro_pillar_of_flame_dmg",
+      "name": "Pillar of Flame: +8% damage",
+      "spec_id": 38,
+      "target_spell": 805496,
+      "affected_spells": [
+        805496
+      ],
+      "targeting": "mask",
+      "mask": [
+        1073741824,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "805496 Pillar of Flame cd=20000 catcd=20000 cast=1500 cost_pct=19 eff0 SCHOOL_DAMAGE v=36; eff1 SCHOOL_DAMAGE v=92 | mask_unique_bit=[1073741824, 0, 0]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "pyro_fired_up_cd",
+      "name": "Fired Up!: -8 sec cooldown",
+      "spec_id": 38,
+      "target_spell": 704823,
+      "affected_spells": [
+        704823
+      ],
+      "targeting": "mask",
+      "mask": [
+        1024,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -8000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 100,
+      "evidence": "704823 Fired Up! cd=60000 dur=15000 cost_pct=10 eff0 ADD_PCT_MODIFIER v=-100; eff1 PROC_TRIGGER_SPELL; eff2 MOD_SPELL_CRIT_CHANCE v=30 | mask_unique_bit=[1024, 0, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "pyro_destroyers_maw_dmg",
+      "name": "Destroyer's Maw: +8% damage",
+      "spec_id": 39,
+      "target_spell": 802107,
+      "affected_spells": [
+        802107
+      ],
+      "targeting": "mask",
+      "mask": [
+        134217728,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "802107 Destroyer's Maw cd=15000 catcd=15000 cast=2000 cost_pct=9 eff0 SCHOOL_DAMAGE v=144 | mask_unique_bit=[134217728, 0, 0]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "pyro_destroyers_maw_cast",
+      "name": "Destroyer's Maw: -0.2 sec cast time",
+      "spec_id": 39,
+      "target_spell": 802107,
+      "affected_spells": [
+        802107
+      ],
+      "targeting": "mask",
+      "mask": [
+        134217728,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CASTING_TIME",
+          "type": "FLAT",
+          "value": -200
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 75,
+      "evidence": "802107 Destroyer's Maw cd=15000 catcd=15000 cast=2000 cost_pct=9 eff0 SCHOOL_DAMAGE v=144 | mask_unique_bit=[134217728, 0, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "10% of 2000 ms."
+    },
+    {
+      "key": "pyro_death_from_above_cd",
+      "name": "Death From Above: -12 sec cooldown",
+      "spec_id": 39,
+      "target_spell": 520402,
+      "affected_spells": [
+        520402
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -12000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "520402 Death From Above cd=90000 catcd=90000 cost_pct=20 eff0 LEAP_BACK v=150; eff1 ASCENSION_TRIGGER_SPELL_DELAYED v=500; eff2 TRIGGER_SPELL v=1 | mask_unique_bit=null -> hook_cd",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "Damage child 520403 is PERIODIC_DAMAGE without periodic flag in candidates, so no DOT affix."
+    },
+    {
+      "key": "pyro_firefall_dmg",
+      "name": "Firefall: +8% damage",
+      "spec_id": 39,
+      "target_spell": 801905,
+      "affected_spells": [
+        801905
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        8192
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "801905 Firefall cd=8000 catcd=8000 cast=1500 cost_pct=12 eff0 SCHOOL_DAMAGE v=107 | mask_unique_bit=[0, 0, 8192]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "pyro_aspects_blessing_cd",
+      "name": "Aspect's Blessing: -8 sec cooldown",
+      "spec_id": 39,
+      "target_spell": 802168,
+      "affected_spells": [
+        802168
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -8000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "802168 Aspect's Blessing cd=60000 dur=15000 cost_pct=15 eff0 ADD_FLAT_MODIFIER v=100; eff1 ADD_FLAT_MODIFIER; eff2 ADD_FLAT_MODIFIER v=67 | mask_unique_bit=null -> hook_cd",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "flags [32,0,0] not unique."
+    },
+    {
+      "key": "pyro_breath_of_neltharion_cd",
+      "name": "Breath of Neltharion: -12 sec cooldown",
+      "spec_id": 39,
+      "target_spell": 511109,
+      "affected_spells": [
+        511109
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -12000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 50,
+      "evidence": "511109 Breath of Neltharion cd=90000 catcd=90000 cost_pct=18 eff0 TRIGGER_SPELL v=170 | mask_unique_bit=null -> hook_cd",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    }
+  ],
+  "rejected": [
+    {
+      "spell": 802791,
+      "reason": "summon (SUMMON tornado)"
+    },
+    {
+      "spell": 800816,
+      "reason": "summon-based (Phoenix heals, is_summon=self)"
+    },
+    {
+      "spell": 800796,
+      "reason": "summon (Phoenix)"
+    },
+    {
+      "spell": 704278,
+      "reason": "summon (Roaring Pyre)"
+    },
+    {
+      "spell": 706854,
+      "reason": "Phoenix Dive: DUMMY scripted, executed by Phoenix pet; no cd/mask"
+    },
+    {
+      "spell": 520149,
+      "reason": "dispel utility without numbers or cooldown"
+    },
+    {
+      "spell": 520488,
+      "reason": "niche fear-ward utility; only hook_cd possible, low value"
+    }
+  ]
+}

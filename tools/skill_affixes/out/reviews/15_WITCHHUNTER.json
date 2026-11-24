@@ -1,0 +1,1088 @@
+{
+  "class_id": 15,
+  "class": "WITCHHUNTER",
+  "reviewed_at": "2026-11-23",
+  "affixes": [
+    {
+      "key": "wh_witchblood_tonic_cd",
+      "name": "Witchblood Tonic: -12 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 802278,
+      "affected_spells": [
+        802278
+      ],
+      "targeting": "mask",
+      "mask": [
+        8,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -12000
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "802278 Witchblood Tonic cd=120000 catcd=0; 802278 mask_unique_bit=[8, 0, 0] fam=21",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_burrow_bolt_cd",
+      "name": "Burrow Bolt: -4 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 802269,
+      "affected_spells": [
+        802269
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        1073741824
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -4000
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "802269 Burrow Bolt cd=40000 catcd=40000; 802269 mask_unique_bit=[0, 0, 1073741824] fam=21",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_vault_cd",
+      "name": "Vault: -1.5 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 500085,
+      "affected_spells": [
+        500085
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        4096
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -1500
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "500085 Vault cd=12000 catcd=0; 500085 mask_unique_bit=[0, 0, 4096] fam=21",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_vampiric_tonic_cd",
+      "name": "Vampiric Tonic: -12 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 802276,
+      "affected_spells": [
+        802276
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -12000
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "802276 Vampiric Tonic cd=120000 catcd=0",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "Heal child 802271 has ignore_caster_mods; CD only."
+    },
+    {
+      "key": "wh_smoke_grenade_cd",
+      "name": "Smoke Grenade: -12 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 805756,
+      "affected_spells": [
+        805756
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        16777216
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -12000
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "805756 Smoke Grenade cd=120000 catcd=0; 805756 mask_unique_bit=[0, 0, 16777216] fam=21",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_slayers_mark_cd",
+      "name": "Slayer's Mark: -9 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 804068,
+      "affected_spells": [
+        804068
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -9000
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "804068 Slayer's Mark cd=90000 catcd=0",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_brand_unworthy_cd",
+      "name": "Brand of the Unworthy: -6 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 501380,
+      "affected_spells": [
+        501380
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -6000
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 50,
+      "evidence": "501380 Brand of the Unworthy cd=60000 catcd=60000",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "CC utility; niche."
+    },
+    {
+      "key": "wh_witching_shroud_cd",
+      "name": "Witching Shroud: -9 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 805770,
+      "affected_spells": [
+        805770
+      ],
+      "targeting": "mask",
+      "mask": [
+        2097152,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -9000
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "805770 Witching Shroud cd=90000 catcd=0; 805770 mask_unique_bit=[2097152, 0, 0] fam=21",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "Proc-gated defensive."
+    },
+    {
+      "key": "wh_tormentor_dmg",
+      "name": "Tormentor: +8% damage",
+      "spec_id": 10,
+      "target_spell": 800162,
+      "affected_spells": [
+        800162
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        },
+        {
+          "op": "DOT",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "800162 Tormentor: eff0 APPLY_AURA/PERIODIC_DAMAGE v=15 per=2000, eff2 SCHOOL_DAMAGE v=8, periodic=true",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "Direct eff2 + periodic eff0 on the same spell."
+    },
+    {
+      "key": "wh_twilight_frenzy_dmg",
+      "name": "Twilight Frenzy: +8% damage",
+      "spec_id": 10,
+      "target_spell": 805751,
+      "affected_spells": [
+        805753
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "805753 Twilight Frenzy child via 805752: eff0 SCHOOL_DAMAGE v=15, eff1 WEAPON_PERCENT_DAMAGE v=50",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "Damage done by trigger child 805753 (via 805752)."
+    },
+    {
+      "key": "wh_daring_escape_cd",
+      "name": "Daring Escape: -3 sec cooldown",
+      "spec_id": 10,
+      "target_spell": 500086,
+      "affected_spells": [
+        500086
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        2147483648,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -3000
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "500086 Daring Escape cd=30000 catcd=0; 500086 mask_unique_bit=[0, 2147483648, 0] fam=21",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_bolt_and_dash_cd",
+      "name": "Bolt and Dash: -4.5 sec cooldown",
+      "spec_id": 10,
+      "target_spell": 520670,
+      "affected_spells": [
+        520670
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -4500
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "520670 Bolt and Dash cd=45000 catcd=0",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_damnation_dmg",
+      "name": "Damnation: +8% damage",
+      "spec_id": 10,
+      "target_spell": 520062,
+      "affected_spells": [
+        520062
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "520062 Damnation: eff0 WEAPON_PERCENT_DAMAGE v=130, eff1 NORMALIZED_WEAPON_DMG v=6",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_damnation_crit",
+      "name": "Damnation: +3% critical strike chance",
+      "spec_id": 10,
+      "target_spell": 520062,
+      "affected_spells": [
+        520062
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "520062 Damnation: eff0 WEAPON_PERCENT_DAMAGE v=130, eff1 NORMALIZED_WEAPON_DMG v=6",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_heartseeking_bolt_cast",
+      "name": "Heartseeking Bolt: -0.3 sec cast time",
+      "spec_id": 10,
+      "target_spell": 805754,
+      "affected_spells": [
+        805754
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CASTING_TIME",
+          "type": "FLAT",
+          "value": -300
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "805754 cast=3000",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_heartseeking_bolt_dmg",
+      "name": "Heartseeking Bolt: +10% damage",
+      "spec_id": 10,
+      "target_spell": 805754,
+      "affected_spells": [
+        805754
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 100,
+      "evidence": "805754 Heartseeking Bolt: eff0 SCHOOL_DAMAGE v=40, eff1 WEAPON_PERCENT_DAMAGE v=200",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "Signature nuke; SCHOOL_DAMAGE + WEAPON_PERCENT_DAMAGE on the spell itself."
+    },
+    {
+      "key": "wh_witchbane_dmg",
+      "name": "Witchbane: +8% damage",
+      "spec_id": 10,
+      "target_spell": 800165,
+      "affected_spells": [
+        704342
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "704342 Witchbane child via 800165: eff0 SCHOOL_DAMAGE v=1",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "Damage done by trigger child 704342 (PERIODIC_TRIGGER_SPELL_WITH_VALUE)."
+    },
+    {
+      "key": "wh_repulse_dmg",
+      "name": "Repulse: +8% damage",
+      "spec_id": 11,
+      "target_spell": 680236,
+      "affected_spells": [
+        680236
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "680236 Repulse: eff0 SCHOOL_DAMAGE v=57, eff1 DUMMY/PERIODIC_DAMAGE v=16 per=1000",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_darkflock_dmg",
+      "name": "Darkflock: +8% damage",
+      "spec_id": 11,
+      "target_spell": 520270,
+      "affected_spells": [
+        520271
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "520271 Darkflock child via 520270: eff0 SCHOOL_DAMAGE v=1",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "Damage done by trigger child 520271."
+    },
+    {
+      "key": "wh_rearmament_cd",
+      "name": "Rearmament: -30 sec cooldown",
+      "spec_id": 11,
+      "target_spell": 805738,
+      "affected_spells": [
+        805738
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -30000
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "805738 Rearmament cd=300000 catcd=0",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_houndmasters_call_cd",
+      "name": "Houndmaster's Call: -2 sec cooldown",
+      "spec_id": 11,
+      "target_spell": 802273,
+      "affected_spells": [
+        802273
+      ],
+      "targeting": "mask",
+      "mask": [
+        131072,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -2000
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "802273 Houndmaster's Call cd=20000 catcd=0; 802273 mask_unique_bit=[131072, 0, 0] fam=21",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "Damage is dealt by hounds (creature); CD only."
+    },
+    {
+      "key": "wh_quickdraw_dmg",
+      "name": "Quickdraw: +8% damage",
+      "spec_id": 11,
+      "target_spell": 804193,
+      "affected_spells": [
+        804193
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "804193 Quickdraw: eff0 WEAPON_PERCENT_DAMAGE v=175, eff1 SCHOOL_DAMAGE v=16",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_quickdraw_crit",
+      "name": "Quickdraw: +3% critical strike chance",
+      "spec_id": 11,
+      "target_spell": 804193,
+      "affected_spells": [
+        804193
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "804193 Quickdraw: eff0 WEAPON_PERCENT_DAMAGE v=175, eff1 SCHOOL_DAMAGE v=16",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_pyro_tonic_cd",
+      "name": "Pyro Tonic: -12 sec cooldown",
+      "spec_id": 12,
+      "target_spell": 802277,
+      "affected_spells": [
+        802277
+      ],
+      "targeting": "mask",
+      "mask": [
+        268435456,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -12000
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "802277 Pyro Tonic cd=120000 catcd=0; 802277 mask_unique_bit=[268435456, 0, 0] fam=21",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_torchlight_dmg",
+      "name": "Torchlight: +8% damage",
+      "spec_id": 12,
+      "target_spell": 503662,
+      "affected_spells": [
+        503662
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "503662 Torchlight: eff1 SCHOOL_DAMAGE v=166",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_dusk_blade_dmg",
+      "name": "Dusk Blade: +8% damage",
+      "spec_id": 12,
+      "target_spell": 802020,
+      "affected_spells": [
+        802020,
+        803502
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "802020 Dusk Blade: eff0 NORMALIZED_WEAPON_DMG v=10; 803502 Dusk Blade child via 802020: eff0 NORMALIZED_WEAPON_DMG v=1",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "Main hand on 802020, off hand via trigger child 803502."
+    },
+    {
+      "key": "wh_stake_dmg",
+      "name": "Stake: +8% damage",
+      "spec_id": 12,
+      "target_spell": 680537,
+      "affected_spells": [
+        680537
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "680537 Stake: eff0 SCHOOL_DAMAGE v=279",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_fiery_judgement_dmg",
+      "name": "Fiery Judgement: +8% damage",
+      "spec_id": 12,
+      "target_spell": 802140,
+      "affected_spells": [
+        802140
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "802140 Fiery Judgement: eff0 SCHOOL_DAMAGE v=361",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_purifiers_edge_dmg",
+      "name": "Purifier's Edge: +8% damage",
+      "spec_id": 12,
+      "target_spell": 802019,
+      "affected_spells": [
+        803357,
+        803517
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "803357 Purifier's Edge child via 802019: eff0 NORMALIZED_WEAPON_DMG v=1; 803517 Purifier's Edge child via 802019: eff0 NORMALIZED_WEAPON_DMG v=1",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "Both weapon hits are trigger children 803357/803517."
+    },
+    {
+      "key": "wh_darkslayers_lantern_cd",
+      "name": "Darkslayer's Lantern: -12 sec cooldown",
+      "spec_id": 12,
+      "target_spell": 802139,
+      "affected_spells": [
+        802139
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        32768,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -12000
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "802139 Darkslayer's Lantern cd=120000 catcd=0; 802139 mask_unique_bit=[0, 32768, 0] fam=21",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_smite_evil_dmg",
+      "name": "Smite Evil: +8% damage",
+      "spec_id": 12,
+      "target_spell": 802004,
+      "affected_spells": [
+        802004
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "802004 Smite Evil: eff0 NORMALIZED_WEAPON_DMG v=25",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_flourish_cd",
+      "name": "Flourish: -6 sec cooldown",
+      "spec_id": 12,
+      "target_spell": 805365,
+      "affected_spells": [
+        805365
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -6000
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "805365 Flourish cd=60000 catcd=60000",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "Damage is scripted (807762 not visible); CD only."
+    },
+    {
+      "key": "wh_noctis_blade_dmg",
+      "name": "Noctis Blade: +8% damage",
+      "spec_id": 97,
+      "target_spell": 802280,
+      "affected_spells": [
+        802280
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "802280 Noctis Blade: eff0 SCHOOL_DAMAGE v=26, eff1 WEAPON_PERCENT_DAMAGE v=100, eff2 NORMALIZED_WEAPON_DMG v=0",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_march_black_king_dmg",
+      "name": "March of the Black King: +8% damage",
+      "spec_id": 97,
+      "target_spell": 681095,
+      "affected_spells": [
+        681094
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "681094 March of the Black King child via 681095: eff0 SCHOOL_DAMAGE v=1",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "Damage by trigger child 681094."
+    },
+    {
+      "key": "wh_witchblight_dmg",
+      "name": "Witchblight: +8% damage",
+      "spec_id": 97,
+      "target_spell": 680494,
+      "affected_spells": [
+        680494
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "680494 Witchblight: eff0 SCHOOL_DAMAGE v=51",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_chains_of_darkness_cd",
+      "name": "Chains of Darkness: -18 sec cooldown",
+      "spec_id": 97,
+      "target_spell": 680521,
+      "affected_spells": [
+        680521
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -18000
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "680521 Chains of Darkness cd=180000 catcd=0",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_desecrate_dmg",
+      "name": "Desecrate: +8% damage",
+      "spec_id": 97,
+      "target_spell": 680518,
+      "affected_spells": [
+        680518
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "680518 Desecrate: eff0 NORMALIZED_WEAPON_DMG v=29",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_knights_seal_dot",
+      "name": "Knight's Seal: +8% periodic damage",
+      "spec_id": 97,
+      "target_spell": 680498,
+      "affected_spells": [
+        680499
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DOT",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "680499 Knight's Seal child via 680498: eff0 APPLY_AURA/PERIODIC_DAMAGE v=80 per=3000, periodic=true",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "DoT is on trigger child 680499."
+    },
+    {
+      "key": "wh_gaze_black_knight_cd",
+      "name": "Gaze of the Black Knight: -12 sec cooldown",
+      "spec_id": 97,
+      "target_spell": 802138,
+      "affected_spells": [
+        802138
+      ],
+      "targeting": "mask",
+      "mask": [
+        128,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -12000
+        }
+      ],
+      "scales_with_crit": false,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "802138 Gaze of the Black Knight cd=120000 catcd=120000; 802138 mask_unique_bit=[128, 0, 0] fam=21",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "wh_gaze_black_knight_absorb",
+      "name": "Gaze of the Black Knight: +8% absorb",
+      "spec_id": 97,
+      "target_spell": 802138,
+      "affected_spells": [
+        802138
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "EFFECT3",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "802138 Gaze of the Black Knight: eff2 APPLY_AURA/SCHOOL_ABSORB v=3255",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "SCHOOL_ABSORB is effect index 2 (EFFECT3)."
+    }
+  ],
+  "rejected": [
+    {
+      "spell": 681450,
+      "reason": "summon (Death Trap, SUMMON effect)"
+    },
+    {
+      "spell": 681445,
+      "reason": "summon (trap creature)"
+    },
+    {
+      "spell": 680238,
+      "reason": "summon (trap creature)"
+    },
+    {
+      "spell": 807918,
+      "reason": "summon (Lesser Shadow Hound)"
+    },
+    {
+      "spell": 801343,
+      "reason": "summon pet"
+    },
+    {
+      "spell": 804194,
+      "reason": "is_summon=self; buffs hounds (ASCENSION_A_TO_SUMMONS)"
+    },
+    {
+      "spell": 804051,
+      "reason": "summon (Witching Idol)"
+    },
+    {
+      "spell": 802006,
+      "reason": "mobility charge; charges-based recharge, no cd field, no meaningful op"
+    }
+  ]
+}

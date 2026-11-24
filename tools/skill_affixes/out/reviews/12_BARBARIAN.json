@@ -1,0 +1,1000 @@
+{
+  "class_id": 12,
+  "class": "BARBARIAN",
+  "reviewed_at": "2026-11-23",
+  "affixes": [
+    {
+      "key": "barb_thick_skull_cooldown",
+      "name": "Thick Skull: -15 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 801549,
+      "affected_spells": [
+        801549
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -15000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "801549 Thick Skull; cd=120000; dur=10000; mask_unique_bit=None",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": "no mask_unique_bit; CD reduced via ModifySpellCooldown after cast"
+    },
+    {
+      "key": "barb_skull_smash_cooldown",
+      "name": "Skull Smash: -15 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 560532,
+      "affected_spells": [
+        560532
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        262144
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -15000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "560532 Skull Smash; cd=120000; dur=40000; cost=30; mask_unique_bit=[0, 0, 262144]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "barb_outrage_cooldown",
+      "name": "Outrage: -20 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 801759,
+      "affected_spells": [
+        801759
+      ],
+      "targeting": "mask",
+      "mask": [
+        64,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -20000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 100,
+      "evidence": "801759 Outrage; cd=180000; catcd=180000; dur=10000; mask_unique_bit=[64, 0, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "barb_jawbreaker_cooldown",
+      "name": "Jawbreaker: -2 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 802792,
+      "affected_spells": [
+        802792
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        2147483648,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -2000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "802792 Jawbreaker; cd=14000; dur=4000; cost=30; mask_unique_bit=[0, 2147483648, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "barb_headhunter_s_spear_damage",
+      "name": "Headhunter's Spear: +8% damage",
+      "spec_id": 0,
+      "target_spell": 804137,
+      "affected_spells": [
+        804137
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "804137 Headhunter's Spear; cd=6000; catcd=6000; eff0 NORMALIZED_WEAPON_DMG v=21; eff1 WEAPON_PERCENT_DAMAGE v=140; mask_unique_bit=None",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "spears share category cd; damage done by spell itself"
+    },
+    {
+      "key": "barb_maiming_spear_damage",
+      "name": "Maiming Spear: +8% damage",
+      "spec_id": 0,
+      "target_spell": 804139,
+      "affected_spells": [
+        804139
+      ],
+      "targeting": "mask",
+      "mask": [
+        4096,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "804139 Maiming Spear; cd=6000; catcd=6000; dur=10000; cost=30; eff0 WEAPON_PERCENT_DAMAGE v=100; eff1 NORMALIZED_WEAPON_DMG/DUMMY v=2; mask_unique_bit=[4096, 0, 0]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "barb_ancestral_roar_damage",
+      "name": "Ancestral Roar: +10% healing",
+      "spec_id": 0,
+      "target_spell": 500918,
+      "affected_spells": [
+        500918
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        536870912,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "500918 Ancestral Roar; cd=25000; catcd=25000; eff0 HEAL v=100; mask_unique_bit=[0, 536870912, 0]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "HEAL effect; SPELLMOD_DAMAGE scales healing"
+    },
+    {
+      "key": "barb_hodir_s_wrath_damage",
+      "name": "Hodir's Wrath: +8% damage",
+      "spec_id": 0,
+      "target_spell": 800152,
+      "affected_spells": [
+        800152
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        67108864
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "800152 Hodir's Wrath; cd=90000; catcd=90000; eff1 SCHOOL_DAMAGE v=1361; mask_unique_bit=[0, 0, 67108864]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "barb_defiance_cooldown",
+      "name": "Defiance: -20 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 806228,
+      "affected_spells": [
+        806228
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -20000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "806228 Defiance; cd=180000; dur=15000; mask_unique_bit=None",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "barb_warband_cooldown",
+      "name": "Warband: -10 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 560883,
+      "affected_spells": [
+        560883
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        524288
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -10000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "560883 Warband; cd=90000; catcd=90000; dur=12000; cost=30; mask_unique_bit=[0, 0, 524288]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "barb_born_in_blood_dot",
+      "name": "Born in Blood: +10% periodic healing",
+      "spec_id": 0,
+      "target_spell": 560521,
+      "affected_spells": [
+        560521
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        65536
+      ],
+      "effects": [
+        {
+          "op": "DOT",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 100,
+      "evidence": "560521 Born in Blood; dur=4000; eff0 APPLY_AURA/PERIODIC_HEAL v=5; mask_unique_bit=[0, 0, 65536]; trigger child of 801549; periodic",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "Born in Blood is triggered by Thick Skull and Warband (and passives); PERIODIC_HEAL v=5 per=1000"
+    },
+    {
+      "key": "barb_berserker_axe_damage",
+      "name": "Berserker Axe: +8% damage",
+      "spec_id": 1,
+      "target_spell": 806960,
+      "affected_spells": [
+        806960
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        8,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "806960 Berserker Axe; eff0 SCHOOL_DAMAGE v=1; mask_unique_bit=[0, 8, 0]; trigger child of 804138; parent 804138 TRIGGER_MISSILE x2 trig=806960 (child deals SCHOOL_DAMAGE)",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "barb_berserker_rush_cooldown",
+      "name": "Berserker Rush: -4 sec cooldown",
+      "spec_id": 1,
+      "target_spell": 560518,
+      "affected_spells": [
+        560518
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        8388608,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -4000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "560518 Berserker Rush; cd=30000; catcd=30000; dur=1000; mask_unique_bit=[0, 8388608, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "barb_impaling_spear_damage",
+      "name": "Impaling Spear: +8% damage",
+      "spec_id": 1,
+      "target_spell": 500984,
+      "affected_spells": [
+        500984
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "500984 Impaling Spear; cd=6000; catcd=6000; dur=1000; cost=50; eff0 NORMALIZED_WEAPON_DMG v=23; eff2 WEAPON_PERCENT_DAMAGE v=131; mask_unique_bit=None",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "shatter AoE part may be scripted; affix covers the line hit"
+    },
+    {
+      "key": "barb_spite_damage",
+      "name": "Spite: +8% damage",
+      "spec_id": 1,
+      "target_spell": 520541,
+      "affected_spells": [
+        520541
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "520541 Spite; eff0 NORMALIZED_WEAPON_DMG v=1; eff1 WEAPON_PERCENT_DAMAGE v=125; mask_unique_bit=None; trigger child of 707584",
+      "client_sensitive": false,
+      "confidence": "low",
+      "notes": "desc says Spite scales with Berserker Axe modifiers (script); damage spell 520541 targeted directly"
+    },
+    {
+      "key": "barb_gutspiller_dot",
+      "name": "Gutspiller: +10% periodic damage",
+      "spec_id": 1,
+      "target_spell": 805832,
+      "affected_spells": [
+        805832
+      ],
+      "targeting": "mask",
+      "mask": [
+        262144,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DOT",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "805832 Gutspiller; dur=12000; cost=20; eff0 APPLY_AURA/PERIODIC_DAMAGE v=15; mask_unique_bit=[262144, 0, 0]; periodic",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "barb_guts_spilled_damage",
+      "name": "Guts Spilled: +8% damage",
+      "spec_id": 1,
+      "target_spell": 520577,
+      "affected_spells": [
+        520577
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        16777216
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "520577 Guts Spilled; cost=15; eff0 SCHOOL_DAMAGE v=1; mask_unique_bit=[0, 0, 16777216]; trigger child of 805832; parent 805832 eff1 PERIODIC_TRIGGER_SPELL_WITH_VALUE per=6000 trig=520577",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "barb_barbed_spear_damage",
+      "name": "Barbed Spear: +8% damage",
+      "spec_id": 1,
+      "target_spell": 560881,
+      "affected_spells": [
+        560881
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "560881 Barbed Spear; cd=6000; catcd=6000; cost=40; eff0 NORMALIZED_WEAPON_DMG v=37; eff2 WEAPON_PERCENT_DAMAGE v=160; mask_unique_bit=None",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "barb_decapitate_damage",
+      "name": "Decapitate: +8% damage",
+      "spec_id": 2,
+      "target_spell": 804414,
+      "affected_spells": [
+        804414
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        2048,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "804414 Decapitate; cost=45; eff0 NORMALIZED_WEAPON_DMG v=27; eff1 WEAPON_PERCENT_DAMAGE v=220; mask_unique_bit=[0, 2048, 0]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "barb_decapitate_critical_chance",
+      "name": "Decapitate: +5% critical strike chance",
+      "spec_id": 2,
+      "target_spell": 804414,
+      "affected_spells": [
+        804414
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        2048,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 5
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 80,
+      "evidence": "804414 Decapitate; cost=45; eff0 NORMALIZED_WEAPON_DMG v=27; eff1 WEAPON_PERCENT_DAMAGE v=220; mask_unique_bit=[0, 2048, 0]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "barb_killing_spree_damage",
+      "name": "Killing Spree: +8% damage",
+      "spec_id": 2,
+      "target_spell": 850022,
+      "affected_spells": [
+        850022
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        2147483648
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "850022 Killing Spree; dur=100; eff0 SCHOOL_DAMAGE v=1; mask_unique_bit=[0, 0, 2147483648]; trigger child of 850021; parent 850021 eff1 TRIGGER_SPELL_WITH_VALUE trig=850022; same mask bit",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "barb_storm_of_steel_damage",
+      "name": "Storm of Steel: +8% damage",
+      "spec_id": 2,
+      "target_spell": 800628,
+      "affected_spells": [
+        800628
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        512,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "800628 Storm of Steel; eff0 WEAPON_PERCENT_DAMAGE v=90; eff1 NORMALIZED_WEAPON_DMG v=25; mask_unique_bit=[0, 512, 0]; trigger child of 800637; parent 800637 PERIODIC_TRIGGER_SPELL per=500 trig=800628",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "barb_crush_damage",
+      "name": "Crush: +8% damage",
+      "spec_id": 2,
+      "target_spell": 500915,
+      "affected_spells": [
+        500915
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        64,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "500915 Crush; cd=25000; catcd=25000; cast=2000; dur=1000; cost=70; eff0 WEAPON_PERCENT_DAMAGE v=275; eff2 NORMALIZED_WEAPON_DMG v=30; mask_unique_bit=[0, 64, 0]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "barb_crush_casting_time",
+      "name": "Crush: -0.2 sec cast time",
+      "spec_id": 2,
+      "target_spell": 500915,
+      "affected_spells": [
+        500915
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        64,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CASTING_TIME",
+          "type": "FLAT",
+          "value": -200
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "500915 Crush; cd=25000; catcd=25000; cast=2000; dur=1000; cost=70; eff0 WEAPON_PERCENT_DAMAGE v=275; eff2 NORMALIZED_WEAPON_DMG v=30; mask_unique_bit=[0, 64, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "barb_brutal_swing_damage",
+      "name": "Brutal Swing: +8% damage",
+      "spec_id": 2,
+      "target_spell": 500913,
+      "affected_spells": [
+        500913
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        2,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "500913 Brutal Swing; cost=45; eff0 NORMALIZED_WEAPON_DMG v=10; eff1 WEAPON_PERCENT_DAMAGE v=135; mask_unique_bit=[0, 2, 0]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "barb_clanlord_s_totem_cooldown",
+      "name": "Clanlord's Totem: -8 sec cooldown",
+      "spec_id": 3,
+      "target_spell": 804737,
+      "affected_spells": [
+        804737
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -8000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "804737 Clanlord's Totem; cd=60000; dur=15000; cost=20; mask_unique_bit=None",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": "bonus damage is dealt by allies, so only CD"
+    },
+    {
+      "key": "barb_frozen_tankard_cooldown",
+      "name": "Frozen Tankard: -4 sec cooldown",
+      "spec_id": 3,
+      "target_spell": 805815,
+      "affected_spells": [
+        805815
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        134217728,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -4000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "805815 Frozen Tankard; cd=30000; catcd=30000; eff1 SCHOOL_DAMAGE v=107; mask_unique_bit=[0, 134217728, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "barb_tavern_brawl_cooldown",
+      "name": "Tavern Brawl!: -30 sec cooldown",
+      "spec_id": 3,
+      "target_spell": 804456,
+      "affected_spells": [
+        804456
+      ],
+      "targeting": "mask",
+      "mask": [
+        512,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -30000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 100,
+      "evidence": "804456 Tavern Brawl!; cd=300000; dur=20000; cost=25; mask_unique_bit=[512, 0, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "barb_keg_smash_damage",
+      "name": "Keg Smash: +8% damage",
+      "spec_id": 3,
+      "target_spell": 805808,
+      "affected_spells": [
+        805808
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        1,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "805808 Keg Smash; cd=10000; catcd=10000; cost=15; eff0 SCHOOL_DAMAGE v=25; mask_unique_bit=[0, 1, 0]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "primary hit only; frost splash 805809 has no mask bit"
+    },
+    {
+      "key": "barb_ale_of_the_god_king_cooldown",
+      "name": "Ale of The God-King: -2 sec cooldown",
+      "spec_id": 3,
+      "target_spell": 805780,
+      "affected_spells": [
+        805780
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        2097152
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -2000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "805780 Ale of The God-King; catcd=15000; dur=20000; mask_unique_bit=[0, 0, 2097152]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": "damage proc is on the Honored Ancestor (creature); fill-level CD reduction is scripted"
+    },
+    {
+      "key": "barb_ramhorn_rage_cooldown",
+      "name": "Ramhorn Rage: -15 sec cooldown",
+      "spec_id": 3,
+      "target_spell": 805804,
+      "affected_spells": [
+        805804
+      ],
+      "targeting": "mask",
+      "mask": [
+        2,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -15000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "805804 Ramhorn Rage; cd=120000; dur=3000; mask_unique_bit=[2, 0, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "barb_war_cry_cooldown",
+      "name": "War Cry: -20 sec cooldown",
+      "spec_id": 3,
+      "target_spell": 500995,
+      "affected_spells": [
+        500995
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        67108864,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -20000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "500995 War Cry; cd=180000; dur=20000; mask_unique_bit=[0, 67108864, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "barb_ancestral_evolution_cooldown",
+      "name": "Ancestral Evolution: -20 sec cooldown",
+      "spec_id": 3,
+      "target_spell": 806229,
+      "affected_spells": [
+        806229
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -20000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "806229 Ancestral Evolution; cd=180000; dur=20000; mask_unique_bit=None",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "barb_splash_zone_cooldown",
+      "name": "Splash Zone: -4 sec cooldown",
+      "spec_id": 3,
+      "target_spell": 705156,
+      "affected_spells": [
+        705156
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        2
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -4000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "705156 Splash Zone; cd=30000; catcd=30000; dur=15000; cost=25; mask_unique_bit=[0, 0, 2]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": "tankard empty mechanic may modify CD by script"
+    },
+    {
+      "key": "barb_breath_of_the_north_damage",
+      "name": "Breath of The North: +8% damage",
+      "spec_id": 3,
+      "target_spell": 800838,
+      "affected_spells": [
+        800838
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        16777216,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "800838 Breath of The North; dur=5000; cost=50; eff0 SCHOOL_DAMAGE v=42; mask_unique_bit=[0, 16777216, 0]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    }
+  ],
+  "rejected": [
+    {
+      "spell": 800401,
+      "reason": "toggle passive aura (dur=-1, ADD_FLAT_MODIFIER/-15% damage); no meaningful op"
+    },
+    {
+      "spell": 805810,
+      "reason": "utility link (3 sec cd, 1800 sec buff); no meaningful number to improve"
+    }
+  ]
+}

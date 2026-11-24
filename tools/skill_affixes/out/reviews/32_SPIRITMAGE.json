@@ -1,0 +1,923 @@
+{
+  "class_id": 32,
+  "class": "SPIRITMAGE",
+  "reviewed_at": "2026-11-23",
+  "affixes": [
+    {
+      "key": "spiritmage_warpdagger_cd",
+      "name": "Warpdagger: -4 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 500287,
+      "affected_spells": [
+        500287
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        8388608,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -4000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "500287 Warpdagger; cd=30000; catcd=30000; cost_pct=12; mask_unique_bit=[0, 8388608, 0] fam=38",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "Teleport damage spell 500495 is not a visible trigger child; only cooldown targeted."
+    },
+    {
+      "key": "spiritmage_power_engraving_cd",
+      "name": "Power Engraving: -30 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 500296,
+      "affected_spells": [
+        500296
+      ],
+      "targeting": "mask",
+      "mask": [
+        2048,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -30000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 100,
+      "evidence": "500296 Power Engraving; cd=300000; catcd=300000; dur=20000; cost_pct=18; radius=[5.0]; mask_unique_bit=[2048, 0, 0] fam=38",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_zenith_cd",
+      "name": "Zenith: -6 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 712325,
+      "affected_spells": [
+        712325
+      ],
+      "targeting": "mask",
+      "mask": [
+        268435456,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -6000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "712325 Zenith; cd=45000; dur=6000; cost_pct=10; mask_unique_bit=[268435456, 0, 0] fam=38",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_convergence_dmg",
+      "name": "Convergence: +10% damage",
+      "spec_id": 0,
+      "target_spell": 560241,
+      "affected_spells": [
+        560241
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "560241 Convergence; trigger child via 801086; eff 0:SCHOOL_DAMAGE v=348, 1:ASCENSION_PLAY_SPELL_VISUAL_KIT v=0",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "Extra Elemental damage dealt by proc child 560241."
+    },
+    {
+      "key": "spiritmage_speed_rune_cd",
+      "name": "Speed Rune: -15 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 801103,
+      "affected_spells": [
+        801103
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        33554432,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -15000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "801103 Speed Rune; cd=120000; dur=100; cost=55; cost_pct=14; mask_unique_bit=[0, 33554432, 0] fam=38",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "Mask bit shared with periodic child 572134 (no cd)."
+    },
+    {
+      "key": "spiritmage_granite_resolve_cd",
+      "name": "Granite Resolve: -8 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 520229,
+      "affected_spells": [
+        520229
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        2147483648
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -8000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "520229 Granite Resolve; cd=60000; dur=8000; cost_pct=12; mask_unique_bit=[0, 0, 2147483648] fam=38",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_glacial_rune_dmg",
+      "name": "Glacial Rune: +10% damage",
+      "spec_id": 0,
+      "target_spell": 805730,
+      "affected_spells": [
+        805730
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "805730 Glacial Rune; trigger child via 807842; cd=20000; dur=40000; cost=9999; cost_pct=9; bonus=[0.3, 0.0, 0.0, 0.0]; eff 0:APPLY_AURA/MOD_ROOT v=0, 1:SCHOOL_DAMAGE v=45",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "Explosion damage is trigger child 805730 (SCHOOL_DAMAGE v=45)."
+    },
+    {
+      "key": "spiritmage_warding_rune_cd",
+      "name": "Warding Rune: -15 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 804232,
+      "affected_spells": [
+        804232
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -15000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "804232 Warding Rune; cd=120000; dur=6000; cost=15; cost_pct=27",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_permafrost_rune_cd",
+      "name": "Permafrost Rune: -8 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 804060,
+      "affected_spells": [
+        804060
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        67108864,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -8000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "804060 Permafrost Rune; cd=60000; cast=1000; dur=40000; cost_pct=39; mask_unique_bit=[0, 67108864, 0] fam=38",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": "Mask bit shared with child 807114 (cd 90000); both CDs would be reduced."
+    },
+    {
+      "key": "spiritmage_phase_out_cd",
+      "name": "Phase Out: -15 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 500671,
+      "affected_spells": [
+        500671
+      ],
+      "targeting": "mask",
+      "mask": [
+        64,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -15000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "500671 Phase Out; cd=120000; dur=100; cost_pct=8; mask_unique_bit=[64, 0, 0] fam=38",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_fists_of_power_cd",
+      "name": "Fists of Power: -6 sec cooldown",
+      "spec_id": 61,
+      "target_spell": 805796,
+      "affected_spells": [
+        805796
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -6000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "805796 Fists of Power; cd=45000; catcd=45000; dur=15000; cost=25; cost_pct=15",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_runic_tempest_cd",
+      "name": "Runic Tempest: -20 sec cooldown",
+      "spec_id": 61,
+      "target_spell": 560036,
+      "affected_spells": [
+        560036
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -20000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 100,
+      "evidence": "560036 Runic Tempest; cd=180000; catcd=180000; dur=8000; cost_pct=15",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_guarding_rune_cd",
+      "name": "Guarding Rune: -15 sec cooldown",
+      "spec_id": 61,
+      "target_spell": 500464,
+      "affected_spells": [
+        500464
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -15000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "500464 Guarding Rune; cd=120000; dur=15000; cost=35; cost_pct=23; radius=[10.0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_runic_brand_dmg",
+      "name": "Runic Brand: +10% damage",
+      "spec_id": 61,
+      "target_spell": 712322,
+      "affected_spells": [
+        712322
+      ],
+      "targeting": "mask",
+      "mask": [
+        32,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "712322 Runic Brand; trigger child via 712299; mask_unique_bit=[32, 0, 0] fam=38; bonus=[0.15, 0.0, 0.28, 0.0]; eff 0:SCHOOL_DAMAGE v=1",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "Weapon-hit damage child 712322 has own unique bit [32,0,0]."
+    },
+    {
+      "key": "spiritmage_fist_of_ancients_dmg",
+      "name": "Fist of the Ancients: +8% damage",
+      "spec_id": 61,
+      "target_spell": 712326,
+      "affected_spells": [
+        712326
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "712326 Fist of the Ancients; cd=18000; catcd=18000; cost_pct=13; eff 0:SCHOOL_DAMAGE v=40",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_ley_power_cd",
+      "name": "Ley Power: -10 sec cooldown",
+      "spec_id": 61,
+      "target_spell": 801096,
+      "affected_spells": [
+        801096
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -10000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "801096 Ley Power; cd=90000; catcd=90000; dur=15000; cost_pct=14; radius=[20.0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": "Ley damage child 803282 has ignore_caster_mods; only cooldown targeted."
+    },
+    {
+      "key": "spiritmage_eye_of_beholder_cd",
+      "name": "Eye of the Beholder: -20 sec cooldown",
+      "spec_id": 62,
+      "target_spell": 500121,
+      "affected_spells": [
+        500121
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -20000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 100,
+      "evidence": "500121 Eye of the Beholder; cd=180000; catcd=180000; dur=15000; cost_pct=38",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_silencing_rune_cd",
+      "name": "Silencing Rune: -10 sec cooldown",
+      "spec_id": 62,
+      "target_spell": 802631,
+      "affected_spells": [
+        802631
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        2048,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -10000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "802631 Silencing Rune; cd=90000; cast=1500; dur=1000; cost_pct=18; radius=[5.0]; mask_unique_bit=[0, 2048, 0] fam=38",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": "Mask bit shared with child 803745 (cd 120000)."
+    },
+    {
+      "key": "spiritmage_manuscription_dot",
+      "name": "Manuscription: +10% periodic damage",
+      "spec_id": 62,
+      "target_spell": 525302,
+      "affected_spells": [
+        525302
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DOT",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "525302 Manuscription; trigger child via 524952; dur=5000; radius=[8.0]; periodic; bonus=[0.0, 0.38, 0.0, 0.0]; eff 0:APPLY_AURA/PERIODIC_DAMAGE v=324",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "Periodic Arcane damage is on child 525302."
+    },
+    {
+      "key": "spiritmage_frigid_blast_dmg",
+      "name": "Frigid Blast: +8% damage",
+      "spec_id": 62,
+      "target_spell": 500118,
+      "affected_spells": [
+        500118
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        134217728,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "500118 Frigid Blast; catcd=15000; cast=1500; cost_pct=15; mask_unique_bit=[0, 134217728, 0] fam=38; eff 0:SCHOOL_DAMAGE v=40",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_frigid_blast_cast",
+      "name": "Frigid Blast: -0.15 sec cast time",
+      "spec_id": 62,
+      "target_spell": 500118,
+      "affected_spells": [
+        500118
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        134217728,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CASTING_TIME",
+          "type": "FLAT",
+          "value": -150
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "500118 Frigid Blast; catcd=15000; cast=1500; cost_pct=15; mask_unique_bit=[0, 134217728, 0] fam=38",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_thaumaturgy_dmg",
+      "name": "Thaumaturgy: +8% damage",
+      "spec_id": 62,
+      "target_spell": 804550,
+      "affected_spells": [
+        804550
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        2097152
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "804550 Thaumaturgy; cd=15000; catcd=15000; cost=25; cost_pct=8; mask_unique_bit=[0, 0, 2097152] fam=38; bonus=[0.41, 0.0, 0.1, 0.0]; eff 0:SCHOOL_DAMAGE v=67",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_thaumaturgy_cd",
+      "name": "Thaumaturgy: -2 sec cooldown",
+      "spec_id": 62,
+      "target_spell": 804550,
+      "affected_spells": [
+        804550
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        2097152
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -2000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "804550 Thaumaturgy; cd=15000; catcd=15000; cost=25; cost_pct=8; mask_unique_bit=[0, 0, 2097152] fam=38; bonus=[0.41, 0.0, 0.1, 0.0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_primordial_pulse_dmg",
+      "name": "Primordial Pulse: +10% damage",
+      "spec_id": 62,
+      "target_spell": 520111,
+      "affected_spells": [
+        520111
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "520111 Primordial Pulse; trigger child via 300578; radius=[8.0]; eff 0:SCHOOL_DAMAGE v=1",
+      "client_sensitive": false,
+      "confidence": "low",
+      "notes": "Tick damage child 520111 (SCHOOL_DAMAGE v=1 with value from parent TRIGGER_SPELL_WITH_VALUE v=23)."
+    },
+    {
+      "key": "spiritmage_glyphic_overload_cd",
+      "name": "Glyphic Overload: -6 sec cooldown",
+      "spec_id": 62,
+      "target_spell": 520099,
+      "affected_spells": [
+        520099
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -6000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "520099 Glyphic Overload; cd=45000; dur=15000; cost_pct=40",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_glyphic_ruin_dmg",
+      "name": "Glyphic Ruin: +8% damage",
+      "spec_id": 62,
+      "target_spell": 801179,
+      "affected_spells": [
+        801179
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 100,
+      "evidence": "801179 Glyphic Ruin; cast=2500; cost_pct=10; bonus=[1.0, 0.0, 0.0, 0.0]; eff 0:SCHOOL_DAMAGE v=82",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_glyphic_ruin_cast",
+      "name": "Glyphic Ruin: -0.25 sec cast time",
+      "spec_id": 62,
+      "target_spell": 801179,
+      "affected_spells": [
+        801179
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CASTING_TIME",
+          "type": "FLAT",
+          "value": -250
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "801179 Glyphic Ruin; cast=2500; cost_pct=10; bonus=[1.0, 0.0, 0.0, 0.0]",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_primordial_fury_cd",
+      "name": "Primordial Fury: -10 sec cooldown",
+      "spec_id": 63,
+      "target_spell": 806543,
+      "affected_spells": [
+        806543
+      ],
+      "targeting": "mask",
+      "mask": [
+        33554432,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -10000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "806543 Primordial Fury; cd=90000; dur=15000; cost_pct=14; mask_unique_bit=[33554432, 0, 0] fam=38",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_turbulence_dmg",
+      "name": "Turbulence: +10% damage",
+      "spec_id": 63,
+      "target_spell": 706526,
+      "affected_spells": [
+        706526
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "706526 Turbulence; trigger child via 705575; radius=[6.0]; eff 0:WEAPON_PERCENT_DAMAGE v=200",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "Periodic strikes are child 706526 (WEAPON_PERCENT_DAMAGE v=200)."
+    },
+    {
+      "key": "spiritmage_fracture_dmg",
+      "name": "Fracture: +8% damage",
+      "spec_id": 63,
+      "target_spell": 803018,
+      "affected_spells": [
+        803018
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "803018 Fracture; cost_pct=10; bonus=[0.0, 0.0, 1.5, 0.0]; eff 0:SCHOOL_DAMAGE v=921, 2:POWER_BURN v=25",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_genesis_cd",
+      "name": "Genesis: -20 sec cooldown",
+      "spec_id": 63,
+      "target_spell": 500501,
+      "affected_spells": [
+        500501
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -20000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 100,
+      "evidence": "500501 Genesis; cd=180000; dur=8000; cost_pct=19",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": "Damage child 500502 has ignore_caster_mods."
+    },
+    {
+      "key": "spiritmage_hoarfrost_dot",
+      "name": "Hoarfrost: +10% periodic damage",
+      "spec_id": 63,
+      "target_spell": 801104,
+      "affected_spells": [
+        801104
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DOT",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "801104 Hoarfrost; catcd=10000; dur=21000; cost_pct=10; radius=[8.0]; periodic; eff 1:APPLY_AURA/PERIODIC_DAMAGE v=13, 2:APPLY_AURA/MOD_CRIT_CHANCE_FOR_CASTER v=0",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_smolder_dmg",
+      "name": "Smolder: +8% damage",
+      "spec_id": 63,
+      "target_spell": 801087,
+      "affected_spells": [
+        801087
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "801087 Smolder; catcd=6000; cost_pct=6; eff 0:NORMALIZED_WEAPON_DMG v=19, 1:APPLY_AURA/MOD_DAMAGE_FROM_CASTER v=5, 2:WEAPON_PERCENT_DAMAGE v=140",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "spiritmage_hurricane_cd",
+      "name": "Hurricane: -4 sec cooldown",
+      "spec_id": 63,
+      "target_spell": 645435,
+      "affected_spells": [
+        645435
+      ],
+      "targeting": "mask",
+      "mask": [
+        256,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -4000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "645435 Hurricane; cd=30000; dur=2000; cost_pct=14; radius=[10.0]; mask_unique_bit=[256, 0, 0] fam=38",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "Strikes are PERIODIC_DUMMY (scripted damage spell not visible); only cooldown targeted."
+    }
+  ],
+  "rejected": [
+    {
+      "spell": 500270,
+      "reason": "summon (is_summon=self)"
+    }
+  ]
+}

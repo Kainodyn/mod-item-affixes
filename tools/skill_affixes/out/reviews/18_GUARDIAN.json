@@ -1,0 +1,858 @@
+{
+  "class_id": 18,
+  "class": "GUARDIAN",
+  "reviewed_at": "2026-11-23",
+  "affixes": [
+    {
+      "key": "guardian_reflective_shield_cd",
+      "name": "Reflective Shield: -2 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 300927,
+      "affected_spells": [
+        300927
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -2000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "300927 Reflective Shield cd=20000 dur=3000 cost=20 [eff0=APPLY_AURA/REFLECT_SPELLS v=100; eff1=APPLY_AURA/PROC_TRIGGER_SPELL]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "guardian_knights_calling_cd",
+      "name": "Knight's Calling: -15 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 504151,
+      "affected_spells": [
+        504151
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -15000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "504151 Knight's Calling cd=120000 dur=10000 periodic=True [eff0=APPLY_AURA/OBS_MOD_HEALTH v=15 per=5000; eff1=APPLY_AURA/PERIODIC_ENERGIZE v=15 per=5000]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "guardian_net_throw_cd",
+      "name": "Net Throw: -2 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 802304,
+      "affected_spells": [
+        802304
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        262144,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -2000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "802304 Net Throw cd=15000 catcd=15000 dur=4000 cost=15 range=15.0 mask_unique_bit=[0, 262144, 0] [eff0=APPLY_AURA/MOD_ROOT v=1; eff1=APPLY_AURA/MOD_CRIT_CHANCE_FOR_CASTER; eff2=APPLY_AURA/MOD_DODGE_PERCENT v=-998]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "guardian_counter_stance_cd",
+      "name": "Counter Stance: -20 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 802188,
+      "affected_spells": [
+        802188
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        1024
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -20000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "802188 Counter Stance cd=180000 catcd=180000 dur=15000 mask_unique_bit=[0, 0, 1024] [eff0=APPLY_AURA/MOD_PARRY_PERCENT v=100; eff1=APPLY_AURA/PROC_TRIGGER_DAMAGE v=275; eff2=APPLY_AURA/PROC_TRIGGER_SPELL]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "guardian_counter_stance_dmg",
+      "name": "Counter Stance: +10% retaliation damage",
+      "spec_id": 0,
+      "target_spell": 802188,
+      "affected_spells": [
+        802188
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "EFFECT2",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "802188 Counter Stance cd=180000 catcd=180000 dur=15000 mask_unique_bit=[0, 0, 1024] [eff0=APPLY_AURA/MOD_PARRY_PERCENT v=100; eff1=APPLY_AURA/PROC_TRIGGER_DAMAGE v=275; eff2=APPLY_AURA/PROC_TRIGGER_SPELL]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "EFFECT2 = eff1 PROC_TRIGGER_DAMAGE v=275."
+    },
+    {
+      "key": "guardian_shrug_it_off_cd",
+      "name": "Shrug It Off: -4 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 802198,
+      "affected_spells": [
+        802198
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -4000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "802198 Shrug It Off cd=30000 catcd=30000 dur=3000 cost=25 [eff0=DISPEL_MECHANIC v=10; eff1=DISPEL_MECHANIC v=10; eff2=APPLY_AURA/MECHANIC_IMMUNITY]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "guardian_brace_cd",
+      "name": "Brace: -20 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 800313,
+      "affected_spells": [
+        800313
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -20000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 100,
+      "evidence": "800313 Brace cd=180000 catcd=180000 dur=10000 [eff0=APPLY_AURA/MOD_DAMAGE_PERCENT_TAKEN v=-50; eff1=APPLY_AURA/MECHANIC_IMMUNITY v=100]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "guardian_brace_dur",
+      "name": "Brace: +1 sec duration",
+      "spec_id": 0,
+      "target_spell": 800313,
+      "affected_spells": [
+        800313
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 1000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 80,
+      "evidence": "800313 Brace cd=180000 catcd=180000 dur=10000 [eff0=APPLY_AURA/MOD_DAMAGE_PERCENT_TAKEN v=-50; eff1=APPLY_AURA/MECHANIC_IMMUNITY v=100]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "guardian_press_attack_cd",
+      "name": "Press the Attack: -10 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 801219,
+      "affected_spells": [
+        801219
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -10000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "801219 Press the Attack cd=90000 catcd=90000 dur=5000 range=5.0 [eff0=APPLY_AURA/MOD_BLOCK_PERCENT v=100; eff1=APPLY_AURA/ALLOW_ONLY_ABILITY v=1; eff2=APPLY_AURA/PERIODIC_TRIGGER_SPELL v=75 per=500]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "guardian_press_attack_dmg",
+      "name": "Press the Attack: +8% damage",
+      "spec_id": 0,
+      "target_spell": 704157,
+      "affected_spells": [
+        704157
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        512,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "704157 Press the Attack cost_pct=6 range=50000.0 mask_unique_bit=[0, 512, 0] via=801220 [eff0=NORMALIZED_WEAPON_DMG v=18; eff1=WEAPON_PERCENT_DAMAGE v=75; eff2=NORMALIZED_WEAPON_DMG v=1]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "Weapon damage done by depth-3 child 704157."
+    },
+    {
+      "key": "guardian_grand_entrance_cd",
+      "name": "Grand Entrance: -5 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 802870,
+      "affected_spells": [
+        802870
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        16384,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -5000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "802870 Grand Entrance cd=45000 dur=2000 cost=20 range=10.0 mask_unique_bit=[0, 16384, 0] [eff0=ASCENSION_TRIGGER_SPELL_DELAYED v=1601 per=1999; eff1=TRIGGER_SPELL v=1]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "guardian_grand_entrance_dmg",
+      "name": "Grand Entrance: +8% damage",
+      "spec_id": 0,
+      "target_spell": 802874,
+      "affected_spells": [
+        802874
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        67108864
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        },
+        {
+          "op": "DOT",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "802874 Grand Entrance dur=6000 range=50000.0 periodic=True mask_unique_bit=[0, 0, 67108864] via=802871 [eff0=WEAPON_PERCENT_DAMAGE v=400; eff1=LEAP_BACK v=150; eff2=APPLY_AURA/PERIODIC_DAMAGE v=203 per=2000]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "Impact + periodic damage both on child 802874."
+    },
+    {
+      "key": "guardian_glorious_arena_cd",
+      "name": "Glorious Arena: -8 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 300983,
+      "affected_spells": [
+        300983
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        2097152,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -8000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "300983 Glorious Arena cd=60000 dur=15000 cost=30 mask_unique_bit=[0, 2097152, 0] [eff0=PERSISTENT_AREA_AURA/PERIODIC_TRIGGER_SPELL per=1000]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "guardian_spear_throw_dmg",
+      "name": "Spear Throw: +8% damage",
+      "spec_id": 19,
+      "target_spell": 500463,
+      "affected_spells": [
+        500463
+      ],
+      "targeting": "mask",
+      "mask": [
+        262144,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "500463 Spear Throw cost=55 range=25.0 mask_unique_bit=[262144, 0, 0] [eff0=SCHOOL_DAMAGE v=86; eff1=TRIGGER_SPELL v=1]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "guardian_final_verdict_dmg",
+      "name": "Final Verdict: +8% damage",
+      "spec_id": 19,
+      "target_spell": 500258,
+      "affected_spells": [
+        500258
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "500258 Final Verdict cd=30000 cost=50 range=5.0 [eff0=SCHOOL_DAMAGE v=1195; eff1=TRIGGER_SPELL v=1]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "guardian_centurion_strike_dmg",
+      "name": "Centurion Strike: +8% damage",
+      "spec_id": 19,
+      "target_spell": 802286,
+      "affected_spells": [
+        802286
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        2048
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "802286 Centurion Strike cd=15000 catcd=15000 cost=25 range=5.0 mask_unique_bit=[0, 0, 2048] [eff0=NORMALIZED_WEAPON_DMG v=2; eff1=TRIGGER_SPELL; eff2=WEAPON_PERCENT_DAMAGE v=145]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "guardian_battle_drums_cd",
+      "name": "Battle Drums: -20 sec cooldown",
+      "spec_id": 20,
+      "target_spell": 803683,
+      "affected_spells": [
+        803683
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -20000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "803683 Battle Drums cd=180000 dur=60000 cost=50 [eff0=TRANS_DOOR v=1; eff1=TRANS_DOOR v=1; eff2=TRANS_DOOR v=1]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "guardian_heros_march_cd",
+      "name": "Hero's March: -15 sec cooldown",
+      "spec_id": 20,
+      "target_spell": 801774,
+      "affected_spells": [
+        801774
+      ],
+      "targeting": "mask",
+      "mask": [
+        4194304,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -15000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "801774 Hero's March cd=120000 dur=15000 mask_unique_bit=[4194304, 0, 0] [eff0=APPLY_AURA/PROC_TRIGGER_SPELL; eff1=APPLY_AURA/MOD_MELEE_HASTE v=15]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "guardian_sound_of_war_dmg",
+      "name": "Sound of War: +8% damage",
+      "spec_id": 20,
+      "target_spell": 572612,
+      "affected_spells": [
+        572612
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        65536
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "572612 Sound of War range=50000.0 mask_unique_bit=[0, 0, 65536] via=801774 [eff0=SCHOOL_DAMAGE v=71]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "Child of Hero's March and Song of Battle."
+    },
+    {
+      "key": "guardian_song_of_steel_eff",
+      "name": "Song of Steel: +10% attack and spell power bonus",
+      "spec_id": 20,
+      "target_spell": 704540,
+      "affected_spells": [
+        704540
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        256
+      ],
+      "effects": [
+        {
+          "op": "ALL_EFFECTS",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "704540 Song of Steel dur=15000 cost=30 mask_unique_bit=[0, 0, 256] [eff0=APPLY_AURA/ASCENSION_MOD_ATTACK_POWER_FLAT v=95; eff1=APPLY_AURA/ASCENSION_MOD_SPELL_POWER_FLAT v=95]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "guardian_inspiring_presence_cd",
+      "name": "Inspiring Presence: -8 sec cooldown",
+      "spec_id": 20,
+      "target_spell": 705352,
+      "affected_spells": [
+        705352
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -8000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "705352 Inspiring Presence cd=60000 cost=25 [eff0=TRIGGER_SPELL_WITH_VALUE]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "Exhaustion (60 s) on allies limits value."
+    },
+    {
+      "key": "guardian_champions_presence_dur",
+      "name": "Champion's Presence: +2 sec duration",
+      "spec_id": 20,
+      "target_spell": 520835,
+      "affected_spells": [
+        520835
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 2000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 100,
+      "evidence": "520835 Champion's Presence cd=300000 dur=20000 cost=30 [eff0=APPLY_AURA/MOD_CASTING_SPEED_NOT_STACK v=30; eff1=APPLY_AURA/MOD_MELEE_RANGED_HASTE v=30; eff2=TRIGGER_SPELL]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "CD not offered: Worn Out lasts 300 s = base CD."
+    },
+    {
+      "key": "guardian_song_of_battle_cd",
+      "name": "Song of Battle: -10 sec cooldown",
+      "spec_id": 20,
+      "target_spell": 803956,
+      "affected_spells": [
+        803956
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -10000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "803956 Song of Battle cd=90000 dur=15000 [eff0=APPLY_AURA/PERIODIC_TRIGGER_SPELL per=1500]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "guardian_harrowing_melody_dmg",
+      "name": "Harrowing Melody: +8% damage",
+      "spec_id": 20,
+      "target_spell": 572821,
+      "affected_spells": [
+        572821
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "572821 Harrowing Melody cd=25000 dur=10000 cost=30 [eff0=APPLY_AURA/ASCENSION_MOD_HEALING_RECEIVED_PCT v=-30; eff1=SCHOOL_DAMAGE v=191; eff2=TRIGGER_SPELL]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "guardian_voice_of_angel_cd",
+      "name": "Voice of an Angel: -30 sec cooldown",
+      "spec_id": 20,
+      "target_spell": 704420,
+      "affected_spells": [
+        704420
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -30000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "704420 Voice of an Angel cd=300000 [eff0=ASCENSION_FIRST; eff1=ASCENSION_FIRST; eff2=ASCENSION_FIRST]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "guardian_liberation_cd",
+      "name": "Liberation: -15 sec cooldown",
+      "spec_id": 20,
+      "target_spell": 803963,
+      "affected_spells": [
+        803963
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -15000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "803963 Liberation cd=120000 catcd=120000 dur=5000 cost=30 range=20.0 [eff0=APPLY_AURA/MECHANIC_IMMUNITY v=15; eff1=APPLY_AURA/MECHANIC_IMMUNITY v=17; eff2=APPLY_AURA/MECHANIC_IMMUNITY v=15]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "guardian_bastion_cd",
+      "name": "Bastion: -30 sec cooldown",
+      "spec_id": 21,
+      "target_spell": 802283,
+      "affected_spells": [
+        802283
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        1
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -30000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 100,
+      "evidence": "802283 Bastion cd=300000 dur=10000 cost=40 mask_unique_bit=[0, 0, 1] [eff0=APPLY_AREA_AURA_RAID/MOD_DAMAGE_PERCENT_TAKEN v=-40; eff1=TRIGGER_SPELL]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "guardian_heavy_blow_dmg",
+      "name": "Heavy Blow: +8% damage",
+      "spec_id": 21,
+      "target_spell": 803129,
+      "affected_spells": [
+        803129,
+        803131
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "803129 Heavy Blow cd=10000 catcd=10000 range=5.0 [eff0=SCHOOL_DAMAGE v=23; eff1=THREAT/DUMMY v=100; eff2=APPLY_AURA/PERIODIC_TRIGGER_SPELL per=1000]; 803131 Spiked Reinforcement range=15.0 mask_unique_bit=[0, 0, 33554432] via=803129 [eff0=SCHOOL_DAMAGE v=5; eff1=APPLY_AURA/MOD_DAMAGE_FROM_CASTER; eff2=THREAT v=25]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "Includes Spiked Reinforcement child 803131."
+    },
+    {
+      "key": "guardian_hold_the_line_cd",
+      "name": "Hold the Line: -15 sec cooldown",
+      "spec_id": 21,
+      "target_spell": 803830,
+      "affected_spells": [
+        803830
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -15000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "803830 Hold the Line cd=120000 dur=15000 [eff0=APPLY_AREA_AURA_RAID/MECHANIC_IMMUNITY v=1; eff1=APPLY_AREA_AURA_RAID/EFFECT_IMMUNITY v=1; eff2=APPLY_AREA_AURA_RAID/MECHANIC_IMMUNITY v=1]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "guardian_hammer_of_law_cd",
+      "name": "Hammer of the Law: -5 sec cooldown",
+      "spec_id": 21,
+      "target_spell": 704418,
+      "affected_spells": [
+        704418
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        8192
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -5000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "704418 Hammer of the Law catcd=40000 dur=3500 cost=40 range=5.0 mask_unique_bit=[0, 0, 8192] [eff0=SCHOOL_DAMAGE v=140; eff1=APPLY_AURA/MOD_SILENCE v=1; eff2=THREAT v=100]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "guardian_hammer_of_law_dmg",
+      "name": "Hammer of the Law: +8% damage",
+      "spec_id": 21,
+      "target_spell": 704418,
+      "affected_spells": [
+        704418
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        8192
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "704418 Hammer of the Law catcd=40000 dur=3500 cost=40 range=5.0 mask_unique_bit=[0, 0, 8192] [eff0=SCHOOL_DAMAGE v=140; eff1=APPLY_AURA/MOD_SILENCE v=1; eff2=THREAT v=100]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    }
+  ],
+  "rejected": [
+    {
+      "spell": 500263,
+      "reason": "summon (is_summon=self): Standard is a creature"
+    },
+    {
+      "spell": 500259,
+      "reason": "summon via child 800704 (is_summon=child)"
+    },
+    {
+      "spell": 500261,
+      "reason": "summon via child 500264 (is_summon=child)"
+    }
+  ]
+}

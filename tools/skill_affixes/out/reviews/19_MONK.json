@@ -1,0 +1,890 @@
+{
+  "class_id": 19,
+  "class": "MONK",
+  "reviewed_at": "2026-11-23",
+  "affixes": [
+    {
+      "key": "monk_libram_fervor_cd",
+      "name": "Libram of Fervor: -20 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 805423,
+      "affected_spells": [
+        805423
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -20000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "805423 Libram of Fervor cd=180000 dur=20000 [eff0=APPLY_AURA/MOD_ATTACK_POWER_OF_STAT_PERCENT v=30; eff1=APPLY_AURA/MOD_SPELL_DAMAGE_OF_STAT_PERCENT v=30; eff2=APPLY_AURA/MOD_SPELL_HEALING_OF_STAT_PERCENT v=25]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "monk_glory_cd",
+      "name": "Glory: -15 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 801481,
+      "affected_spells": [
+        801481
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -15000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "801481 Glory cd=120000 catcd=120000 dur=5000 [eff0=APPLY_AURA/MOD_MELEE_HASTE v=30; eff1=APPLY_AURA/PERIODIC_TRIGGER_SPELL v=1 per=5000]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "monk_blade_of_faith_dot",
+      "name": "Blade of Faith: +8% periodic damage",
+      "spec_id": 0,
+      "target_spell": 803872,
+      "affected_spells": [
+        803872
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        2048,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DOT",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "803872 Blade of Faith dur=30000 cost=35 range=5.0 periodic=True mask_unique_bit=[0, 2048, 0] [eff0=APPLY_AURA/PERIODIC_DAMAGE v=26 per=3000; eff1=APPLY_AURA/MOD_DAMAGE_FROM_CASTER]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "monk_blade_of_faith_crit",
+      "name": "Blade of Faith: +4% critical strike chance",
+      "spec_id": 0,
+      "target_spell": 803872,
+      "affected_spells": [
+        803872
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        2048,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 4
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "803872 Blade of Faith dur=30000 cost=35 range=5.0 periodic=True mask_unique_bit=[0, 2048, 0] [eff0=APPLY_AURA/PERIODIC_DAMAGE v=26 per=3000; eff1=APPLY_AURA/MOD_DAMAGE_FROM_CASTER]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "Description: \"This ability can critically strike.\""
+    },
+    {
+      "key": "monk_profound_enlightenment_cd",
+      "name": "Profound Enlightenment: -20 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 680953,
+      "affected_spells": [
+        680953
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -20000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "680953 Profound Enlightenment cd=180000 [eff0=ASCENSION_MODIFY_COOLDOWN_PCT v=50; eff1=ASCENSION_MODIFY_COOLDOWN_PCT v=50; eff2=ASCENSION_MODIFY_COOLDOWN_PCT v=50]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "monk_divine_force_cd",
+      "name": "Divine Force: -15 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 806153,
+      "affected_spells": [
+        806153
+      ],
+      "targeting": "mask",
+      "mask": [
+        262144,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -15000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "806153 Divine Force catcd=120000 cost=15 range=15.0 mask_unique_bit=[262144, 0, 0] [eff0=TRIGGER_SPELL v=1; eff1=JUMP_DEST; eff2=SCHOOL_DAMAGE v=20]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "monk_libram_tenacity_cd",
+      "name": "Libram of Tenacity: -20 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 801461,
+      "affected_spells": [
+        801461
+      ],
+      "targeting": "mask",
+      "mask": [
+        65536,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -20000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "801461 Libram of Tenacity cd=180000 dur=20000 mask_unique_bit=[65536, 0, 0] [eff0=HEAL_PCT; eff1=APPLY_AURA/MOD_DAMAGE_PERCENT_TAKEN v=-30; eff2=APPLY_AURA/MOD_DAMAGE_PERCENT_TAKEN v=-15]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "monk_silverhand_cd",
+      "name": "Silverhand Incantation: -10 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 801465,
+      "affected_spells": [
+        801465
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        536870912,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -10000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "801465 Silverhand Incantation cd=90000 catcd=90000 cost=30 range=40.0 mask_unique_bit=[0, 536870912, 0] [eff0=TRIGGER_MISSILE_SPELL_WITH_VALUE v=300; eff1=CHARGE v=1]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "monk_silverhand_dmg",
+      "name": "Silverhand Incantation: +8% damage and healing",
+      "spec_id": 0,
+      "target_spell": 801501,
+      "affected_spells": [
+        801501
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        536870912,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "801501 Silverhand Incantation cd=90000 catcd=90000 mask_unique_bit=[0, 536870912, 0] via=801465 [eff0=SCHOOL_DAMAGE v=1; eff1=HEAL v=1]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "Damage/heal on trigger child 801501 (basepoint passed by TRIGGER_MISSILE_SPELL_WITH_VALUE v=300); parent and child share mask bit."
+    },
+    {
+      "key": "monk_testament_fortitude_cd",
+      "name": "Testament of Fortitude: -20 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 500678,
+      "affected_spells": [
+        500678
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -20000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 100,
+      "evidence": "500678 Testament of Fortitude cd=180000 dur=15000 cost=15 [eff0=APPLY_AURA/PERIODIC_TRIGGER_SPELL_WITH_VALUE v=5 per=1000; eff1=APPLY_AURA/MOD_DAMAGE_PERCENT_TAKEN v=-50; eff2=TRIGGER_SPELL]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "monk_testament_fortitude_dur",
+      "name": "Testament of Fortitude: +1.5 sec duration",
+      "spec_id": 0,
+      "target_spell": 500678,
+      "affected_spells": [
+        500678
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 1500
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "500678 Testament of Fortitude cd=180000 dur=15000 cost=15 [eff0=APPLY_AURA/PERIODIC_TRIGGER_SPELL_WITH_VALUE v=5 per=1000; eff1=APPLY_AURA/MOD_DAMAGE_PERCENT_TAKEN v=-50; eff2=TRIGGER_SPELL]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "Extra healing tick (5% per 1 s) and longer -50% damage taken."
+    },
+    {
+      "key": "monk_testament_will_cd",
+      "name": "Testament of Will: -8 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 801455,
+      "affected_spells": [
+        801455
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -8000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "801455 Testament of Will cd=60000 dur=10000 cost=50 range=20.0 [eff0=APPLY_AURA/MECHANIC_IMMUNITY_MASK v=1; eff1=APPLY_AURA/MECHANIC_IMMUNITY v=1; eff2=TRIGGER_SPELL v=1]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "monk_interdict_cd",
+      "name": "Interdict: -15 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 560116,
+      "affected_spells": [
+        560116
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -15000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "560116 Interdict cd=120000 catcd=120000 dur=6000 range=20.0 [eff0=APPLY_AURA/MOD_SILENCE v=1; eff1=TRIGGER_SPELL v=1]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "monk_reckoning_dmg",
+      "name": "Reckoning: +8% damage",
+      "spec_id": 22,
+      "target_spell": 805421,
+      "affected_spells": [
+        805421
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        131072,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "805421 Reckoning range=5.0 mask_unique_bit=[0, 131072, 0] [eff0=SCHOOL_DAMAGE v=36]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "monk_eternal_blessing_cd",
+      "name": "Eternal Blessing: -8 sec cooldown",
+      "spec_id": 22,
+      "target_spell": 705300,
+      "affected_spells": [
+        705300
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        1048576
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -8000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "705300 Eternal Blessing cd=60000 dur=30000 mask_unique_bit=[0, 0, 1048576] [eff0=APPLY_AURA/MOD_DAMAGE_PERCENT_DONE v=15; eff1=APPLY_AURA/PROC_TRIGGER_SPELL; eff2=APPLY_AURA/MOD_HEALING_PCT v=15]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "monk_barrier_of_light_cd",
+      "name": "Barrier of Light: -10 sec cooldown",
+      "spec_id": 22,
+      "target_spell": 805417,
+      "affected_spells": [
+        805417
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        64
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -10000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "805417 Barrier of Light cd=90000 dur=15000 mask_unique_bit=[0, 0, 64] [eff0=APPLY_AREA_AURA_RAID/MOD_DAMAGE_PERCENT_TAKEN; eff1=APPLY_AREA_AURA_RAID/PERIODIC_TRIGGER_SPELL v=1 per=3000; eff2=APPLY_AREA_AURA_RAID/ASCENSION_MOD_HEALING_RECEIVED_PCT v=40]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "monk_tome_of_light_cd",
+      "name": "Tome of Light: -30 sec cooldown",
+      "spec_id": 22,
+      "target_spell": 805422,
+      "affected_spells": [
+        805422
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -30000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 100,
+      "evidence": "805422 Tome of Light cd=300000 dur=30000 [eff0=ASCENSION_FIRST; eff1=APPLY_AURA/SCHOOL_ABSORB v=1; eff2=ASCENSION_FIRST]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "monk_sacred_swing_dmg",
+      "name": "Sacred Swing: +8% damage",
+      "spec_id": 22,
+      "target_spell": 705293,
+      "affected_spells": [
+        705293
+      ],
+      "targeting": "mask",
+      "mask": [
+        67108864,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "705293 Sacred Swing cost=20 mask_unique_bit=[67108864, 0, 0] [eff0=NORMALIZED_WEAPON_DMG v=13; eff1=WEAPON_PERCENT_DAMAGE v=140; eff2=TRIGGER_SPELL]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "monk_absolution_cd",
+      "name": "Absolution: -15 sec cooldown",
+      "spec_id": 22,
+      "target_spell": 800424,
+      "affected_spells": [
+        800424
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -15000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "800424 Absolution cd=150000 dur=4000 [eff0=APPLY_AURA/MOD_TAUNT v=100]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "monk_norgannon_cd",
+      "name": "Norgannon's Wrath: -3 sec cooldown",
+      "spec_id": 23,
+      "target_spell": 524739,
+      "affected_spells": [
+        524739
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        524288
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -3000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "524739 Norgannon's Wrath cd=30000 catcd=30000 dur=1500 cost=30 range=40.0 mask_unique_bit=[0, 0, 524288] [eff0=LEAP_BACK v=201; eff1=ASCENSION_TRIGGER_SPELL_DELAYED v=1500; eff2=ASCENSION_TRIGGER_SPELL_DELAYED v=500]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "monk_norgannon_dmg",
+      "name": "Norgannon's Wrath: +8% damage",
+      "spec_id": 23,
+      "target_spell": 524740,
+      "affected_spells": [
+        524740
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        524288
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "524740 Norgannon's Wrath range=50000.0 mask_unique_bit=[0, 0, 524288] via=524739 [eff0=SCHOOL_DAMAGE v=1500; eff1=TRIGGER_SPELL]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "Damage on delayed child 524740 (shares mask bit with parent)."
+    },
+    {
+      "key": "monk_righteous_upheaval_dmg",
+      "name": "Righteous Upheaval: +8% damage",
+      "spec_id": 23,
+      "target_spell": 501562,
+      "affected_spells": [
+        501562
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        128,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "501562 Righteous Upheaval catcd=20000 cost=35 range=5.0 mask_unique_bit=[0, 128, 0] [eff0=SCHOOL_DAMAGE v=72]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "monk_libram_zeal_cd",
+      "name": "Libram of Zeal: -20 sec cooldown",
+      "spec_id": 23,
+      "target_spell": 801466,
+      "affected_spells": [
+        801466
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -20000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "801466 Libram of Zeal cd=180000 dur=20000 [eff0=APPLY_AURA/PROC_TRIGGER_SPELL v=-25; eff1=APPLY_AURA/MOD_MELEE_HASTE v=20]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "monk_vindication_dmg",
+      "name": "Vindication: +8% damage",
+      "spec_id": 23,
+      "target_spell": 801446,
+      "affected_spells": [
+        801446
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "801446 Vindication cost=35 range=5.0 [eff0=SCHOOL_DAMAGE v=40]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "monk_golganneth_cd",
+      "name": "Force of Golganneth: -15 sec cooldown",
+      "spec_id": 23,
+      "target_spell": 500694,
+      "affected_spells": [
+        500694
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        524288,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -15000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "500694 Force of Golganneth cd=120000 catcd=120000 dur=5000 cost=40 mask_unique_bit=[0, 524288, 0] [eff0=APPLY_AURA/ADD_PCT_MODIFIER v=-50; eff1=APPLY_AURA/DUMMY v=-100; eff2=APPLY_AURA/PERIODIC_TRIGGER_SPELL v=-50 per=1000]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "monk_zealotry_dmg",
+      "name": "Zealotry: +8% damage",
+      "spec_id": 23,
+      "target_spell": 801450,
+      "affected_spells": [
+        801450
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        256,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "801450 Zealotry range=5.0 mask_unique_bit=[0, 256, 0] via=803153 [eff0=NORMALIZED_WEAPON_DMG v=1; eff1=WEAPON_PERCENT_DAMAGE v=80]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "Zealotry child 801450 is also triggered by Oaths/Vindication (passive context 92108)."
+    },
+    {
+      "key": "monk_crusaders_brand_cd",
+      "name": "Crusader's Brand: -8 sec cooldown",
+      "spec_id": 24,
+      "target_spell": 300513,
+      "affected_spells": [
+        300513
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        1024
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -8000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "300513 Crusader's Brand cd=60000 dur=20000 cost=20 range=30.0 mask_unique_bit=[0, 0, 1024] [eff0=APPLY_AURA/PROC_TRIGGER_SPELL v=1; eff1=APPLY_AURA/MOD_STALKED; eff2=APPLY_AURA/MECHANIC_IMMUNITY v=1]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "monk_argent_blade_dmg",
+      "name": "Argent Blade: +8% damage",
+      "spec_id": 24,
+      "target_spell": 804929,
+      "affected_spells": [
+        804929,
+        801832
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "804929 Argent Blade cd=5000 catcd=5000 cost=50 range=5.0 mask_unique_bit=[0, 0, 32] [eff0=NORMALIZED_WEAPON_DMG v=20; eff1=WEAPON_PERCENT_DAMAGE v=215; eff2=TRIGGER_SPELL]; 801832 Scourgebane range=50000.0 mask_unique_bit=[0, 8388608, 0] via=804929 [eff0=SCHOOL_DAMAGE v=262; eff1=WEAPON_PERCENT_DAMAGE v=50]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "Includes Scourgebane child 801832."
+    },
+    {
+      "key": "monk_divine_charge_cd",
+      "name": "Divine Charge: -20 sec cooldown",
+      "spec_id": 24,
+      "target_spell": 527023,
+      "affected_spells": [
+        527023
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        8
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -20000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "527023 Divine Charge cd=180000 dur=15000 mask_unique_bit=[0, 0, 8] [eff0=APPLY_AURA/DUMMY v=1]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "monk_testament_strength_cd",
+      "name": "Testament of Strength: -20 sec cooldown",
+      "spec_id": 24,
+      "target_spell": 300514,
+      "affected_spells": [
+        300514
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -20000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "300514 Testament of Strength cd=180000 dur=60000 cost=40 [eff0=APPLY_AURA/ADD_PCT_MODIFIER v=-50; eff1=APPLY_AURA/ADD_PCT_MODIFIER v=25; eff2=APPLY_AURA/ABILITY_IGNORE_AURASTATE v=1]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "monk_righteous_tempest_dmg",
+      "name": "Righteous Tempest: +8% damage",
+      "spec_id": 24,
+      "target_spell": 805410,
+      "affected_spells": [
+        805410
+      ],
+      "targeting": "mask",
+      "mask": [
+        2,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "805410 Righteous Tempest range=15.0 mask_unique_bit=[2, 0, 0] via=805409 [eff0=NORMALIZED_WEAPON_DMG v=7; eff1=WEAPON_PERCENT_DAMAGE v=100]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "Weapon damage on periodic child 805410."
+    },
+    {
+      "key": "monk_righteous_tempest_cost",
+      "name": "Righteous Tempest: -10% Energy cost",
+      "spec_id": 24,
+      "target_spell": 805409,
+      "affected_spells": [
+        805409
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        8192,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COST",
+          "type": "PCT",
+          "value": -10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "805409 Righteous Tempest dur=3000 cost=30 mask_unique_bit=[0, 8192, 0] [eff0=APPLY_AURA/PERIODIC_TRIGGER_SPELL per=1000; eff1=APPLY_AURA/MOD_DAMAGE_PERCENT_TAKEN; eff2=APPLY_AURA/ALLOW_ONLY_ABILITY]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    }
+  ],
+  "rejected": [
+    {
+      "spell": 1397742,
+      "reason": "summon (is_summon=self): copies are creatures"
+    }
+  ]
+}

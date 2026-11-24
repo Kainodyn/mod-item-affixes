@@ -1,0 +1,1105 @@
+{
+ "class_id": 27,
+ "class": "SUNCLERIC",
+ "reviewed_at": "2026-11-23",
+ "affixes": [
+  {
+   "key": "sc_horusath_blast_dmg",
+   "name": "Horusath Blast: +8% damage",
+   "spec_id": 0,
+   "target_spell": 500154,
+   "affected_spells": [
+    500154
+   ],
+   "targeting": "spell_id",
+   "mask": null,
+   "effects": [
+    {
+     "op": "DAMAGE",
+     "type": "PCT",
+     "value": 8
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 4,
+   "weight": 100,
+   "evidence": "500154 Horusath Blast; cd=25000; catcd=25000; cost_pct=33; eff[0]=SCHOOL_DAMAGE v=73; mask_unique_bit=[0, 64, 0]",
+   "client_sensitive": false,
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "key": "sc_horusath_blast_cd",
+   "name": "Horusath Blast: -3 sec cooldown",
+   "spec_id": 0,
+   "target_spell": 500154,
+   "affected_spells": [
+    500154
+   ],
+   "targeting": "mask",
+   "mask": [
+    0,
+    64,
+    0
+   ],
+   "effects": [
+    {
+     "op": "COOLDOWN",
+     "type": "FLAT",
+     "value": -3000
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 100,
+   "evidence": "500154 Horusath Blast; cd=25000; catcd=25000; cost_pct=33; eff[0]=SCHOOL_DAMAGE v=73; mask_unique_bit=[0, 64, 0]",
+   "client_sensitive": true,
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "key": "sc_resplendence_cd",
+   "name": "Solar Invocation: Resplendence: -4 sec cooldown",
+   "spec_id": 0,
+   "target_spell": 806159,
+   "affected_spells": [
+    806159
+   ],
+   "targeting": "hook_cd",
+   "mask": null,
+   "effects": [
+    {
+     "op": "COOLDOWN",
+     "type": "FLAT",
+     "value": -4000
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 100,
+   "evidence": "806159 Solar Invocation: Resplendence; cd=30000; catcd=30000; dur=8000; cost_pct=19; no mask_unique_bit -> hook_cd",
+   "client_sensitive": true,
+   "confidence": "medium",
+   "notes": "Shares a cooldown with other Solar Invocation spells; hook_cd only shortens this spell after its own cast."
+  },
+  {
+   "key": "sc_revelation_cd",
+   "name": "Solar Invocation: Revelation: -4 sec cooldown",
+   "spec_id": 0,
+   "target_spell": 503651,
+   "affected_spells": [
+    503651
+   ],
+   "targeting": "hook_cd",
+   "mask": null,
+   "effects": [
+    {
+     "op": "COOLDOWN",
+     "type": "FLAT",
+     "value": -4000
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 70,
+   "evidence": "503651 Solar Invocation: Revelation; cd=30000; catcd=30000; cost_pct=14; no mask_unique_bit -> hook_cd",
+   "client_sensitive": true,
+   "confidence": "medium",
+   "notes": "Shares a cooldown with other Solar Invocation spells; hook_cd only shortens this spell after its own cast."
+  },
+  {
+   "key": "sc_circle_of_valor_heal",
+   "name": "Circle of Valor: +8% healing",
+   "spec_id": 0,
+   "target_spell": 520648,
+   "affected_spells": [
+    520648
+   ],
+   "targeting": "spell_id",
+   "mask": null,
+   "effects": [
+    {
+     "op": "DAMAGE",
+     "type": "PCT",
+     "value": 8
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 100,
+   "evidence": "520648 Circle of Valor; trigger child via 520647 of 520647; eff[0]=HEAL v=50",
+   "client_sensitive": false,
+   "confidence": "high",
+   "notes": "Heal ticks come from trigger child 520648 (PERIODIC_TRIGGER_SPELL from 520647)."
+  },
+  {
+   "key": "sc_circle_of_valor_cd",
+   "name": "Circle of Valor: -20 sec cooldown",
+   "spec_id": 0,
+   "target_spell": 520647,
+   "affected_spells": [
+    520647
+   ],
+   "targeting": "hook_cd",
+   "mask": null,
+   "effects": [
+    {
+     "op": "COOLDOWN",
+     "type": "FLAT",
+     "value": -20000
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 80,
+   "evidence": "520647 Circle of Valor; cd=180000; catcd=180000; dur=15000; cost=25; cost_pct=20; no mask_unique_bit -> hook_cd",
+   "client_sensitive": true,
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "key": "sc_sun_stride_cd",
+   "name": "Sun Stride: -3 sec cooldown",
+   "spec_id": 0,
+   "target_spell": 680700,
+   "affected_spells": [
+    680700
+   ],
+   "targeting": "mask",
+   "mask": [
+    67108864,
+    0,
+    0
+   ],
+   "effects": [
+    {
+     "op": "COOLDOWN",
+     "type": "FLAT",
+     "value": -3000
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 60,
+   "evidence": "680700 Sun Stride; cd=24000; dur=2000; cost_pct=12; mask_unique_bit=[67108864, 0, 0]",
+   "client_sensitive": true,
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "key": "sc_solar_prayer_cd",
+   "name": "Solar Prayer: -10 sec cooldown",
+   "spec_id": 0,
+   "target_spell": 806479,
+   "affected_spells": [
+    806479
+   ],
+   "targeting": "mask",
+   "mask": [
+    0,
+    0,
+    33554432
+   ],
+   "effects": [
+    {
+     "op": "COOLDOWN",
+     "type": "FLAT",
+     "value": -10000
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 100,
+   "evidence": "806479 Solar Prayer; cd=90000; dur=-1; cost_pct=20; eff[0]=HEAL_PCT v=25; eff[1]=HEAL v=100; mask_unique_bit=[0, 0, 33554432]",
+   "client_sensitive": true,
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "key": "sc_glare_cd",
+   "name": "Glare: -15 sec cooldown",
+   "spec_id": 0,
+   "target_spell": 805583,
+   "affected_spells": [
+    805583
+   ],
+   "targeting": "mask",
+   "mask": [
+    0,
+    8388608,
+    0
+   ],
+   "effects": [
+    {
+     "op": "COOLDOWN",
+     "type": "FLAT",
+     "value": -15000
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 100,
+   "evidence": "805583 Glare; catcd=120000; cast=1500; dur=5000; cost_pct=20; eff[1]=SCHOOL_DAMAGE v=20; mask_unique_bit=[0, 8388608, 0]",
+   "client_sensitive": true,
+   "confidence": "high",
+   "notes": "Uses CategoryRecoveryTime 120000."
+  },
+  {
+   "key": "sc_radiance_cd",
+   "name": "Radiance: -15 sec cooldown",
+   "spec_id": 0,
+   "target_spell": 800054,
+   "affected_spells": [
+    800054
+   ],
+   "targeting": "mask",
+   "mask": [
+    0,
+    65536,
+    0
+   ],
+   "effects": [
+    {
+     "op": "COOLDOWN",
+     "type": "FLAT",
+     "value": -15000
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 100,
+   "evidence": "800054 Radiance; cd=120000; catcd=120000; dur=10000; cost_pct=30; mask_unique_bit=[0, 65536, 0]",
+   "client_sensitive": true,
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "key": "sc_radiance_dmg",
+   "name": "Radiance: +8% damage",
+   "spec_id": 0,
+   "target_spell": 800038,
+   "affected_spells": [
+    800038
+   ],
+   "targeting": "spell_id",
+   "mask": null,
+   "effects": [
+    {
+     "op": "DAMAGE",
+     "type": "PCT",
+     "value": 8
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 100,
+   "evidence": "800038 Radiance; trigger child via 800054 of 800054; cost_pct=17; eff[0]=HEAL v=16; eff[1]=SCHOOL_DAMAGE v=17; mask_unique_bit=[2147483648, 0, 0]",
+   "client_sensitive": false,
+   "confidence": "high",
+   "notes": "Damage+heal pulses are trigger child 800038; SPELLMOD_DAMAGE also scales its HEAL effect."
+  },
+  {
+   "key": "sc_conquest_cd",
+   "name": "Solar Invocation: Conquest: -4 sec cooldown",
+   "spec_id": 0,
+   "target_spell": 800764,
+   "affected_spells": [
+    800764
+   ],
+   "targeting": "mask",
+   "mask": [
+    0,
+    0,
+    524288
+   ],
+   "effects": [
+    {
+     "op": "COOLDOWN",
+     "type": "FLAT",
+     "value": -4000
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 80,
+   "evidence": "800764 Solar Invocation: Conquest; cd=30000; catcd=30000; dur=8000; cost_pct=5; mask_unique_bit=[0, 0, 524288]",
+   "client_sensitive": true,
+   "confidence": "high",
+   "notes": "Shares a cooldown with other Solar Invocation spells; hook_cd only shortens this spell after its own cast."
+  },
+  {
+   "key": "sc_rapture_dmg",
+   "name": "Rapture: +8% damage",
+   "spec_id": 46,
+   "target_spell": 806477,
+   "affected_spells": [
+    806477
+   ],
+   "targeting": "spell_id",
+   "mask": null,
+   "effects": [
+    {
+     "op": "DAMAGE",
+     "type": "PCT",
+     "value": 8
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 100,
+   "evidence": "806477 Rapture; cd=20000; catcd=20000; cast=3000; cost_pct=20; eff[0]=SCHOOL_DAMAGE v=111; mask_unique_bit=[0, 524288, 0]",
+   "client_sensitive": false,
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "key": "sc_rapture_cast",
+   "name": "Rapture: -0.25 sec cast time",
+   "spec_id": 46,
+   "target_spell": 806477,
+   "affected_spells": [
+    806477
+   ],
+   "targeting": "mask",
+   "mask": [
+    0,
+    524288,
+    0
+   ],
+   "effects": [
+    {
+     "op": "CASTING_TIME",
+     "type": "FLAT",
+     "value": -250
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 100,
+   "evidence": "806477 Rapture; cd=20000; catcd=20000; cast=3000; cost_pct=20; eff[0]=SCHOOL_DAMAGE v=111; mask_unique_bit=[0, 524288, 0]",
+   "client_sensitive": true,
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "key": "sc_sun_down_dmg",
+   "name": "Sun Down: +8% damage",
+   "spec_id": 46,
+   "target_spell": 572753,
+   "affected_spells": [
+    572753
+   ],
+   "targeting": "spell_id",
+   "mask": null,
+   "effects": [
+    {
+     "op": "DAMAGE",
+     "type": "PCT",
+     "value": 8
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 4,
+   "weight": 100,
+   "evidence": "572753 Sun Down; trigger child via 572752 of 572752; cost_pct=9; eff[0]=SCHOOL_DAMAGE v=1780; mask_unique_bit=[0, 0, 64]",
+   "client_sensitive": false,
+   "confidence": "high",
+   "notes": "Impact damage is trigger child 572753."
+  },
+  {
+   "key": "sc_solar_concord_cd",
+   "name": "Solar Concord: -4 sec cooldown",
+   "spec_id": 46,
+   "target_spell": 301266,
+   "affected_spells": [
+    301266
+   ],
+   "targeting": "hook_cd",
+   "mask": null,
+   "effects": [
+    {
+     "op": "COOLDOWN",
+     "type": "FLAT",
+     "value": -4000
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 80,
+   "evidence": "301266 Solar Concord; cd=30000; dur=15000; cost_pct=15; no mask_unique_bit -> hook_cd",
+   "client_sensitive": true,
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "key": "sc_sunwell_cd",
+   "name": "Sunwell: -20 sec cooldown",
+   "spec_id": 46,
+   "target_spell": 560123,
+   "affected_spells": [
+    560123
+   ],
+   "targeting": "hook_cd",
+   "mask": null,
+   "effects": [
+    {
+     "op": "COOLDOWN",
+     "type": "FLAT",
+     "value": -20000
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 50,
+   "evidence": "560123 Sunwell; cd=180000; dur=30000; cost_pct=12; no mask_unique_bit -> hook_cd",
+   "client_sensitive": true,
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "key": "sc_radiant_flame_dmg",
+   "name": "Radiant Flame: +8% damage",
+   "spec_id": 46,
+   "target_spell": 807058,
+   "affected_spells": [
+    807058
+   ],
+   "targeting": "spell_id",
+   "mask": null,
+   "effects": [
+    {
+     "op": "DAMAGE",
+     "type": "PCT",
+     "value": 8
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 100,
+   "evidence": "807058 Radiant Flame; trigger child via 806060 of 806060; eff[0]=SCHOOL_DAMAGE v=1",
+   "client_sensitive": false,
+   "confidence": "medium",
+   "notes": "Spheres are trigger child 807058 (PERIODIC_TRIGGER_SPELL_WITH_VALUE, value from parent); mod applied in child damage bonus."
+  },
+  {
+   "key": "sc_dawnsear_dmg",
+   "name": "Dawnsear: +6% damage",
+   "spec_id": 46,
+   "target_spell": 500146,
+   "affected_spells": [
+    500146
+   ],
+   "targeting": "spell_id",
+   "mask": null,
+   "effects": [
+    {
+     "op": "DAMAGE",
+     "type": "PCT",
+     "value": 6
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 100,
+   "evidence": "500146 Dawnsear; cast=3500; cost_pct=15; eff[0]=SCHOOL_DAMAGE v=88",
+   "client_sensitive": false,
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "key": "sc_dawnsear_cast",
+   "name": "Dawnsear: -0.25 sec cast time",
+   "spec_id": 46,
+   "target_spell": 500146,
+   "affected_spells": [
+    500146
+   ],
+   "targeting": "spell_id",
+   "mask": null,
+   "effects": [
+    {
+     "op": "CASTING_TIME",
+     "type": "FLAT",
+     "value": -250
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 100,
+   "evidence": "500146 Dawnsear; cast=3500; cost_pct=15; eff[0]=SCHOOL_DAMAGE v=88",
+   "client_sensitive": true,
+   "confidence": "medium",
+   "notes": "No mask_unique_bit; spell_id cast-time mod (server cast bar)."
+  },
+  {
+   "key": "sc_justice_dmg",
+   "name": "Justice: +8% damage",
+   "spec_id": 47,
+   "target_spell": 524857,
+   "affected_spells": [
+    524857,
+    572040
+   ],
+   "targeting": "spell_id",
+   "mask": null,
+   "effects": [
+    {
+     "op": "DAMAGE",
+     "type": "PCT",
+     "value": 8
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 100,
+   "evidence": "524857 Justice; trigger child via 520359 of 520359; eff[0]=WEAPON_PERCENT_DAMAGE v=50; eff[1]=SCHOOL_DAMAGE v=6; mask_unique_bit=[0, 0, 134217728]; 572040 Justice; trigger child via 520359 of 520359; eff[0]=WEAPON_PERCENT_DAMAGE v=50; eff[1]=SCHOOL_DAMAGE v=4; mask_unique_bit=[0, 0, 134217728]",
+   "client_sensitive": false,
+   "confidence": "high",
+   "notes": "Main-hand/off-hand strikes are trigger children 524857/572040."
+  },
+  {
+   "key": "sc_sunstorm_cd",
+   "name": "Sunstorm: -15 sec cooldown",
+   "spec_id": 47,
+   "target_spell": 760379,
+   "affected_spells": [
+    760379
+   ],
+   "targeting": "hook_cd",
+   "mask": null,
+   "effects": [
+    {
+     "op": "COOLDOWN",
+     "type": "FLAT",
+     "value": -15000
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 100,
+   "evidence": "760379 Sunstorm; cd=120000; dur=6000; cost_pct=35; no mask_unique_bit -> hook_cd",
+   "client_sensitive": true,
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "key": "sc_divine_retribution_cd",
+   "name": "Divine Retribution: -8 sec cooldown",
+   "spec_id": 47,
+   "target_spell": 680624,
+   "affected_spells": [
+    680624
+   ],
+   "targeting": "mask",
+   "mask": [
+    0,
+    4,
+    0
+   ],
+   "effects": [
+    {
+     "op": "COOLDOWN",
+     "type": "FLAT",
+     "value": -8000
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 100,
+   "evidence": "680624 Divine Retribution; cd=60000; dur=8000; cost_pct=22; mask_unique_bit=[0, 4, 0]",
+   "client_sensitive": true,
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "key": "sc_champion_sun_cd",
+   "name": "Champion of the Sun: -15 sec cooldown",
+   "spec_id": 47,
+   "target_spell": 800612,
+   "affected_spells": [
+    800612
+   ],
+   "targeting": "hook_cd",
+   "mask": null,
+   "effects": [
+    {
+     "op": "COOLDOWN",
+     "type": "FLAT",
+     "value": -15000
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 100,
+   "evidence": "800612 Champion of the Sun; cd=120000; catcd=120000; dur=25000; cost_pct=25; no mask_unique_bit -> hook_cd",
+   "client_sensitive": true,
+   "confidence": "medium",
+   "notes": "Proc child 807853 has ignore_caster_mods, so only cooldown is useful."
+  },
+  {
+   "key": "sc_glorious_execution_dmg",
+   "name": "Glorious Execution: +8% damage",
+   "spec_id": 47,
+   "target_spell": 800691,
+   "affected_spells": [
+    800691,
+    802566
+   ],
+   "targeting": "spell_id",
+   "mask": null,
+   "effects": [
+    {
+     "op": "DAMAGE",
+     "type": "PCT",
+     "value": 8
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 100,
+   "evidence": "800691 Glorious Execution; trigger child via 800626 of 800626; eff[0]=NORMALIZED_WEAPON_DMG v=1; mask_unique_bit=[0, 4096, 0]; 802566 Glorious Execution; trigger child via 800626 of 800626; eff[0]=NORMALIZED_WEAPON_DMG v=1; mask_unique_bit=[0, 4096, 0]",
+   "client_sensitive": false,
+   "confidence": "high",
+   "notes": "Weapon strikes are trigger children 800691/802566."
+  },
+  {
+   "key": "sc_valkyrs_calling_cd",
+   "name": "Valkyr's Calling: -20 sec cooldown",
+   "spec_id": 47,
+   "target_spell": 520024,
+   "affected_spells": [
+    520024
+   ],
+   "targeting": "mask",
+   "mask": [
+    0,
+    0,
+    2097152
+   ],
+   "effects": [
+    {
+     "op": "COOLDOWN",
+     "type": "FLAT",
+     "value": -20000
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 100,
+   "evidence": "520024 Valkyr's Calling; cd=180000; catcd=180000; dur=2000; cost=20; cost_pct=30; mask_unique_bit=[0, 0, 2097152]",
+   "client_sensitive": true,
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "key": "sc_pendant_sun_cd",
+   "name": "Pendant of the Sun: -8 sec cooldown",
+   "spec_id": 47,
+   "target_spell": 680630,
+   "affected_spells": [
+    680630
+   ],
+   "targeting": "hook_cd",
+   "mask": null,
+   "effects": [
+    {
+     "op": "COOLDOWN",
+     "type": "FLAT",
+     "value": -8000
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 60,
+   "evidence": "680630 Pendant of the Sun; cd=60000; catcd=60000; cost_pct=12; no mask_unique_bit -> hook_cd",
+   "client_sensitive": true,
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "key": "sc_sunslam_dmg",
+   "name": "Sunslam: +8% damage",
+   "spec_id": 47,
+   "target_spell": 805639,
+   "affected_spells": [
+    805639,
+    807447
+   ],
+   "targeting": "spell_id",
+   "mask": null,
+   "effects": [
+    {
+     "op": "DAMAGE",
+     "type": "PCT",
+     "value": 8
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 100,
+   "evidence": "805639 Sunslam; trigger child via 805629 of 805629; eff[0]=SCHOOL_DAMAGE v=1; mask_unique_bit=[0, 2097152, 0]; 807447 Sunslam; trigger child via 805629 of 805629; eff[0]=WEAPON_PERCENT_DAMAGE v=1; mask_unique_bit=[0, 2097152, 0]",
+   "client_sensitive": false,
+   "confidence": "high",
+   "notes": "Ticks are trigger children 805639 (holy) and 807447 (weapon)."
+  },
+  {
+   "key": "sc_calm_cd",
+   "name": "Calm: -10 sec cooldown",
+   "spec_id": 48,
+   "target_spell": 804057,
+   "affected_spells": [
+    804057
+   ],
+   "targeting": "hook_cd",
+   "mask": null,
+   "effects": [
+    {
+     "op": "COOLDOWN",
+     "type": "FLAT",
+     "value": -10000
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 50,
+   "evidence": "804057 Calm; cd=90000; catcd=90000; dur=6000; cost_pct=18; no mask_unique_bit -> hook_cd",
+   "client_sensitive": true,
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "key": "sc_dawnbreak_dmg",
+   "name": "Dawnbreak: +8% damage",
+   "spec_id": 48,
+   "target_spell": 800654,
+   "affected_spells": [
+    800654
+   ],
+   "targeting": "spell_id",
+   "mask": null,
+   "effects": [
+    {
+     "op": "DAMAGE",
+     "type": "PCT",
+     "value": 8
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 100,
+   "evidence": "800654 Dawnbreak; catcd=6000; cost_pct=5; eff[0]=SCHOOL_DAMAGE v=23; mask_unique_bit=[0, 1073741824, 0]",
+   "client_sensitive": false,
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "key": "sc_solar_nova_dmg",
+   "name": "Solar Nova: +8% damage",
+   "spec_id": 48,
+   "target_spell": 680621,
+   "affected_spells": [
+    680621
+   ],
+   "targeting": "spell_id",
+   "mask": null,
+   "effects": [
+    {
+     "op": "DAMAGE",
+     "type": "PCT",
+     "value": 8
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 100,
+   "evidence": "680621 Solar Nova; cd=20000; catcd=20000; cost_pct=25; eff[0]=SCHOOL_DAMAGE v=93",
+   "client_sensitive": false,
+   "confidence": "high",
+   "notes": "Guaranteed crit per desc, so no crit affix."
+  },
+  {
+   "key": "sc_scroll_hope_cd",
+   "name": "Scroll of Hope: -30 sec cooldown",
+   "spec_id": 48,
+   "target_spell": 680646,
+   "affected_spells": [
+    680646
+   ],
+   "targeting": "hook_cd",
+   "mask": null,
+   "effects": [
+    {
+     "op": "COOLDOWN",
+     "type": "FLAT",
+     "value": -30000
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 80,
+   "evidence": "680646 Scroll of Hope; cd=300000; dur=10000; cost_pct=40; no mask_unique_bit -> hook_cd",
+   "client_sensitive": true,
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "key": "sc_hammer_kings_dmg",
+   "name": "Hammer of Kings: +8% damage",
+   "spec_id": 48,
+   "target_spell": 804752,
+   "affected_spells": [
+    804752
+   ],
+   "targeting": "spell_id",
+   "mask": null,
+   "effects": [
+    {
+     "op": "DAMAGE",
+     "type": "PCT",
+     "value": 8
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 100,
+   "evidence": "804752 Hammer of Kings; trigger child via 804751 of 804751; eff[0]=SCHOOL_DAMAGE v=5",
+   "client_sensitive": false,
+   "confidence": "high",
+   "notes": "Hammer pulses are trigger child 804752 (PERIODIC_TRIGGER_SPELL from 804751)."
+  },
+  {
+   "key": "sc_justicars_wrath_dmg",
+   "name": "Justicar's Wrath: +8% damage",
+   "spec_id": 48,
+   "target_spell": 806980,
+   "affected_spells": [
+    806980
+   ],
+   "targeting": "spell_id",
+   "mask": null,
+   "effects": [
+    {
+     "op": "DAMAGE",
+     "type": "PCT",
+     "value": 8
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 100,
+   "evidence": "806980 Justicar's Wrath; catcd=6000; cost_pct=6; eff[0]=SCHOOL_DAMAGE v=508; mask_unique_bit=[1048576, 0, 0]",
+   "client_sensitive": false,
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "key": "sc_blessing_retribution_cd",
+   "name": "Blessing of Retribution: -10 sec cooldown",
+   "spec_id": 98,
+   "target_spell": 804254,
+   "affected_spells": [
+    804254
+   ],
+   "targeting": "hook_cd",
+   "mask": null,
+   "effects": [
+    {
+     "op": "COOLDOWN",
+     "type": "FLAT",
+     "value": -10000
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 50,
+   "evidence": "804254 Blessing of Retribution; cd=90000; catcd=90000; cost=60; cost_pct=17; no mask_unique_bit -> hook_cd",
+   "client_sensitive": true,
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "key": "sc_blessing_purity_cd",
+   "name": "Blessing of Purity: -30 sec cooldown",
+   "spec_id": 98,
+   "target_spell": 804253,
+   "affected_spells": [
+    804253
+   ],
+   "targeting": "hook_cd",
+   "mask": null,
+   "effects": [
+    {
+     "op": "COOLDOWN",
+     "type": "FLAT",
+     "value": -30000
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 100,
+   "evidence": "804253 Blessing of Purity; cd=300000; catcd=300000; cost_pct=45; no mask_unique_bit -> hook_cd",
+   "client_sensitive": true,
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "key": "sc_blessing_triumph_cd",
+   "name": "Blessing of Triumph: -20 sec cooldown",
+   "spec_id": 98,
+   "target_spell": 804250,
+   "affected_spells": [
+    804250
+   ],
+   "targeting": "hook_cd",
+   "mask": null,
+   "effects": [
+    {
+     "op": "COOLDOWN",
+     "type": "FLAT",
+     "value": -20000
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 100,
+   "evidence": "804250 Blessing of Triumph; cd=180000; cost_pct=13; no mask_unique_bit -> hook_cd",
+   "client_sensitive": true,
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "key": "sc_blessing_absolution_cd",
+   "name": "Blessing of Absolution: -2 sec cooldown",
+   "spec_id": 98,
+   "target_spell": 804249,
+   "affected_spells": [
+    804249
+   ],
+   "targeting": "mask",
+   "mask": [
+    65536,
+    0,
+    0
+   ],
+   "effects": [
+    {
+     "op": "COOLDOWN",
+     "type": "FLAT",
+     "value": -2000
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 70,
+   "evidence": "804249 Blessing of Absolution; cd=15000; catcd=15000; cost_pct=18; mask_unique_bit=[65536, 0, 0]",
+   "client_sensitive": true,
+   "confidence": "high",
+   "notes": "Damage is force-cast by the ally (804252), so caster mods do not apply; cooldown only."
+  },
+  {
+   "key": "sc_daybreak_heal",
+   "name": "Daybreak: +8% healing",
+   "spec_id": 98,
+   "target_spell": 500147,
+   "affected_spells": [
+    500147
+   ],
+   "targeting": "spell_id",
+   "mask": null,
+   "effects": [
+    {
+     "op": "DAMAGE",
+     "type": "PCT",
+     "value": 8
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 100,
+   "evidence": "500147 Daybreak; cost_pct=26; eff[0]=HEAL v=186; mask_unique_bit=[0, 536870912, 0]",
+   "client_sensitive": false,
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "key": "sc_solar_invigoration_cd",
+   "name": "Solar Invigoration: -10 sec cooldown",
+   "spec_id": 98,
+   "target_spell": 806123,
+   "affected_spells": [
+    806123
+   ],
+   "targeting": "mask",
+   "mask": [
+    0,
+    0,
+    32
+   ],
+   "effects": [
+    {
+     "op": "COOLDOWN",
+     "type": "FLAT",
+     "value": -10000
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 100,
+   "evidence": "806123 Solar Invigoration; cd=90000; dur=15000; cost_pct=20; mask_unique_bit=[0, 0, 32]",
+   "client_sensitive": true,
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "key": "sc_new_day_cd",
+   "name": "New Day: -60 sec cooldown",
+   "spec_id": 0,
+   "target_spell": 800600,
+   "affected_spells": [
+    800600
+   ],
+   "targeting": "hook_cd",
+   "mask": null,
+   "effects": [
+    {
+     "op": "COOLDOWN",
+     "type": "FLAT",
+     "value": -60000
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 80,
+   "evidence": "800600 New Day; cd=480000; cost_pct=17; no mask_unique_bit -> hook_cd",
+   "client_sensitive": true,
+   "confidence": "medium",
+   "notes": ""
+  }
+ ],
+ "rejected": [
+  {
+   "spell": 802161,
+   "reason": "summon (is_summon=self, Sun Gate object)"
+  },
+  {
+   "spell": 807749,
+   "reason": "Vow stance aura (dur -1), no cooldown or direct numbers to modify"
+  },
+  {
+   "spell": 560095,
+   "reason": "charge-based (2 charges, scripted recharge), no cooldown field; block-value buff only"
+  },
+  {
+   "spell": 805301,
+   "reason": "form toggle (dur -1), 10 s cd irrelevant; no meaningful op"
+  },
+  {
+   "spell": 804247,
+   "reason": "5 min maintenance buff on one ally; heal child 805360 is HEAL_PCT with v=0 (src sql); no meaningful op"
+  },
+  {
+   "spell": 504848,
+   "reason": "dispel utility (abolish disease), no numbers to modify"
+  }
+ ]
+}

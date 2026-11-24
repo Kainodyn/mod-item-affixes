@@ -1,0 +1,892 @@
+{
+  "class_id": 14,
+  "class": "DEMONHUNTER",
+  "reviewed_at": "2026-11-23",
+  "affixes": [
+    {
+      "key": "dh_whispers_of_the_pit_cooldown",
+      "name": "Whispers of the Pit: -8 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 805235,
+      "affected_spells": [
+        805235
+      ],
+      "targeting": "mask",
+      "mask": [
+        2,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -8000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "805235 Whispers of the Pit; cd=60000; dur=8000; mask_unique_bit=[2, 0, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "dh_reckoning_cooldown",
+      "name": "Reckoning: -15 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 802058,
+      "affected_spells": [
+        802058
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -15000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 100,
+      "evidence": "802058 Reckoning; cd=120000; dur=10000; mask_unique_bit=None",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "dh_manaburn_cooldown",
+      "name": "Manaburn: -3 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 805248,
+      "affected_spells": [
+        805248
+      ],
+      "targeting": "mask",
+      "mask": [
+        16777216,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -3000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "805248 Manaburn; cd=20000; mask_unique_bit=[16777216, 0, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "POWER_BURN damage is not modded by SPELLMOD_DAMAGE, so only CD"
+    },
+    {
+      "key": "dh_annihilation_cooldown",
+      "name": "Annihilation: -8 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 803904,
+      "affected_spells": [
+        803904
+      ],
+      "targeting": "mask",
+      "mask": [
+        536870912,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -8000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "803904 Annihilation; cd=60000; catcd=60000; dur=12000; mask_unique_bit=[536870912, 0, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "dh_illidan_s_guile_cooldown",
+      "name": "Illidan's Guile: -30 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 806109,
+      "affected_spells": [
+        806109
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        32768,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -30000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "806109 Illidan's Guile; cd=300000; dur=8000; mask_unique_bit=[0, 32768, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "child 807235 shares the mask bit (no cd of its own that matters)"
+    },
+    {
+      "key": "dh_felbane_cooldown",
+      "name": "Felbane: -4 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 525001,
+      "affected_spells": [
+        525001
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        8192,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -4000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "525001 Felbane; cd=30000; dur=4000; cost=15; mask_unique_bit=[0, 8192, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "dh_hateforged_barrier_absorb",
+      "name": "Hateforged Barrier: +10% absorb",
+      "spec_id": 0,
+      "target_spell": 705129,
+      "affected_spells": [
+        705129
+      ],
+      "targeting": "mask",
+      "mask": [
+        67108864,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "EFFECT1",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "705129 Hateforged Barrier; catcd=30000; dur=30000; eff0 APPLY_AURA/SCHOOL_ABSORB v=177; mask_unique_bit=[67108864, 0, 0]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "eff index 0 = SCHOOL_ABSORB"
+    },
+    {
+      "key": "dh_hateforged_barrier_cooldown",
+      "name": "Hateforged Barrier: -4 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 705129,
+      "affected_spells": [
+        705129
+      ],
+      "targeting": "mask",
+      "mask": [
+        67108864,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -4000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "705129 Hateforged Barrier; catcd=30000; dur=30000; eff0 APPLY_AURA/SCHOOL_ABSORB v=177; mask_unique_bit=[67108864, 0, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "dh_skull_of_gul_dan_cooldown",
+      "name": "Skull of Gul'dan: -10 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 800225,
+      "affected_spells": [
+        800225
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        64
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -10000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "800225 Skull of Gul'dan; cd=90000; dur=10000; mask_unique_bit=[0, 0, 64]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "dh_felwrath_damage",
+      "name": "Felwrath: +8% damage",
+      "spec_id": 7,
+      "target_spell": 520236,
+      "affected_spells": [
+        520236
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        1073741824
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "520236 Felwrath; cast=1500; cost=30; eff0 SCHOOL_DAMAGE v=69; mask_unique_bit=[0, 0, 1073741824]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "dh_felwrath_casting_time",
+      "name": "Felwrath: -0.15 sec cast time",
+      "spec_id": 7,
+      "target_spell": 520236,
+      "affected_spells": [
+        520236
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        1073741824
+      ],
+      "effects": [
+        {
+          "op": "CASTING_TIME",
+          "type": "FLAT",
+          "value": -150
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "520236 Felwrath; cast=1500; cost=30; eff0 SCHOOL_DAMAGE v=69; mask_unique_bit=[0, 0, 1073741824]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "dh_sargeras_embrace_dot",
+      "name": "Sargeras Embrace: +10% periodic damage",
+      "spec_id": 7,
+      "target_spell": 800355,
+      "affected_spells": [
+        800355
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DOT",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "800355 Sargeras Embrace; cd=60000; dur=5500; cost=30; eff1 APPLY_AURA/PERIODIC_DAMAGE v=695; mask_unique_bit=None; periodic",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "damage is PERIODIC_DAMAGE eff1 at end of channel"
+    },
+    {
+      "key": "dh_sargeras_embrace_cooldown",
+      "name": "Sargeras Embrace: -8 sec cooldown",
+      "spec_id": 7,
+      "target_spell": 800355,
+      "affected_spells": [
+        800355
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -8000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "800355 Sargeras Embrace; cd=60000; dur=5500; cost=30; eff1 APPLY_AURA/PERIODIC_DAMAGE v=695; mask_unique_bit=None; periodic",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "dh_bane_of_chaos_dot",
+      "name": "Bane of Chaos: +10% periodic damage",
+      "spec_id": 7,
+      "target_spell": 704368,
+      "affected_spells": [
+        704368
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DOT",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "704368 Bane of Chaos; dur=21000; cost=40; eff0 APPLY_AURA/PERIODIC_DAMAGE v=28; mask_unique_bit=None; periodic",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "dh_ruin_damage",
+      "name": "Ruin: +8% damage",
+      "spec_id": 7,
+      "target_spell": 801895,
+      "affected_spells": [
+        801895
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        2,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "801895 Ruin; cast=2500; cost=30; eff0 SCHOOL_DAMAGE v=116; mask_unique_bit=[0, 2, 0]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "dh_ruin_casting_time",
+      "name": "Ruin: -0.25 sec cast time",
+      "spec_id": 7,
+      "target_spell": 801895,
+      "affected_spells": [
+        801895
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        2,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CASTING_TIME",
+          "type": "FLAT",
+          "value": -250
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "801895 Ruin; cast=2500; cost=30; eff0 SCHOOL_DAMAGE v=116; mask_unique_bit=[0, 2, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "dh_felbreak_cooldown",
+      "name": "Felbreak: -2.5 sec cooldown",
+      "spec_id": 7,
+      "target_spell": 800203,
+      "affected_spells": [
+        800203
+      ],
+      "targeting": "mask",
+      "mask": [
+        1024,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -2500
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "800203 Felbreak; cd=18000; catcd=18000; cast=500; dur=3000; cost=10; mask_unique_bit=[1024, 0, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "dh_immolation_aura_damage",
+      "name": "Immolation Aura: +8% damage",
+      "spec_id": 8,
+      "target_spell": 800208,
+      "affected_spells": [
+        800208
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        512
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "800208 Immolation; eff0 SCHOOL_DAMAGE v=1; mask_unique_bit=[0, 0, 512]; trigger child of 800207; parent 800207 PERIODIC_TRIGGER_SPELL_WITH_VALUE per=3000 trig=800208",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "dh_annihilan_strike_damage",
+      "name": "Annihilan Strike: +8% damage",
+      "spec_id": 8,
+      "target_spell": 801913,
+      "affected_spells": [
+        801913,
+        801914
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "801913 Annihilan Strike; cost=40; eff0 WEAPON_PERCENT_DAMAGE v=1; mask_unique_bit=None; trigger child of 801903; 801914 Annihilan Strike (Offhand); cost=40; eff0 WEAPON_PERCENT_DAMAGE v=1; mask_unique_bit=None; trigger child of 801903; parent 801903 TRIGGER_SPELL_WITH_VALUE v=210 trig=801913/801914 (main/off hand)",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "dh_felhoof_charge_damage",
+      "name": "Felhoof Charge: +8% damage",
+      "spec_id": 8,
+      "target_spell": 800204,
+      "affected_spells": [
+        800204
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        256,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "800204 Felhoof Charge; catcd=20000; eff1 SCHOOL_DAMAGE v=60; mask_unique_bit=[0, 256, 0]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "dh_azzinoth_s_assault_damage",
+      "name": "Azzinoth's Assault: +8% damage",
+      "spec_id": 8,
+      "target_spell": 520262,
+      "affected_spells": [
+        520262,
+        572585
+      ],
+      "targeting": "mask",
+      "mask": [
+        32768,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "520262 Azzinoth's Assault; eff0 NORMALIZED_WEAPON_DMG v=1; mask_unique_bit=[32768, 0, 0]; trigger child of 801904; 572585 Azzinoth's Assault; eff0 NORMALIZED_WEAPON_DMG v=1; mask_unique_bit=[32768, 0, 0]; trigger child of 801904; parent 801904 TRIGGER_SPELL_WITH_VALUE trig=520262/572585; both carry mask bit",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "dh_azzinoth_s_assault_critical_chance",
+      "name": "Azzinoth's Assault: +5% critical strike chance",
+      "spec_id": 8,
+      "target_spell": 520262,
+      "affected_spells": [
+        520262,
+        572585
+      ],
+      "targeting": "mask",
+      "mask": [
+        32768,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 5
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 60,
+      "evidence": "520262 Azzinoth's Assault; eff0 NORMALIZED_WEAPON_DMG v=1; mask_unique_bit=[32768, 0, 0]; trigger child of 801904; 572585 Azzinoth's Assault; eff0 NORMALIZED_WEAPON_DMG v=1; mask_unique_bit=[32768, 0, 0]; trigger child of 801904",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "dh_fury_unleashed_damage",
+      "name": "Fury Unleashed: +8% damage",
+      "spec_id": 8,
+      "target_spell": 555739,
+      "affected_spells": [
+        555739
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        4194304
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "555739 Fury Unleashed; eff0 WEAPON_PERCENT_DAMAGE v=150; eff1 NORMALIZED_WEAPON_DMG v=1; mask_unique_bit=[0, 0, 4194304]; trigger child of 555738; parent 555738 PERIODIC_TRIGGER_SPELL per=1000 trig=555739",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "dh_fury_unleashed_cooldown",
+      "name": "Fury Unleashed: -20 sec cooldown",
+      "spec_id": 8,
+      "target_spell": 555738,
+      "affected_spells": [
+        555738
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -20000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "555738 Fury Unleashed; cd=180000; dur=5000; cost=60; mask_unique_bit=None",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "dh_felrend_damage",
+      "name": "Felrend: +8% damage",
+      "spec_id": 9,
+      "target_spell": 800210,
+      "affected_spells": [
+        800210,
+        803476
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        4,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "800210 Felrend; cost=40; eff0 NORMALIZED_WEAPON_DMG v=10; mask_unique_bit=[0, 4, 0]; 803476 Felrend; eff0 NORMALIZED_WEAPON_DMG v=1; mask_unique_bit=[0, 4, 0]; trigger child of 800210; child shares mask bit; both NORMALIZED_WEAPON_DMG",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "dh_demonic_will_cooldown",
+      "name": "Demonic Will: -6 sec cooldown",
+      "spec_id": 9,
+      "target_spell": 800209,
+      "affected_spells": [
+        800209
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        65536
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -6000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "800209 Demonic Will; cd=45000; catcd=45000; dur=10000; mask_unique_bit=[0, 0, 65536]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "dh_tyrannical_resolve_cooldown",
+      "name": "Tyrannical Resolve: -20 sec cooldown",
+      "spec_id": 9,
+      "target_spell": 804823,
+      "affected_spells": [
+        804823
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -20000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "804823 Tyrannical Resolve; cd=180000; dur=30000; eff1 APPLY_AURA/SCHOOL_ABSORB; mask_unique_bit=None",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "dh_tyrant_s_gaze_damage",
+      "name": "Tyrant's Gaze: +8% damage",
+      "spec_id": 9,
+      "target_spell": 805240,
+      "affected_spells": [
+        805240
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        2147483648,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "805240 Tyrant's Gaze; cd=10000; cost=30; eff0 SCHOOL_DAMAGE v=220; mask_unique_bit=[0, 2147483648, 0]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "dh_tyrant_s_gaze_cooldown",
+      "name": "Tyrant's Gaze: -1.5 sec cooldown",
+      "spec_id": 9,
+      "target_spell": 805240,
+      "affected_spells": [
+        805240
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        2147483648,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -1500
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "805240 Tyrant's Gaze; cd=10000; cost=30; eff0 SCHOOL_DAMAGE v=220; mask_unique_bit=[0, 2147483648, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "dh_burning_hatred_cooldown",
+      "name": "Burning Hatred: -15 sec cooldown",
+      "spec_id": 9,
+      "target_spell": 805239,
+      "affected_spells": [
+        805239
+      ],
+      "targeting": "mask",
+      "mask": [
+        262144,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -15000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 100,
+      "evidence": "805239 Burning Hatred; cd=120000; dur=15000; mask_unique_bit=[262144, 0, 0]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "leech child 807347 has ignore_caster_mods, so no damage affix"
+    },
+    {
+      "key": "dh_infernal_whipcrack_cooldown",
+      "name": "Infernal Whipcrack: -10 sec cooldown",
+      "spec_id": 9,
+      "target_spell": 805243,
+      "affected_spells": [
+        805243
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -10000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "805243 Infernal Whipcrack; cd=90000; dur=10000; mask_unique_bit=None",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    }
+  ],
+  "rejected": [
+    {
+      "spell": 560284,
+      "reason": "summon (Infernal; is_summon=self)"
+    },
+    {
+      "spell": 561216,
+      "reason": "damage done by script (PERIODIC_DUMMY), charges without cd field; no targetable damage spell"
+    },
+    {
+      "spell": 800206,
+      "reason": "channel damage done by script (no damage effect in visible children); no meaningful op"
+    }
+  ]
+}

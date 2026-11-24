@@ -1,0 +1,1090 @@
+{
+ "class_id": 29,
+ "class": "PROPHET",
+ "reviewed_at": "2026-11-23",
+ "affixes": [
+  {
+   "key": "pr_weakening_venom_dmg",
+   "name": "Weakening Venom: +8% damage",
+   "spec_id": 0,
+   "target_spell": 706000,
+   "affected_spells": [
+    706000
+   ],
+   "targeting": "spell_id",
+   "mask": null,
+   "effects": [
+    {
+     "op": "DAMAGE",
+     "type": "PCT",
+     "value": 8
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 60,
+   "evidence": "706000 Weakening Venom; trigger child via 805778 of 805778; dur=8000; eff[1]=SCHOOL_DAMAGE v=18",
+   "client_sensitive": false,
+   "confidence": "high",
+   "notes": "Proc damage is trigger child 706000 (also applied by Pinch)."
+  },
+  {
+   "key": "pr_pinch_cd",
+   "name": "Pinch: -8 sec cooldown",
+   "spec_id": 0,
+   "target_spell": 704235,
+   "affected_spells": [
+    704235
+   ],
+   "targeting": "hook_cd",
+   "mask": null,
+   "effects": [
+    {
+     "op": "COOLDOWN",
+     "type": "FLAT",
+     "value": -8000
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 60,
+   "evidence": "704235 Pinch; cd=60000; dur=5000; cost=150; no mask_unique_bit -> hook_cd",
+   "client_sensitive": true,
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "key": "pr_toxic_stride_cd",
+   "name": "Toxic Stride: -10 sec cooldown",
+   "spec_id": 0,
+   "target_spell": 504347,
+   "affected_spells": [
+    504347
+   ],
+   "targeting": "hook_cd",
+   "mask": null,
+   "effects": [
+    {
+     "op": "COOLDOWN",
+     "type": "FLAT",
+     "value": -10000
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 100,
+   "evidence": "504347 Toxic Stride; cd=90000; cost_pct=14; no mask_unique_bit -> hook_cd",
+   "client_sensitive": true,
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "key": "pr_spindlebind_dmg",
+   "name": "Spindlebind: +8% damage",
+   "spec_id": 0,
+   "target_spell": 800887,
+   "affected_spells": [
+    800887
+   ],
+   "targeting": "spell_id",
+   "mask": null,
+   "effects": [
+    {
+     "op": "DAMAGE",
+     "type": "PCT",
+     "value": 8
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 80,
+   "evidence": "800887 Spindlebind; cd=16000; catcd=16000; dur=4000; cost=30; eff[0]=SCHOOL_DAMAGE v=61",
+   "client_sensitive": false,
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "key": "pr_green_salve_hot",
+   "name": "Green Salve: +8% periodic healing",
+   "spec_id": 0,
+   "target_spell": 800902,
+   "affected_spells": [
+    800902
+   ],
+   "targeting": "spell_id",
+   "mask": null,
+   "effects": [
+    {
+     "op": "DOT",
+     "type": "PCT",
+     "value": 8
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 100,
+   "evidence": "800902 Green Salve; catcd=10000; dur=6000; cost_pct=15; periodic=true; eff[0]=APPLY_AURA/PERIODIC_HEAL v=4; mask_unique_bit=[1, 0, 0]",
+   "client_sensitive": false,
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "key": "pr_green_salve_jump",
+   "name": "Green Salve: +8% healing",
+   "spec_id": 0,
+   "target_spell": 803529,
+   "affected_spells": [
+    803529
+   ],
+   "targeting": "spell_id",
+   "mask": null,
+   "effects": [
+    {
+     "op": "DAMAGE",
+     "type": "PCT",
+     "value": 8
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 80,
+   "evidence": "803529 Green Salve; trigger child via 800902 of 800902; eff[0]=HEAL v=13; mask_unique_bit=[1, 0, 0]",
+   "client_sensitive": false,
+   "confidence": "high",
+   "notes": "Jump heal is trigger child 803529."
+  },
+  {
+   "key": "pr_lifeblood_cd",
+   "name": "Lifeblood: -10 sec cooldown",
+   "spec_id": 0,
+   "target_spell": 804963,
+   "affected_spells": [
+    804963
+   ],
+   "targeting": "hook_cd",
+   "mask": null,
+   "effects": [
+    {
+     "op": "COOLDOWN",
+     "type": "FLAT",
+     "value": -10000
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 100,
+   "evidence": "804963 Lifeblood; cd=90000; dur=10000; cost_pct=25; no mask_unique_bit -> hook_cd",
+   "client_sensitive": true,
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "key": "pr_burrow_cd",
+   "name": "Burrow: -30 sec cooldown",
+   "spec_id": 0,
+   "target_spell": 806154,
+   "affected_spells": [
+    806154
+   ],
+   "targeting": "mask",
+   "mask": [
+    0,
+    0,
+    32768
+   ],
+   "effects": [
+    {
+     "op": "COOLDOWN",
+     "type": "FLAT",
+     "value": -30000
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 60,
+   "evidence": "806154 Burrow; cd=300000; dur=8000; mask_unique_bit=[0, 0, 32768]",
+   "client_sensitive": true,
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "key": "pr_hive_instinct_cd",
+   "name": "Hive Instinct: -15 sec cooldown",
+   "spec_id": 0,
+   "target_spell": 804968,
+   "affected_spells": [
+    804968
+   ],
+   "targeting": "hook_cd",
+   "mask": null,
+   "effects": [
+    {
+     "op": "COOLDOWN",
+     "type": "FLAT",
+     "value": -15000
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 100,
+   "evidence": "804968 Hive Instinct; cd=120000; no mask_unique_bit -> hook_cd",
+   "client_sensitive": true,
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "key": "pr_shadras_lair_cd",
+   "name": "Shadra's Lair: -20 sec cooldown",
+   "spec_id": 0,
+   "target_spell": 804978,
+   "affected_spells": [
+    804978
+   ],
+   "targeting": "hook_cd",
+   "mask": null,
+   "effects": [
+    {
+     "op": "COOLDOWN",
+     "type": "FLAT",
+     "value": -20000
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 70,
+   "evidence": "804978 Shadra's Lair; cd=180000; dur=8000; no mask_unique_bit -> hook_cd",
+   "client_sensitive": true,
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "key": "pr_shadras_balm_hot",
+   "name": "Shadra's Balm: +8% periodic healing",
+   "spec_id": 0,
+   "target_spell": 800901,
+   "affected_spells": [
+    800901
+   ],
+   "targeting": "spell_id",
+   "mask": null,
+   "effects": [
+    {
+     "op": "DOT",
+     "type": "PCT",
+     "value": 8
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 100,
+   "evidence": "800901 Shadra's Balm; dur=21000; cost_pct=18; periodic=true; eff[0]=APPLY_AURA/PERIODIC_HEAL v=14; mask_unique_bit=[2048, 0, 0]",
+   "client_sensitive": false,
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "key": "pr_celerity_cd",
+   "name": "Celerity: -10 sec cooldown",
+   "spec_id": 0,
+   "target_spell": 804962,
+   "affected_spells": [
+    804962
+   ],
+   "targeting": "mask",
+   "mask": [
+    0,
+    0,
+    2097152
+   ],
+   "effects": [
+    {
+     "op": "COOLDOWN",
+     "type": "FLAT",
+     "value": -10000
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 60,
+   "evidence": "804962 Celerity; cd=90000; dur=10000; mask_unique_bit=[0, 0, 2097152]",
+   "client_sensitive": true,
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "key": "pr_molt_cd",
+   "name": "Molt: -5 sec cooldown",
+   "spec_id": 52,
+   "target_spell": 805102,
+   "affected_spells": [
+    805102
+   ],
+   "targeting": "mask",
+   "mask": [
+    0,
+    524288,
+    0
+   ],
+   "effects": [
+    {
+     "op": "COOLDOWN",
+     "type": "FLAT",
+     "value": -5000
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 100,
+   "evidence": "805102 Molt; cd=45000; dur=8000; mask_unique_bit=[0, 524288, 0]",
+   "client_sensitive": true,
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "key": "pr_impale_dmg",
+   "name": "Impale: +8% damage",
+   "spec_id": 52,
+   "target_spell": 560248,
+   "affected_spells": [
+    560248
+   ],
+   "targeting": "spell_id",
+   "mask": null,
+   "effects": [
+    {
+     "op": "DAMAGE",
+     "type": "PCT",
+     "value": 8
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 100,
+   "evidence": "560248 Impale; cd=40000; dur=3500; cost_pct=14; eff[0]=SCHOOL_DAMAGE v=83",
+   "client_sensitive": false,
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "key": "pr_regrow_exoskeleton_cd",
+   "name": "Regrow Exoskeleton: -8 sec cooldown",
+   "spec_id": 52,
+   "target_spell": 803197,
+   "affected_spells": [
+    803197
+   ],
+   "targeting": "mask",
+   "mask": [
+    0,
+    0,
+    16
+   ],
+   "effects": [
+    {
+     "op": "COOLDOWN",
+     "type": "FLAT",
+     "value": -8000
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 100,
+   "evidence": "803197 Regrow Exoskeleton; cd=60000; dur=5000; mask_unique_bit=[0, 0, 16]",
+   "client_sensitive": true,
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "key": "pr_catalyst_cd",
+   "name": "Catalyst: -8 sec cooldown",
+   "spec_id": 52,
+   "target_spell": 800895,
+   "affected_spells": [
+    800895
+   ],
+   "targeting": "hook_cd",
+   "mask": null,
+   "effects": [
+    {
+     "op": "COOLDOWN",
+     "type": "FLAT",
+     "value": -8000
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 100,
+   "evidence": "800895 Catalyst; cd=60000; dur=10000; no mask_unique_bit -> hook_cd",
+   "client_sensitive": true,
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "key": "pr_barbed_stinger_dmg",
+   "name": "Barbed Stinger: +8% damage",
+   "spec_id": 52,
+   "target_spell": 803208,
+   "affected_spells": [
+    803208
+   ],
+   "targeting": "spell_id",
+   "mask": null,
+   "effects": [
+    {
+     "op": "DAMAGE",
+     "type": "PCT",
+     "value": 8
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 100,
+   "evidence": "803208 Barbed Stinger; trigger child via 803192 of 803196; eff[0]=SCHOOL_DAMAGE v=42; mask_unique_bit=[0, 262144, 0]",
+   "client_sensitive": false,
+   "confidence": "medium",
+   "notes": "Impact damage is depth-3 child 803208."
+  },
+  {
+   "key": "pr_venomtip_dmg",
+   "name": "Venomtip Poison: +8% damage",
+   "spec_id": 52,
+   "target_spell": 803195,
+   "affected_spells": [
+    803195
+   ],
+   "targeting": "spell_id",
+   "mask": null,
+   "effects": [
+    {
+     "op": "DAMAGE",
+     "type": "PCT",
+     "value": 8
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 100,
+   "evidence": "803195 Venomtip Poison; cost=200; eff[0]=SCHOOL_DAMAGE v=30; mask_unique_bit=[0, 0, 8388608]",
+   "client_sensitive": false,
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "key": "pr_expulsion_dot",
+   "name": "Expulsion: +8% periodic damage",
+   "spec_id": 52,
+   "target_spell": 805094,
+   "affected_spells": [
+    805094
+   ],
+   "targeting": "spell_id",
+   "mask": null,
+   "effects": [
+    {
+     "op": "DOT",
+     "type": "PCT",
+     "value": 8
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 100,
+   "evidence": "805094 Expulsion; catcd=10000; dur=5000; cost=200; periodic=true; eff[0]=APPLY_AURA/PERIODIC_DAMAGE v=15; mask_unique_bit=[0, 0, 4]",
+   "client_sensitive": false,
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "key": "pr_withering_venom_dot",
+   "name": "Withering Venom: +8% periodic damage",
+   "spec_id": 53,
+   "target_spell": 706962,
+   "affected_spells": [
+    706962
+   ],
+   "targeting": "spell_id",
+   "mask": null,
+   "effects": [
+    {
+     "op": "DOT",
+     "type": "PCT",
+     "value": 8
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 4,
+   "weight": 100,
+   "evidence": "706962 Withering Venom; dur=21000; cost=25; periodic=true; eff[0]=APPLY_AURA/PERIODIC_DAMAGE v=16; mask_unique_bit=[0, 8388608, 0]",
+   "client_sensitive": false,
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "key": "pr_withering_venom_toxin",
+   "name": "Withering Venom: +8% damage",
+   "spec_id": 53,
+   "target_spell": 807342,
+   "affected_spells": [
+    807342
+   ],
+   "targeting": "spell_id",
+   "mask": null,
+   "effects": [
+    {
+     "op": "DAMAGE",
+     "type": "PCT",
+     "value": 8
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 80,
+   "evidence": "807342 Corrosive Toxin; trigger child via 706962 of 706962; eff[0]=SCHOOL_DAMAGE v=495",
+   "client_sensitive": false,
+   "confidence": "high",
+   "notes": "Corrosive Toxin burst is trigger child 807342."
+  },
+  {
+   "key": "pr_contagion_cd",
+   "name": "Contagion: -8 sec cooldown",
+   "spec_id": 53,
+   "target_spell": 503851,
+   "affected_spells": [
+    503851
+   ],
+   "targeting": "hook_cd",
+   "mask": null,
+   "effects": [
+    {
+     "op": "COOLDOWN",
+     "type": "FLAT",
+     "value": -8000
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 100,
+   "evidence": "503851 Contagion; cd=60000; dur=15000; no mask_unique_bit -> hook_cd",
+   "client_sensitive": true,
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "key": "pr_widowmaker_dmg",
+   "name": "Widowmaker: +8% damage",
+   "spec_id": 53,
+   "target_spell": 804961,
+   "affected_spells": [
+    804961
+   ],
+   "targeting": "spell_id",
+   "mask": null,
+   "effects": [
+    {
+     "op": "DAMAGE",
+     "type": "PCT",
+     "value": 8
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 4,
+   "weight": 100,
+   "evidence": "804961 Widowmaker; cost=20; eff[0]=SCHOOL_DAMAGE v=45; mask_unique_bit=[0, 65536, 0]",
+   "client_sensitive": false,
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "key": "pr_noxious_empowerment_cd",
+   "name": "Noxious Empowerment: -20 sec cooldown",
+   "spec_id": 53,
+   "target_spell": 804964,
+   "affected_spells": [
+    804964
+   ],
+   "targeting": "mask",
+   "mask": [
+    1073741824,
+    0,
+    0
+   ],
+   "effects": [
+    {
+     "op": "COOLDOWN",
+     "type": "FLAT",
+     "value": -20000
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 100,
+   "evidence": "804964 Noxious Empowerment; cd=180000; dur=12000; mask_unique_bit=[1073741824, 0, 0]",
+   "client_sensitive": true,
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "key": "pr_nerubian_sting_dot",
+   "name": "Nerubian Sting: +8% periodic damage",
+   "spec_id": 53,
+   "target_spell": 800882,
+   "affected_spells": [
+    800882
+   ],
+   "targeting": "spell_id",
+   "mask": null,
+   "effects": [
+    {
+     "op": "DOT",
+     "type": "PCT",
+     "value": 8
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 100,
+   "evidence": "800882 Nerubian Sting; dur=15000; cost=35; periodic=true; eff[0]=APPLY_AURA/PERIODIC_DAMAGE v=4; eff[1]=SCHOOL_DAMAGE v=26; mask_unique_bit=[0, 2048, 0]",
+   "client_sensitive": false,
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "key": "pr_facemelter_dot",
+   "name": "Facemelter: +8% periodic damage",
+   "spec_id": 53,
+   "target_spell": 800871,
+   "affected_spells": [
+    800871
+   ],
+   "targeting": "spell_id",
+   "mask": null,
+   "effects": [
+    {
+     "op": "DOT",
+     "type": "PCT",
+     "value": 8
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 100,
+   "evidence": "800871 Facemelter; dur=15000; cost=30; periodic=true; eff[0]=APPLY_AURA/PERIODIC_DAMAGE v=15",
+   "client_sensitive": false,
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "key": "pr_rotfang_dot",
+   "name": "Rotfang: +8% periodic damage",
+   "spec_id": 53,
+   "target_spell": 804977,
+   "affected_spells": [
+    804977
+   ],
+   "targeting": "spell_id",
+   "mask": null,
+   "effects": [
+    {
+     "op": "DOT",
+     "type": "PCT",
+     "value": 8
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 100,
+   "evidence": "804977 Rotfang; dur=24000; cost=25; periodic=true; eff[0]=APPLY_AURA/PERIODIC_DAMAGE v=25; mask_unique_bit=[0, 1048576, 0]",
+   "client_sensitive": false,
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "key": "pr_sepsis_bloom_cd",
+   "name": "Sepsis Bloom: -15 sec cooldown",
+   "spec_id": 54,
+   "target_spell": 504867,
+   "affected_spells": [
+    504867
+   ],
+   "targeting": "hook_cd",
+   "mask": null,
+   "effects": [
+    {
+     "op": "COOLDOWN",
+     "type": "FLAT",
+     "value": -15000
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 100,
+   "evidence": "504867 Sepsis Bloom; cd=120000; dur=6000; cost_pct=14; no mask_unique_bit -> hook_cd",
+   "client_sensitive": true,
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "key": "pr_wilt_dot",
+   "name": "Wilt: +8% periodic damage",
+   "spec_id": 54,
+   "target_spell": 804982,
+   "affected_spells": [
+    804982
+   ],
+   "targeting": "spell_id",
+   "mask": null,
+   "effects": [
+    {
+     "op": "DOT",
+     "type": "PCT",
+     "value": 8
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 100,
+   "evidence": "804982 Wilt; dur=18000; cost_pct=9; periodic=true; eff[0]=APPLY_AURA/PERIODIC_DAMAGE v=23; mask_unique_bit=[64, 0, 0]",
+   "client_sensitive": false,
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "key": "pr_mycosis_dmg",
+   "name": "Mycosis: +8% damage",
+   "spec_id": 54,
+   "target_spell": 804986,
+   "affected_spells": [
+    804986
+   ],
+   "targeting": "spell_id",
+   "mask": null,
+   "effects": [
+    {
+     "op": "DAMAGE",
+     "type": "PCT",
+     "value": 8
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 100,
+   "evidence": "804986 Mycosis; catcd=15000; cast=2500; dur=8000; cost_pct=14; eff[0]=SCHOOL_DAMAGE v=153; mask_unique_bit=[0, 32, 0]",
+   "client_sensitive": false,
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "key": "pr_mycosis_cd",
+   "name": "Mycosis: -2 sec cooldown",
+   "spec_id": 54,
+   "target_spell": 804986,
+   "affected_spells": [
+    804986
+   ],
+   "targeting": "mask",
+   "mask": [
+    0,
+    32,
+    0
+   ],
+   "effects": [
+    {
+     "op": "COOLDOWN",
+     "type": "FLAT",
+     "value": -2000
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 80,
+   "evidence": "804986 Mycosis; catcd=15000; cast=2500; dur=8000; cost_pct=14; eff[0]=SCHOOL_DAMAGE v=153; mask_unique_bit=[0, 32, 0]",
+   "client_sensitive": true,
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "key": "pr_serpent_ring_cd",
+   "name": "Serpent Lord's Ring: -10 sec cooldown",
+   "spec_id": 54,
+   "target_spell": 503923,
+   "affected_spells": [
+    503923
+   ],
+   "targeting": "hook_cd",
+   "mask": null,
+   "effects": [
+    {
+     "op": "COOLDOWN",
+     "type": "FLAT",
+     "value": -10000
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 100,
+   "evidence": "503923 Serpent Lord's Ring; cd=90000; catcd=90000; dur=15000; cost_pct=23; no mask_unique_bit -> hook_cd",
+   "client_sensitive": true,
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "key": "pr_spore_dot",
+   "name": "Spore: +8% periodic damage",
+   "spec_id": 54,
+   "target_spell": 804983,
+   "affected_spells": [
+    804983
+   ],
+   "targeting": "spell_id",
+   "mask": null,
+   "effects": [
+    {
+     "op": "DOT",
+     "type": "PCT",
+     "value": 8
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 100,
+   "evidence": "804983 Spore; cast=1500; dur=21000; cost_pct=13; periodic=true; eff[0]=APPLY_AURA/PERIODIC_DAMAGE v=30; eff[1]=SCHOOL_DAMAGE v=20; mask_unique_bit=[0, 8, 0]",
+   "client_sensitive": false,
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "key": "pr_toxic_communion_cd",
+   "name": "Toxic Communion: -8 sec cooldown",
+   "spec_id": 101,
+   "target_spell": 680767,
+   "affected_spells": [
+    680767
+   ],
+   "targeting": "mask",
+   "mask": [
+    0,
+    0,
+    1073741824
+   ],
+   "effects": [
+    {
+     "op": "COOLDOWN",
+     "type": "FLAT",
+     "value": -8000
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 100,
+   "evidence": "680767 Toxic Communion; cd=60000; catcd=60000; cost_pct=30; mask_unique_bit=[0, 0, 1073741824]",
+   "client_sensitive": true,
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "key": "pr_chrysalis_cd",
+   "name": "Chrysalis: -10 sec cooldown",
+   "spec_id": 101,
+   "target_spell": 808082,
+   "affected_spells": [
+    808082
+   ],
+   "targeting": "hook_cd",
+   "mask": null,
+   "effects": [
+    {
+     "op": "COOLDOWN",
+     "type": "FLAT",
+     "value": -10000
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 60,
+   "evidence": "808082 Chrysalis; cd=90000; dur=15000; cost_pct=30; no mask_unique_bit -> hook_cd",
+   "client_sensitive": true,
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "key": "pr_extraction_cd",
+   "name": "Extraction: -30 sec cooldown",
+   "spec_id": 101,
+   "target_spell": 805884,
+   "affected_spells": [
+    805884
+   ],
+   "targeting": "hook_cd",
+   "mask": null,
+   "effects": [
+    {
+     "op": "COOLDOWN",
+     "type": "FLAT",
+     "value": -30000
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 100,
+   "evidence": "805884 Extraction; cd=300000; dur=15000; no mask_unique_bit -> hook_cd",
+   "client_sensitive": true,
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "key": "pr_mending_mist_hot",
+   "name": "Mending Mist: +8% periodic healing",
+   "spec_id": 101,
+   "target_spell": 800899,
+   "affected_spells": [
+    800899
+   ],
+   "targeting": "spell_id",
+   "mask": null,
+   "effects": [
+    {
+     "op": "DOT",
+     "type": "PCT",
+     "value": 8
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 100,
+   "evidence": "800899 Mending Mist; cast=1800; dur=10000; cost_pct=35; periodic=true; eff[0]=APPLY_AURA/PERIODIC_HEAL v=9; mask_unique_bit=[524288, 0, 0]",
+   "client_sensitive": false,
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "key": "pr_serpent_amulet_cd",
+   "name": "Serpent Lord's Amulet: -10 sec cooldown",
+   "spec_id": 101,
+   "target_spell": 800914,
+   "affected_spells": [
+    800914
+   ],
+   "targeting": "hook_cd",
+   "mask": null,
+   "effects": [
+    {
+     "op": "COOLDOWN",
+     "type": "FLAT",
+     "value": -10000
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 100,
+   "evidence": "800914 Serpent Lord's Amulet; cd=90000; dur=15000; no mask_unique_bit -> hook_cd",
+   "client_sensitive": true,
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "key": "pr_alkahest_heal",
+   "name": "Alkahest: +8% healing",
+   "spec_id": 101,
+   "target_spell": 504342,
+   "affected_spells": [
+    504342
+   ],
+   "targeting": "spell_id",
+   "mask": null,
+   "effects": [
+    {
+     "op": "DAMAGE",
+     "type": "PCT",
+     "value": 8
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 100,
+   "evidence": "504342 Alkahest; cast=1600; cost=75; cost_pct=15; eff[0]=HEAL v=85; mask_unique_bit=[67108864, 0, 0]",
+   "client_sensitive": false,
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "key": "pr_shadras_aid_cd",
+   "name": "Shadra's Aid: -20 sec cooldown",
+   "spec_id": 101,
+   "target_spell": 504352,
+   "affected_spells": [
+    504352
+   ],
+   "targeting": "hook_cd",
+   "mask": null,
+   "effects": [
+    {
+     "op": "COOLDOWN",
+     "type": "FLAT",
+     "value": -20000
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 100,
+   "evidence": "504352 Shadra's Aid; cd=180000; catcd=180000; dur=15000; cost=75; cost_pct=19; no mask_unique_bit -> hook_cd",
+   "client_sensitive": true,
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "key": "pr_mycelial_cd",
+   "name": "Mycelial Replenishment: -20 sec cooldown",
+   "spec_id": 101,
+   "target_spell": 706021,
+   "affected_spells": [
+    706021
+   ],
+   "targeting": "hook_cd",
+   "mask": null,
+   "effects": [
+    {
+     "op": "COOLDOWN",
+     "type": "FLAT",
+     "value": -20000
+    }
+   ],
+   "scales_with_crit": true,
+   "min_quality": 3,
+   "weight": 100,
+   "evidence": "706021 Mycelial Replenishment; cd=180000; dur=20000; no mask_unique_bit -> hook_cd",
+   "client_sensitive": true,
+   "confidence": "medium",
+   "notes": "Proc heal child 707594 has ignore_caster_mods."
+  }
+ ],
+ "rejected": [
+  {
+   "spell": 805775,
+   "reason": "2-hour venom toggle aura (proc haste), no cooldown/number worth modifying"
+  },
+  {
+   "spell": 300855,
+   "reason": "30-min party weapon buff; poison jets are cast by allies, caster mods do not apply"
+  },
+  {
+   "spell": 560247,
+   "reason": "summon (is_summon=self, locusts)"
+  },
+  {
+   "spell": 805931,
+   "reason": "charge-based toggle (dur -1, scripted recharge), no cooldown field"
+  },
+  {
+   "spell": 504344,
+   "reason": "summon (Fungarian)"
+  },
+  {
+   "spell": 800910,
+   "reason": "summon child (Mushroom 680764); Wilt/Spore have own affixes"
+  },
+  {
+   "spell": 520153,
+   "reason": "dispel utility, no numbers to modify"
+  }
+ ]
+}

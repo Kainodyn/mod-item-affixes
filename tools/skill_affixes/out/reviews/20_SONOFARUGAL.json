@@ -1,0 +1,1218 @@
+{
+  "class_id": 20,
+  "class": "SONOFARUGAL",
+  "reviewed_at": "2026-11-23",
+  "affixes": [
+    {
+      "key": "arugal_wicked_howl_cd",
+      "name": "Wicked Howl: -15 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 804207,
+      "affected_spells": [
+        804207
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -15000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "804207 Wicked Howl cd=120000 dur=15000 cost_pct=17 [eff0=APPLY_AURA/MOD_INCREASE_HEALTH_PERCENT v=30]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "arugal_scarlet_delirium_cast",
+      "name": "Scarlet Delirium: -0.2 sec cast time",
+      "spec_id": 0,
+      "target_spell": 801074,
+      "affected_spells": [
+        801074
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        256
+      ],
+      "effects": [
+        {
+          "op": "CASTING_TIME",
+          "type": "FLAT",
+          "value": -200
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "801074 Scarlet Delirium cast=2000 dur=40000 cost=10 cost_pct=20 periodic=True mask_unique_bit=[0, 0, 256] [eff0=APPLY_AURA/MOD_FEAR; eff1=APPLY_AURA/PERIODIC_LEECH v=8 per=3000; eff2=APPLY_AURA/MOD_DAMAGE_FROM_CASTER]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "arugal_scarlet_delirium_dot",
+      "name": "Scarlet Delirium: +8% periodic damage",
+      "spec_id": 0,
+      "target_spell": 801074,
+      "affected_spells": [
+        801074
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        256
+      ],
+      "effects": [
+        {
+          "op": "DOT",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "801074 Scarlet Delirium cast=2000 dur=40000 cost=10 cost_pct=20 periodic=True mask_unique_bit=[0, 0, 256] [eff0=APPLY_AURA/MOD_FEAR; eff1=APPLY_AURA/PERIODIC_LEECH v=8 per=3000; eff2=APPLY_AURA/MOD_DAMAGE_FROM_CASTER]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "eff1 PERIODIC_LEECH v=8 per=3000."
+    },
+    {
+      "key": "arugal_fleshcraft_cd",
+      "name": "Fleshcraft: -30 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 801952,
+      "affected_spells": [
+        801952
+      ],
+      "targeting": "mask",
+      "mask": [
+        8388608,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -30000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 100,
+      "evidence": "801952 Fleshcraft cd=300000 catcd=300000 cost=500 range=40.0 mask_unique_bit=[8388608, 0, 0] [eff0=HEAL_PCT v=50; eff1=ENERGIZE_PCT; eff2=APPLY_AURA/HASTE_SPELLS v=30]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "arugal_blood_pact_cd",
+      "name": "Blood Pact: -15 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 801955,
+      "affected_spells": [
+        801955
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        65536
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -15000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "801955 Blood Pact cd=120000 dur=12000 cost_pct=20 mask_unique_bit=[0, 0, 65536] [eff0=APPLY_AURA/MOD_ATTACKER_RANGED_HIT_CHANCE v=-50; eff1=APPLY_AURA/MOD_HEALING_PCT; eff2=APPLY_AURA/MOD_DODGE_PERCENT v=50]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "arugal_liquify_cd",
+      "name": "Liquify: -15 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 806310,
+      "affected_spells": [
+        806310
+      ],
+      "targeting": "mask",
+      "mask": [
+        2147483648,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -15000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "806310 Liquify cd=120000 dur=6000 cost_pct=20 mask_unique_bit=[2147483648, 0, 0] [eff0=APPLY_AURA/ALLOW_ONLY_ABILITY; eff1=APPLY_AURA/DAMAGE_IMMUNITY; eff2=APPLY_AURA/MOD_DECREASE_SPEED v=-30]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "arugal_shadow_howl_cd",
+      "name": "Shadow Howl: -8 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 806177,
+      "affected_spells": [
+        806177
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -8000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "806177 Shadow Howl cd=60000 dur=6000 cost_pct=15 [eff0=APPLY_AURA/MECHANIC_IMMUNITY; eff1=APPLY_AURA/MECHANIC_IMMUNITY]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "arugal_transfusion_cd",
+      "name": "Transfusion: -20 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 705734,
+      "affected_spells": [
+        705734
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        8,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -20000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "705734 Transfusion cd=180000 cost=200 range=30.0 mask_unique_bit=[0, 8, 0] [eff0=SCRIPT_EFFECT v=40]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "arugal_blood_veil_absorb",
+      "name": "Blood Veil: +10% absorb cap",
+      "spec_id": 0,
+      "target_spell": 504263,
+      "affected_spells": [
+        504263
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "EFFECT2",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "504263 Blood Veil cd=30000 catcd=30000 dur=15000 cost_pct=8 range=30.0 [eff0=APPLY_AURA/SCHOOL_ABSORB v=50; eff1=APPLY_AURA/SCHOOL_ABSORB v=511]",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "EFFECT2 = eff1 SCHOOL_ABSORB v=511 (+SPI/AP scaling)."
+    },
+    {
+      "key": "arugal_hemostasis_cd",
+      "name": "Hemostasis: -15 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 681304,
+      "affected_spells": [
+        681304
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -15000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "681304 Hemostasis cd=120000 dur=4000 cost_pct=25 range=20.0 [eff0=APPLY_AURA/MOD_STUN; eff1=APPLY_AURA/TRANSFORM v=1; eff2=APPLY_AURA/MOD_SCALE v=10]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "arugal_red_thirst_dur",
+      "name": "Red Thirst: +2 sec duration",
+      "spec_id": 25,
+      "target_spell": 520493,
+      "affected_spells": [
+        520493
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 2000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 100,
+      "evidence": "520493 Red Thirst cd=300000 dur=20000 cost_pct=26 [eff0=APPLY_AURA/MOD_CASTING_SPEED_NOT_STACK v=30; eff1=APPLY_AURA/MOD_MELEE_RANGED_HASTE v=30; eff2=TRIGGER_SPELL]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "CD not offered: Worn Out lasts 300 s = base CD."
+    },
+    {
+      "key": "arugal_heartbreak_dmg",
+      "name": "Heartbreak: +8% damage and healing",
+      "spec_id": 25,
+      "target_spell": 520314,
+      "affected_spells": [
+        520314,
+        520315
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "520314 Heartbreak cast=2000 cost=400 range=40.0 mask_unique_bit=[0, 16384, 0] [eff0=HEALTH_LEECH v=172; eff1=TRIGGER_SPELL_WITH_VALUE v=95; eff2=TRIGGER_SPELL_WITH_VALUE v=162]; 520315 Heartbreak range=50000.0 via=520314 [eff0=HEAL v=1]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "Heal done by child 520315."
+    },
+    {
+      "key": "arugal_purify_blood_cd",
+      "name": "Purify Blood: -8 sec cooldown",
+      "spec_id": 25,
+      "target_spell": 680679,
+      "affected_spells": [
+        680679
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -8000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "680679 Purify Blood cd=60000 dur=10000 cost_pct=26 [eff0=TRIGGER_SPELL_WITH_VALUE]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "Exhaustion (60 s) on allies limits value."
+    },
+    {
+      "key": "arugal_infuse_cd",
+      "name": "Infuse: -3 sec cooldown",
+      "spec_id": 25,
+      "target_spell": 681403,
+      "affected_spells": [
+        681403
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        4194304
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -3000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "681403 Infuse cd=30000 dur=10000 cost_pct=35 range=40.0 mask_unique_bit=[0, 0, 4194304] [eff0=APPLY_AURA/DUMMY v=1; eff1=APPLY_AURA/SCHOOL_ABSORB v=1]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "arugal_hemal_excision_cd",
+      "name": "Hemal Excision: -10 sec cooldown",
+      "spec_id": 25,
+      "target_spell": 803681,
+      "affected_spells": [
+        803681
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -10000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "803681 Hemal Excision cd=90000 cast=1000 cost_pct=25 range=30.0 [eff0=DISPEL v=20]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "arugal_vampyrs_kiss_dot",
+      "name": "Vampyr's Kiss: +8% periodic damage",
+      "spec_id": 25,
+      "target_spell": 504275,
+      "affected_spells": [
+        504275
+      ],
+      "targeting": "mask",
+      "mask": [
+        32768,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DOT",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "504275 Vampyr's Kiss catcd=60000 dur=30000 cost=28 cost_pct=20 range=30.0 periodic=True mask_unique_bit=[32768, 0, 0] [eff0=APPLY_AURA/PERIODIC_DAMAGE v=28 per=5000]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "arugal_crimson_tide_dot",
+      "name": "Crimson Tide: +8% periodic damage",
+      "spec_id": 25,
+      "target_spell": 504282,
+      "affected_spells": [
+        504282
+      ],
+      "targeting": "mask",
+      "mask": [
+        16384,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DOT",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "504282 Crimson Tide dur=15000 cost=400 periodic=True mask_unique_bit=[16384, 0, 0] [eff0=APPLY_AURA/PERIODIC_DAMAGE v=33 per=3000]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "arugal_arterial_bind_hot",
+      "name": "Arterial Bind: +8% periodic healing",
+      "spec_id": 25,
+      "target_spell": 681082,
+      "affected_spells": [
+        681077,
+        681082
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DOT",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "681082 Arterial Bind dur=4000 cost_pct=15 range=50000.0 periodic=True via=681077 [eff0=APPLY_AURA/PERIODIC_HEAL v=99 per=1000]; 681077 Arterial Bind cd=90000 dur=4000 cost_pct=15 range=25.0 [eff0=APPLY_AURA/MOD_SILENCE v=1; eff1=TRIGGER_SPELL v=1 per=2000]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "HoT on child 681082 (PERIODIC_HEAL)."
+    },
+    {
+      "key": "arugal_dark_liturgy_heal",
+      "name": "Dark Liturgy: +8% healing",
+      "spec_id": 25,
+      "target_spell": 800781,
+      "affected_spells": [
+        800781
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        2048,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "800781 Dark Liturgy cast=2000 cost_pct=15 range=30.0 mask_unique_bit=[0, 2048, 0] [eff0=HEAL v=77; eff1=TRIGGER_SPELL v=1]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "arugal_gorge_cd",
+      "name": "Gorge: -10 sec cooldown",
+      "spec_id": 25,
+      "target_spell": 804805,
+      "affected_spells": [
+        804805
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -10000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "804805 Gorge cd=90000 dur=15000 cost=100 cost_pct=20 [eff0=APPLY_AURA/PERIODIC_TRIGGER_SPELL per=5000]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "arugal_darkfallen_lament_heal",
+      "name": "Darkfallen Lament: +8% healing",
+      "spec_id": 25,
+      "target_spell": 524180,
+      "affected_spells": [
+        680828,
+        524180,
+        630874
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "524180 Darkfallen Lament range=50000.0 via=680828 [eff0=HEAL v=72]; 680828 Darkfallen Lament cd=60000 dur=8000 cost=200 cost_pct=25 [eff0=APPLY_AURA/PERIODIC_TRIGGER_SPELL per=500; eff1=APPLY_AURA/PERIODIC_TRIGGER_SPELL per=500; eff2=APPLY_AURA/MOD_STUN]; 630874 Darkfallen Lament range=50000.0 via=630895 [eff0=HEALTH_LEECH v=72]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "Heal ticks on child 524180, leech on 630874."
+    },
+    {
+      "key": "arugal_hemoglobe_cd",
+      "name": "Hemoglobe: -20 sec cooldown",
+      "spec_id": 25,
+      "target_spell": 524907,
+      "affected_spells": [
+        524907
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -20000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "524907 Hemoglobe cd=180000 dur=15000 cost_pct=50 [eff0=APPLY_AURA/PERIODIC_TRIGGER_SPELL per=1500; eff1=APPLY_AURA/PERIODIC_TRIGGER_SPELL per=1500; eff2=APPLY_AURA/PERIODIC_ENERGIZE v=50 per=1500]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "arugal_vampiric_fang_dmg",
+      "name": "Vampiric Fang: +8% damage",
+      "spec_id": 26,
+      "target_spell": 804726,
+      "affected_spells": [
+        804726
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        524288,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "804726 Vampiric Fang catcd=8000 cost=200 range=30.0 mask_unique_bit=[0, 524288, 0] [eff0=SCHOOL_DAMAGE v=36; eff1=APPLY_AURA/MOD_DAMAGE_FROM_CASTER]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "arugal_atheranns_anguish_cd",
+      "name": "Atherann's Anguish: -10 sec cooldown",
+      "spec_id": 26,
+      "target_spell": 680680,
+      "affected_spells": [
+        680680
+      ],
+      "targeting": "mask",
+      "mask": [
+        4096,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -10000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "680680 Atherann's Anguish cd=90000 dur=10000 cost=400 range=30.0 mask_unique_bit=[4096, 0, 0] [eff0=APPLY_AURA/DUMMY; eff1=APPLY_AURA/SCHOOL_ABSORB v=1; eff2=APPLY_AURA/DUMMY]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "arugal_blood_craving_cd",
+      "name": "Blood Craving: -20 sec cooldown",
+      "spec_id": 26,
+      "target_spell": 800780,
+      "affected_spells": [
+        800780
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -20000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "800780 Blood Craving cd=180000 catcd=180000 dur=12000 [eff0=APPLY_AURA/MECHANIC_IMMUNITY; eff1=APPLY_AURA/PERIODIC_TRIGGER_SPELL v=10 per=2000; eff2=APPLY_AURA/MECHANIC_IMMUNITY]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "arugal_keleseth_cast",
+      "name": "Keleseth's Calamity: -0.5 sec cast time",
+      "spec_id": 26,
+      "target_spell": 560249,
+      "affected_spells": [
+        560249
+      ],
+      "targeting": "mask",
+      "mask": [
+        131072,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CASTING_TIME",
+          "type": "FLAT",
+          "value": -500
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "560249 Keleseth's Calamity cast=6000 cost_pct=27 range=30.0 mask_unique_bit=[131072, 0, 0] [eff0=SCHOOL_DAMAGE v=177]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "arugal_keleseth_dmg",
+      "name": "Keleseth's Calamity: +8% damage",
+      "spec_id": 26,
+      "target_spell": 560249,
+      "affected_spells": [
+        560249
+      ],
+      "targeting": "mask",
+      "mask": [
+        131072,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "560249 Keleseth's Calamity cast=6000 cost_pct=27 range=30.0 mask_unique_bit=[131072, 0, 0] [eff0=SCHOOL_DAMAGE v=177]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "arugal_malediction_dot",
+      "name": "Malediction: +8% periodic damage",
+      "spec_id": 26,
+      "target_spell": 704120,
+      "affected_spells": [
+        704120
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DOT",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "704120 Malediction dur=12000 cost=150 range=40.0 periodic=True via=800776 [eff0=APPLY_AURA/MOD_DAMAGE_FROM_CASTER v=20; eff1=APPLY_AURA/PERIODIC_DAMAGE v=50 per=3000]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "DoT on child 704120."
+    },
+    {
+      "key": "arugal_malediction_cd",
+      "name": "Malediction: -3 sec cooldown",
+      "spec_id": 26,
+      "target_spell": 800776,
+      "affected_spells": [
+        800776
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -3000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "800776 Malediction cd=30000 cost=250 range=30.0 [eff0=TRIGGER_SPELL]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "arugal_aneurysm_cd",
+      "name": "Aneurysm: -3 sec cooldown",
+      "spec_id": 26,
+      "target_spell": 806099,
+      "affected_spells": [
+        806099
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -3000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "806099 Aneurysm cd=24000 dur=4000 cost_pct=10 range=30.0 [eff0=INTERRUPT_CAST]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "arugal_sacrificial_rite_cd",
+      "name": "Sacrificial Rite: -15 sec cooldown",
+      "spec_id": 26,
+      "target_spell": 800785,
+      "affected_spells": [
+        800785
+      ],
+      "targeting": "mask",
+      "mask": [
+        256,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -15000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "800785 Sacrificial Rite cd=120000 catcd=120000 cast=1000 dur=15000 cost=250 range=40.0 mask_unique_bit=[256, 0, 0] [eff0=APPLY_AURA/MOD_MELEE_RANGED_HASTE v=20; eff1=APPLY_AURA/PROC_TRIGGER_SPELL; eff2=APPLY_AURA/HASTE_SPELLS v=20]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "arugal_valanar_cast",
+      "name": "Valanar's Vengeance: -0.5 sec cast time",
+      "spec_id": 26,
+      "target_spell": 560315,
+      "affected_spells": [
+        560315
+      ],
+      "targeting": "mask",
+      "mask": [
+        262144,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CASTING_TIME",
+          "type": "FLAT",
+          "value": -500
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "560315 Valanar's Vengeance cast=6000 cost=15 cost_pct=30 range=30.0 mask_unique_bit=[262144, 0, 0] [eff0=SCHOOL_DAMAGE v=188]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "arugal_valanar_dmg",
+      "name": "Valanar's Vengeance: +8% damage",
+      "spec_id": 26,
+      "target_spell": 560315,
+      "affected_spells": [
+        560315
+      ],
+      "targeting": "mask",
+      "mask": [
+        262144,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "560315 Valanar's Vengeance cast=6000 cost=15 cost_pct=30 range=30.0 mask_unique_bit=[262144, 0, 0] [eff0=SCHOOL_DAMAGE v=188]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "arugal_bloodsurge_cd",
+      "name": "Bloodsurge: -20 sec cooldown",
+      "spec_id": 27,
+      "target_spell": 553267,
+      "affected_spells": [
+        553267
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -20000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 100,
+      "evidence": "553267 Bloodsurge cd=180000 dur=20000 cost_pct=20 [eff0=APPLY_AURA/MOD_DAMAGE_PERCENT_DONE v=30; eff1=APPLY_AURA/PROC_TRIGGER_SPELL; eff2=APPLY_AURA/HASTE_SPELLS v=30]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "arugal_aortic_assault_cd",
+      "name": "Aortic Assault: -2 sec cooldown",
+      "spec_id": 27,
+      "target_spell": 806212,
+      "affected_spells": [
+        806212
+      ],
+      "targeting": "mask",
+      "mask": [
+        2048,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -2000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "806212 Aortic Assault cd=20000 catcd=20000 dur=3000 cost_pct=25 mask_unique_bit=[2048, 0, 0] [eff0=APPLY_AURA/PERIODIC_TRIGGER_SPELL_WITH_VALUE v=20 per=500; eff1=ASCENSION_MODIFY_AURA_DURATION v=3000; eff2=APPLY_AURA/PERIODIC_TRIGGER_SPELL v=1 per=3000]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "arugal_endure_curse_cd",
+      "name": "Endure the Curse: -8 sec cooldown",
+      "spec_id": 27,
+      "target_spell": 681190,
+      "affected_spells": [
+        681190
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        8192
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -8000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "681190 Endure the Curse cd=60000 catcd=60000 dur=10000 mask_unique_bit=[0, 0, 8192] [eff0=APPLY_AURA/SCHOOL_ABSORB; eff1=APPLY_AURA/MOD_DAMAGE_PERCENT_TAKEN v=-30]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "arugal_veinburst_dmg",
+      "name": "Veinburst: +8% damage",
+      "spec_id": 27,
+      "target_spell": 504260,
+      "affected_spells": [
+        504260
+      ],
+      "targeting": "mask",
+      "mask": [
+        2097152,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "504260 Veinburst catcd=15000 cast=2000 cost=300 range=30.0 mask_unique_bit=[2097152, 0, 0] [eff0=SCHOOL_DAMAGE v=123; eff1=DUMMY v=1]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "arugal_final_embrace_cd",
+      "name": "Final Embrace: -20 sec cooldown",
+      "spec_id": 27,
+      "target_spell": 524865,
+      "affected_spells": [
+        524865
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        134217728,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -20000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 100,
+      "evidence": "524865 Final Embrace cd=180000 dur=20000 cost_pct=10 mask_unique_bit=[0, 134217728, 0] [eff0=APPLY_AURA/TRANSFORM v=1; eff1=APPLY_AURA/MOD_INCREASE_SPEED v=15; eff2=APPLY_AURA/PERIODIC_TRIGGER_SPELL v=1 per=1000]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "arugal_hemoburst_dmg",
+      "name": "Hemoburst: +8% damage",
+      "spec_id": 27,
+      "target_spell": 572855,
+      "affected_spells": [
+        572855
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "572855 Hemoburst cd=10000 cast=1500 cost=300 range=30.0 [eff0=SCHOOL_DAMAGE v=1480]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "arugal_reave_dmg",
+      "name": "Reave: +8% damage",
+      "spec_id": 27,
+      "target_spell": 800490,
+      "affected_spells": [
+        800490
+      ],
+      "targeting": "mask",
+      "mask": [
+        4194304,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "800490 Reave catcd=15000 cost=350 range=5.0 mask_unique_bit=[4194304, 0, 0] [eff0=NORMALIZED_WEAPON_DMG v=26; eff1=WEAPON_PERCENT_DAMAGE v=125]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "arugal_night_hunters_howl_dmg",
+      "name": "Night Hunter's Howl: +8% damage",
+      "spec_id": 99,
+      "target_spell": 500124,
+      "affected_spells": [
+        500124
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "500124 Night Hunter's Howl cd=8000 catcd=8000 dur=6000 cost=250 [eff0=SCHOOL_DAMAGE v=71; eff1=TRIGGER_SPELL_WITH_VALUE v=-60]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "arugal_rotclaw_dmg",
+      "name": "Rotclaw: +8% damage",
+      "spec_id": 99,
+      "target_spell": 804197,
+      "affected_spells": [
+        804197
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        512,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        },
+        {
+          "op": "DOT",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "804197 Rotclaw dur=4000 cost_pct=10 periodic=True mask_unique_bit=[0, 512, 0] [eff0=SCHOOL_DAMAGE v=28; eff1=APPLY_AURA/PERIODIC_DAMAGE v=6 per=1000; eff2=APPLY_AURA/ASCENSION_MOD_IGNORE_ARMOR_PCT]",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "Direct (eff0) + PERIODIC_DAMAGE (eff1)."
+    },
+    {
+      "key": "arugal_blood_howl_cd",
+      "name": "Blood Howl: -15 sec cooldown",
+      "spec_id": 99,
+      "target_spell": 800782,
+      "affected_spells": [
+        800782
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -15000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "800782 Blood Howl cd=150000 dur=5000 cost_pct=11 [eff0=APPLY_AURA/MOD_TAUNT; eff1=APPLY_AURA/MOD_TAUNT v=20]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "arugal_eternal_resolve_cd",
+      "name": "Eternal Resolve: -20 sec cooldown",
+      "spec_id": 99,
+      "target_spell": 801962,
+      "affected_spells": [
+        801962
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -20000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 100,
+      "evidence": "801962 Eternal Resolve cd=180000 dur=30000 cost_pct=22 [eff0=APPLY_AURA/MOD_MELEE_HASTE v=50; eff1=APPLY_AURA/MOD_INCREASE_HEALTH_PERCENT v=50; eff2=APPLY_AURA/MOD_HEALING_PCT v=50]",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    }
+  ],
+  "rejected": [
+    {
+      "spell": 504627,
+      "reason": "Blood Bond: 1800 s bond utility; no meaningful numeric op (CD irrelevant, proc values scripted)"
+    },
+    {
+      "spell": 804811,
+      "reason": "summon via child 801958 Call of the Darkwing (is_summon=child)"
+    }
+  ]
+}

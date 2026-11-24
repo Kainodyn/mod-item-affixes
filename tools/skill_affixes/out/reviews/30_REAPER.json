@@ -1,0 +1,826 @@
+{
+  "class_id": 30,
+  "class": "REAPER",
+  "reviewed_at": "2026-11-23",
+  "affixes": [
+    {
+      "key": "reaper_limbo_cd",
+      "name": "Limbo: -20 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 800845,
+      "affected_spells": [
+        800845
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        16
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -20000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 100,
+      "evidence": "800845 Limbo; cd=180000; catcd=180000; dur=6000; mask_unique_bit=[0, 0, 16] fam=36",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "reaper_ghastly_screech_cd",
+      "name": "Ghastly Screech: -10 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 806146,
+      "affected_spells": [
+        806146
+      ],
+      "targeting": "mask",
+      "mask": [
+        16384,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -10000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "806146 Ghastly Screech; cd=90000; catcd=90000; dur=4000; cost=200; radius=[8.0]; mask_unique_bit=[16384, 0, 0] fam=36",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "reaper_ghastly_screech_dmg",
+      "name": "Ghastly Screech: +10% damage",
+      "spec_id": 0,
+      "target_spell": 806147,
+      "affected_spells": [
+        806147
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "806147 Ghastly Screech; trigger child via 806146; eff 0:SCHOOL_DAMAGE v=81",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "Damage dealt by trigger child 806147 (periodic trigger at end of silence); child has no unique mask bit."
+    },
+    {
+      "key": "reaper_jailers_bargain_cd",
+      "name": "Jailer's Bargain: -15 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 805718,
+      "affected_spells": [
+        805718
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -15000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "805718 Jailer's Bargain; cd=120000; dur=10000",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": "Absorb amount is scripted (30% max health, basepoint 1) so no EFFECT op."
+    },
+    {
+      "key": "reaper_soul_tap_cd",
+      "name": "Soul Tap: -4 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 807397,
+      "affected_spells": [
+        807397
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -4000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "807397 Soul Tap; cd=30000",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "reaper_wraithblade_dmg",
+      "name": "Wraithblade: +8% damage",
+      "spec_id": 0,
+      "target_spell": 805258,
+      "affected_spells": [
+        805258
+      ],
+      "targeting": "mask",
+      "mask": [
+        2,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 100,
+      "evidence": "805258 Wraithblade; catcd=30000; cost=400; mask_unique_bit=[2, 0, 0] fam=36; eff 0:NORMALIZED_WEAPON_DMG v=0, 1:SCHOOL_DAMAGE v=36, 2:WEAPON_PERCENT_DAMAGE v=150",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "reaper_wraithblade_crit",
+      "name": "Wraithblade: +3% critical strike chance",
+      "spec_id": 0,
+      "target_spell": 805258,
+      "affected_spells": [
+        805258
+      ],
+      "targeting": "mask",
+      "mask": [
+        2,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "805258 Wraithblade; catcd=30000; cost=400; mask_unique_bit=[2, 0, 0] fam=36; eff 0:NORMALIZED_WEAPON_DMG v=0, 1:SCHOOL_DAMAGE v=36, 2:WEAPON_PERCENT_DAMAGE v=150",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "reaper_wraithblade_cd",
+      "name": "Wraithblade: -4 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 805258,
+      "affected_spells": [
+        805258
+      ],
+      "targeting": "mask",
+      "mask": [
+        2,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -4000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "805258 Wraithblade; catcd=30000; cost=400; mask_unique_bit=[2, 0, 0] fam=36",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": "Only catcd=30000; COOLDOWN spellmod applies to category recovery too."
+    },
+    {
+      "key": "reaper_tormented_souls_cd",
+      "name": "Tormented Souls: -3 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 500483,
+      "affected_spells": [
+        500483
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -3000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "500483 Tormented Souls; cd=20000",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "reaper_masochistic_rage_cd",
+      "name": "Masochistic Rage: -10 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 803030,
+      "affected_spells": [
+        803030
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -10000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "803030 Masochistic Rage; cd=90000",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "reaper_withering_touch_cd",
+      "name": "Withering Touch: -2 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 573071,
+      "affected_spells": [
+        573071
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -2000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "573071 Withering Touch; cd=15000; dur=60000",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "reaper_sepulchral_renewal_cd",
+      "name": "Sepulchral Renewal: -60 sec cooldown",
+      "spec_id": 55,
+      "target_spell": 561102,
+      "affected_spells": [
+        561102
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -60000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 80,
+      "evidence": "561102 Sepulchral Renewal; cd=480000",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "reaper_ghostly_weapon_dmg",
+      "name": "Ghostly Weapon: +10% damage",
+      "spec_id": 55,
+      "target_spell": 804474,
+      "affected_spells": [
+        804474
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        1048576
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "804474 Ghostly Weapon; trigger child via 803997; mask_unique_bit=[0, 0, 1048576] fam=36; eff 0:SCHOOL_DAMAGE v=1",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "Proc damage child 804474 carries its own unique bit [0,0,1048576]."
+    },
+    {
+      "key": "reaper_ghostly_weapon_dur",
+      "name": "Ghostly Weapon: +2 sec duration",
+      "spec_id": 55,
+      "target_spell": 803997,
+      "affected_spells": [
+        803997
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        1073741824
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 2000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "803997 Ghostly Weapon; dur=15000; cost=200; mask_unique_bit=[0, 0, 1073741824] fam=36",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "reaper_dirge_dmg",
+      "name": "Dirge: +8% damage",
+      "spec_id": 55,
+      "target_spell": 801311,
+      "affected_spells": [
+        801311
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "801311 Dirge; trigger child via 801328; eff 0:WEAPON_PERCENT_DAMAGE v=0",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "Dirge damage is dealt by trigger child 801311 (WEAPON_PERCENT_DAMAGE x2); child has no unique mask bit."
+    },
+    {
+      "key": "reaper_dirge_crit",
+      "name": "Dirge: +3% critical strike chance",
+      "spec_id": 55,
+      "target_spell": 801311,
+      "affected_spells": [
+        801311
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "CRITICAL_CHANCE",
+          "type": "FLAT",
+          "value": 3
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "801311 Dirge; trigger child via 801328; eff 0:WEAPON_PERCENT_DAMAGE v=0",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "reaper_shade_cd",
+      "name": "Shade: -20 sec cooldown",
+      "spec_id": 55,
+      "target_spell": 573038,
+      "affected_spells": [
+        573038
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -20000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 100,
+      "evidence": "573038 Shade; cd=180000; catcd=180000; dur=10000",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "reaper_endbringer_cd",
+      "name": "Endbringer: -20 sec cooldown",
+      "spec_id": 55,
+      "target_spell": 800922,
+      "affected_spells": [
+        800922
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        1024
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -20000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 100,
+      "evidence": "800922 Endbringer; cd=180000; dur=15000; mask_unique_bit=[0, 0, 1024] fam=36",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": "Mask bit is shared by proc child 802732 (no cd), harmless."
+    },
+    {
+      "key": "reaper_deathchaser_dot",
+      "name": "Deathchaser: +10% periodic damage",
+      "spec_id": 55,
+      "target_spell": 805190,
+      "affected_spells": [
+        805190
+      ],
+      "targeting": "mask",
+      "mask": [
+        4,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DOT",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "805190 Deathchaser; dur=1000; mask_unique_bit=[4, 0, 0] fam=36; periodic; eff 0:APPLY_AURA/PERIODIC_DAMAGE v=13, 2:APPLY_AURA/MOD_HEALING_PCT v=0",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "reaper_siphon_essence_cd",
+      "name": "Siphon Essence: -3 sec cooldown",
+      "spec_id": 56,
+      "target_spell": 806125,
+      "affected_spells": [
+        806125
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -3000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "806125 Siphon Essence; cd=20000; catcd=20000; dur=3000",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "reaper_siphon_essence_dmg",
+      "name": "Siphon Essence: +10% damage",
+      "spec_id": 56,
+      "target_spell": 806125,
+      "affected_spells": [
+        806125
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "806125 Siphon Essence; cd=20000; catcd=20000; dur=3000; eff 0:INTERRUPT_CAST v=1, 1:HEALTH_LEECH v=22",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "key": "reaper_doomrend_dmg",
+      "name": "Doomrend: +8% damage",
+      "spec_id": 56,
+      "target_spell": 800172,
+      "affected_spells": [
+        800172
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        4194304
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "800172 Doomrend; mask_unique_bit=[0, 0, 4194304] fam=36; eff 0:SCHOOL_DAMAGE v=17, 1:WEAPON_PERCENT_DAMAGE v=140, 2:TRIGGER_SPELL_WITH_VALUE v=75",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": "Heal-absorb child 560361 has ignore_caster_mods and is not targeted."
+    },
+    {
+      "key": "reaper_slaughter_dmg",
+      "name": "Slaughter: +10% damage",
+      "spec_id": 56,
+      "target_spell": 500373,
+      "affected_spells": [
+        500373
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        33554432,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 10
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "500373 Slaughter; cost=200; mask_unique_bit=[0, 33554432, 0] fam=36; eff 0:NORMALIZED_WEAPON_DMG v=17, 1:WEAPON_PERCENT_DAMAGE v=150",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "reaper_harvest_time_cd",
+      "name": "Harvest Time: -20 sec cooldown",
+      "spec_id": 56,
+      "target_spell": 803995,
+      "affected_spells": [
+        803995
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        67108864
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -20000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 100,
+      "evidence": "803995 Harvest Time; cd=180000; catcd=180000; dur=15000; mask_unique_bit=[0, 0, 67108864] fam=36",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "reaper_harvest_time_dur",
+      "name": "Harvest Time: +2 sec duration",
+      "spec_id": 56,
+      "target_spell": 803995,
+      "affected_spells": [
+        803995
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        67108864
+      ],
+      "effects": [
+        {
+          "op": "DURATION",
+          "type": "FLAT",
+          "value": 2000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "803995 Harvest Time; cd=180000; catcd=180000; dur=15000; mask_unique_bit=[0, 0, 67108864] fam=36",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "reaper_crows_harvest_dmg",
+      "name": "Crow's Harvest: +8% damage",
+      "spec_id": 56,
+      "target_spell": 504011,
+      "affected_spells": [
+        504011
+      ],
+      "targeting": "mask",
+      "mask": [
+        2097152,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "504011 Crow's Harvest; cost=300; radius=[8.0]; mask_unique_bit=[2097152, 0, 0] fam=36; eff 0:WEAPON_PERCENT_DAMAGE v=75, 1:NORMALIZED_WEAPON_DMG v=8",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "reaper_bolstered_form_cd",
+      "name": "Bolstered Form: -8 sec cooldown",
+      "spec_id": 57,
+      "target_spell": 680337,
+      "affected_spells": [
+        680337
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        131072
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -8000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "680337 Bolstered Form; cd=60000; dur=15000; mask_unique_bit=[0, 0, 131072] fam=36",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "reaper_requiem_dmg",
+      "name": "Requiem: +8% damage",
+      "spec_id": 57,
+      "target_spell": 805717,
+      "affected_spells": [
+        805717
+      ],
+      "targeting": "mask",
+      "mask": [
+        256,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "805717 Requiem; radius=[8.0]; mask_unique_bit=[256, 0, 0] fam=36; eff 0:SCHOOL_DAMAGE v=67",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "reaper_dreadwake_dmg",
+      "name": "Dreadwake: +8% damage",
+      "spec_id": 57,
+      "target_spell": 803992,
+      "affected_spells": [
+        803992
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        1073741824,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "803992 Dreadwake; cost=300; radius=[12.0]; mask_unique_bit=[0, 1073741824, 0] fam=36; eff 0:NORMALIZED_WEAPON_DMG v=5, 1:WEAPON_PERCENT_DAMAGE v=80",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    }
+  ],
+  "rejected": [
+    {
+      "spell": 803990,
+      "reason": "movement utility; no cooldown in DBC (charges/recharge scripted), no damage"
+    },
+    {
+      "spell": 500359,
+      "reason": "gap-closer utility; no cooldown in DBC, no damage effect"
+    },
+    {
+      "spell": 805185,
+      "reason": "instant resource generation (Reaped Souls), no cooldown/damage to modify"
+    },
+    {
+      "spell": 705413,
+      "reason": "summon (is_summon=self)"
+    },
+    {
+      "spell": 500484,
+      "reason": "summon (is_summon=self); damage by creatures"
+    },
+    {
+      "spell": 805716,
+      "reason": "summon (is_summon=self)"
+    }
+  ]
+}

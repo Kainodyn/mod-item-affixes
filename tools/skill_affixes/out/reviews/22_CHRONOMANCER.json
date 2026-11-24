@@ -1,0 +1,939 @@
+{
+  "class_id": 22,
+  "class": "CHRONOMANCER",
+  "reviewed_at": "2026-11-23",
+  "affixes": [
+    {
+      "key": "chrono_mass_babify_cd",
+      "name": "Mass Babify: -15 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 520855,
+      "affected_spells": [
+        520855
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -15000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "520855 Mass Babify cd=120000 cast=1000 dur=40000 cost=25 cost_pct=32 eff[APPLY_AURA/MOD_STUN, APPLY_AURA/TRANSFORM=1, APPLY_AURA/PERIODIC_TRIGGER_SPELL=1]. -15000 = 12.5% of cd 120000; no mask_unique_bit -> hook_cd.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "chrono_fortify_timeline_heal",
+      "name": "Fortify Timeline: +8% healing",
+      "spec_id": 0,
+      "target_spell": 804491,
+      "affected_spells": [
+        804491
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        4194304,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "804491 Fortify Timeline cd=60000 catcd=60000 cost_pct=36 fam28 mask_unique_bit=[0, 4194304, 0] eff[HEAL=100, ASCENSION_MODIFY_AURA_DURATION=5000]. HEAL=100 on the spell itself (SPELLMOD_DAMAGE also applies to direct heals).",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "chrono_desynchronization_cd",
+      "name": "Desynchronization: -10 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 561310,
+      "affected_spells": [
+        561310
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -10000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "561310 Desynchronization cd=90000 cast=1250 dur=6000 cost=15 cost_pct=28 eff[APPLY_AURA/MOD_DISARM, APPLY_AURA/MOD_DISARM_RANGED, APPLY_AURA/MOD_DISARM_OFFHAND]. -10000 = 11% of cd 90000; hook_cd.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "chrono_temporal_focus_cd",
+      "name": "Temporal Focus: -15 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 806165,
+      "affected_spells": [
+        806165
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -15000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "806165 Temporal Focus cd=120000 dur=10000 cost_pct=14 eff[APPLY_AURA/MECHANIC_IMMUNITY=1, APPLY_AURA/MECHANIC_IMMUNITY=1, APPLY_AURA/MECHANIC_IMMUNITY=1]. -15000 = 12.5% of cd 120000; hook_cd.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "chrono_infinite_shield_heal",
+      "name": "Infinite Shield: +8% healing",
+      "spec_id": 0,
+      "target_spell": 520458,
+      "affected_spells": [
+        520458
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "520458 Infinite Shield dur=8000 eff[HEAL=190]. Parent 520457 only PROC_TRIGGER_SPELL -> 520458; the heal (HEAL=190) is done by child 520458 (no mask bit) -> spell_id.",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "chrono_infinite_shield_cd",
+      "name": "Infinite Shield: -2 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 520457,
+      "affected_spells": [
+        520457
+      ],
+      "targeting": "mask",
+      "mask": [
+        512,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -2000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "520457 Infinite Shield cd=15000 dur=30000 cost_pct=40 fam28 mask_unique_bit=[512, 0, 0] eff[APPLY_AURA/PROC_TRIGGER_SPELL=6, APPLY_AURA/MOD_DAMAGE_FROM_CASTER]. -2000 = 13% of cd 15000.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "chrono_dimensional_divergence_cd",
+      "name": "Dimensional Divergence: -15 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 802790,
+      "affected_spells": [
+        802790
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -15000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "802790 Dimensional Divergence cd=120000 dur=8000 cost=25 cost_pct=30 eff[TELEPORT_UNITS=1, TELEPORT_UNITS]. -15000 = 12.5% of cd 120000; hook_cd.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "chrono_anomaly_spike_dmg",
+      "name": "Anomaly Spike: +8% damage",
+      "spec_id": 0,
+      "target_spell": 503826,
+      "affected_spells": [
+        503826
+      ],
+      "targeting": "mask",
+      "mask": [
+        134217728,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "503826 Anomaly Spike fam28 mask_unique_bit=[134217728, 0, 0] eff[SCHOOL_DAMAGE=161, TRIGGER_SPELL]. Clasp of Infinity 805847 -> End of Time 525050 -> Anomaly Spike 503826 (SCHOOL_DAMAGE=161, own mask_unique_bit). Fatebreaker 504725 has ignore_caster_mods.",
+      "client_sensitive": false,
+      "confidence": "medium",
+      "notes": "Anomaly Spike may also be triggered by other spells; the mask affix then applies there too (intended)."
+    },
+    {
+      "key": "chrono_gravity_bomb_dmg",
+      "name": "Gravity Bomb: +8% damage",
+      "spec_id": 0,
+      "target_spell": 801282,
+      "affected_spells": [
+        801282,
+        801254
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "801282 Gravity Bomb fam28 mask_unique_bit=[65536, 0, 0] eff[SCHOOL_DAMAGE=967]; 801254 Gravity Bomb eff[SCHOOL_DAMAGE, TELEPORT_UNITS_FACE_CASTER]. Parent 801281 only PERIODIC_TRIGGER_SPELL; explosion damage by children 801282 (SCHOOL_DAMAGE=967) and 801254 (SCHOOL_DAMAGE) -> spell_id on both.",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "chrono_gravity_bomb_cd",
+      "name": "Gravity Bomb: -12 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 801281,
+      "affected_spells": [
+        801281
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        2147483648,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -12000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "801281 Gravity Bomb cd=90000 catcd=90000 cast=1500 dur=6000 cost=35 cost_pct=36 fam28 mask_unique_bit=[0, 2147483648, 0] eff[APPLY_AURA/PERIODIC_TRIGGER_SPELL=1, APPLY_AURA/DUMMY, APPLY_AURA/PERIODIC_TRIGGER_SPELL=1]. -12000 = 13% of cd/catcd 90000.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "chrono_temporal_anomaly_cd",
+      "name": "Temporal Anomaly: -15 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 806315,
+      "affected_spells": [
+        806315
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        65536
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -15000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 100,
+      "evidence": "806315 Temporal Anomaly cd=120000 dur=10000 cost=25 cost_pct=24 fam28 mask_unique_bit=[0, 0, 65536] eff[APPLY_AURA/SCHOOL_ABSORB=50]. -15000 = 12.5% of cd 120000.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "chrono_timeguard_cd",
+      "name": "Timeguard: -15 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 804441,
+      "affected_spells": [
+        804441
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        134217728
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -15000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "804441 Timeguard cd=120000 dur=120000 cost_pct=30 fam28 mask_unique_bit=[0, 0, 134217728] eff[APPLY_AURA/SCHOOL_ABSORB=2, APPLY_AURA/DUMMY=35, APPLY_AURA/DUMMY=50]. -15000 = 12.5% of cd 120000.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "chrono_accelerated_recovery_hot",
+      "name": "Accelerated Recovery: +8% healing",
+      "spec_id": 0,
+      "target_spell": 800857,
+      "affected_spells": [
+        800857
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DOT",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "800857 Accelerated Recovery dur=15000 cost_pct=18 periodic eff[APPLY_AURA/PERIODIC_HEAL=12]. PERIODIC_HEAL p1000 on the spell itself -> DOT op.",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "chrono_waves_of_time_cd",
+      "name": "Waves of Time: -3 sec cooldown",
+      "spec_id": 0,
+      "target_spell": 801277,
+      "affected_spells": [
+        801277
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        8,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -3000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "801277 Waves of Time cd=20000 catcd=20000 cost_pct=13 fam28 mask_unique_bit=[0, 8, 0] eff[ASCENSION_TRIGGER_SPELL_DELAYED=2000, TRIGGER_SPELL=-100]. -3000 = 15% of cd/catcd 20000.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "chrono_vast_infinite_cd",
+      "name": "The Vast Infinite: -30 sec cooldown",
+      "spec_id": 31,
+      "target_spell": 706083,
+      "affected_spells": [
+        706083
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -30000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 80,
+      "evidence": "706083 The Vast Infinite cd=300000 dur=10000 cost=35 cost_pct=30 eff[APPLY_AURA/SCHOOL_ABSORB=26, APPLY_AURA/DUMMY=1]. -30000 = 10% of cd 300000; hook_cd.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "chrono_continuum_restoration_cd",
+      "name": "Continuum Restoration: -12 sec cooldown",
+      "spec_id": 31,
+      "target_spell": 801271,
+      "affected_spells": [
+        801271
+      ],
+      "targeting": "mask",
+      "mask": [
+        8,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -12000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 80,
+      "evidence": "801271 Continuum Restoration cd=90000 cast=1500 cost_pct=60 fam28 mask_unique_bit=[8, 0, 0] eff[DISPEL=100, DISPEL=100, TRIGGER_SPELL]. -12000 = 13% of cd 90000.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "chrono_fabric_of_time_heal",
+      "name": "Fabric of Time: +8% healing",
+      "spec_id": 31,
+      "target_spell": 806299,
+      "affected_spells": [
+        806299
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        256
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "806299 Fabric of Time cd=15000 cost_pct=18 fam28 mask_unique_bit=[0, 0, 256] eff[TRIGGER_SPELL, HEAL=378]. HEAL=378 on the spell itself (bonus direct 0.85).",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "chrono_fabric_of_time_cd",
+      "name": "Fabric of Time: -2 sec cooldown",
+      "spec_id": 31,
+      "target_spell": 806299,
+      "affected_spells": [
+        806299
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        256
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -2000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "806299 Fabric of Time cd=15000 cost_pct=18 fam28 mask_unique_bit=[0, 0, 256] eff[TRIGGER_SPELL, HEAL=378]. -2000 = 13% of cd 15000.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "chrono_correct_the_mistake_heal",
+      "name": "Correct the Mistake: +8% healing",
+      "spec_id": 31,
+      "target_spell": 572352,
+      "affected_spells": [
+        572352
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "572352 Correct the Mistake cast=2500 cost_pct=36 eff[HEAL=91]. Group HEAL=91 on the spell itself; no mask_unique_bit -> spell_id.",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "chrono_buy_time_cd",
+      "name": "Buy Time: -20 sec cooldown",
+      "spec_id": 31,
+      "target_spell": 520188,
+      "affected_spells": [
+        520188
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -20000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "520188 Buy Time cd=180000 catcd=180000 cost=50 cost_pct=30 eff[TRIGGER_SPELL/DAMAGE_IMMUNITY, TRIGGER_SPELL, TRIGGER_SPELL]. -20000 = 11% of cd/catcd 180000; hook_cd.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "chrono_displacement_cd",
+      "name": "Displacement: -8 sec cooldown",
+      "spec_id": 31,
+      "target_spell": 806727,
+      "affected_spells": [
+        806727
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -8000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "806727 Displacement cd=60000 dur=1500 cost_pct=22 eff[PULL_TOWARDS=1, DISPEL_MECHANIC/DUMMY=100, DISPEL_MECHANIC=100]. -8000 = 13% of cd 60000; hook_cd.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "chrono_ripple_cd",
+      "name": "Ripple: -4 sec cooldown",
+      "spec_id": 31,
+      "target_spell": 806296,
+      "affected_spells": [
+        806296
+      ],
+      "targeting": "mask",
+      "mask": [
+        1073741824,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -4000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "806296 Ripple cd=30000 dur=5000 cost_pct=40 fam28 mask_unique_bit=[1073741824, 0, 0] eff[APPLY_AURA/MECHANIC_IMMUNITY_MASK, APPLY_AURA/PERIODIC_TRIGGER_SPELL, APPLY_AURA/ADD_PCT_MODIFIER]. -4000 = 13% of cd 30000. Heal is scripted (channel-length based), so no heal affix.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "chrono_incarnation_of_chaos_cd",
+      "name": "Incarnation of Chaos: -20 sec cooldown",
+      "spec_id": 32,
+      "target_spell": 570067,
+      "affected_spells": [
+        570067
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        8192
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -20000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 100,
+      "evidence": "570067 Incarnation of Chaos cd=180000 catcd=180000 dur=15000 cost_pct=18 fam28 mask_unique_bit=[0, 0, 8192] eff[APPLY_AURA/ADD_PCT_MODIFIER, APPLY_AURA/ADD_FLAT_MODIFIER, APPLY_AURA/MOD_DAMAGE_PERCENT_DONE=15]. -20000 = 11% of cd/catcd 180000.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "chrono_melt_reality_dot",
+      "name": "Melt Reality: +8% periodic damage",
+      "spec_id": 32,
+      "target_spell": 806335,
+      "affected_spells": [
+        806335
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        512,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DOT",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "806335 Melt Reality catcd=30000 cast=2500 dur=36000 cost_pct=23 periodic fam28 mask_unique_bit=[0, 512, 0] eff[APPLY_AURA/PERIODIC_DAMAGE=181, APPLY_AURA/PERIODIC_TRIGGER_SPELL]. PERIODIC_DAMAGE p4000 on the spell itself.",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "chrono_chromatic_shard_dmg",
+      "name": "Chromatic Shard: +8% damage",
+      "spec_id": 32,
+      "target_spell": 801292,
+      "affected_spells": [
+        801292
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        33554432
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 4,
+      "weight": 100,
+      "evidence": "801292 Chromatic Shard catcd=30000 cast=3500 cost_pct=23 fam28 mask_unique_bit=[0, 0, 33554432] eff[SCHOOL_DAMAGE=270, TRIGGER_SPELL]. Duality signature nuke; SCHOOL_DAMAGE=270 on the spell itself (bonus direct 2.0).",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "chrono_chromatic_shard_cast",
+      "name": "Chromatic Shard: -0.35 sec cast time",
+      "spec_id": 32,
+      "target_spell": 801292,
+      "affected_spells": [
+        801292
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        33554432
+      ],
+      "effects": [
+        {
+          "op": "CASTING_TIME",
+          "type": "FLAT",
+          "value": -350
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "801292 Chromatic Shard catcd=30000 cast=3500 cost_pct=23 fam28 mask_unique_bit=[0, 0, 33554432] eff[SCHOOL_DAMAGE=270, TRIGGER_SPELL]. -350 = 10% of cast 3500.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "chrono_chromatic_shard_cd",
+      "name": "Chromatic Shard: -4 sec cooldown",
+      "spec_id": 32,
+      "target_spell": 801292,
+      "affected_spells": [
+        801292
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        33554432
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -4000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "801292 Chromatic Shard catcd=30000 cast=3500 cost_pct=23 fam28 mask_unique_bit=[0, 0, 33554432] eff[SCHOOL_DAMAGE=270, TRIGGER_SPELL]. -4000 = 13% of catcd 30000 (category cooldown).",
+      "client_sensitive": true,
+      "confidence": "medium",
+      "notes": "Only catcd; Incarnation of Chaos resets it."
+    },
+    {
+      "key": "chrono_slipstream_cd",
+      "name": "Slipstream: -15 sec cooldown",
+      "spec_id": 32,
+      "target_spell": 707555,
+      "affected_spells": [
+        707555
+      ],
+      "targeting": "hook_cd",
+      "mask": null,
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -15000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 50,
+      "evidence": "707555 Slipstream cd=120000 dur=5000 cost=55 cost_pct=23 eff[APPLY_AURA/MOD_STUN=1, APPLY_AURA/SCHOOL_IMMUNITY=1, APPLY_AURA/DUMMY]. -15000 = 12.5% of cd 120000; hook_cd.",
+      "client_sensitive": true,
+      "confidence": "low",
+      "notes": "Has a reactivation within duration; hook_cd after first cast could interfere - test."
+    },
+    {
+      "key": "chrono_paradox_cannon_cd",
+      "name": "Paradox Cannon: -2 sec cooldown",
+      "spec_id": 33,
+      "target_spell": 806203,
+      "affected_spells": [
+        806203
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        128
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -2000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 70,
+      "evidence": "806203 Paradox Cannon cd=15000 dur=5000 cost_pct=7 fam28 mask_unique_bit=[0, 0, 128] eff[APPLY_AURA/PERIODIC_TRIGGER_SPELL=1, APPLY_AURA/ADD_FLAT_MODIFIER=10]. -2000 = 13% of cd 15000.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "chrono_singularity_core_dmg",
+      "name": "Singularity Core: +8% damage",
+      "spec_id": 33,
+      "target_spell": 804437,
+      "affected_spells": [
+        804437
+      ],
+      "targeting": "mask",
+      "mask": [
+        1024,
+        0,
+        0
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "804437 Singularity Core fam28 mask_unique_bit=[1024, 0, 0] eff[NORMALIZED_WEAPON_DMG=2, WEAPON_PERCENT_DAMAGE=50]. Parent 804438 PROC_TRIGGER_SPELL -> 804437; extra wand damage (WEAPON_PERCENT_DAMAGE=50) done by child 804437, which has its own mask_unique_bit.",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "chrono_flux_emitter_cd",
+      "name": "Flux Emitter: -2 sec cooldown",
+      "spec_id": 33,
+      "target_spell": 804435,
+      "affected_spells": [
+        804435
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        131072
+      ],
+      "effects": [
+        {
+          "op": "COOLDOWN",
+          "type": "FLAT",
+          "value": -2000
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 60,
+      "evidence": "804435 Flux Emitter cd=15000 catcd=3000 dur=5000 cost_pct=11 fam28 mask_unique_bit=[0, 0, 131072] eff[APPLY_AURA/ADD_FLAT_MODIFIER=3, APPLY_AURA/ADD_PCT_MODIFIER]. -2000 = 13% of cd 15000.",
+      "client_sensitive": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "chrono_arc_collision_dot",
+      "name": "Arc Collision: +8% periodic damage",
+      "spec_id": 33,
+      "target_spell": 524853,
+      "affected_spells": [
+        524853
+      ],
+      "targeting": "spell_id",
+      "mask": null,
+      "effects": [
+        {
+          "op": "DOT",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "524853 Arc Collision dur=4000 cost=28 cost_pct=18 periodic eff[APPLY_AURA/PERIODIC_DAMAGE=135]. PERIODIC_DAMAGE p2000 on the spell itself; no mask_unique_bit -> spell_id.",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "key": "chrono_shatter_echo_dmg",
+      "name": "Shatter Echo: +8% damage",
+      "spec_id": 33,
+      "target_spell": 804503,
+      "affected_spells": [
+        804503
+      ],
+      "targeting": "mask",
+      "mask": [
+        0,
+        0,
+        4
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "type": "PCT",
+          "value": 8
+        }
+      ],
+      "scales_with_crit": true,
+      "min_quality": 3,
+      "weight": 100,
+      "evidence": "804503 Shatter Echo cd=3000 catcd=3000 cost_pct=19 fam28 mask_unique_bit=[0, 0, 4] eff[NORMALIZED_WEAPON_DMG=4, WEAPON_PERCENT_DAMAGE=90]. Rotational Distortion spell (known_by_default); WEAPON_PERCENT_DAMAGE=90 on the spell itself.",
+      "client_sensitive": false,
+      "confidence": "high",
+      "notes": ""
+    }
+  ],
+  "rejected": [
+    {
+      "spell": 806293,
+      "reason": "Aeon of Oblivion: ignore_caster_mods"
+    },
+    {
+      "spell": 806292,
+      "reason": "Aeon of Protection: Epoch modifier toggle (cd 5000, dur -1); values only modify Epoch, no meaningful op"
+    },
+    {
+      "spell": 806290,
+      "reason": "Aeon of Renewal: Epoch modifier toggle (cd 5000, dur -1); HoT 560355 amount derived from healing done (scripted)"
+    },
+    {
+      "spell": 680971,
+      "reason": "Destabilize Time: utility debuff without cooldown; stacking scripted"
+    },
+    {
+      "spell": 503836,
+      "reason": "summon (Unstable Chronoglass, is_summon=self)"
+    },
+    {
+      "spell": 804436,
+      "reason": "Aether Compression: utility (cast while moving), no numeric effect worth an affix"
+    }
+  ]
+}
