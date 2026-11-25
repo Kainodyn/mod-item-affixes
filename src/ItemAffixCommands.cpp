@@ -434,7 +434,7 @@ public:
         if (!item)
             return false;
         ReforgeState state = sItemAffixMgr->GetReforgeState(item->GetGUID().GetRawValue());
-        uint32 cost = sItemAffixMgr->GetReforgeCost(item->GetTemplate()->Quality, state.exists ? state.rerollCount : 0);
+        uint32 cost = sItemAffixMgr->GetReforgeCost(item->GetTemplate(), state.exists ? state.rerollCount : 0);
         if (state.exists)
             handler->PSendSysMessage("|cffFFFF00[Reforge]|r locked to slot {}, reforged {} time(s), next cost {}c.",
                 state.lockedSlot, state.rerollCount, cost);

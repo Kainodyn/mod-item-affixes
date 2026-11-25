@@ -732,6 +732,7 @@ void ItemAffixMgr::LoadConfig()
     _slotCount[ITEM_QUALITY_EPIC]     = slots("ItemAffixes.SlotCountPurple", 3);
     _slotCountLegendary               = slots("ItemAffixes.SlotCountLegendary", 4);
     _twoHanderBonusSlots              = slots("ItemAffixes.TwoHanderBonusSlots", 1);
+    _bonusSlotChance = std::min<uint32>(sConfigMgr->GetOption<uint32>("ItemAffixes.BonusSlotChance", 5), 100);
 
     _budgetFraction[ITEM_QUALITY_UNCOMMON] = sConfigMgr->GetOption<float>("ItemAffixes.BudgetFractionGreen", 0.18f);
     _budgetFraction[ITEM_QUALITY_RARE]     = sConfigMgr->GetOption<float>("ItemAffixes.BudgetFractionBlue", 0.13f);
@@ -753,6 +754,8 @@ void ItemAffixMgr::LoadConfig()
     _reforgeBaseCost[ITEM_QUALITY_RARE]     = sConfigMgr->GetOption<uint32>("ItemAffixes.ReforgeBaseCostBlue", 20000);
     _reforgeBaseCost[ITEM_QUALITY_EPIC]     = sConfigMgr->GetOption<uint32>("ItemAffixes.ReforgeBaseCostPurple", 75000);
     _reforgeBaseCostLegendary               = sConfigMgr->GetOption<uint32>("ItemAffixes.ReforgeBaseCostLegendary", 250000);
+    _reforgeReferenceItemLevel = sConfigMgr->GetOption<uint32>("ItemAffixes.ReforgeReferenceItemLevel", 60);
+    _reforgeCostIncreasePct    = sConfigMgr->GetOption<uint32>("ItemAffixes.ReforgeCostIncreasePct", 50);
 
     _skillAffixesEnabled = sConfigMgr->GetOption<bool>("ItemAffixes.SkillAffixes.Enable", true);
     _skillAffixChance    = std::min<uint32>(sConfigMgr->GetOption<uint32>("ItemAffixes.SkillAffixChance", 20), 100);
@@ -1224,11 +1227,14 @@ void ItemAffixMgr::RollItem(Player* player, Item* item)
 
     uint64 itemGuid = item->GetGUID().GetRawValue();
     std::vector<AffixSlot> slots = GetSlots(itemGuid);
+    // The stored slot count keeps a bonus slot; it is only rolled when the item gets its first affixes.
+    uint8 target = std::max(GetSlotCount(item), uint8(std::min<size_t>(slots.size(), MAX_AFFIX_SLOTS)));
+    if (slots.empty() && _bonusSlotChance && urand(0, 99) < _bonusSlotChance)
+        target = std::min<uint8>(target + 1, MAX_AFFIX_SLOTS);
     // Slots stored empty (affix_id 0, e.g. by builds that skipped stats worth < 1 point) roll again.
     auto const empty = std::find_if(slots.begin(), slots.end(),
         [](AffixSlot const& slot) { return slot.affixId == 0; });
     slots.erase(empty, slots.end());
-    uint8 const target = GetSlotCount(item);
     if (slots.size() >= target)
         return;
 
@@ -1980,7 +1986,7 @@ void ItemAffixMgr::HandleAddonMessage(Player* player, std::string const& payload
     {
         std::vector<AffixSlot> slots = GetSlots(item->GetGUID().GetRawValue());
         ReforgeState state = GetReforgeState(item->GetGUID().GetRawValue());
-        uint32 cost = GetReforgeCost(item->GetTemplate()->Quality, state.exists ? state.rerollCount : 0);
+        uint32 cost = GetReforgeCost(item->GetTemplate(), state.exists ? state.rerollCount : 0);
         std::string msg = Acore::StringFormat("REFORGESTATUS|{}|{}|{}|{}|{}",
             bag, slot, slots.size(), state.exists ? uint32(state.lockedSlot) : 255u, cost);
         for (size_t i = 0; i < slots.size(); ++i)
@@ -2122,11 +2128,18 @@ ReforgeState ItemAffixMgr::GetReforgeState(uint64 itemGuid) const
     return state;
 }
 
-uint32 ItemAffixMgr::GetReforgeCost(uint32 itemQuality, uint32 timesAlreadyReforged) const
+uint32 ItemAffixMgr::GetReforgeCost(ItemTemplate const* proto, uint32 timesAlreadyReforged) const
 {
-    uint32 base = itemQuality >= ITEM_QUALITY_LEGENDARY ? _reforgeBaseCostLegendary
-        : _reforgeBaseCost[std::min<uint32>(itemQuality, ITEM_QUALITY_EPIC)];
-    return uint32(base * (1.0 + timesAlreadyReforged * 0.5));
+    uint32 const quality = proto->Quality;
+    double cost = quality >= ITEM_QUALITY_LEGENDARY ? _reforgeBaseCostLegendary
+        : _reforgeBaseCost[std::min<uint32>(quality, ITEM_QUALITY_EPIC)];
+    if (_reforgeReferenceItemLevel)
+    {
+        uint32 itemLevel = _maxBudgetItemLevel ? std::min(proto->ItemLevel, _maxBudgetItemLevel) : proto->ItemLevel;
+        cost = cost * std::max<uint32>(itemLevel, 1) / _reforgeReferenceItemLevel;
+    }
+    cost *= 1.0 + timesAlreadyReforged * _reforgeCostIncreasePct / 100.0;
+    return std::max<uint32>(1, uint32(std::lround(cost)));
 }
 
 ReforgeRollResult ItemAffixMgr::RollReforgeOptions(Player* player, Item* item, uint8 affixSlot,
@@ -2145,7 +2158,7 @@ ReforgeRollResult ItemAffixMgr::RollReforgeOptions(Player* player, Item* item, u
         return ReforgeRollResult::ERR_WRONG_SLOT;
 
     ItemTemplate const* proto = item->GetTemplate();
-    uint32 cost = GetReforgeCost(proto->Quality, state.exists ? state.rerollCount : 0);
+    uint32 cost = GetReforgeCost(proto, state.exists ? state.rerollCount : 0);
     if (!player->HasEnoughMoney(cost))
         return ReforgeRollResult::ERR_INSUFFICIENT_GOLD;
     player->ModifyMoney(-int32(cost));

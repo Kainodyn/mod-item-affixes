@@ -55,6 +55,18 @@ ItemAffixes.SlotCountLegendary = 4
 ItemAffixes.TwoHanderBonusSlots = 1
 
 #
+#    ItemAffixes.BonusSlotChance
+#        Description: Chance (percent) that an item gets one extra affix slot, rolled once when
+#                     the item gets its first affixes (loot, quest reward, craft, purchase, or
+#                     first equip of an unrolled item). The extra slot rolls like every other
+#                     (stat or skill affix, at most one skill affix per item); total at most 6.
+#                     Items that already have affixes never gain one.
+#        Default:     5
+#
+
+ItemAffixes.BonusSlotChance = 5
+
+#
 #    ItemAffixes.BudgetFractionGreen / Blue / Purple / Legendary
 #        Description: Share of the item's stat budget one affix gets.
 #                     value = budget(iLvl) * slot modifier * fraction * StatMultiplier
@@ -202,11 +214,19 @@ ItemAffixes.ReforgeOptionsLegendary = 4
 
 #
 #    ItemAffixes.ReforgeBaseCostGreen / Blue / Purple / Legendary
-#        Description: Reforge cost in copper; cost = base * (1 + times already reforged * 0.5).
-#        Default:     5000 / 20000 / 75000 / 250000
+#    ItemAffixes.ReforgeReferenceItemLevel
+#    ItemAffixes.ReforgeCostIncreasePct
+#        Description: Reforge cost in copper:
+#                     base * item level / ReforgeReferenceItemLevel
+#                          * (1 + times already reforged * ReforgeCostIncreasePct / 100).
+#                     The item level is capped by MaxBudgetItemLevel. ReforgeReferenceItemLevel 0 =
+#                     no item level scaling (the base is the price). Minimum 1 copper.
+#        Default:     5000 / 20000 / 75000 / 250000, 60, 50
 #
 
 ItemAffixes.ReforgeBaseCostGreen     = 5000
 ItemAffixes.ReforgeBaseCostBlue      = 20000
 ItemAffixes.ReforgeBaseCostPurple    = 75000
 ItemAffixes.ReforgeBaseCostLegendary = 250000
+ItemAffixes.ReforgeReferenceItemLevel = 60
+ItemAffixes.ReforgeCostIncreasePct    = 50

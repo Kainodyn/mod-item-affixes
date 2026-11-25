@@ -15,6 +15,7 @@
 
 class Creature;
 class Item;
+struct ItemTemplate;
 class Player;
 class Unit;
 struct AscensionSpellRow;
@@ -299,7 +300,8 @@ public:
 
     // Reforge
     ReforgeState GetReforgeState(uint64 itemGuid) const;
-    uint32 GetReforgeCost(uint32 itemQuality, uint32 timesAlreadyReforged) const;
+    // base(quality) * item level / ReforgeReferenceItemLevel * (1 + reforges so far * ReforgeCostIncreasePct / 100)
+    uint32 GetReforgeCost(ItemTemplate const* proto, uint32 timesAlreadyReforged) const;
     ReforgeRollResult RollReforgeOptions(Player* player, Item* item, uint8 affixSlot,
                                          std::vector<ReforgeOption>* outOptions = nullptr);
     ReforgePickResult CommitReforgePick(Player* player, Item* item, uint8 affixSlot, uint32 optIdx);
@@ -329,6 +331,7 @@ private:
     uint8 _slotCount[5]              = { 0, 0, 1, 2, 3 };  // indexed by quality 0..4
     uint8 _slotCountLegendary        = 4;
     uint8 _twoHanderBonusSlots       = 1;
+    uint32 _bonusSlotChance          = 5;
     float _budgetFraction[5]         = { 0.f, 0.f, 0.18f, 0.13f, 0.10f };
     float _budgetFractionLegendary   = 0.09f;
     float _budgetMinRoll             = 0.75f;
@@ -341,6 +344,8 @@ private:
     uint8 _reforgeOptionsLegendary   = 4;
     uint32 _reforgeBaseCost[5]       = { 0, 0, 5000, 20000, 75000 };
     uint32 _reforgeBaseCostLegendary = 250000;
+    uint32 _reforgeReferenceItemLevel = 60;
+    uint32 _reforgeCostIncreasePct   = 50;
     bool   _skillAffixesEnabled      = true;
     uint32 _skillAffixChance         = 25;
     bool   _summonAffixesEnabled     = true;
