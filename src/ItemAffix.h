@@ -4,6 +4,7 @@
 #include "CoASpecRoles.h"
 #include "DataMap.h"
 #include "ObjectGuid.h"
+#include "SpellDefines.h"
 #include "Define.h"
 #include <array>
 #include <cstdint>
@@ -158,7 +159,7 @@ struct ActiveSkillAffix
 
 // Summed skill affix modifiers of one spell, written into the Spell row streamed to the client.
 // Indexed by SpellModOp.
-constexpr uint8 SKILL_ROW_MAX_OPS = 32;
+constexpr uint8 SKILL_ROW_MAX_OPS = MAX_SPELLMOD;
 struct SkillRowEffects
 {
     std::array<int32, SKILL_ROW_MAX_OPS> flat{};
