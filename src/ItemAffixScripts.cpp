@@ -8,6 +8,7 @@
 #include "Player.h"
 #include "ScriptMgr.h"
 #include "SharedDefines.h"
+#include "Spell.h"
 #include "SpellAuras.h"
 #include "SpellInfo.h"
 
@@ -38,7 +39,15 @@ public:
         PLAYERHOOK_ON_LEARN_SPELL,
         PLAYERHOOK_ON_FORGOT_SPELL,
         PLAYERHOOK_ON_AFTER_SPEC_SLOT_CHANGED,
+        PLAYERHOOK_ON_SPELL_CAST,
     }) { }
+
+    // CoA upgrade kits replace the target item; remember it so the replacement keeps its affixes.
+    void OnPlayerSpellCast(Player* player, Spell* spell, bool /*skipCheck*/) override
+    {
+        if (spell && spell->m_targets.GetItemTarget())
+            sItemAffixMgr->NoteItemUpgrade(player, spell);
+    }
 
     void OnPlayerLogin(Player* player) override
     {

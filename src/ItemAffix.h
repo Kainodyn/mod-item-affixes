@@ -18,6 +18,7 @@ class Creature;
 class Item;
 struct ItemTemplate;
 class Player;
+class Spell;
 class Unit;
 struct AscensionSpellRow;
 struct SpellModifier;
@@ -187,6 +188,10 @@ struct ItemAffixPlayerData : public DataMap::Base
     bool   statusScheduled    = false;
     SummonStatTotals summonStats;
     bool   summonRefreshScheduled = false;
+    // Item a CoA upgrade kit is being cast on (ItemAffixMgr::NoteItemUpgrade); 0 when none.
+    uint64 upgradeOldGuid     = 0;
+    uint32 upgradeOldEntry    = 0;
+    uint16 upgradePos         = 0;
 };
 
 // Reforge candidate (also the serialized form "id:val:crit").
@@ -250,6 +255,11 @@ public:
     // Deletes an item's affixes and rolls it again (GM command).
     void RerollItem(Player* player, Item* item);
 
+    // CoA upgrade kits (spell_ascension_upgrade_kit) destroy the target item and create its next
+    // quality tier with a new GUID at the same position. Called from OnPlayerSpellCast, before the
+    // kit's effect runs: the replacement then keeps the old affixes and only rolls its new slots.
+    void NoteItemUpgrade(Player* player, Spell* spell);
+
     // Summon affixes: totals kept per player, applied to every creature the player owns.
     void ApplySummonStat(Player* player, uint8 statOp, int32 value, bool apply);
     // Capped totals (ItemAffixes.SummonAffixes.CapPct); all zero for players the module does not handle.
@@ -311,7 +321,9 @@ private:
     struct RollContext;
 
     uint8 GetSlotCount(Item const* item) const;
+    uint8 GetSlotCount(ItemTemplate const* proto) const;
     float GetAffixBudget(Item const* item) const;
+    float GetAffixBudget(ItemTemplate const* proto) const;
     bool  IsEligibleItem(Item const* item) const;
     std::vector<std::pair<uint32, uint32>> BuildWeightedPool(RollContext const& ctx) const;
     uint32 PickAffix(RollContext const& ctx) const;
@@ -324,6 +336,9 @@ private:
     bool   ItemHasSkillAffix(std::vector<AffixSlot> const& slots, size_t ignoreSlot = SIZE_MAX) const;
     void   RefreshEquippedItem(Player* player, Item* item);
     void   StoreSlots(uint64 itemGuid, std::vector<AffixSlot> const& slots, uint8 firstChanged);
+    bool   IsUpgradeKitSpell(uint32 spellId) const;
+    // Moves the affixes and reforge state of the item noted by NoteItemUpgrade to its replacement.
+    bool   AdoptUpgradedAffixes(Player* player, Item* item);
     void   AppendAffixPayload(std::string& msg, std::vector<AffixSlot> const& slots, Player const* wearer) const;
 
     bool  _enabled                   = true;

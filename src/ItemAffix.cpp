@@ -17,6 +17,7 @@
 #include "Opcodes.h"
 #include "Player.h"
 #include "Random.h"
+#include "Spell.h"
 #include "SpellAuraEffects.h"
 #include "SpellAuras.h"
 #include "SpellInfo.h"
@@ -1056,7 +1057,11 @@ bool ItemAffixMgr::IsEligibleItem(Item const* item) const
 
 uint8 ItemAffixMgr::GetSlotCount(Item const* item) const
 {
-    ItemTemplate const* proto = item->GetTemplate();
+    return GetSlotCount(item->GetTemplate());
+}
+
+uint8 ItemAffixMgr::GetSlotCount(ItemTemplate const* proto) const
+{
     uint8 count = proto->Quality >= ITEM_QUALITY_LEGENDARY ? _slotCountLegendary : _slotCount[proto->Quality];
     if (Is2HWeapon(proto))
         count += _twoHanderBonusSlots;
@@ -1065,7 +1070,11 @@ uint8 ItemAffixMgr::GetSlotCount(Item const* item) const
 
 float ItemAffixMgr::GetAffixBudget(Item const* item) const
 {
-    ItemTemplate const* proto = item->GetTemplate();
+    return GetAffixBudget(item->GetTemplate());
+}
+
+float ItemAffixMgr::GetAffixBudget(ItemTemplate const* proto) const
+{
     uint32 itemLevel = _maxBudgetItemLevel ? std::min(proto->ItemLevel, _maxBudgetItemLevel) : proto->ItemLevel;
     float fraction = proto->Quality >= ITEM_QUALITY_LEGENDARY ? _budgetFractionLegendary : _budgetFraction[proto->Quality];
     return ComputeItemBudget(itemLevel) * GetSlotBudgetMod(proto->InventoryType) * fraction * _statMultiplier;
@@ -1227,6 +1236,10 @@ void ItemAffixMgr::RollItem(Player* player, Item* item)
 
     uint64 itemGuid = item->GetGUID().GetRawValue();
     std::vector<AffixSlot> slots = GetSlots(itemGuid);
+    // An upgraded item keeps the affixes of the item it replaced; only the new slots roll below.
+    bool const adopted = slots.empty() && AdoptUpgradedAffixes(player, item);
+    if (adopted)
+        slots = GetSlots(itemGuid);
     // The stored slot count keeps a bonus slot; it is only rolled when the item gets its first affixes.
     uint8 target = std::max(GetSlotCount(item), uint8(std::min<size_t>(slots.size(), MAX_AFFIX_SLOTS)));
     if (slots.empty() && _bonusSlotChance && urand(0, 99) < _bonusSlotChance)
@@ -1236,7 +1249,14 @@ void ItemAffixMgr::RollItem(Player* player, Item* item)
         [](AffixSlot const& slot) { return slot.affixId == 0; });
     slots.erase(empty, slots.end());
     if (slots.size() >= target)
+    {
+        if (adopted)
+        {
+            RefreshEquippedItem(player, item);
+            SendItemStatus(player, item);
+        }
         return;
+    }
 
     RollContext ctx;
     ctx.player       = player;
@@ -1294,6 +1314,86 @@ void ItemAffixMgr::RollUnrolledEquipped(Player* player)
     for (uint8 slot = EQUIPMENT_SLOT_START; slot < EQUIPMENT_SLOT_END; ++slot)
         if (Item* item = player->GetItemByPos(INVENTORY_SLOT_BAG_0, slot))
             RollItem(player, item);
+}
+
+bool ItemAffixMgr::IsUpgradeKitSpell(uint32 spellId) const
+{
+    SpellScriptsBounds bounds = sObjectMgr->GetSpellScriptsBounds(spellId);
+    for (auto itr = bounds.first; itr != bounds.second; ++itr)
+        if (sObjectMgr->GetScriptName(itr->second) == "spell_ascension_upgrade_kit")
+            return true;
+    return false;
+}
+
+void ItemAffixMgr::NoteItemUpgrade(Player* player, Spell* spell)
+{
+    if (!spell || !Handles(player))
+        return;
+    Item* item = spell->m_targets.GetItemTarget();
+    if (!item || item->GetOwnerGUID() != player->GetGUID() || !IsUpgradeKitSpell(spell->GetSpellInfo()->Id))
+        return;
+    uint64 const oldGuid = item->GetGUID().GetRawValue();
+    if (GetSlots(oldGuid).empty())
+        return;
+
+    ItemAffixPlayerData* data = player->CustomData.GetDefault<ItemAffixPlayerData>("ItemAffixData");
+    data->upgradeOldGuid  = oldGuid;
+    data->upgradeOldEntry = item->GetEntry();
+    data->upgradePos      = item->GetPos();
+    // An equipped replacement adopts the affixes through OnPlayerEquip during the cast. One stored in
+    // the bags or bank passes no store hook, so it adopts them on the next update; if the upgrade
+    // failed, the original item is still at the position and nothing happens.
+    player->m_Events.AddEventAtOffset([player, oldGuid]()
+    {
+        ItemAffixPlayerData* pending = player->CustomData.Get<ItemAffixPlayerData>("ItemAffixData");
+        if (!pending || pending->upgradeOldGuid != oldGuid)
+            return;
+        if (player->IsInWorld())
+            if (Item* replacement = player->GetItemByPos(pending->upgradePos))
+                sItemAffixMgr->RollItem(player, replacement);
+        pending->upgradeOldGuid = 0;
+    }, 0ms);
+}
+
+bool ItemAffixMgr::AdoptUpgradedAffixes(Player* player, Item* item)
+{
+    ItemAffixPlayerData* data = player->CustomData.Get<ItemAffixPlayerData>("ItemAffixData");
+    if (!data || !data->upgradeOldGuid || item->GetPos() != data->upgradePos)
+        return false;
+    uint64 const oldGuid = data->upgradeOldGuid;
+    uint64 const newGuid = item->GetGUID().GetRawValue();
+    if (oldGuid == newGuid)
+        return false;
+    data->upgradeOldGuid = 0;
+
+    std::vector<AffixSlot> slots = GetSlots(oldGuid);
+    if (slots.empty())
+        return false;
+
+    // Stat values grow with the item's total affix budget (per-slot budget x slot count, item level
+    // included): green -> blue about x1.45, blue -> epic x1.15, epic -> legendary x1.2 at the
+    // default fractions. The new slots roll on top. Skill affixes store a percent of their template
+    // values and keep it.
+    ItemTemplate const* oldProto = sObjectMgr->GetItemTemplate(data->upgradeOldEntry);
+    float const oldTotal = oldProto ? GetAffixBudget(oldProto) * GetSlotCount(oldProto) : 0.0f;
+    float const ratio = oldTotal > 0.0f ? GetAffixBudget(item) * GetSlotCount(item) / oldTotal : 1.0f;
+    if (ratio > 1.0f)
+        for (AffixSlot& slot : slots)
+            if (AffixDefinition const* def = GetAffixDef(slot.affixId); def && !def->IsSkill())
+                slot.rolledValue = std::max(1, int32(std::lround(slot.rolledValue * ratio)));
+
+    StoreSlots(newGuid, slots, 0);
+    {
+        std::lock_guard<std::mutex> guard(_cacheLock);
+        _cache.erase(oldGuid);
+    }
+    CharacterDatabaseTransaction trans = CharacterDatabase.BeginTransaction();
+    trans->Append("DELETE FROM item_affix WHERE item_guid = {}", oldGuid);
+    trans->Append("UPDATE item_reforge_state SET item_guid = {} WHERE item_guid = {}", newGuid, oldGuid);
+    CharacterDatabase.CommitTransaction(trans);
+    LOG_DEBUG("module", "mod-item-affixes: upgraded item {} -> {} kept {} affix slot(s), stat values x{:.2f}.",
+        oldGuid, newGuid, slots.size(), std::max(ratio, 1.0f));
+    return true;
 }
 
 void ItemAffixMgr::RerollItem(Player* player, Item* item)
